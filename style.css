@@ -367,6 +367,53 @@ body {
   opacity: 0.35;
 }
 
+/* === Scroll Reveal === */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Card Hover Glow === */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  background: radial-gradient(
+    600px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+    rgba(201, 168, 76, 0.06),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* === Nav Scrolled === */
+.nav-scrolled {
+  background: rgba(6, 7, 8, 0.95);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+/* === Gradient Text for Section Headers === */
+.section-header h2 {
+  background: linear-gradient(135deg, var(--text) 0%, var(--gold-light) 50%, var(--text) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* === Responsive === */
 @media (max-width: 768px) {
   .nav-links { display: none; }
