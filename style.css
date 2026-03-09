@@ -102,19 +102,19 @@ body {
   background: var(--bg);
 }
 
-/* Mountain landscape background */
+/* Mountain landscape background — ink wash style */
 .hero-bg {
   position: absolute;
   inset: 0;
   background:
-    url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=85') center 30%/cover no-repeat;
-  filter: brightness(0.2) sepia(0.5) saturate(0.25) contrast(1.1);
+    url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920&q=85') center 40%/cover no-repeat;
+  filter: brightness(0.25) sepia(0.6) saturate(0.2) contrast(1.2);
   animation: heroBreath 12s ease-in-out infinite;
 }
 
 @keyframes heroBreath {
-  0%, 100% { filter: brightness(0.2) sepia(0.5) saturate(0.25) contrast(1.1); }
-  50% { filter: brightness(0.22) sepia(0.5) saturate(0.3) contrast(1.1); }
+  0%, 100% { filter: brightness(0.25) sepia(0.6) saturate(0.2) contrast(1.2); }
+  50% { filter: brightness(0.28) sepia(0.6) saturate(0.25) contrast(1.2); }
 }
 
 /* Ink wash overlay layers */
@@ -411,10 +411,11 @@ body {
 }
 
 .section-icon {
-  font-size: 1.6rem;
+  font-size: 2rem;
   display: block;
   margin-bottom: 20px;
-  opacity: 0.7;
+  opacity: 0.85;
+  filter: drop-shadow(0 0 12px rgba(212,175,55,0.15));
 }
 
 .section-header h2 {
@@ -460,7 +461,7 @@ body {
 .card {
   position: relative;
   display: block;
-  background: var(--surface);
+  background: linear-gradient(145deg, rgba(18, 22, 28, 0.9) 0%, rgba(12, 15, 20, 0.95) 100%);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 32px;
@@ -469,6 +470,7 @@ body {
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
   backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
 /* Top gold brush stroke */
@@ -503,11 +505,12 @@ body {
 
 .card:hover {
   border-color: var(--border-gold);
-  transform: translateY(-8px);
-  background: var(--surface-hover);
+  transform: translateY(-8px) scale(1.01);
+  background: linear-gradient(145deg, rgba(25, 30, 38, 0.95) 0%, rgba(15, 18, 24, 0.98) 100%);
   box-shadow:
     0 24px 80px rgba(0,0,0,0.5),
-    0 0 60px rgba(212,175,55,0.04),
+    0 0 60px rgba(212,175,55,0.06),
+    0 0 1px rgba(212,175,55,0.3),
     inset 0 1px 0 rgba(212,175,55,0.1);
 }
 
