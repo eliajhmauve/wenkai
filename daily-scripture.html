@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日經文靈修卡 — 福青施老師</title>
+  <meta name="description" content="365 天每日經文推送，五種精美卡片模板，AI 默想引導，收藏與分享">
+  <meta name="author" content="福青施老師">
+  <meta name="theme-color" content="#c9a84c">
+  <link rel="canonical" href="https://eliajhmauve.github.io/wenkai/daily-scripture.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="每日經文靈修卡 — 福青施老師">
+  <meta property="og:description" content="365 天每日經文推送，五種精美卡片模板，AI 默想引導，收藏與分享">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://eliajhmauve.github.io/wenkai/daily-scripture.html">
+  <meta property="og:image" content="https://eliajhmauve.github.io/wenkai/og-image.png">
+  <meta property="og:locale" content="zh_TW">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="每日經文靈修卡 — 福青施老師">
+  <meta name="twitter:description" content="365 天每日經文推送，五種精美卡片模板，AI 默想引導，收藏與分享">
+  <meta name="twitter:image" content="https://eliajhmauve.github.io/wenkai/og-image.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #060708;
+      --bg-alt: #0a0b0d;
+      --surface: rgba(255,255,255,0.03);
+      --surface-hover: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(212,175,55,0.2);
+      --text: #e8e4dc;
+      --text-dim: #706b62;
+      --gold: #c9a84c;
+      --gold-light: #dfc06a;
+      --radius: 12px;
+      --font-serif: 'Noto Serif TC', serif;
+      --font-sans: 'Noto Sans TC', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Nav */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(6,7,8,0.8);
+      backdrop-filter: blur(30px);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .nav-inner {
+      max-width: 900px; margin: 0 auto; padding: 16px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-back {
+      color: var(--text-dim); text-decoration: none; font-size: 0.82rem;
+      letter-spacing: 1px; transition: color 0.3s;
+    }
+    .nav-back:hover { color: var(--text); }
+    .nav-logo {
+      font-family: var(--font-serif); font-size: 1rem; font-weight: 700;
+      color: var(--gold); text-decoration: none; letter-spacing: 4px;
+    }
+
+    /* Main container */
+    .container {
+      max-width: 700px; margin: 0 auto; padding: 100px 24px 80px;
+    }
+
+    /* Date picker */
+    .date-picker {
+      display: flex; align-items: center; justify-content: center; gap: 20px;
+      margin-bottom: 32px;
+    }
+    .date-arrow {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 1px solid var(--border); background: var(--surface);
+      color: var(--text-dim); font-size: 1.1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s;
+    }
+    .date-arrow:hover {
+      border-color: var(--border-hover); background: var(--surface-hover); color: var(--text);
+    }
+    .date-display {
+      font-family: var(--font-serif); font-size: 1.3rem; font-weight: 700;
+      color: var(--text); letter-spacing: 3px; min-width: 140px; text-align: center;
+    }
+
+    /* Category badge */
+    .category-badge {
+      display: inline-block; padding: 4px 16px; border-radius: 20px;
+      background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2);
+      color: var(--gold); font-size: 0.78rem; letter-spacing: 2px;
+      margin-bottom: 24px; text-align: center;
+    }
+    .badge-wrap { text-align: center; }
+
+    /* Verse display */
+    .verse-section {
+      text-align: center; margin-bottom: 32px;
+      padding: 40px 20px;
+      background: radial-gradient(ellipse at 50% 30%, rgba(201,168,76,0.04) 0%, transparent 70%);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .verse-text {
+      font-family: var(--font-serif); font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+      font-weight: 400; line-height: 2; color: var(--text);
+      max-width: 560px; margin: 0 auto 20px;
+      letter-spacing: 1px;
+    }
+    .verse-ref {
+      font-size: 0.88rem; color: var(--gold); letter-spacing: 2px;
+      font-family: var(--font-sans);
+    }
+
+    /* Action buttons */
+    .actions {
+      display: flex; justify-content: center; gap: 10px; margin-bottom: 32px; flex-wrap: wrap;
+    }
+    .btn {
+      padding: 10px 18px; border: 1px solid var(--border); border-radius: 8px;
+      background: var(--surface); color: var(--text); font-size: 0.82rem;
+      cursor: pointer; transition: all 0.3s; font-family: var(--font-sans);
+      letter-spacing: 1px; display: flex; align-items: center; gap: 6px;
+    }
+    .btn:hover { border-color: var(--border-hover); background: var(--surface-hover); }
+    .btn-gold {
+      background: rgba(201,168,76,0.12); border-color: rgba(201,168,76,0.3); color: var(--gold);
+    }
+    .btn-gold:hover { background: rgba(201,168,76,0.2); }
+    .btn .icon { font-size: 0.9rem; }
+    .btn.fav-active { border-color: #e74c3c; color: #e74c3c; background: rgba(231,76,60,0.1); }
+
+    /* Template selector */
+    .template-selector {
+      display: none; justify-content: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;
+    }
+    .template-selector.show { display: flex; }
+    .tpl-btn {
+      padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+      background: transparent; color: var(--text-dim); font-size: 0.75rem;
+      cursor: pointer; transition: all 0.3s; font-family: var(--font-sans);
+      letter-spacing: 1px;
+    }
+    .tpl-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.12); }
+    .tpl-btn.active {
+      background: rgba(201,168,76,0.12); border-color: rgba(201,168,76,0.3); color: var(--gold);
+    }
+
+    /* Card preview */
+    .card-preview {
+      margin-bottom: 32px; text-align: center;
+      display: none;
+    }
+    .card-preview.show { display: block; }
+    .card-preview canvas {
+      max-width: 100%; height: auto; border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    /* AI meditation */
+    .ai-section {
+      margin-bottom: 32px;
+    }
+    .ai-result {
+      display: none; padding: 24px; border-radius: var(--radius);
+      background: var(--surface); border: 1px solid var(--border);
+      font-size: 0.9rem; line-height: 2; color: var(--text);
+      letter-spacing: 0.5px;
+    }
+    .ai-result.show { display: block; }
+    .ai-loading {
+      display: none; text-align: center; padding: 32px;
+    }
+    .ai-loading.show { display: block; }
+    .ai-loading .dots span {
+      display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold); margin: 0 4px;
+      animation: dot-bounce 1.4s infinite ease-in-out both;
+    }
+    .ai-loading .dots span:nth-child(1) { animation-delay: -0.32s; }
+    .ai-loading .dots span:nth-child(2) { animation-delay: -0.16s; }
+    @keyframes dot-bounce {
+      0%, 80%, 100% { transform: scale(0); opacity: 0.4; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Diary */
+    .diary-section {
+      margin-bottom: 32px;
+    }
+    .section-title {
+      font-family: var(--font-serif); font-size: 1rem; font-weight: 700;
+      color: var(--gold); letter-spacing: 3px; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .diary-textarea {
+      width: 100%; min-height: 120px; padding: 16px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); color: var(--text);
+      font-family: var(--font-sans); font-size: 0.88rem;
+      line-height: 1.8; resize: vertical; outline: none;
+      transition: border-color 0.3s;
+    }
+    .diary-textarea:focus { border-color: var(--border-hover); }
+    .diary-textarea::placeholder { color: var(--text-dim); }
+    .diary-status {
+      font-size: 0.75rem; color: var(--text-dim); margin-top: 6px;
+      text-align: right; letter-spacing: 1px;
+    }
+
+    /* Collapsible sections */
+    .collapse-header {
+      display: flex; align-items: center; justify-content: space-between;
+      cursor: pointer; padding: 12px 0; border-bottom: 1px solid var(--border);
+      margin-bottom: 12px; user-select: none;
+    }
+    .collapse-header:hover .section-title { color: var(--gold-light); }
+    .collapse-arrow {
+      color: var(--text-dim); font-size: 0.8rem; transition: transform 0.3s;
+    }
+    .collapse-header.open .collapse-arrow { transform: rotate(180deg); }
+    .collapse-body {
+      display: none; padding-bottom: 20px;
+    }
+    .collapse-body.open { display: block; }
+
+    /* Favorites list */
+    .fav-list { list-style: none; }
+    .fav-item {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      padding: 12px 0; border-bottom: 1px solid var(--border);
+      gap: 12px;
+    }
+    .fav-item:last-child { border-bottom: none; }
+    .fav-verse {
+      font-family: var(--font-serif); font-size: 0.88rem;
+      color: var(--text); line-height: 1.6; flex: 1;
+    }
+    .fav-ref {
+      font-size: 0.75rem; color: var(--gold); margin-top: 4px;
+      letter-spacing: 1px;
+    }
+    .fav-date {
+      font-size: 0.7rem; color: var(--text-dim); white-space: nowrap;
+    }
+    .fav-remove {
+      background: none; border: none; color: var(--text-dim);
+      cursor: pointer; font-size: 0.8rem; padding: 2px 6px;
+      transition: color 0.3s;
+    }
+    .fav-remove:hover { color: #e74c3c; }
+    .fav-empty {
+      color: var(--text-dim); font-size: 0.85rem; text-align: center;
+      padding: 24px 0; letter-spacing: 1px;
+    }
+
+    /* AI config */
+    .ai-config-section {
+      margin-bottom: 40px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-inner { padding: 14px 20px; }
+      .container { padding: 90px 16px 60px; }
+      .verse-section { padding: 28px 14px; }
+      .actions { gap: 8px; }
+      .btn { padding: 8px 12px; font-size: 0.78rem; }
+    }
+    @media (max-width: 480px) {
+      .date-display { font-size: 1.1rem; min-width: 110px; }
+      .date-arrow { width: 36px; height: 36px; }
+      .verse-text { font-size: 1.1rem; }
+      .actions { gap: 6px; }
+      .btn { padding: 8px 10px; font-size: 0.75rem; letter-spacing: 0; }
+      .btn .label-text { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-back">&larr; 返回作品集</a>
+      <span class="nav-logo">福青施老師</span>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Date picker -->
+    <div class="date-picker">
+      <button class="date-arrow" id="prevDay" aria-label="前一天">&larr;</button>
+      <div class="date-display" id="dateDisplay"></div>
+      <button class="date-arrow" id="nextDay" aria-label="後一天">&rarr;</button>
+    </div>
+
+    <!-- Category badge -->
+    <div class="badge-wrap">
+      <span class="category-badge" id="categoryBadge"></span>
+    </div>
+
+    <!-- Verse display -->
+    <div class="verse-section">
+      <div class="verse-text" id="verseText"></div>
+      <div class="verse-ref" id="verseRef"></div>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="actions">
+      <button class="btn" id="btnFav"><span class="icon">&#9825;</span><span class="label-text">收藏</span></button>
+      <button class="btn" id="btnTemplate"><span class="icon">&#127912;</span><span class="label-text">換模板</span></button>
+      <button class="btn" id="btnShare"><span class="icon">&#128228;</span><span class="label-text">分享</span></button>
+      <button class="btn" id="btnDownload"><span class="icon">&#11015;</span><span class="label-text">下載</span></button>
+      <button class="btn btn-gold" id="btnAI"><span class="icon">&#129302;</span><span class="label-text">AI 默想</span></button>
+    </div>
+
+    <!-- Template selector -->
+    <div class="template-selector" id="templateSelector">
+      <button class="tpl-btn active" data-tpl="0">經典深色</button>
+      <button class="tpl-btn" data-tpl="1">柔和漸層</button>
+      <button class="tpl-btn" data-tpl="2">書法風格</button>
+      <button class="tpl-btn" data-tpl="3">自然意象</button>
+      <button class="tpl-btn" data-tpl="4">極簡白底</button>
+    </div>
+
+    <!-- Card preview -->
+    <div class="card-preview" id="cardPreview"></div>
+
+    <!-- AI meditation -->
+    <div class="ai-section">
+      <div class="ai-loading" id="aiLoading">
+        <div class="dots"><span></span><span></span><span></span></div>
+        <div style="margin-top:12px;color:var(--text-dim);font-size:0.82rem;letter-spacing:1px;">AI 默想引導生成中...</div>
+      </div>
+      <div class="ai-result" id="aiResult"></div>
+    </div>
+
+    <!-- Diary -->
+    <div class="diary-section">
+      <div class="section-title">靈修日記</div>
+      <textarea class="diary-textarea" id="diaryInput" placeholder="寫下今天的感動與反思..."></textarea>
+      <div class="diary-status" id="diaryStatus"></div>
+    </div>
+
+    <!-- Favorites (collapsible) -->
+    <div class="fav-section">
+      <div class="collapse-header" id="favHeader">
+        <div class="section-title" style="margin-bottom:0;">收藏列表</div>
+        <span class="collapse-arrow">&#9660;</span>
+      </div>
+      <div class="collapse-body" id="favBody">
+        <ul class="fav-list" id="favList"></ul>
+      </div>
+    </div>
+
+    <!-- AI config (collapsible) -->
+    <div class="ai-config-section">
+      <div class="collapse-header" id="aiConfigHeader">
+        <div class="section-title" style="margin-bottom:0;">AI 設定</div>
+        <span class="collapse-arrow">&#9660;</span>
+      </div>
+      <div class="collapse-body" id="aiConfigBody"></div>
+    </div>
+  </div>
+
+  <script src="shared/ai-client.js"></script>
+  <script src="shared/share-card.js"></script>
+  <script>
+  (() => {
+    'use strict';
+
+    // ========== 365-day scripture database (公版和合本 1919) ==========
+    const SCRIPTURES = [
+      // ---- 1月 ----
+      {month:1,day:1,verse:"你們要將一切的憂慮卸給神，因為他顧念你們。",reference:"彼得前書 5:7",category:"信心"},
+      {month:1,day:2,verse:"耶和華是我的牧者，我必不至缺乏。",reference:"詩篇 23:1",category:"平安"},
+      {month:1,day:3,verse:"你要專心仰賴耶和華，不可倚靠自己的聰明。",reference:"箴言 3:5",category:"信心"},
+      {month:1,day:4,verse:"在一切事上都要認定他，他必指引你的路。",reference:"箴言 3:6",category:"智慧"},
+      {month:1,day:5,verse:"我靠著那加給我力量的，凡事都能做。",reference:"腓立比書 4:13",category:"勇氣"},
+      {month:1,day:6,verse:"耶和華是我的亮光，是我的拯救，我還怕誰呢？",reference:"詩篇 27:1",category:"勇氣"},
+      {month:1,day:7,verse:"神是我們的避難所，是我們的力量，是我們在患難中隨時的幫助。",reference:"詩篇 46:1",category:"信心"},
+      {month:1,day:8,verse:"你們要休息，要知道我是神。",reference:"詩篇 46:10",category:"平安"},
+      {month:1,day:9,verse:"我留下平安給你們；我將我的平安賜給你們。",reference:"約翰福音 14:27",category:"平安"},
+      {month:1,day:10,verse:"喜樂的心乃是良藥；憂傷的靈使骨枯乾。",reference:"箴言 17:22",category:"喜樂"},
+      {month:1,day:11,verse:"你們要常常喜樂，不住地禱告，凡事謝恩。",reference:"帖撒羅尼迦前書 5:16-18",category:"喜樂"},
+      {month:1,day:12,verse:"耶和華靠近傷心的人，拯救靈性痛悔的人。",reference:"詩篇 34:18",category:"平安"},
+      {month:1,day:13,verse:"我的恩典夠你用的，因為我的能力是在人的軟弱上顯得完全。",reference:"哥林多後書 12:9",category:"恩典"},
+      {month:1,day:14,verse:"愛是恆久忍耐，又有恩慈。",reference:"哥林多前書 13:4",category:"愛"},
+      {month:1,day:15,verse:"凡勞苦擔重擔的人可以到我這裡來，我就使你們得安息。",reference:"馬太福音 11:28",category:"平安"},
+      {month:1,day:16,verse:"你們祈求，就給你們；尋找，就尋見；叩門，就給你們開門。",reference:"馬太福音 7:7",category:"禱告"},
+      {month:1,day:17,verse:"神愛世人，甚至將他的獨生子賜給他們。",reference:"約翰福音 3:16",category:"愛"},
+      {month:1,day:18,verse:"敬畏耶和華是智慧的開端，認識至聖者便是聰明。",reference:"箴言 9:10",category:"智慧"},
+      {month:1,day:19,verse:"你們要嘗嘗主恩的滋味，便知道他是美善。",reference:"詩篇 34:8",category:"感恩"},
+      {month:1,day:20,verse:"耶和華必在你前面行，他必與你同在。",reference:"申命記 31:8",category:"信心"},
+      {month:1,day:21,verse:"不要懼怕，也不要驚惶，因為你無論往哪裡去，耶和華你的神必與你同在。",reference:"約書亞記 1:9",category:"勇氣"},
+      {month:1,day:22,verse:"我要向山舉目；我的幫助從何而來？我的幫助從造天地的耶和華而來。",reference:"詩篇 121:1-2",category:"信心"},
+      {month:1,day:23,verse:"萬事都互相效力，叫愛神的人得益處。",reference:"羅馬書 8:28",category:"盼望"},
+      {month:1,day:24,verse:"你們要先求他的國和他的義，這些東西都要加給你們了。",reference:"馬太福音 6:33",category:"信心"},
+      {month:1,day:25,verse:"耶和華善待萬民，他的慈悲覆庇他一切所造的。",reference:"詩篇 145:9",category:"恩典"},
+      {month:1,day:26,verse:"我豈沒有吩咐你嗎？你當剛強壯膽！",reference:"約書亞記 1:9",category:"勇氣"},
+      {month:1,day:27,verse:"你的話是我腳前的燈，是我路上的光。",reference:"詩篇 119:105",category:"智慧"},
+      {month:1,day:28,verse:"你們是世上的光。城造在山上是不能隱藏的。",reference:"馬太福音 5:14",category:"服事"},
+      {month:1,day:29,verse:"信就是所望之事的實底，是未見之事的確據。",reference:"希伯來書 11:1",category:"信心"},
+      {month:1,day:30,verse:"若有人在基督裡，他就是新造的人，舊事已過，都變成新的了。",reference:"哥林多後書 5:17",category:"盼望"},
+      {month:1,day:31,verse:"耶和華是我的力量、我的盾牌；我心裡倚靠他就得幫助。",reference:"詩篇 28:7",category:"信心"},
+      // ---- 2月 ----
+      {month:2,day:1,verse:"應當一無掛慮，只要凡事藉著禱告、祈求和感謝，將你們所要的告訴神。",reference:"腓立比書 4:6",category:"禱告"},
+      {month:2,day:2,verse:"神所賜出人意外的平安必在基督耶穌裡保守你們的心懷意念。",reference:"腓立比書 4:7",category:"平安"},
+      {month:2,day:3,verse:"我們愛，因為神先愛了我們。",reference:"約翰壹書 4:19",category:"愛"},
+      {month:2,day:4,verse:"但那等候耶和華的必從新得力。",reference:"以賽亞書 40:31",category:"盼望"},
+      {month:2,day:5,verse:"他們要如鷹展翅上騰；奔跑卻不困倦，行走卻不疲乏。",reference:"以賽亞書 40:31",category:"盼望"},
+      {month:2,day:6,verse:"你不要害怕，因為我與你同在。",reference:"以賽亞書 41:10",category:"勇氣"},
+      {month:2,day:7,verse:"不要驚惶，因為我是你的神。我必堅固你，我必幫助你。",reference:"以賽亞書 41:10",category:"信心"},
+      {month:2,day:8,verse:"從前你們是暗昧的，但如今在主裡面是光明的，行事為人就當像光明的子女。",reference:"以弗所書 5:8",category:"智慧"},
+      {month:2,day:9,verse:"各樣美善的恩賜和各樣全備的賞賜都是從上頭來的。",reference:"雅各書 1:17",category:"感恩"},
+      {month:2,day:10,verse:"你們要彼此相愛，像我愛你們一樣。",reference:"約翰福音 15:12",category:"愛"},
+      {month:2,day:11,verse:"耶和華是我的巖石，我的山寨，我的救主。",reference:"詩篇 18:2",category:"信心"},
+      {month:2,day:12,verse:"我總不撇下你，也不丟棄你。",reference:"希伯來書 13:5",category:"信心"},
+      {month:2,day:13,verse:"愛裡沒有懼怕；愛既完全，就把懼怕除去。",reference:"約翰壹書 4:18",category:"愛"},
+      {month:2,day:14,verse:"愛是不嫉妒；愛是不自誇，不張狂。",reference:"哥林多前書 13:4",category:"愛"},
+      {month:2,day:15,verse:"凡事包容，凡事相信，凡事盼望，凡事忍耐。",reference:"哥林多前書 13:7",category:"愛"},
+      {month:2,day:16,verse:"你們各人的重擔要互相擔當，如此就完全了基督的律法。",reference:"加拉太書 6:2",category:"服事"},
+      {month:2,day:17,verse:"施比受更為有福。",reference:"使徒行傳 20:35",category:"服事"},
+      {month:2,day:18,verse:"耶和華以恩惠為你的冠冕。",reference:"詩篇 103:4",category:"恩典"},
+      {month:2,day:19,verse:"你以恩典為年歲的冠冕，你的路徑都滴下脂油。",reference:"詩篇 65:11",category:"感恩"},
+      {month:2,day:20,verse:"我必不至死，仍要存活，並要傳揚耶和華的作為。",reference:"詩篇 118:17",category:"盼望"},
+      {month:2,day:21,verse:"這是耶和華所定的日子，我們在其中要高興歡喜。",reference:"詩篇 118:24",category:"喜樂"},
+      {month:2,day:22,verse:"凡有血氣的，都要見神的救恩。",reference:"路加福音 3:6",category:"盼望"},
+      {month:2,day:23,verse:"你們要謹慎行事，不要像愚昧人，當像智慧人。",reference:"以弗所書 5:15",category:"智慧"},
+      {month:2,day:24,verse:"要愛惜光陰，因為現今的世代邪惡。",reference:"以弗所書 5:16",category:"智慧"},
+      {month:2,day:25,verse:"主的靈在哪裡，那裡就得以自由。",reference:"哥林多後書 3:17",category:"喜樂"},
+      {month:2,day:26,verse:"我們行善，不可喪志；若不灰心，到了時候就要收成。",reference:"加拉太書 6:9",category:"盼望"},
+      {month:2,day:27,verse:"忘記背後，努力面前的，向著標竿直跑。",reference:"腓立比書 3:13-14",category:"勇氣"},
+      {month:2,day:28,verse:"在人這是不能的，在神凡事都能。",reference:"馬太福音 19:26",category:"信心"},
+      {month:2,day:29,verse:"耶和華你的神在你中間，大有能力拯救你的。",reference:"西番雅書 3:17",category:"喜樂"},
+      // ---- 3月 ----
+      {month:3,day:1,verse:"你們得救是本乎恩，也因著信；這並不是出於自己，乃是神所賜的。",reference:"以弗所書 2:8",category:"恩典"},
+      {month:3,day:2,verse:"我是葡萄樹，你們是枝子。常在我裡面的，我也常在他裡面，這人就多結果子。",reference:"約翰福音 15:5",category:"信心"},
+      {month:3,day:3,verse:"耶和華啊，你所造的何其多！都是你用智慧造成的。",reference:"詩篇 104:24",category:"感恩"},
+      {month:3,day:4,verse:"因為神賜給我們不是膽怯的心，乃是剛強、仁愛、謹守的心。",reference:"提摩太後書 1:7",category:"勇氣"},
+      {month:3,day:5,verse:"我們曉得萬事都互相效力，叫愛神的人得益處。",reference:"羅馬書 8:28",category:"信心"},
+      {month:3,day:6,verse:"耶和華是應當稱頌的；他天天加給我們重擔的主也替我們負荷。",reference:"詩篇 68:19",category:"感恩"},
+      {month:3,day:7,verse:"你要保守你心，勝過保守一切，因為一生的果效是由心發出。",reference:"箴言 4:23",category:"智慧"},
+      {month:3,day:8,verse:"主耶和華啊，你若究察罪孽，誰能站得住呢？但在你有赦免之恩。",reference:"詩篇 130:3-4",category:"饒恕"},
+      {month:3,day:9,verse:"你們饒恕人的過犯，你們的天父也必饒恕你們的過犯。",reference:"馬太福音 6:14",category:"饒恕"},
+      {month:3,day:10,verse:"我來了，是要叫羊得生命，並且得的更豐盛。",reference:"約翰福音 10:10",category:"盼望"},
+      {month:3,day:11,verse:"聖靈所結的果子就是仁愛、喜樂、和平、忍耐、恩慈、良善、信實、溫柔、節制。",reference:"加拉太書 5:22-23",category:"喜樂"},
+      {month:3,day:12,verse:"所以不要為明天憂慮，因為明天自有明天的憂慮。",reference:"馬太福音 6:34",category:"平安"},
+      {month:3,day:13,verse:"教養孩童，使他走當行的道，就是到老他也不偏離。",reference:"箴言 22:6",category:"智慧"},
+      {month:3,day:14,verse:"你要大大張口，我就給你充滿。",reference:"詩篇 81:10",category:"禱告"},
+      {month:3,day:15,verse:"耶和華啊，求你將你的道指教我，我要照你的真理行。",reference:"詩篇 86:11",category:"禱告"},
+      {month:3,day:16,verse:"在世上你們有苦難；但你們可以放心，我已經勝了世界。",reference:"約翰福音 16:33",category:"勇氣"},
+      {month:3,day:17,verse:"看哪，我要做一件新事，如今要發現，你們豈不知道嗎？",reference:"以賽亞書 43:19",category:"盼望"},
+      {month:3,day:18,verse:"耶和華必成全關乎我的事；耶和華啊，你的慈愛永遠長存。",reference:"詩篇 138:8",category:"信心"},
+      {month:3,day:19,verse:"眾人以為美的事要留心去做。",reference:"羅馬書 12:17",category:"服事"},
+      {month:3,day:20,verse:"人非有信，就不能得神的喜悅。",reference:"希伯來書 11:6",category:"信心"},
+      {month:3,day:21,verse:"你們要靠主常常喜樂。我再說，你們要喜樂！",reference:"腓立比書 4:4",category:"喜樂"},
+      {month:3,day:22,verse:"耶和華的眼目遍察全地，要顯大能幫助向他心存誠實的人。",reference:"歷代志下 16:9",category:"信心"},
+      {month:3,day:23,verse:"人若知道行善，卻不去行，這就是他的罪了。",reference:"雅各書 4:17",category:"服事"},
+      {month:3,day:24,verse:"耶和華啊，我要在萬民中稱謝你，在列邦中歌頌你。",reference:"詩篇 57:9",category:"感恩"},
+      {month:3,day:25,verse:"當將你的事交託耶和華，並倚靠他，他就必成全。",reference:"詩篇 37:5",category:"信心"},
+      {month:3,day:26,verse:"凡等候你的必不羞愧。",reference:"詩篇 25:3",category:"盼望"},
+      {month:3,day:27,verse:"我的神必照他榮耀的豐富，在基督耶穌裡使你們一切所需用的都充足。",reference:"腓立比書 4:19",category:"恩典"},
+      {month:3,day:28,verse:"我必在曠野開道路，在沙漠開江河。",reference:"以賽亞書 43:19",category:"盼望"},
+      {month:3,day:29,verse:"你們要將一切的憂慮卸給神，因為他顧念你們。",reference:"彼得前書 5:7",category:"平安"},
+      {month:3,day:30,verse:"耶和華啊，你是我的神；我要尊崇你，我要稱讚你的名。",reference:"以賽亞書 25:1",category:"感恩"},
+      {month:3,day:31,verse:"你的信救了你；平平安安地回去吧！",reference:"路加福音 7:50",category:"信心"},
+      // ---- 4月 ----
+      {month:4,day:1,verse:"耶穌說：我就是道路、真理、生命。",reference:"約翰福音 14:6",category:"信心"},
+      {month:4,day:2,verse:"弟兄們，我不是以為自己已經得著了；我只有一件事，就是忘記背後，努力面前的。",reference:"腓立比書 3:13",category:"勇氣"},
+      {month:4,day:3,verse:"凡事都有定期，天下萬務都有定時。",reference:"傳道書 3:1",category:"智慧"},
+      {month:4,day:4,verse:"耶和華是信實的，他必堅固你們，保護你們脫離那惡者。",reference:"帖撒羅尼迦後書 3:3",category:"信心"},
+      {month:4,day:5,verse:"我們從前也是無知、悖逆、受迷惑，但到了神我們救主的恩慈和他向人所施的慈愛顯明的時候。",reference:"提多書 3:3-4",category:"恩典"},
+      {month:4,day:6,verse:"他便救了我們；並不是因我們自己所行的義，乃是照他的憐憫。",reference:"提多書 3:5",category:"恩典"},
+      {month:4,day:7,verse:"你們要互相款待，不發怨言。",reference:"彼得前書 4:9",category:"服事"},
+      {month:4,day:8,verse:"各人要照所得的恩賜彼此服事，作神百般恩賜的好管家。",reference:"彼得前書 4:10",category:"服事"},
+      {month:4,day:9,verse:"你不要怕他們，因那為你爭戰的是耶和華你的神。",reference:"申命記 3:22",category:"勇氣"},
+      {month:4,day:10,verse:"你們要將心志改換一新。",reference:"以弗所書 4:23",category:"盼望"},
+      {month:4,day:11,verse:"耶和華你的神是施行拯救、大有能力的主。他在你中間必因你歡欣喜樂。",reference:"西番雅書 3:17",category:"喜樂"},
+      {month:4,day:12,verse:"神為愛他的人所預備的是眼睛未曾看見，耳朵未曾聽見，人心也未曾想到的。",reference:"哥林多前書 2:9",category:"盼望"},
+      {month:4,day:13,verse:"不但如此，就是在患難中也是歡歡喜喜的；因為知道患難生忍耐。",reference:"羅馬書 5:3",category:"勇氣"},
+      {month:4,day:14,verse:"忍耐生老練，老練生盼望。",reference:"羅馬書 5:4",category:"盼望"},
+      {month:4,day:15,verse:"盼望不至於羞恥，因為所賜給我們的聖靈將神的愛澆灌在我們心裡。",reference:"羅馬書 5:5",category:"盼望"},
+      {month:4,day:16,verse:"少種的少收，多種的多收，這話是真的。",reference:"哥林多後書 9:6",category:"智慧"},
+      {month:4,day:17,verse:"神能照著運行在我們心裡的大力充充足足地成就一切，超過我們所求所想的。",reference:"以弗所書 3:20",category:"信心"},
+      {month:4,day:18,verse:"你們若有彼此相愛的心，眾人因此就認出你們是我的門徒了。",reference:"約翰福音 13:35",category:"愛"},
+      {month:4,day:19,verse:"當用各樣的智慧，把基督的道理豐豐富富地存在心裡。",reference:"歌羅西書 3:16",category:"智慧"},
+      {month:4,day:20,verse:"無論做甚麼，都要從心裡做，像是給主做的，不是給人做的。",reference:"歌羅西書 3:23",category:"服事"},
+      {month:4,day:21,verse:"你當倚靠耶和華而行善，住在地上，以他的信實為糧。",reference:"詩篇 37:3",category:"信心"},
+      {month:4,day:22,verse:"又要以耶和華為樂，他就將你心裡所求的賜給你。",reference:"詩篇 37:4",category:"喜樂"},
+      {month:4,day:23,verse:"神所要的祭就是憂傷的靈。神啊，憂傷痛悔的心，你必不輕看。",reference:"詩篇 51:17",category:"禱告"},
+      {month:4,day:24,verse:"你們要彼此認罪，互相代求，使你們可以得醫治。義人祈禱所發的力量是大有功效的。",reference:"雅各書 5:16",category:"禱告"},
+      {month:4,day:25,verse:"耶和華有恩惠，有憐憫，不輕易發怒，大有慈愛。",reference:"詩篇 145:8",category:"恩典"},
+      {month:4,day:26,verse:"兩個人總比一個人好，因為二人勞碌同得美好的果效。",reference:"傳道書 4:9",category:"服事"},
+      {month:4,day:27,verse:"耶和華啊，你是我的主；我的好處不在你以外。",reference:"詩篇 16:2",category:"感恩"},
+      {month:4,day:28,verse:"我們在一切患難中，他就安慰我們，叫我們能用神所賜的安慰去安慰那遭各樣患難的人。",reference:"哥林多後書 1:4",category:"服事"},
+      {month:4,day:29,verse:"向來你們沒有奉我的名求甚麼，如今你們求，就必得著，叫你們的喜樂可以滿足。",reference:"約翰福音 16:24",category:"禱告"},
+      {month:4,day:30,verse:"神就是光，在他毫無黑暗。",reference:"約翰壹書 1:5",category:"智慧"},
+      // ---- 5月 ----
+      {month:5,day:1,verse:"耶和華啊，你所賜的福是用不盡的！",reference:"歷代志上 17:27",category:"感恩"},
+      {month:5,day:2,verse:"我已將永生之道賜給他們，他們也永不滅亡。",reference:"約翰福音 10:28",category:"盼望"},
+      {month:5,day:3,verse:"誰也不能從我手裡把他們奪去。",reference:"約翰福音 10:28",category:"信心"},
+      {month:5,day:4,verse:"所以，你們要完全，像你們的天父完全一樣。",reference:"馬太福音 5:48",category:"智慧"},
+      {month:5,day:5,verse:"我賜給你們一條新命令，乃是叫你們彼此相愛。",reference:"約翰福音 13:34",category:"愛"},
+      {month:5,day:6,verse:"主是我的幫助，我必不懼怕；人能把我怎麼樣呢？",reference:"希伯來書 13:6",category:"勇氣"},
+      {month:5,day:7,verse:"你們要把一切的憂慮卸給神，因為他顧念你們。",reference:"彼得前書 5:7",category:"平安"},
+      {month:5,day:8,verse:"兒女是耶和華所賜的產業。",reference:"詩篇 127:3",category:"感恩"},
+      {month:5,day:9,verse:"她的兒女起來稱她有福；她的丈夫也稱讚她。",reference:"箴言 31:28",category:"愛"},
+      {month:5,day:10,verse:"你們要孝敬父母，使你們得福，在世長壽。",reference:"以弗所書 6:2-3",category:"智慧"},
+      {month:5,day:11,verse:"你要盡心、盡性、盡意愛主你的神。",reference:"馬太福音 22:37",category:"愛"},
+      {month:5,day:12,verse:"其次也相倣，就是要愛人如己。",reference:"馬太福音 22:39",category:"愛"},
+      {month:5,day:13,verse:"神啊，求你為我造清潔的心，使我裡面重新有正直的靈。",reference:"詩篇 51:10",category:"禱告"},
+      {month:5,day:14,verse:"你們的光也當這樣照在人前，叫他們看見你們的好行為，便將榮耀歸給你們在天上的父。",reference:"馬太福音 5:16",category:"服事"},
+      {month:5,day:15,verse:"行為完全、做事公義、心裡說實話的人，他必蒙福。",reference:"詩篇 15:2",category:"智慧"},
+      {month:5,day:16,verse:"義人的口是生命的泉源。",reference:"箴言 10:11",category:"智慧"},
+      {month:5,day:17,verse:"耶和華啊，早晨你必聽我的聲音；早晨我必向你陳明我的心意，並要警醒。",reference:"詩篇 5:3",category:"禱告"},
+      {month:5,day:18,verse:"你們不要論斷人，免得你們被論斷。",reference:"馬太福音 7:1",category:"饒恕"},
+      {month:5,day:19,verse:"憐恤人的人有福了！因為他們必蒙憐恤。",reference:"馬太福音 5:7",category:"饒恕"},
+      {month:5,day:20,verse:"使人和睦的人有福了！因為他們必稱為神的兒子。",reference:"馬太福音 5:9",category:"平安"},
+      {month:5,day:21,verse:"為義受逼迫的人有福了！因為天國是他們的。",reference:"馬太福音 5:10",category:"勇氣"},
+      {month:5,day:22,verse:"我將這些事告訴你們，是要叫你們在我裡面有平安。",reference:"約翰福音 16:33",category:"平安"},
+      {month:5,day:23,verse:"因為他說：在悅納的時候我應允了你，在拯救的日子我搭救了你。",reference:"哥林多後書 6:2",category:"恩典"},
+      {month:5,day:24,verse:"看哪，現在正是悅納的時候！現在正是拯救的日子！",reference:"哥林多後書 6:2",category:"恩典"},
+      {month:5,day:25,verse:"神在其中，城必不動搖；到天一亮，神必幫助這城。",reference:"詩篇 46:5",category:"信心"},
+      {month:5,day:26,verse:"你們要靠主站立得穩。",reference:"腓立比書 4:1",category:"勇氣"},
+      {month:5,day:27,verse:"耶和華必為你們爭戰；你們只管靜默，不要作聲。",reference:"出埃及記 14:14",category:"平安"},
+      {month:5,day:28,verse:"我心裡柔和謙卑，你們當負我的軛，學我的樣式。",reference:"馬太福音 11:29",category:"智慧"},
+      {month:5,day:29,verse:"這樣，你們必得享安息。因為我的軛是容易的，我的擔子是輕省的。",reference:"馬太福音 11:29-30",category:"平安"},
+      {month:5,day:30,verse:"不是倚靠勢力，不是倚靠才能，乃是倚靠我的靈方能成事。",reference:"撒迦利亞書 4:6",category:"信心"},
+      {month:5,day:31,verse:"我知道我的救贖主活著，末了必站立在地上。",reference:"約伯記 19:25",category:"盼望"},
+      // ---- 6月 ----
+      {month:6,day:1,verse:"耶和華啊，你的慈愛上及諸天；你的信實達到穹蒼。",reference:"詩篇 36:5",category:"感恩"},
+      {month:6,day:2,verse:"誰能使我們與基督的愛隔絕呢？",reference:"羅馬書 8:35",category:"愛"},
+      {month:6,day:3,verse:"然而，靠著愛我們的主，在這一切的事上已經得勝有餘了。",reference:"羅馬書 8:37",category:"勇氣"},
+      {month:6,day:4,verse:"我深信無論是死，是生，都不能叫我們與神的愛隔絕。",reference:"羅馬書 8:38-39",category:"愛"},
+      {month:6,day:5,verse:"你們來看耶和華的作為，看他使地怎樣荒涼。",reference:"詩篇 46:8",category:"智慧"},
+      {month:6,day:6,verse:"耶和華啊，尊大、能力、榮耀、強勝、威嚴都是你的。",reference:"歷代志上 29:11",category:"感恩"},
+      {month:6,day:7,verse:"耶和華啊，你是我們的父。我們是泥，你是窯匠。我們都是你手的工作。",reference:"以賽亞書 64:8",category:"信心"},
+      {month:6,day:8,verse:"白髮是榮耀的冠冕，在公義的道上必能得著。",reference:"箴言 16:31",category:"智慧"},
+      {month:6,day:9,verse:"你們的信心經過試驗，就生忍耐。",reference:"雅各書 1:3",category:"勇氣"},
+      {month:6,day:10,verse:"但忍耐也當成功，使你們成全完備，毫無缺欠。",reference:"雅各書 1:4",category:"盼望"},
+      {month:6,day:11,verse:"你們中間若有缺少智慧的，應當求那厚賜與眾人、也不斥責人的神，主就必賜給他。",reference:"雅各書 1:5",category:"智慧"},
+      {month:6,day:12,verse:"使我認識基督，曉得他復活的大能。",reference:"腓立比書 3:10",category:"信心"},
+      {month:6,day:13,verse:"神使那無罪的替我們成為罪，好叫我們在他裡面成為神的義。",reference:"哥林多後書 5:21",category:"恩典"},
+      {month:6,day:14,verse:"你們要將心志改換一新，穿上新人。",reference:"以弗所書 4:23-24",category:"盼望"},
+      {month:6,day:15,verse:"耶和華啊，你已經鑒察我，認識我。我坐下，我起來，你都曉得。",reference:"詩篇 139:1-2",category:"感恩"},
+      {month:6,day:16,verse:"我未成形的體質，你的眼早已看見了。你所定的日子，我尚未度一日，都已經寫在你的冊上了。",reference:"詩篇 139:16",category:"信心"},
+      {month:6,day:17,verse:"因為萬有都是本於他，倚靠他，歸於他。願榮耀歸給他，直到永遠。阿們！",reference:"羅馬書 11:36",category:"感恩"},
+      {month:6,day:18,verse:"所以弟兄們，我以神的慈悲勸你們，將身體獻上，當作活祭。",reference:"羅馬書 12:1",category:"服事"},
+      {month:6,day:19,verse:"不要效法這個世界，只要心意更新而變化。",reference:"羅馬書 12:2",category:"智慧"},
+      {month:6,day:20,verse:"這樣看來，我親愛的弟兄，你們既是常順服的，就當恐懼戰兢做成你們得救的工夫。",reference:"腓立比書 2:12",category:"信心"},
+      {month:6,day:21,verse:"因為你們立志行事都是神在你們心裡運行，為要成就他的美意。",reference:"腓立比書 2:13",category:"恩典"},
+      {month:6,day:22,verse:"凡所行的，都不要發怨言，起爭論。",reference:"腓立比書 2:14",category:"智慧"},
+      {month:6,day:23,verse:"你們顯在這世代中，好像明光照耀。",reference:"腓立比書 2:15",category:"服事"},
+      {month:6,day:24,verse:"耶和華啊，我從深處向你求告。",reference:"詩篇 130:1",category:"禱告"},
+      {month:6,day:25,verse:"我等候耶和華，我的心等候；我也仰望他的話。",reference:"詩篇 130:5",category:"盼望"},
+      {month:6,day:26,verse:"耶和華有慈愛，有豐盛的救恩。",reference:"詩篇 130:7",category:"恩典"},
+      {month:6,day:27,verse:"義人的路好像黎明的光，越照越明，直到日午。",reference:"箴言 4:18",category:"盼望"},
+      {month:6,day:28,verse:"慈愛的人，你以慈愛待他；完全的人，你以完全待他。",reference:"詩篇 18:25",category:"愛"},
+      {month:6,day:29,verse:"你點亮我的燈；耶和華我的神照明我的黑暗。",reference:"詩篇 18:28",category:"盼望"},
+      {month:6,day:30,verse:"感謝神，常帥領我們在基督裡誇勝。",reference:"哥林多後書 2:14",category:"感恩"},
+      // ---- 7月 ----
+      {month:7,day:1,verse:"耶和華本為善，在患難的日子為人的保障，並且認得那些投靠他的人。",reference:"那鴻書 1:7",category:"信心"},
+      {month:7,day:2,verse:"耶和華啊，你向我所懷的意念是賜平安的意念，不是降災禍的意念，要叫你們末後有指望。",reference:"耶利米書 29:11",category:"盼望"},
+      {month:7,day:3,verse:"你們要呼求我，禱告我，我就應允你們。",reference:"耶利米書 29:12",category:"禱告"},
+      {month:7,day:4,verse:"你們尋求我，若專心尋求我，就必尋見。",reference:"耶利米書 29:13",category:"禱告"},
+      {month:7,day:5,verse:"眾人以為美的事要留心去做。若是能行，總要盡力與眾人和睦。",reference:"羅馬書 12:17-18",category:"平安"},
+      {month:7,day:6,verse:"你不可為惡所勝，反要以善勝惡。",reference:"羅馬書 12:21",category:"勇氣"},
+      {month:7,day:7,verse:"愛人不可虛假。惡，要厭惡；善，要親近。",reference:"羅馬書 12:9",category:"愛"},
+      {month:7,day:8,verse:"殷勤不可懶惰；要心裡火熱，常常服事主。",reference:"羅馬書 12:11",category:"服事"},
+      {month:7,day:9,verse:"在指望中要喜樂，在患難中要忍耐，禱告要恆切。",reference:"羅馬書 12:12",category:"禱告"},
+      {month:7,day:10,verse:"與喜樂的人要同樂；與哀哭的人要同哭。",reference:"羅馬書 12:15",category:"愛"},
+      {month:7,day:11,verse:"我的心哪，你當默默無聲，專等候神，因為我的盼望是從他而來。",reference:"詩篇 62:5",category:"平安"},
+      {month:7,day:12,verse:"惟獨他是我的磐石，我的拯救；他是我的高臺，我必不動搖。",reference:"詩篇 62:6",category:"信心"},
+      {month:7,day:13,verse:"我的拯救、我的榮耀都在乎神；我力量的磐石、我的避難所都在乎神。",reference:"詩篇 62:7",category:"信心"},
+      {month:7,day:14,verse:"你們眾民當時時倚靠他，在他面前傾心吐意。神是我們的避難所。",reference:"詩篇 62:8",category:"禱告"},
+      {month:7,day:15,verse:"耶和華啊，你的話安定在天，直到永遠。",reference:"詩篇 119:89",category:"信心"},
+      {month:7,day:16,verse:"你的命令常存在我心裡，使我比仇敵有智慧。",reference:"詩篇 119:98",category:"智慧"},
+      {month:7,day:17,verse:"你的話比蜜更甜。",reference:"詩篇 119:103",category:"智慧"},
+      {month:7,day:18,verse:"耶和華啊，你的話極其精煉，所以你的僕人喜愛。",reference:"詩篇 119:140",category:"喜樂"},
+      {month:7,day:19,verse:"願那愛你名的人都靠你歡欣。",reference:"詩篇 5:11",category:"喜樂"},
+      {month:7,day:20,verse:"你必將生命的道路指示我。在你面前有滿足的喜樂。",reference:"詩篇 16:11",category:"喜樂"},
+      {month:7,day:21,verse:"在你右手中有永遠的福樂。",reference:"詩篇 16:11",category:"喜樂"},
+      {month:7,day:22,verse:"我的心哪，你要稱頌耶和華！凡在我裡面的，也要稱頌他的聖名！",reference:"詩篇 103:1",category:"感恩"},
+      {month:7,day:23,verse:"我的心哪，你要稱頌耶和華！不可忘記他的一切恩惠！",reference:"詩篇 103:2",category:"感恩"},
+      {month:7,day:24,verse:"他赦免你的一切罪孽，醫治你的一切疾病。",reference:"詩篇 103:3",category:"恩典"},
+      {month:7,day:25,verse:"他救贖你的命脫離死亡，以仁愛和慈悲為你的冠冕。",reference:"詩篇 103:4",category:"恩典"},
+      {month:7,day:26,verse:"耶和華有憐憫，有恩典，不輕易發怒，且有豐盛的慈愛。",reference:"詩篇 103:8",category:"恩典"},
+      {month:7,day:27,verse:"天離地何等的高，他的慈愛向敬畏他的人也是何等的大！",reference:"詩篇 103:11",category:"愛"},
+      {month:7,day:28,verse:"東離西有多遠，他叫我們的過犯離我們也有多遠。",reference:"詩篇 103:12",category:"饒恕"},
+      {month:7,day:29,verse:"父親怎樣憐恤他的兒女，耶和華也怎樣憐恤敬畏他的人。",reference:"詩篇 103:13",category:"愛"},
+      {month:7,day:30,verse:"耶和華的慈愛歸於敬畏他的人，從亙古到永遠。",reference:"詩篇 103:17",category:"恩典"},
+      {month:7,day:31,verse:"你們要讚美耶和華！在神的聖所讚美他！",reference:"詩篇 150:1",category:"感恩"},
+      // ---- 8月 ----
+      {month:8,day:1,verse:"太初有道，道與神同在，道就是神。",reference:"約翰福音 1:1",category:"信心"},
+      {month:8,day:2,verse:"生命在他裡頭，這生命就是人的光。光照在黑暗裡，黑暗卻不接受光。",reference:"約翰福音 1:4-5",category:"盼望"},
+      {month:8,day:3,verse:"凡接待他的，就是信他名的人，他就賜他們權柄作神的兒女。",reference:"約翰福音 1:12",category:"恩典"},
+      {month:8,day:4,verse:"道成了肉身，住在我們中間，充充滿滿地有恩典有真理。",reference:"約翰福音 1:14",category:"恩典"},
+      {month:8,day:5,verse:"從他豐滿的恩典裡，我們都領受了，而且恩上加恩。",reference:"約翰福音 1:16",category:"恩典"},
+      {month:8,day:6,verse:"人活著，不是單靠食物，乃是靠神口裡所出的一切話。",reference:"馬太福音 4:4",category:"智慧"},
+      {month:8,day:7,verse:"虛心的人有福了！因為天國是他們的。",reference:"馬太福音 5:3",category:"智慧"},
+      {month:8,day:8,verse:"哀慟的人有福了！因為他們必得安慰。",reference:"馬太福音 5:4",category:"平安"},
+      {month:8,day:9,verse:"溫柔的人有福了！因為他們必承受地土。",reference:"馬太福音 5:5",category:"平安"},
+      {month:8,day:10,verse:"飢渴慕義的人有福了！因為他們必得飽足。",reference:"馬太福音 5:6",category:"盼望"},
+      {month:8,day:11,verse:"清心的人有福了！因為他們必得見神。",reference:"馬太福音 5:8",category:"禱告"},
+      {month:8,day:12,verse:"你們是世上的鹽。鹽若失了味，怎能叫它再鹹呢？",reference:"馬太福音 5:13",category:"服事"},
+      {month:8,day:13,verse:"所以，無論何事，你們願意人怎樣待你們，你們也要怎樣待人。",reference:"馬太福音 7:12",category:"愛"},
+      {month:8,day:14,verse:"我就是生命的糧。到我這裡來的，必定不餓。",reference:"約翰福音 6:35",category:"信心"},
+      {month:8,day:15,verse:"信我的人永遠不渴。",reference:"約翰福音 6:35",category:"信心"},
+      {month:8,day:16,verse:"耶穌說：我就是世界的光。跟從我的，就不在黑暗裡走。",reference:"約翰福音 8:12",category:"盼望"},
+      {month:8,day:17,verse:"你們必曉得真理，真理必叫你們得以自由。",reference:"約翰福音 8:32",category:"智慧"},
+      {month:8,day:18,verse:"所以天父的兒子若叫你們自由，你們就真自由了。",reference:"約翰福音 8:36",category:"喜樂"},
+      {month:8,day:19,verse:"耶穌說：復活在我，生命也在我。信我的人雖然死了，也必復活。",reference:"約翰福音 11:25",category:"盼望"},
+      {month:8,day:20,verse:"凡活著信我的人必永遠不死。你信這話嗎？",reference:"約翰福音 11:26",category:"信心"},
+      {month:8,day:21,verse:"一粒麥子不落在地裡死了，仍舊是一粒；若是死了，就結出許多子粒來。",reference:"約翰福音 12:24",category:"智慧"},
+      {month:8,day:22,verse:"我若從地上被舉起來，就要吸引萬人來歸我。",reference:"約翰福音 12:32",category:"信心"},
+      {month:8,day:23,verse:"你們心裡不要憂愁；你們信神，也當信我。",reference:"約翰福音 14:1",category:"平安"},
+      {month:8,day:24,verse:"在我父的家裡有許多住處；若是沒有，我就早已告訴你們了。",reference:"約翰福音 14:2",category:"盼望"},
+      {month:8,day:25,verse:"我去原是為你們預備地方去。",reference:"約翰福音 14:2",category:"盼望"},
+      {month:8,day:26,verse:"你們若愛我，就必遵守我的命令。",reference:"約翰福音 14:15",category:"愛"},
+      {month:8,day:27,verse:"我不撇下你們為孤兒，我必到你們這裡來。",reference:"約翰福音 14:18",category:"平安"},
+      {month:8,day:28,verse:"人為朋友捨命，人的愛心沒有比這個大的。",reference:"約翰福音 15:13",category:"愛"},
+      {month:8,day:29,verse:"不是你們揀選了我，是我揀選了你們。",reference:"約翰福音 15:16",category:"恩典"},
+      {month:8,day:30,verse:"我將我的平安賜給你們。我所賜的，不像世人所賜的。",reference:"約翰福音 14:27",category:"平安"},
+      {month:8,day:31,verse:"你們在我裡面，我也在你們裡面。",reference:"約翰福音 14:20",category:"信心"},
+      // ---- 9月 ----
+      {month:9,day:1,verse:"耶和華啊，誰能寄居你的帳幕？誰能住在你的聖山？",reference:"詩篇 15:1",category:"禱告"},
+      {month:9,day:2,verse:"就是行為正直、做事公義、心裡說實話的人。",reference:"詩篇 15:2",category:"智慧"},
+      {month:9,day:3,verse:"他不以舌頭讒謗人，不惡待朋友，也不隨夥毀謗鄰里。",reference:"詩篇 15:3",category:"智慧"},
+      {month:9,day:4,verse:"耶和華是我的產業，是我杯中的分。我所得的，你為我持守。",reference:"詩篇 16:5",category:"感恩"},
+      {month:9,day:5,verse:"用繩量給我的地界坐落在佳美之處；我的產業實在美好。",reference:"詩篇 16:6",category:"感恩"},
+      {month:9,day:6,verse:"我將耶和華常擺在我面前，因他在我右邊，我便不至搖動。",reference:"詩篇 16:8",category:"信心"},
+      {month:9,day:7,verse:"因此，我的心歡喜，我的靈快樂。我的肉身也要安然居住。",reference:"詩篇 16:9",category:"喜樂"},
+      {month:9,day:8,verse:"諸天述說神的榮耀；穹蒼傳揚他的手段。",reference:"詩篇 19:1",category:"感恩"},
+      {month:9,day:9,verse:"耶和華的律法全備，能甦醒人心。",reference:"詩篇 19:7",category:"智慧"},
+      {month:9,day:10,verse:"耶和華的訓詞正直，能快活人的心。",reference:"詩篇 19:8",category:"喜樂"},
+      {month:9,day:11,verse:"願我口中的言語、心裡的意念在你面前蒙悅納。",reference:"詩篇 19:14",category:"禱告"},
+      {month:9,day:12,verse:"有人靠車，有人靠馬，但我們要提到耶和華我們神的名。",reference:"詩篇 20:7",category:"信心"},
+      {month:9,day:13,verse:"他使我躺臥在青草地上，領我在可安歇的水邊。",reference:"詩篇 23:2",category:"平安"},
+      {month:9,day:14,verse:"他使我的靈魂甦醒，為自己的名引導我走義路。",reference:"詩篇 23:3",category:"智慧"},
+      {month:9,day:15,verse:"我雖然行過死蔭的幽谷，也不怕遭害，因為你與我同在。",reference:"詩篇 23:4",category:"勇氣"},
+      {month:9,day:16,verse:"你的杖、你的竿，都安慰我。",reference:"詩篇 23:4",category:"平安"},
+      {month:9,day:17,verse:"在我敵人面前，你為我擺設筵席；你用油膏了我的頭，使我的福杯滿溢。",reference:"詩篇 23:5",category:"恩典"},
+      {month:9,day:18,verse:"我一生一世必有恩惠慈愛隨著我，我且要住在耶和華的殿中，直到永遠。",reference:"詩篇 23:6",category:"恩典"},
+      {month:9,day:19,verse:"地和其中所充滿的，世界和住在其間的，都屬耶和華。",reference:"詩篇 24:1",category:"感恩"},
+      {month:9,day:20,verse:"誰能登耶和華的山？誰能站在他的聖所？就是手潔心清的人。",reference:"詩篇 24:3-4",category:"禱告"},
+      {month:9,day:21,verse:"耶和華是我的亮光，是我的拯救，我還怕誰呢？",reference:"詩篇 27:1",category:"勇氣"},
+      {month:9,day:22,verse:"有一件事，我曾求耶和華，我仍要尋求：就是一生一世住在耶和華的殿中。",reference:"詩篇 27:4",category:"禱告"},
+      {month:9,day:23,verse:"要等候耶和華！當壯膽，堅固你的心。我再說，要等候耶和華！",reference:"詩篇 27:14",category:"盼望"},
+      {month:9,day:24,verse:"耶和華是我的力量，是我的盾牌。",reference:"詩篇 28:7",category:"信心"},
+      {month:9,day:25,verse:"耶和華的聲音大有能力；耶和華的聲音滿有威嚴。",reference:"詩篇 29:4",category:"感恩"},
+      {month:9,day:26,verse:"一宿雖然有哭泣，早晨便必歡呼。",reference:"詩篇 30:5",category:"盼望"},
+      {month:9,day:27,verse:"你已將我的哀哭變為跳舞，將我的麻衣脫去，給我披上喜樂。",reference:"詩篇 30:11",category:"喜樂"},
+      {month:9,day:28,verse:"我的時候在你手中。",reference:"詩篇 31:15",category:"信心"},
+      {month:9,day:29,verse:"你們一切等候耶和華的人，都要壯膽，堅固你們的心！",reference:"詩篇 31:24",category:"勇氣"},
+      {month:9,day:30,verse:"得赦免其過、遮蓋其罪的，這人是有福的！",reference:"詩篇 32:1",category:"饒恕"},
+      // ---- 10月 ----
+      {month:10,day:1,verse:"耶和華的眼目看顧義人；他的耳朵聽他們的呼求。",reference:"詩篇 34:15",category:"禱告"},
+      {month:10,day:2,verse:"義人呼求，耶和華聽見了，便救他們脫離一切患難。",reference:"詩篇 34:17",category:"信心"},
+      {month:10,day:3,verse:"耶和華靠近傷心的人，拯救靈性痛悔的人。",reference:"詩篇 34:18",category:"平安"},
+      {month:10,day:4,verse:"義人多有苦難，但耶和華救他脫離這一切。",reference:"詩篇 34:19",category:"盼望"},
+      {month:10,day:5,verse:"你當默然倚靠耶和華，耐性等候他。",reference:"詩篇 37:7",category:"平安"},
+      {month:10,day:6,verse:"義人的腳步被耶和華立定。他的道路，耶和華也喜悅。",reference:"詩篇 37:23",category:"智慧"},
+      {month:10,day:7,verse:"他雖失腳也不至全身仆倒，因為耶和華用手攙扶他。",reference:"詩篇 37:24",category:"恩典"},
+      {month:10,day:8,verse:"神啊，你的意念向我何等寶貴！其數何等眾多！",reference:"詩篇 139:17",category:"感恩"},
+      {month:10,day:9,verse:"我若數點，比海沙更多。我睡醒的時候，仍和你同在。",reference:"詩篇 139:18",category:"信心"},
+      {month:10,day:10,verse:"神啊，求你鑒察我，知道我的心思，試煉我，知道我的意念。",reference:"詩篇 139:23",category:"禱告"},
+      {month:10,day:11,verse:"看在我裡面有甚麼惡行沒有，引導我走永生的道路。",reference:"詩篇 139:24",category:"禱告"},
+      {month:10,day:12,verse:"耶和華啊，你是我的神，我要尊崇你，我要稱讚你的名。",reference:"以賽亞書 25:1",category:"感恩"},
+      {month:10,day:13,verse:"堅心倚賴你的，你必保守他十分平安，因為他倚靠你。",reference:"以賽亞書 26:3",category:"平安"},
+      {month:10,day:14,verse:"你們要倚靠耶和華直到永遠，因為耶和華是永久的磐石。",reference:"以賽亞書 26:4",category:"信心"},
+      {month:10,day:15,verse:"你們要歸向我，我就歸向你們。",reference:"瑪拉基書 3:7",category:"禱告"},
+      {month:10,day:16,verse:"那光是真光，照亮一切生在世上的人。",reference:"約翰福音 1:9",category:"盼望"},
+      {month:10,day:17,verse:"我就是門；凡從我進來的，必然得救。",reference:"約翰福音 10:9",category:"信心"},
+      {month:10,day:18,verse:"我是好牧人；好牧人為羊捨命。",reference:"約翰福音 10:11",category:"愛"},
+      {month:10,day:19,verse:"我認識我的羊，我的羊也認識我。",reference:"約翰福音 10:14",category:"信心"},
+      {month:10,day:20,verse:"我另外有羊，不是這圈裡的；我必須領他們來。",reference:"約翰福音 10:16",category:"愛"},
+      {month:10,day:21,verse:"你們若常在我裡面，我的話也常在你們裡面。凡你們所願意的，祈求，就給你們成就。",reference:"約翰福音 15:7",category:"禱告"},
+      {month:10,day:22,verse:"你們多結果子，我父就因此得榮耀。",reference:"約翰福音 15:8",category:"服事"},
+      {month:10,day:23,verse:"我愛你們，正如父愛我一樣。你們要常在我的愛裡。",reference:"約翰福音 15:9",category:"愛"},
+      {month:10,day:24,verse:"這些事我已經對你們說了，是要叫我的喜樂存在你們心裡，並叫你們的喜樂可以滿足。",reference:"約翰福音 15:11",category:"喜樂"},
+      {month:10,day:25,verse:"以後我不再稱你們為僕人；我乃稱你們為朋友。",reference:"約翰福音 15:15",category:"愛"},
+      {month:10,day:26,verse:"你們要彼此相愛，像我愛你們一樣；這就是我的命令。",reference:"約翰福音 15:12",category:"愛"},
+      {month:10,day:27,verse:"保惠師，就是真理的聖靈來了，他要引導你們明白一切的真理。",reference:"約翰福音 16:13",category:"智慧"},
+      {month:10,day:28,verse:"認識你獨一的真神，並且認識你所差來的耶穌基督，這就是永生。",reference:"約翰福音 17:3",category:"信心"},
+      {month:10,day:29,verse:"你們要常存弟兄相愛的心。",reference:"希伯來書 13:1",category:"愛"},
+      {month:10,day:30,verse:"不可忘記用愛心接待客旅。",reference:"希伯來書 13:2",category:"服事"},
+      {month:10,day:31,verse:"耶穌基督昨日、今日、一直到永遠，是一樣的。",reference:"希伯來書 13:8",category:"信心"},
+      // ---- 11月 ----
+      {month:11,day:1,verse:"要常常喜樂，不住地禱告，凡事謝恩。",reference:"帖撒羅尼迦前書 5:16-18",category:"感恩"},
+      {month:11,day:2,verse:"因為這是神在基督耶穌裡向你們所定的旨意。",reference:"帖撒羅尼迦前書 5:18",category:"智慧"},
+      {month:11,day:3,verse:"你們要感謝耶和華，因他本為善；他的慈愛永遠長存！",reference:"詩篇 107:1",category:"感恩"},
+      {month:11,day:4,verse:"凡被神的靈引導的，都是神的兒子。",reference:"羅馬書 8:14",category:"信心"},
+      {month:11,day:5,verse:"聖靈與我們的心同證我們是神的兒女。",reference:"羅馬書 8:16",category:"信心"},
+      {month:11,day:6,verse:"既是兒女，便是後嗣，就是神的後嗣，和基督同作後嗣。",reference:"羅馬書 8:17",category:"盼望"},
+      {month:11,day:7,verse:"我想現在的苦楚若比起將來要顯於我們的榮耀就不足介意了。",reference:"羅馬書 8:18",category:"盼望"},
+      {month:11,day:8,verse:"況且我們的軟弱有聖靈幫助。",reference:"羅馬書 8:26",category:"恩典"},
+      {month:11,day:9,verse:"神若幫助我們，誰能敵擋我們呢？",reference:"羅馬書 8:31",category:"勇氣"},
+      {month:11,day:10,verse:"神既不愛惜自己的兒子，為我們眾人捨了，豈不也把萬物和他一同白白地賜給我們嗎？",reference:"羅馬書 8:32",category:"恩典"},
+      {month:11,day:11,verse:"誰能控告神所揀選的人呢？有神稱他們為義了。",reference:"羅馬書 8:33",category:"恩典"},
+      {month:11,day:12,verse:"靠著愛我們的主，在這一切的事上已經得勝有餘了。",reference:"羅馬書 8:37",category:"勇氣"},
+      {month:11,day:13,verse:"你們要稱謝耶和華，求告他的名，在萬民中傳揚他的作為！",reference:"詩篇 105:1",category:"感恩"},
+      {month:11,day:14,verse:"要向他唱詩歌頌，談論他一切奇妙的作為！",reference:"詩篇 105:2",category:"喜樂"},
+      {month:11,day:15,verse:"要以他的聖名誇耀！尋求耶和華的人，心中應當歡喜！",reference:"詩篇 105:3",category:"喜樂"},
+      {month:11,day:16,verse:"要尋求耶和華與他的能力，時常尋求他的面！",reference:"詩篇 105:4",category:"禱告"},
+      {month:11,day:17,verse:"神啊，你的慈愛何其寶貴！世人投靠在你翅膀的蔭下。",reference:"詩篇 36:7",category:"愛"},
+      {month:11,day:18,verse:"他們必因你殿裡的肥甘得以飽足；你也必叫他們喝你樂河的水。",reference:"詩篇 36:8",category:"喜樂"},
+      {month:11,day:19,verse:"因為在你那裡有生命的源頭；在你的光中，我們必得見光。",reference:"詩篇 36:9",category:"盼望"},
+      {month:11,day:20,verse:"你當剛強壯膽！不要懼怕，也不要驚惶。",reference:"約書亞記 1:9",category:"勇氣"},
+      {month:11,day:21,verse:"主啊，你世世代代作我們的居所。",reference:"詩篇 90:1",category:"信心"},
+      {month:11,day:22,verse:"求你指教我們怎樣數算自己的日子，好叫我們得著智慧的心。",reference:"詩篇 90:12",category:"智慧"},
+      {month:11,day:23,verse:"願主我們神的榮美歸於我們身上。願你堅立我們手所做的工。",reference:"詩篇 90:17",category:"禱告"},
+      {month:11,day:24,verse:"住在至高者隱密處的，必住在全能者的蔭下。",reference:"詩篇 91:1",category:"平安"},
+      {month:11,day:25,verse:"我要論到耶和華說：他是我的避難所，是我的山寨，是我的神，是我所倚靠的。",reference:"詩篇 91:2",category:"信心"},
+      {month:11,day:26,verse:"他必用自己的翎毛遮蔽你；你要投靠在他的翅膀底下。",reference:"詩篇 91:4",category:"平安"},
+      {month:11,day:27,verse:"雖有千人仆倒在你旁邊，萬人仆倒在你右邊，這災卻不得臨近你。",reference:"詩篇 91:7",category:"信心"},
+      {month:11,day:28,verse:"因為你以耶和華為你的居所——就是至高者為你的避難所。",reference:"詩篇 91:9",category:"平安"},
+      {month:11,day:29,verse:"因他要為你吩咐他的使者，在你行的一切道路上保護你。",reference:"詩篇 91:11",category:"恩典"},
+      {month:11,day:30,verse:"神說：因為他專心愛我，我就要搭救他。因為他知道我的名，我要把他安置在高處。",reference:"詩篇 91:14",category:"愛"},
+      // ---- 12月 ----
+      {month:12,day:1,verse:"你們要向耶和華唱新歌！全地都要向耶和華歌唱！",reference:"詩篇 96:1",category:"喜樂"},
+      {month:12,day:2,verse:"要向耶和華歌唱，稱頌他的名！天天傳揚他的救恩！",reference:"詩篇 96:2",category:"感恩"},
+      {month:12,day:3,verse:"在列邦中述說他的榮耀！在萬民中述說他的奇事！",reference:"詩篇 96:3",category:"服事"},
+      {month:12,day:4,verse:"因耶和華為大，當受極大的讚美。",reference:"詩篇 96:4",category:"感恩"},
+      {month:12,day:5,verse:"當稱謝進入他的門；當讚美進入他的院。",reference:"詩篇 100:4",category:"感恩"},
+      {month:12,day:6,verse:"當感謝他，稱頌他的名！因為耶和華本為善。",reference:"詩篇 100:5",category:"感恩"},
+      {month:12,day:7,verse:"他的慈愛存到永遠；他的信實直到萬代！",reference:"詩篇 100:5",category:"信心"},
+      {month:12,day:8,verse:"耶和華啊，我要在萬民中稱謝你，在列邦中歌頌你！",reference:"詩篇 108:3",category:"感恩"},
+      {month:12,day:9,verse:"因為你的慈愛大過諸天；你的誠實達到穹蒼。",reference:"詩篇 108:4",category:"愛"},
+      {month:12,day:10,verse:"匠人所棄的石頭已成了房角的頭塊石頭。",reference:"詩篇 118:22",category:"盼望"},
+      {month:12,day:11,verse:"這是耶和華所做的，在我們眼中看為希奇。",reference:"詩篇 118:23",category:"感恩"},
+      {month:12,day:12,verse:"奉耶和華名來的是應當稱頌的！",reference:"詩篇 118:26",category:"喜樂"},
+      {month:12,day:13,verse:"你們要讚美耶和華！讚美耶和華的僕人！讚美耶和華的名！",reference:"詩篇 113:1",category:"感恩"},
+      {month:12,day:14,verse:"從日出之地到日落之處，耶和華的名是應當讚美的！",reference:"詩篇 113:3",category:"感恩"},
+      {month:12,day:15,verse:"他從灰塵裡抬舉貧寒人，從糞堆中提拔窮乏人。",reference:"詩篇 113:7",category:"恩典"},
+      {month:12,day:16,verse:"我要稱謝你，因為你已經應允我，又成了我的拯救。",reference:"詩篇 118:21",category:"感恩"},
+      {month:12,day:17,verse:"因有一嬰孩為我們而生，有一子賜給我們。政權必擔在他的肩頭上。",reference:"以賽亞書 9:6",category:"盼望"},
+      {month:12,day:18,verse:"他名稱為奇妙策士、全能的神、永在的父、和平的君。",reference:"以賽亞書 9:6",category:"平安"},
+      {month:12,day:19,verse:"在至高之處榮耀歸與神！在地上平安歸與他所喜悅的人！",reference:"路加福音 2:14",category:"平安"},
+      {month:12,day:20,verse:"你們要過去得為業的那地，乃是有山有谷、雨水滋潤之地。",reference:"申命記 11:11",category:"盼望"},
+      {month:12,day:21,verse:"耶和華你神的眼目時常看顧那地，從歲首到年終。",reference:"申命記 11:12",category:"恩典"},
+      {month:12,day:22,verse:"我今日呼天喚地向你作見證，我將生死禍福陳明在你面前，所以你要揀選生命。",reference:"申命記 30:19",category:"智慧"},
+      {month:12,day:23,verse:"耶和華是你的生命，也是你日子長久的泉源。",reference:"申命記 30:20",category:"信心"},
+      {month:12,day:24,verse:"必有童女懷孕生子，人要稱他的名為以馬內利——神與我們同在。",reference:"馬太福音 1:23",category:"信心"},
+      {month:12,day:25,verse:"因今天在大衛的城裡，為你們生了救主，就是主基督。",reference:"路加福音 2:11",category:"喜樂"},
+      {month:12,day:26,verse:"我們藉這愛子的血得蒙救贖，過犯得以赦免，乃是照他豐富的恩典。",reference:"以弗所書 1:7",category:"恩典"},
+      {month:12,day:27,verse:"感謝神，因他有說不盡的恩賜！",reference:"哥林多後書 9:15",category:"感恩"},
+      {month:12,day:28,verse:"你們要追念往日，怎樣蒙了光照以後就忍受了種種苦難的爭戰。",reference:"希伯來書 10:32",category:"勇氣"},
+      {month:12,day:29,verse:"你們需要忍耐，使你們行完了神的旨意，就可以得著所應許的。",reference:"希伯來書 10:36",category:"盼望"},
+      {month:12,day:30,verse:"仰望為我們信心創始成終的耶穌。",reference:"希伯來書 12:2",category:"信心"},
+      {month:12,day:31,verse:"耶和華所賜的福使人富足，並不加上憂慮。",reference:"箴言 10:22",category:"恩典"}
+    ];
+
+    // Build lookup: key = "M_D"
+    const scriptureMap = {};
+    SCRIPTURES.forEach(s => { scriptureMap[s.month + '_' + s.day] = s; });
+
+    // ========== State ==========
+    let currentDate = new Date();
+    let currentTemplate = 0;
+    let currentCanvas = null;
+
+    // ========== DOM refs ==========
+    const $ = id => document.getElementById(id);
+    const dateDisplay = $('dateDisplay');
+    const categoryBadge = $('categoryBadge');
+    const verseText = $('verseText');
+    const verseRef = $('verseRef');
+    const btnFav = $('btnFav');
+    const btnTemplate = $('btnTemplate');
+    const btnShare = $('btnShare');
+    const btnDownload = $('btnDownload');
+    const btnAI = $('btnAI');
+    const templateSelector = $('templateSelector');
+    const cardPreview = $('cardPreview');
+    const aiLoading = $('aiLoading');
+    const aiResult = $('aiResult');
+    const diaryInput = $('diaryInput');
+    const diaryStatus = $('diaryStatus');
+    const favList = $('favList');
+
+    // ========== Helpers ==========
+    function getScripture(date) {
+      const m = date.getMonth() + 1;
+      const d = date.getDate();
+      return scriptureMap[m + '_' + d] || { month: m, day: d, verse: '願耶和華賜福給你，保護你。', reference: '民數記 6:24', category: '恩典' };
+    }
+
+    function formatDate(date) {
+      const m = date.getMonth() + 1;
+      const d = date.getDate();
+      return m + '月' + d + '日';
+    }
+
+    function getDiaryKey(date) {
+      const m = date.getMonth() + 1;
+      const d = date.getDate();
+      return 'diary_' + m + '_' + d;
+    }
+
+    // ========== Render ==========
+    function render() {
+      const s = getScripture(currentDate);
+      dateDisplay.textContent = formatDate(currentDate);
+      categoryBadge.textContent = s.category;
+      verseText.textContent = s.verse;
+      verseRef.textContent = '— ' + s.reference;
+
+      // Fav state
+      updateFavButton();
+
+      // Diary
+      const diaryKey = getDiaryKey(currentDate);
+      diaryInput.value = localStorage.getItem(diaryKey) || '';
+      diaryStatus.textContent = '';
+
+      // AI result reset
+      aiResult.classList.remove('show');
+      aiLoading.classList.remove('show');
+
+      // Update card if preview is visible
+      if (cardPreview.classList.contains('show')) {
+        renderCard();
+      }
+    }
+
+    // ========== Date navigation ==========
+    function prevDay() {
+      currentDate = new Date(currentDate);
+      currentDate.setDate(currentDate.getDate() - 1);
+      render();
+    }
+    function nextDay() {
+      currentDate = new Date(currentDate);
+      currentDate.setDate(currentDate.getDate() + 1);
+      render();
+    }
+
+    $('prevDay').addEventListener('click', prevDay);
+    $('nextDay').addEventListener('click', nextDay);
+
+    // ========== Favorites ==========
+    const FAV_KEY = 'scripture_favorites';
+    const MAX_FAV = 50;
+
+    function getFavorites() {
+      try { return JSON.parse(localStorage.getItem(FAV_KEY)) || []; }
+      catch { return []; }
+    }
+    function saveFavorites(favs) {
+      localStorage.setItem(FAV_KEY, JSON.stringify(favs));
+    }
+    function isFavorited(s) {
+      return getFavorites().some(f => f.month === s.month && f.day === s.day);
+    }
+    function updateFavButton() {
+      const s = getScripture(currentDate);
+      if (isFavorited(s)) {
+        btnFav.classList.add('fav-active');
+        btnFav.querySelector('.icon').innerHTML = '&#9829;';
+      } else {
+        btnFav.classList.remove('fav-active');
+        btnFav.querySelector('.icon').innerHTML = '&#9825;';
+      }
+    }
+    function toggleFav() {
+      const s = getScripture(currentDate);
+      let favs = getFavorites();
+      const idx = favs.findIndex(f => f.month === s.month && f.day === s.day);
+      if (idx >= 0) {
+        favs.splice(idx, 1);
+      } else {
+        favs.unshift({ ...s, savedAt: Date.now() });
+        if (favs.length > MAX_FAV) favs = favs.slice(0, MAX_FAV);
+      }
+      saveFavorites(favs);
+      updateFavButton();
+      renderFavorites();
+    }
+    function renderFavorites() {
+      const favs = getFavorites();
+      if (favs.length === 0) {
+        favList.innerHTML = '<li class="fav-empty">尚無收藏經文</li>';
+        return;
+      }
+      favList.innerHTML = favs.map((f, i) => `
+        <li class="fav-item">
+          <div>
+            <div class="fav-verse">${f.verse}</div>
+            <div class="fav-ref">${f.reference}</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+            <span class="fav-date">${f.month}/${f.day}</span>
+            <button class="fav-remove" data-idx="${i}" aria-label="移除收藏">&times;</button>
+          </div>
+        </li>
+      `).join('');
+      favList.querySelectorAll('.fav-remove').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const idx = parseInt(e.target.dataset.idx);
+          const favs = getFavorites();
+          favs.splice(idx, 1);
+          saveFavorites(favs);
+          updateFavButton();
+          renderFavorites();
+        });
+      });
+    }
+
+    btnFav.addEventListener('click', toggleFav);
+
+    // ========== Template / Card ==========
+    function renderCard() {
+      const s = getScripture(currentDate);
+      const dateStr = formatDate(currentDate);
+      switch (currentTemplate) {
+        case 0: currentCanvas = renderTemplate0(s, dateStr); break;
+        case 1: currentCanvas = renderTemplate1(s, dateStr); break;
+        case 2: currentCanvas = renderTemplate2(s, dateStr); break;
+        case 3: currentCanvas = renderTemplate3(s, dateStr); break;
+        case 4: currentCanvas = renderTemplate4(s, dateStr); break;
+        default: currentCanvas = renderTemplate0(s, dateStr);
+      }
+      ShareCard.preview(currentCanvas, cardPreview);
+    }
+
+    // Template 0: Classic dark (reuse ShareCard.templateQuote)
+    function renderTemplate0(s, dateStr) {
+      return ShareCard.templateQuote({
+        title: dateStr,
+        content: s.verse,
+        source: s.reference,
+        category: s.category
+      });
+    }
+
+    // Template 1: Soft gradient (warm gold background)
+    function renderTemplate1(s, dateStr) {
+      const { canvas, ctx, w, h } = ShareCard.createCanvas(600, 400);
+      const grad = ctx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, '#1a1610');
+      grad.addColorStop(0.5, '#1e1a12');
+      grad.addColorStop(1, '#14120e');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+
+      // Soft glow
+      const radGrad = ctx.createRadialGradient(w / 2, h / 2, 0, w / 2, h / 2, 280);
+      radGrad.addColorStop(0, 'rgba(201,168,76,0.08)');
+      radGrad.addColorStop(1, 'transparent');
+      ctx.fillStyle = radGrad;
+      ctx.fillRect(0, 0, w, h);
+
+      ShareCard.drawBorder(ctx, w, h);
+
+      // Category
+      ctx.font = '500 12px "Noto Sans TC", sans-serif';
+      ctx.fillStyle = '#c9a84c';
+      ctx.textAlign = 'center';
+      ctx.fillText(s.category + ' | ' + dateStr, w / 2, 48);
+
+      // Verse
+      ctx.font = '400 18px "Noto Serif TC", serif';
+      ctx.fillStyle = '#e8e4dc';
+      ctx.textAlign = 'center';
+      const lines = ShareCard.wrapText(ctx, s.verse, w / 2, 110, w - 100, 32);
+
+      // Reference
+      const refY = 110 + lines * 32 + 24;
+      ctx.font = '400 13px "Noto Sans TC", sans-serif';
+      ctx.fillStyle = '#a09580';
+      ctx.fillText('— ' + s.reference, w / 2, refY);
+
+      ShareCard.drawWatermark(ctx, w, h);
+      return canvas;
+    }
+
+    // Template 2: Calligraphy style (large centered text)
+    function renderTemplate2(s, dateStr) {
+      const { canvas, ctx, w, h } = ShareCard.createCanvas(600, 480);
+      ctx.fillStyle = '#080706';
+      ctx.fillRect(0, 0, w, h);
+
+      // Subtle vertical lines
+      ctx.strokeStyle = 'rgba(201,168,76,0.04)';
+      ctx.lineWidth = 1;
+      for (let x = 60; x < w; x += 60) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+      }
+
+      // Large quote mark
+      ctx.font = '120px serif';
+      ctx.fillStyle = 'rgba(201,168,76,0.06)';
+      ctx.textAlign = 'center';
+      ctx.fillText('\u201C', w / 2, 100);
+
+      // Large verse text
+      ctx.font = '700 26px "Noto Serif TC", serif';
+      ctx.fillStyle = '#e8e4dc';
+      ctx.textAlign = 'center';
+      const lines = ShareCard.wrapText(ctx, s.verse, w / 2, 160, w - 80, 44);
+
+      // Decorative line
+      const lineY = 160 + lines * 44 + 20;
+      ctx.strokeStyle = '#c9a84c';
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(w / 2 - 40, lineY); ctx.lineTo(w / 2 + 40, lineY); ctx.stroke();
+
+      // Reference
+      ctx.font = '400 14px "Noto Sans TC", sans-serif';
+      ctx.fillStyle = '#c9a84c';
+      ctx.textAlign = 'center';
+      ctx.fillText(s.reference, w / 2, lineY + 30);
+
+      // Date + category
+      ctx.font = '400 11px "Noto Sans TC", sans-serif';
+      ctx.fillStyle = '#706b62';
+      ctx.fillText(dateStr + ' | ' + s.category, w / 2, lineY + 54);
+
+      ShareCard.drawWatermark(ctx, w, h);
+      return canvas;
+    }
+
+    // Template 3: Nature motif (decorative corners + floral)
+    function renderTemplate3(s, dateStr) {
+      const { canvas, ctx, w, h } = ShareCard.createCanvas(600, 420);
+      const grad = ctx.createLinearGradient(0, 0, 0, h);
+      grad.addColorStop(0, '#0c0b08');
+      grad.addColorStop(1, '#0a0908');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+
+      ShareCard.drawBorder(ctx, w, h, 20);
+
+      // Decorative floral curves (top-left, bottom-right)
+      ctx.strokeStyle = 'rgba(201,168,76,0.12)';
+      ctx.lineWidth = 1.5;
+      // Top left ornament
+      ctx.beginPath();
+      ctx.moveTo(30, 60); ctx.quadraticCurveTo(50, 30, 80, 30);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(30, 60); ctx.quadraticCurveTo(30, 35, 50, 30);
+      ctx.stroke();
+      // Bottom right ornament
+      ctx.beginPath();
+      ctx.moveTo(w - 30, h - 60); ctx.quadraticCurveTo(w - 50, h - 30, w - 80, h - 30);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(w - 30, h - 60); ctx.quadraticCurveTo(w - 30, h - 35, w - 50, h - 30);
+      ctx.stroke();
+
+      // Small leaf dots
+      ctx.fillStyle = 'rgba(201,168,76,0.1)';
+      [[60, 45], [90, 35], [w - 60, h - 45], [w - 90, h - 35]].forEach(([x, y]) => {
+        ctx.beginPath(); ctx.arc(x, y, 3, 0, Math.PI * 2); ctx.fill();
+      });
+
+      // Category pill
+      ctx.font = '500 11px "Noto Sans TC", sans-serif';
+      ctx.fillStyle = '#c9a84c';
+      ctx.textAlign = 'center';
+      ctx.fillText(s.category, w / 2, 52);
+
+      // Verse
+      ctx.font = '400 17px "Noto Serif TC", serif';
+      ctx.fillStyle = '#e8e4dc';
+      const lines = ShareCard.wrapText(ctx, s.verse, w / 2, 100, w - 120, 30);
+
+      // Reference
+      const refY = 100 + lines * 30 + 24;
+      ctx.font = '400 13px "Noto Sans TC", sans-serif';
+      ctx.fillStyle = '#a09580';
+      ctx.fillText('— ' + s.reference, w / 2, refY);
+
+      // Date
+      ctx.font = '400 11px "Noto Sans TC", sans-serif';
+      ctx.fillStyle = '#706b62';
+      ctx.fillText(dateStr, w / 2, refY + 24);
+
+      ShareCard.drawWatermark(ctx, w, h);
+      return canvas;
+    }
+
+    // Template 4: Minimal white
+    function renderTemplate4(s, dateStr) {
+      const { canvas, ctx, w, h } = ShareCard.createCanvas(600, 400);
+      ctx.fillStyle = '#f5f3ef';
+      ctx.fillRect(0, 0, w, h);
+
+      // Thin border
+      ctx.strokeStyle = 'rgba(0,0,0,0.08)';
+      ctx.lineWidth = 1;
+      ShareCard.roundRect(ctx, 16, 16, w - 32, h - 32, 8);
+      ctx.stroke();
+
+      // Category
+      ctx.font = '500 12px "Noto Sans TC", sans-serif';
+      ctx.fillStyle = '#8a7d5a';
+      ctx.textAlign = 'center';
+      ctx.fillText(s.category, w / 2, 50);
+
+      // Verse
+      ctx.font = '400 18px "Noto Serif TC", serif';
+      ctx.fillStyle = '#2a2820';
+      ctx.textAlign = 'center';
+      const lines = ShareCard.wrapText(ctx, s.verse, w / 2, 105, w - 100, 32);
+
+      // Reference
+      const refY = 105 + lines * 32 + 24;
+      ctx.font = '400 13px "Noto Sans TC", sans-serif';
+      ctx.fillStyle = '#8a7d5a';
+      ctx.fillText('— ' + s.reference, w / 2, refY);
+
+      // Date
+      ctx.font = '400 11px "Noto Sans TC", sans-serif';
+      ctx.fillStyle = '#b0a890';
+      ctx.fillText(dateStr, w / 2, refY + 24);
+
+      // Watermark (dark version)
+      ctx.font = '11px "Noto Sans TC", sans-serif';
+      ctx.fillStyle = 'rgba(138,125,90,0.3)';
+      ctx.textAlign = 'center';
+      ctx.fillText('福青施老師 | eliajhmauve.github.io/wenkai', w / 2, h - 16);
+
+      return canvas;
+    }
+
+    // Template toggle
+    btnTemplate.addEventListener('click', () => {
+      templateSelector.classList.toggle('show');
+      if (templateSelector.classList.contains('show')) {
+        cardPreview.classList.add('show');
+        renderCard();
+      } else {
+        cardPreview.classList.remove('show');
+      }
+    });
+
+    templateSelector.querySelectorAll('.tpl-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        templateSelector.querySelectorAll('.tpl-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentTemplate = parseInt(btn.dataset.tpl);
+        renderCard();
+      });
+    });
+
+    // ========== Share / Download ==========
+    function ensureCanvas() {
+      if (!currentCanvas) {
+        cardPreview.classList.add('show');
+        templateSelector.classList.add('show');
+        renderCard();
+      }
+    }
+
+    btnShare.addEventListener('click', () => {
+      ensureCanvas();
+      const s = getScripture(currentDate);
+      const m = currentDate.getMonth() + 1;
+      const d = currentDate.getDate();
+      ShareCard.share(currentCanvas, {
+        title: '每日經文 — ' + s.reference,
+        text: s.verse + ' — ' + s.reference,
+        filename: 'scripture-' + m + '-' + d + '.png'
+      });
+    });
+
+    btnDownload.addEventListener('click', () => {
+      ensureCanvas();
+      const m = currentDate.getMonth() + 1;
+      const d = currentDate.getDate();
+      ShareCard.download(currentCanvas, 'scripture-' + m + '-' + d + '.png');
+    });
+
+    // ========== AI Meditation ==========
+    btnAI.addEventListener('click', async () => {
+      if (!AIClient.isConfigured()) {
+        // Show config section
+        const configHeader = $('aiConfigHeader');
+        const configBody = $('aiConfigBody');
+        configHeader.classList.add('open');
+        configBody.classList.add('open');
+        AIClient.renderConfigUI(configBody);
+        configBody.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+
+      const s = getScripture(currentDate);
+      aiLoading.classList.add('show');
+      aiResult.classList.remove('show');
+
+      const systemPrompt = '你是一位溫暖的基督教靈修導師。根據以下經文，寫一段 150 字的默想引導，幫助讀者安靜思考並應用在生活中。語氣溫柔、具體、貼近日常。使用繁體中文。';
+      const prompt = '經文：' + s.verse + '\n出處：' + s.reference + '\n分類：' + s.category;
+
+      try {
+        const text = await AIClient.chat(prompt, systemPrompt, { temperature: 0.8, maxTokens: 512 });
+        aiLoading.classList.remove('show');
+        aiResult.textContent = text;
+        aiResult.classList.add('show');
+      } catch (err) {
+        aiLoading.classList.remove('show');
+        if (err.message === 'NO_API_KEY') {
+          const configHeader = $('aiConfigHeader');
+          const configBody = $('aiConfigBody');
+          configHeader.classList.add('open');
+          configBody.classList.add('open');
+          AIClient.renderConfigUI(configBody);
+          configBody.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          aiResult.textContent = '生成失敗：' + err.message;
+          aiResult.classList.add('show');
+        }
+      }
+    });
+
+    // ========== Diary ==========
+    let diaryTimer = null;
+    diaryInput.addEventListener('input', () => {
+      clearTimeout(diaryTimer);
+      diaryStatus.textContent = '輸入中...';
+      diaryTimer = setTimeout(() => {
+        const key = getDiaryKey(currentDate);
+        const val = diaryInput.value.trim();
+        if (val) {
+          localStorage.setItem(key, val);
+        } else {
+          localStorage.removeItem(key);
+        }
+        diaryStatus.textContent = '已儲存';
+        setTimeout(() => { diaryStatus.textContent = ''; }, 2000);
+      }, 800);
+    });
+
+    // ========== Collapsible sections ==========
+    function setupCollapse(headerId, bodyId) {
+      const header = $(headerId);
+      const body = $(bodyId);
+      header.addEventListener('click', () => {
+        header.classList.toggle('open');
+        body.classList.toggle('open');
+        // Render AI config if opening
+        if (headerId === 'aiConfigHeader' && body.classList.contains('open') && !body.hasChildNodes()) {
+          AIClient.renderConfigUI(body);
+        }
+      });
+    }
+    setupCollapse('favHeader', 'favBody');
+    setupCollapse('aiConfigHeader', 'aiConfigBody');
+
+    // ========== Init ==========
+    render();
+    renderFavorites();
+
+  })();
+  </script>
+</body>
+</html>
