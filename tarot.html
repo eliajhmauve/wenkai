@@ -134,16 +134,22 @@
     }
     .card-front img {
       width: 100%; flex: 1; object-fit: cover;
+      object-position: top center;
       border-radius: var(--radius) var(--radius) 0 0;
+      /* Crop bottom ~12% to hide AI-generated text */
+      clip-path: inset(0 0 12% 0);
+      margin-bottom: -12%;
     }
     .card-front .card-label {
-      padding: 8px 10px; text-align: center; font-size: 0.72rem;
-      color: var(--text-dim); letter-spacing: 1px; white-space: nowrap;
+      padding: 10px 10px 8px; text-align: center; font-size: 0.75rem;
+      color: var(--text); letter-spacing: 1px; white-space: nowrap;
       overflow: hidden; text-overflow: ellipsis;
-      background: rgba(0,0,0,0.4);
+      background: linear-gradient(to bottom, rgba(20,18,15,0.85), rgba(20,18,15,0.95));
+      border-top: 1px solid rgba(201,168,76,0.2);
+      font-family: var(--font-serif);
     }
     .card-front .card-label strong {
-      color: var(--gold); font-weight: 500;
+      color: var(--gold); font-weight: 700; font-size: 0.85rem;
     }
     .card-back {
       background: linear-gradient(135deg, #1a1520 0%, #0d0b12 100%);
