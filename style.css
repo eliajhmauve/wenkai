@@ -178,6 +178,7 @@ a:focus-visible, .card:focus-visible {
   text-align: center;
   overflow: hidden;
   background: var(--bg);
+  padding-top: 72px;
 }
 
 .hero-bg {
