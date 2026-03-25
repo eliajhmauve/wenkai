@@ -8,17 +8,16 @@ const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('revealed');
-      // Stagger children cards
       const cards = entry.target.querySelectorAll('.card');
       cards.forEach((card, i) => {
         card.style.transitionDelay = `${i * 0.08}s`;
         card.classList.add('revealed');
       });
+      revealObserver.unobserve(entry.target);
     }
   });
 }, observerOptions);
 
-// Observe sections and individual elements
 document.querySelectorAll('.section, .hero-content > *').forEach(el => {
   el.classList.add('reveal');
   revealObserver.observe(el);
@@ -40,14 +39,18 @@ window.addEventListener('load', () => {
   });
 });
 
-// === Card hover glow effect ===
+// === Card hover glow effect (throttled with rAF) ===
 document.querySelectorAll('.card').forEach(card => {
   card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    card.style.setProperty('--glow-x', `${x}px`);
-    card.style.setProperty('--glow-y', `${y}px`);
+    if (!card._ticking) {
+      card._ticking = true;
+      requestAnimationFrame(() => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--glow-x', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--glow-y', `${e.clientY - rect.top}px`);
+        card._ticking = false;
+      });
+    }
   });
 });
 
@@ -58,7 +61,6 @@ const countObserver = new IntersectionObserver((entries) => {
       const el = entry.target;
       const target = el.textContent.trim();
 
-      // Only animate numbers
       if (target.includes('%')) {
         animateCount(el, 0, 100, '%');
       } else {
@@ -79,7 +81,6 @@ function animateCount(el, start, end, suffix) {
   function update(currentTime) {
     const elapsed = currentTime - startTime;
     const progress = Math.min(elapsed / duration, 1);
-    // Ease out cubic
     const eased = 1 - Math.pow(1 - progress, 3);
     const current = Math.round(start + (end - start) * eased);
     el.textContent = current + suffix;
@@ -95,14 +96,33 @@ document.querySelectorAll('.stat-num').forEach(el => {
 
 // === Smooth nav background on scroll ===
 const nav = document.querySelector('.nav');
-let lastScroll = 0;
 
 window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-  if (scrollY > 100) {
+  if (window.scrollY > 100) {
     nav.classList.add('nav-scrolled');
   } else {
     nav.classList.remove('nav-scrolled');
   }
-  lastScroll = scrollY;
 }, { passive: true });
+
+// === Hamburger menu toggle ===
+const hamburger = document.querySelector('.hamburger');
+const mobileMenu = document.querySelector('.mobile-menu');
+
+hamburger.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('active');
+  hamburger.setAttribute('aria-expanded', isOpen);
+  mobileMenu.setAttribute('aria-hidden', !isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+});
+
+mobileMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  });
+});

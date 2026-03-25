@@ -28,6 +28,38 @@ body {
   overflow-x: hidden;
 }
 
+/* === Skip Link === */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  background: var(--gold);
+  color: var(--bg);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  z-index: 200;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 16px;
+}
+
+/* === Focus Styles === */
+a:focus-visible, .card:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* === Reduced Motion === */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* === Nav === */
 .nav {
   position: fixed;
@@ -68,6 +100,73 @@ body {
 }
 
 .nav-links a:hover { color: var(--text); }
+
+/* === Hamburger Button === */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 120;
+}
+
+.hamburger-line {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--text);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.hamburger.active .hamburger-line:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+
+.hamburger.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .hamburger-line:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* === Mobile Menu Overlay === */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  background: rgba(6, 7, 8, 0.97);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.mobile-menu.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu a {
+  color: var(--text);
+  text-decoration: none;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  letter-spacing: 6px;
+  transition: color 0.3s;
+}
+
+.mobile-menu a:hover {
+  color: var(--gold);
+}
 
 /* === Hero === */
 .hero {
@@ -270,13 +369,14 @@ body {
   text-decoration: none;
   color: var(--text);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
 
 .card:hover {
   border-color: var(--border-hover);
   background: var(--surface-hover);
   transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
 }
 
 .card-badge {
@@ -286,7 +386,7 @@ body {
   background: var(--gold);
   color: var(--bg);
   font-size: 0.68rem;
-  font-weight: 600;
+  font-weight: 500;
   border-radius: 3px;
   letter-spacing: 1px;
 }
@@ -318,7 +418,7 @@ body {
 .card h3 {
   font-family: var(--font-serif);
   font-size: 1.05rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 10px;
   line-height: 1.6;
   color: var(--text);
@@ -414,9 +514,19 @@ body {
   background-clip: text;
 }
 
-/* === Responsive === */
+/* === Responsive: Tablet === */
+@media (max-width: 1024px) {
+  .nav-inner { padding: 18px 28px; }
+  .section { padding: 96px 28px; }
+  .grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  .stat { padding: 0 32px; }
+}
+
+/* === Responsive: Mobile === */
 @media (max-width: 768px) {
   .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .mobile-menu { display: flex; }
   .nav-inner { padding: 16px 20px; }
   .hero { min-height: 92vh; }
   .hero-title { font-size: 2.8rem; letter-spacing: 4px; }
