@@ -1,3 +1,4 @@
-Card: 06 - 戀人 (The Lovers)
+Card: 06 - 戀人 The Lovers
+The text at the bottom of the card MUST read exactly: "06 - 戀人 The Lovers"
 
 Two tiny cute animals holding hands under a blooming tree, floating hearts above them, a tiny angel blessing from above, soft pink and warm sunset colors, flower petals falling

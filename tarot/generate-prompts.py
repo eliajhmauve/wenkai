@@ -157,7 +157,12 @@ def write_prompt(filename, content):
 # Generate Major Arcana prompts
 for num, slug, name_en, name_zh, desc in MAJOR:
     filename = f"major-{num}-{slug}.md"
-    content = f"Card: {num} - {name_zh} ({name_en})\n\n{desc}"
+    card_label = f"{num} - {name_zh} {name_en}"
+    content = (
+        f"Card: {card_label}\n"
+        f"The text at the bottom of the card MUST read exactly: \"{card_label}\"\n\n"
+        f"{desc}"
+    )
     write_prompt(filename, content)
     tasks.append({
         "id": f"major-{num}-{slug}",
@@ -169,7 +174,12 @@ for num, slug, name_en, name_zh, desc in MAJOR:
 for suit_key, suit in SUITS.items():
     # Ace
     filename = f"{suit_key}-ace.md"
-    content = f"Card: Ace of {suit['name_en']} - {suit['name_zh']}王牌\nColors: {suit['colors']}\n\n{suit['ace_desc']}"
+    card_label = f"Ace - {suit['name_zh']}王牌"
+    content = (
+        f"Card: Ace of {suit['name_en']} - {suit['name_zh']}王牌\n"
+        f"The text at the bottom of the card MUST read exactly: \"{card_label}\"\n"
+        f"Colors: {suit['colors']}\n\n{suit['ace_desc']}"
+    )
     write_prompt(filename, content)
     tasks.append({
         "id": f"{suit_key}-ace",
@@ -180,7 +190,12 @@ for suit_key, suit in SUITS.items():
     # 2-10 and court cards
     for rank_key, (rank_en, rank_zh, desc) in suit['cards'].items():
         filename = f"{suit_key}-{rank_key}.md"
-        content = f"Card: {rank_en} of {suit['name_en']} - {suit['name_zh']}{rank_zh}\nColors: {suit['colors']}\n\n{desc}"
+        card_label = f"{rank_en} - {suit['name_zh']}{rank_zh}"
+        content = (
+            f"Card: {rank_en} of {suit['name_en']} - {suit['name_zh']}{rank_zh}\n"
+            f"The text at the bottom of the card MUST read exactly: \"{card_label}\"\n"
+            f"Colors: {suit['colors']}\n\n{desc}"
+        )
         write_prompt(filename, content)
         tasks.append({
             "id": f"{suit_key}-{rank_key}",

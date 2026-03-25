@@ -11,7 +11,7 @@ if not API_KEY:
     print("ERROR: GEMINI_API_KEY not set")
     sys.exit(1)
 
-MODEL = "gemini-2.5-flash-image"
+MODEL = "gemini-3.1-flash-image-preview"
 API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent?key={API_KEY}"
 MAX_RETRIES = 3
 REQUEST_DELAY = 6  # free tier rate limit safety margin
@@ -26,8 +26,13 @@ with open(os.path.join(SCRIPT_DIR, "batch-tarot.json"), "r", encoding="utf-8") a
 
 def generate_image(prompt):
     """Call Gemini API to generate an image from a text prompt."""
-    # Prefix prompt with instruction for image generation
-    full_prompt = f"Generate an image: {prompt}"
+    # Prefix prompt with instruction for image generation + Chinese text accuracy
+    full_prompt = (
+        "Generate a single tarot card image. "
+        "IMPORTANT: The card name text at the bottom MUST use the EXACT Chinese characters as specified in the prompt. "
+        "Do NOT change, substitute, or approximate any Chinese characters.\n\n"
+        f"{prompt}"
+    )
     data = json.dumps({
         "contents": [{"parts": [{"text": full_prompt}]}],
         "generationConfig": {
