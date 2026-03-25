@@ -178,7 +178,8 @@ a:focus-visible, .card:focus-visible {
   text-align: center;
   overflow: hidden;
   background: var(--bg);
-  padding-top: 72px;
+  padding-top: 80px;
+  padding-bottom: 40px;
 }
 
 .hero-bg {
@@ -211,10 +212,10 @@ a:focus-visible, .card:focus-visible {
 
 /* Photo */
 .hero-photo {
-  width: 140px;
-  height: 140px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  margin: 0 auto 32px;
+  margin: 0 auto 24px;
   overflow: hidden;
   border: 2px solid rgba(201, 168, 76, 0.3);
   background: rgba(255,255,255,0.05);
@@ -234,7 +235,7 @@ a:focus-visible, .card:focus-visible {
   font-size: 0.78rem;
   font-weight: 400;
   color: var(--gold);
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   letter-spacing: 6px;
 }
 
@@ -243,7 +244,7 @@ a:focus-visible, .card:focus-visible {
   font-size: clamp(3.5rem, 9vw, 6rem);
   font-weight: 900;
   line-height: 1.1;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   color: var(--text);
   letter-spacing: 10px;
 }
@@ -252,7 +253,7 @@ a:focus-visible, .card:focus-visible {
   width: 48px;
   height: 1px;
   background: var(--gold);
-  margin: 0 auto 32px;
+  margin: 0 auto 20px;
   opacity: 0.5;
 }
 
@@ -261,7 +262,7 @@ a:focus-visible, .card:focus-visible {
   font-size: 1rem;
   color: var(--text-dim);
   max-width: 420px;
-  margin: 0 auto 56px;
+  margin: 0 auto 40px;
   letter-spacing: 3px;
   line-height: 2.2;
   font-weight: 400;
