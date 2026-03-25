@@ -1,0 +1,113 @@
+{
+  "jobs": 2,
+  "tasks": [
+    {
+      "id": "faith",
+      "prompt": "A cute Pikachu-style Pokémon character representing Faith. The creature stands confidently on a rock with a glowing cross-shaped light behind it, golden-white coloring, determined hopeful expression with big sparkly eyes. Chibi proportions, soft divine light rays, kawaii Japanese art style, circular composition, white background. No text.",
+      "image": "faith.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "hope",
+      "prompt": "A cute Pikachu-style Pokémon character representing Hope. The creature looks up at a rainbow and a bright star, soft sky-blue and gold coloring, joyful expectant expression with big sparkly eyes. Chibi proportions, gentle clouds around, kawaii Japanese art style, circular composition, white background. No text.",
+      "image": "hope.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "love",
+      "prompt": "A cute Pikachu-style Pokémon character representing Love. The creature hugs a glowing heart warmly, soft pink and rose-gold coloring, tender loving expression with big sparkly eyes. Chibi proportions, small floating hearts, kawaii Japanese art style, circular composition, white background. No text.",
+      "image": "love.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "wisdom",
+      "prompt": "A cute Pikachu-style Pokémon character representing Wisdom. The creature wears tiny glasses and holds an open book with glowing pages, deep blue and gold coloring, thoughtful wise expression with big sparkly eyes. Chibi proportions, floating book pages, kawaii Japanese art style, circular composition, white background. No text.",
+      "image": "wisdom.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "peace",
+      "prompt": "A cute Pikachu-style Pokémon character representing Peace. The creature sits in meditation pose with a white dove on its head, soft lavender and mint coloring, serene calm expression with big sparkly eyes. Chibi proportions, gentle aura glow, kawaii Japanese art style, circular composition, white background. No text.",
+      "image": "peace.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "gratitude",
+      "prompt": "A cute Pikachu-style Pokémon character representing Gratitude. The creature bows gently holding a bouquet of flowers, warm yellow and cream coloring, humble thankful expression with big sparkly eyes. Chibi proportions, sparkle effects, kawaii Japanese art style, circular composition, white background. No text.",
+      "image": "gratitude.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "courage",
+      "prompt": "A cute Pikachu-style Pokémon character representing Courage. The creature holds a tiny shield and stands bravely, fiery orange and red coloring, brave determined expression with big sparkly eyes. Chibi proportions, glowing armor details, kawaii Japanese art style, circular composition, white background. No text.",
+      "image": "courage.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "prayer",
+      "prompt": "A cute Pikachu-style Pokémon character representing Prayer. The creature has hands clasped together in prayer with soft divine light from above, gentle white and gold coloring, peaceful devoted expression with big sparkly eyes. Chibi proportions, light beam from above, kawaii Japanese art style, circular composition, white background. No text.",
+      "image": "prayer.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "joy",
+      "prompt": "A cute Pikachu-style Pokémon character representing Joy. The creature jumps happily with confetti and sparkles, bright yellow and orange coloring, ecstatic cheerful expression with big sparkly eyes. Chibi proportions, celebration effects, kawaii Japanese art style, circular composition, white background. No text.",
+      "image": "joy.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "grace",
+      "prompt": "A cute Pikachu-style Pokémon character representing Grace. The creature is bathed in soft golden light pouring from above like water, ethereal white and gold coloring, gentle awed expression with big sparkly eyes. Chibi proportions, divine light waterfall, kawaii Japanese art style, circular composition, white background. No text.",
+      "image": "grace.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "forgiveness",
+      "prompt": "A cute Pikachu-style Pokémon character representing Forgiveness. Two small creatures reconciling with a warm embrace, soft green and white coloring, gentle forgiving expressions with big sparkly eyes. Chibi proportions, healing light between them, kawaii Japanese art style, circular composition, white background. No text.",
+      "image": "forgiveness.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "service",
+      "prompt": "A cute Pikachu-style Pokémon character representing Service. The creature helps a smaller creature climb up, carrying it on its back, warm brown and green coloring, kind caring expression with big sparkly eyes. Chibi proportions, gentle helping hand gesture, kawaii Japanese art style, circular composition, white background. No text.",
+      "image": "service.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    }
+  ]
+}

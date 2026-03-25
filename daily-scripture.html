@@ -316,6 +316,8 @@
 
     <!-- Category badge -->
     <div class="badge-wrap">
+      <img id="categoryImg" src="" alt="" style="width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid rgba(201,168,76,0.15);margin-bottom:8px;display:none;">
+      <br>
       <span class="category-badge" id="categoryBadge"></span>
     </div>
 
@@ -823,6 +825,12 @@
       const s = getScripture(currentDate);
       dateDisplay.textContent = formatDate(currentDate);
       categoryBadge.textContent = s.category;
+      // 分類角色圖
+      const catImgMap = {'信心':'faith','盼望':'hope','愛':'love','智慧':'wisdom','平安':'peace','感恩':'gratitude','勇氣':'courage','禱告':'prayer','喜樂':'joy','恩典':'grace','饒恕':'forgiveness','服事':'service'};
+      const catImg = document.getElementById('categoryImg');
+      const imgKey = catImgMap[s.category];
+      if (imgKey) { catImg.src = 'images/scripture/' + imgKey + '.png'; catImg.alt = s.category; catImg.style.display = 'inline-block'; }
+      else { catImg.style.display = 'none'; }
       verseText.textContent = s.verse;
       verseRef.textContent = '— ' + s.reference;
 
