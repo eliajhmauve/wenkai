@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>面相 AI 分析師 — 福青施老師</title>
+  <meta name="description" content="上傳照片，AI 自動偵測面部特徵，解讀三停五官面相命理。拍照即用，秒出結果。">
+  <meta name="keywords" content="面相,AI分析,三停,五官,面相學,命理,福青施老師">
+  <meta name="author" content="福青施老師">
+  <meta name="theme-color" content="#c9a84c">
+  <link rel="canonical" href="https://eliajhmauve.github.io/wenkai/ai-face-reading.html">
+  <meta property="og:title" content="面相 AI 分析師 — 福青施老師">
+  <meta property="og:description" content="上傳照片，AI 自動偵測面部特徵，解讀三停五官面相命理">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://eliajhmauve.github.io/wenkai/ai-face-reading.html">
+  <meta property="og:image" content="https://eliajhmauve.github.io/wenkai/og-image.png">
+  <meta property="og:locale" content="zh_TW">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="面相 AI 分析師 — 福青施老師">
+  <meta name="twitter:description" content="上傳照片，AI 自動偵測面部特徵，解讀面相命理">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👤</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #060708; --bg-alt: #0a0b0d; --surface: rgba(255,255,255,0.03);
+      --surface-hover: rgba(255,255,255,0.06); --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(212,175,55,0.2); --text: #e8e4dc; --text-dim: #706b62;
+      --gold: #c9a84c; --gold-light: #dfc06a; --radius: 12px;
+      --font-serif: 'Noto Serif TC', serif; --font-sans: 'Noto Sans TC', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height: 1.8; -webkit-font-smoothing: antialiased; overflow-x: hidden; min-height: 100vh; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(6,7,8,0.9); backdrop-filter: blur(30px); border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .nav-inner { max-width: 900px; margin: 0 auto; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .nav-back { color: var(--text-dim); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
+    .nav-back:hover { color: var(--gold); }
+    .nav-brand { font-family: var(--font-serif); font-size: 0.95rem; font-weight: 700; color: var(--gold); letter-spacing: 3px; }
+
+    .hero { padding: 140px 24px 40px; text-align: center; background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 70%); }
+    .hero h1 { font-family: var(--font-serif); font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 900; letter-spacing: 6px; margin-bottom: 12px; background: linear-gradient(135deg, var(--text) 0%, var(--gold-light) 50%, var(--text) 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { color: var(--text-dim); font-size: 0.92rem; letter-spacing: 2px; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px 60px; }
+
+    /* Upload Area */
+    .upload-area { border: 2px dashed var(--border); border-radius: var(--radius); padding: 60px 24px; text-align: center; transition: all 0.3s; cursor: pointer; margin-bottom: 32px; position: relative; }
+    .upload-area:hover, .upload-area.dragover { border-color: var(--gold); background: rgba(201,168,76,0.03); }
+    .upload-area .icon { font-size: 3rem; margin-bottom: 16px; display: block; }
+    .upload-area .hint { color: var(--text-dim); font-size: 0.88rem; margin-bottom: 20px; }
+    .upload-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .upload-btn { padding: 12px 24px; border-radius: 8px; font-size: 0.9rem; cursor: pointer; font-family: var(--font-sans); transition: all 0.3s; border: none; }
+    .upload-btn-camera { background: var(--gold); color: var(--bg); font-weight: 700; font-size: 1rem; padding: 14px 32px; }
+    .upload-btn-camera:hover { background: var(--gold-light); }
+    .upload-btn-gallery { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+    .upload-btn-gallery:hover { border-color: var(--border-hover); }
+    .upload-area input[type="file"] { display: none; }
+
+    /* Preview */
+    .preview-wrap { display: none; text-align: center; margin-bottom: 32px; }
+    .preview-wrap.visible { display: block; animation: fadeUp 0.4s ease; }
+    .preview-img { max-width: 100%; max-height: 400px; border-radius: var(--radius); border: 1px solid var(--border); }
+    .preview-actions { margin-top: 16px; display: flex; gap: 12px; justify-content: center; }
+    .preview-btn { padding: 10px 24px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; font-family: var(--font-sans); transition: all 0.3s; }
+    .analyze-btn { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--bg); border: none; font-weight: 700; font-family: var(--font-serif); letter-spacing: 3px; }
+    .analyze-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.25); }
+    .analyze-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .reupload-btn { background: none; border: 1px solid var(--border); color: var(--text-dim); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Loading */
+    .loading-section { display: none; text-align: center; padding: 60px 24px; }
+    .loading-section.visible { display: block; }
+    .loading-bar { width: 200px; height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; margin: 20px auto; overflow: hidden; }
+    .loading-bar-inner { height: 100%; width: 30%; background: var(--gold); border-radius: 2px; animation: loadSlide 1.5s ease-in-out infinite; }
+    @keyframes loadSlide { 0% { transform: translateX(-100%); } 100% { transform: translateX(400%); } }
+    .loading-text { color: var(--text-dim); font-size: 0.88rem; }
+
+    /* Result Section */
+    .result-section { display: none; }
+    .result-section.visible { display: block; animation: fadeUp 0.6s ease; }
+
+    /* Annotated Canvas */
+    .annotated-wrap { text-align: center; margin-bottom: 32px; }
+    .annotated-wrap canvas { max-width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+
+    /* Analysis Cards */
+    .analysis-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 20px; }
+    .analysis-card h3 { font-family: var(--font-serif); color: var(--gold); font-size: 1.05rem; margin-bottom: 16px; letter-spacing: 2px; }
+    .santing-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .santing-item { text-align: center; padding: 16px; background: rgba(255,255,255,0.02); border-radius: 8px; }
+    .santing-label { font-size: 0.8rem; color: var(--text-dim); margin-bottom: 6px; }
+    .santing-name { font-family: var(--font-serif); color: var(--gold); font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .santing-score { font-size: 1.5rem; font-weight: 900; color: var(--text); }
+    .santing-desc { font-size: 0.78rem; color: var(--text-dim); margin-top: 6px; }
+    .ratio-bar { display: flex; height: 12px; border-radius: 6px; overflow: hidden; margin: 16px 0; }
+    .ratio-bar div { transition: width 0.6s ease; }
+    .ratio-upper { background: rgba(201,168,76,0.6); }
+    .ratio-middle { background: rgba(201,168,76,0.85); }
+    .ratio-lower { background: rgba(201,168,76,0.4); }
+    .ratio-labels { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-dim); }
+
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .feature-item { padding: 14px; background: rgba(255,255,255,0.02); border-radius: 8px; }
+    .feature-label { font-size: 0.8rem; color: var(--text-dim); margin-bottom: 4px; }
+    .feature-value { font-size: 0.92rem; color: var(--text); font-weight: 500; }
+    .feature-desc { font-size: 0.78rem; color: var(--text-dim); margin-top: 4px; }
+
+    /* AI Section */
+    .ai-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 20px; }
+    .ai-section h3 { font-family: var(--font-serif); color: var(--gold); font-size: 1.05rem; margin-bottom: 16px; letter-spacing: 2px; }
+    .ai-loading { display: flex; align-items: center; gap: 12px; color: var(--text-dim); font-size: 0.88rem; }
+    .ai-loading .dots { display: flex; gap: 4px; }
+    .ai-loading .dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: dotPulse 1.4s ease-in-out infinite; }
+    .ai-loading .dots span:nth-child(2) { animation-delay: 0.2s; }
+    .ai-loading .dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes dotPulse { 0%,80%,100% { opacity: 0.3; transform: scale(0.6); } 40% { opacity: 1; transform: scale(1); } }
+    .ai-result { font-size: 0.88rem; line-height: 2; white-space: pre-wrap; }
+    .ai-error { color: #e57373; font-size: 0.85rem; }
+
+    /* Share */
+    .share-actions { display: flex; gap: 12px; justify-content: center; margin: 32px 0; flex-wrap: wrap; }
+    .share-btn { padding: 10px 24px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; font-family: var(--font-sans); transition: all 0.3s; }
+    .share-btn-primary { background: var(--gold); color: var(--bg); border: none; font-weight: 500; }
+    .share-btn-primary:hover { background: var(--gold-light); }
+    .share-btn-secondary { background: none; border: 1px solid var(--border); color: var(--text-dim); }
+    .share-btn-secondary:hover { border-color: var(--border-hover); color: var(--text); }
+
+    .card-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
+    .card-modal.open { display: flex; }
+    .card-modal-inner { max-width: 600px; width: 100%; text-align: center; }
+    .card-modal-inner canvas { max-width: 100%; height: auto; border-radius: 8px; }
+    .card-modal-actions { margin-top: 16px; display: flex; gap: 12px; justify-content: center; }
+    .card-modal-actions button { padding: 10px 24px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; font-family: var(--font-sans); transition: all 0.3s; }
+
+    .config-toggle { position: fixed; bottom: 24px; right: 24px; z-index: 80; background: var(--surface); border: 1px solid var(--border); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; transition: all 0.3s; }
+    .config-toggle:hover { border-color: var(--border-hover); }
+    .config-panel { position: fixed; bottom: 80px; right: 24px; z-index: 80; width: 320px; display: none; }
+    .config-panel.open { display: block; animation: fadeUp 0.3s ease; }
+
+    .footer { text-align: center; padding: 40px 24px; border-top: 1px solid rgba(255,255,255,0.04); }
+    .footer-brand { font-family: var(--font-serif); color: var(--gold); font-size: 0.9rem; letter-spacing: 4px; margin-bottom: 8px; }
+    .footer-copy { color: var(--text-dim); font-size: 0.75rem; }
+
+    @media (max-width: 768px) {
+      .santing-grid { grid-template-columns: 1fr; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .upload-btn-camera { width: 100%; }
+      .config-panel { right: 12px; width: calc(100vw - 24px); max-width: 320px; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.6rem; letter-spacing: 3px; }
+      .upload-area { padding: 40px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-back" aria-label="返回作品集">← 返回作品集</a>
+    <span class="nav-brand">福青施老師</span>
+    <span></span>
+  </div>
+</nav>
+
+<header class="hero">
+  <h1>面相 AI 分析師</h1>
+  <p>上傳照片，AI 為你解讀面相命理</p>
+</header>
+
+<div class="container">
+  <div class="upload-area" id="uploadArea">
+    <span class="icon">📷</span>
+    <p class="hint">拍照或上傳正面照片，AI 將分析你的面相</p>
+    <div class="upload-btns">
+      <button class="upload-btn upload-btn-camera" id="cameraBtn" aria-label="拍照">📷 拍照分析</button>
+      <button class="upload-btn upload-btn-gallery" id="galleryBtn" aria-label="選擇照片">🖼 從相簿選擇</button>
+    </div>
+    <input type="file" id="cameraInput" accept="image/*" capture="user">
+    <input type="file" id="galleryInput" accept="image/*">
+  </div>
+
+  <div class="preview-wrap" id="previewWrap">
+    <img class="preview-img" id="previewImg" alt="上傳的照片">
+    <div class="preview-actions">
+      <button class="preview-btn analyze-btn" id="analyzeBtn">開始面相分析</button>
+      <button class="preview-btn reupload-btn" id="reuploadBtn">重新上傳</button>
+    </div>
+  </div>
+
+  <div class="loading-section" id="loadingSection">
+    <span style="font-size:2rem;">🔍</span>
+    <div class="loading-bar"><div class="loading-bar-inner"></div></div>
+    <p class="loading-text" id="loadingText">正在載入 AI 模型...</p>
+  </div>
+
+  <div class="result-section" id="resultSection">
+    <div class="annotated-wrap">
+      <canvas id="annotatedCanvas" aria-label="面部標註照片"></canvas>
+    </div>
+
+    <div class="analysis-card">
+      <h3>三停分析</h3>
+      <div class="santing-grid" id="santingGrid"></div>
+      <div class="ratio-bar" id="ratioBar"></div>
+      <div class="ratio-labels" id="ratioLabels"></div>
+    </div>
+
+    <div class="analysis-card">
+      <h3>五官分析</h3>
+      <div class="feature-grid" id="featureGrid"></div>
+    </div>
+
+    <div class="ai-section" id="aiSection">
+      <h3>AI 面相解讀</h3>
+      <div id="aiContent"></div>
+    </div>
+
+    <div class="share-actions">
+      <button class="share-btn share-btn-primary" id="shareBtn">分享結果</button>
+      <button class="share-btn share-btn-secondary" id="downloadBtn">下載圖片</button>
+      <button class="share-btn share-btn-secondary" id="retryBtn">重新分析</button>
+    </div>
+  </div>
+</div>
+
+<div class="card-modal" id="cardModal">
+  <div class="card-modal-inner">
+    <div id="cardPreview"></div>
+    <div class="card-modal-actions">
+      <button class="share-btn share-btn-primary" id="modalShareBtn">分享</button>
+      <button class="share-btn share-btn-secondary" id="modalDownloadBtn">下載</button>
+      <button class="share-btn share-btn-secondary" id="modalCloseBtn">關閉</button>
+    </div>
+  </div>
+</div>
+
+<button class="config-toggle" id="configToggle" aria-label="AI 設定">⚙</button>
+<div class="config-panel" id="configPanel"></div>
+
+<footer class="footer">
+  <p class="footer-brand">福青施老師</p>
+  <p class="footer-copy">&copy; 2026 All rights reserved.</p>
+</footer>
+
+<script src="shared/ai-client.js"></script>
+<script src="shared/share-card.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  const MODEL_URL = 'https://cdn.jsdelivr.net/npm/@vladmandic/face-api/model';
+  let modelsLoaded = false;
+  let currentImage = null;
+  let lastAnalysis = null;
+
+  // ===== Load face-api.js on demand =====
+  function loadFaceApiScript() {
+    return new Promise((resolve, reject) => {
+      if (window.faceapi) { resolve(); return; }
+      const s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js';
+      s.onload = resolve;
+      s.onerror = () => reject(new Error('face-api.js 載入失敗'));
+      document.head.appendChild(s);
+    });
+  }
+
+  async function loadModels() {
+    if (modelsLoaded) return;
+    await loadFaceApiScript();
+    await Promise.all([
+      faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
+      faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL)
+    ]);
+    modelsLoaded = true;
+  }
+
+  // ===== Image Processing =====
+  function processImage(file) {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          // Resize if needed
+          const maxSize = 1200;
+          let w = img.width, h = img.height;
+          if (w > maxSize || h > maxSize) {
+            const ratio = Math.min(maxSize / w, maxSize / h);
+            w = Math.round(w * ratio);
+            h = Math.round(h * ratio);
+          }
+          const canvas = document.createElement('canvas');
+          canvas.width = w; canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          const processedImg = new Image();
+          processedImg.onload = () => resolve(processedImg);
+          processedImg.src = canvas.toDataURL('image/jpeg', 0.9);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // ===== Face Analysis =====
+  async function analyzeFace(img) {
+    const detection = await faceapi.detectSingleFace(img, new faceapi.TinyFaceDetectorOptions({ scoreThreshold: 0.3 }))
+      .withFaceLandmarks();
+
+    if (!detection) throw new Error('未偵測到人臉，請上傳清晰的正面照片');
+
+    const landmarks = detection.landmarks;
+    const positions = landmarks.positions;
+
+    // Key points
+    const jawOutline = landmarks.getJawOutline(); // 0-16
+    const leftEyeBrow = landmarks.getLeftEyeBrow(); // 17-21
+    const rightEyeBrow = landmarks.getRightEyeBrow(); // 22-26
+    const nose = landmarks.getNose(); // 27-35
+    const leftEye = landmarks.getLeftEye(); // 36-41
+    const rightEye = landmarks.getRightEye(); // 42-47
+    const mouth = landmarks.getMouth(); // 48-67
+
+    // Three sections (三停)
+    const browTop = Math.min(...leftEyeBrow.map(p => p.y), ...rightEyeBrow.map(p => p.y));
+    const faceTop = browTop - (jawOutline[8].y - browTop) * 0.35; // Estimate forehead top
+    const noseBottom = nose[6].y; // Nose tip
+    const chinBottom = jawOutline[8].y;
+
+    const upperH = browTop - faceTop;
+    const middleH = noseBottom - browTop;
+    const lowerH = chinBottom - noseBottom;
+    const totalH = upperH + middleH + lowerH;
+
+    const upperRatio = upperH / totalH;
+    const middleRatio = middleH / totalH;
+    const lowerRatio = lowerH / totalH;
+
+    // Score based on deviation from 1/3
+    const ideal = 1 / 3;
+    const upperScore = Math.round(100 - Math.abs(upperRatio - ideal) * 300);
+    const middleScore = Math.round(100 - Math.abs(middleRatio - ideal) * 300);
+    const lowerScore = Math.round(100 - Math.abs(lowerRatio - ideal) * 300);
+
+    // Five features
+    // Eyebrow: arc height vs baseline
+    const browMidL = leftEyeBrow[2]; // highest point
+    const browBaseL = { x: (leftEyeBrow[0].x + leftEyeBrow[4].x) / 2, y: (leftEyeBrow[0].y + leftEyeBrow[4].y) / 2 };
+    const browArc = browBaseL.y - browMidL.y;
+    const browType = browArc > 6 ? '弧眉（感性細膩）' : browArc < 2 ? '平眉（理性冷靜）' : '挑眉（積極進取）';
+
+    // Eye: width vs height ratio
+    const eyeW = Math.abs(leftEye[3].x - leftEye[0].x);
+    const eyeH = Math.abs(((leftEye[1].y + leftEye[2].y) / 2) - ((leftEye[4].y + leftEye[5].y) / 2));
+    const eyeRatio = eyeW / Math.max(eyeH, 1);
+    const eyeType = eyeRatio > 4 ? '細長眼（精明睿智）' : eyeRatio < 2.5 ? '圓眼（親和力強）' : '杏眼（穩重大方）';
+
+    // Nose: width vs length
+    const noseW = Math.abs(nose[8].x - nose[4].x); // nostrils width
+    const noseL = Math.abs(nose[6].y - nose[0].y);
+    const noseRatio = noseW / Math.max(noseL, 1);
+    const noseType = noseRatio > 0.85 ? '寬鼻（財運厚實）' : noseRatio < 0.55 ? '小巧鼻（精緻敏銳）' : '挺鼻（事業心強）';
+
+    // Mouth: width vs face width
+    const mouthW = Math.abs(mouth[6].x - mouth[0].x);
+    const faceW = Math.abs(jawOutline[16].x - jawOutline[0].x);
+    const mouthRatio = mouthW / Math.max(faceW, 1);
+    const mouthType = mouthRatio > 0.45 ? '大嘴（豪爽大方）' : mouthRatio < 0.35 ? '小嘴（溫柔婉約）' : '標準嘴（表達得體）';
+
+    // Face shape
+    const faceHW = totalH / Math.max(faceW, 1);
+    const faceShape = faceHW > 1.5 ? '長臉（思考型）' : faceHW < 1.2 ? '圓臉（親和型）' : '瓜子臉（平衡型）';
+
+    return {
+      landmarks: positions,
+      detection: detection.detection,
+      santing: {
+        faceTop, browTop, noseBottom, chinBottom,
+        upperH, middleH, lowerH, totalH,
+        upperRatio, middleRatio, lowerRatio,
+        upperScore: Math.max(40, Math.min(100, upperScore)),
+        middleScore: Math.max(40, Math.min(100, middleScore)),
+        lowerScore: Math.max(40, Math.min(100, lowerScore))
+      },
+      features: { browType, eyeType, noseType, mouthType, faceShape },
+      keyPoints: { faceTop, browTop, noseBottom, chinBottom, leftEyeBrow, rightEyeBrow, nose, leftEye, rightEye, mouth, jawOutline }
+    };
+  }
+
+  // ===== Canvas Annotation =====
+  function drawAnnotation(img, analysis) {
+    const canvas = document.getElementById('annotatedCanvas');
+    const ctx = canvas.getContext('2d');
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    const maxW = Math.min(img.width, 600);
+    const scale = maxW / img.width;
+    const w = Math.round(img.width * scale);
+    const h = Math.round(img.height * scale);
+
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    ctx.scale(dpr, dpr);
+
+    // Draw image
+    ctx.drawImage(img, 0, 0, w, h);
+
+    const s = analysis.santing;
+    const sx = scale;
+
+    // Three section lines
+    ctx.setLineDash([6, 4]);
+    ctx.lineWidth = 1.5;
+    const lines = [
+      { y: s.faceTop * sx, label: '上停起點', color: 'rgba(201,168,76,0.6)' },
+      { y: s.browTop * sx, label: '眉 — 上/中停界', color: 'rgba(201,168,76,0.8)' },
+      { y: s.noseBottom * sx, label: '鼻尖 — 中/下停界', color: 'rgba(201,168,76,0.8)' },
+      { y: s.chinBottom * sx, label: '下巴', color: 'rgba(201,168,76,0.6)' }
+    ];
+
+    lines.forEach(line => {
+      ctx.beginPath();
+      ctx.moveTo(w * 0.15, line.y);
+      ctx.lineTo(w * 0.85, line.y);
+      ctx.strokeStyle = line.color;
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.font = '11px "Noto Sans TC", sans-serif';
+      ctx.fillStyle = 'rgba(201,168,76,0.9)';
+      ctx.textAlign = 'left';
+      ctx.fillText(line.label, w * 0.15, line.y - 5);
+      ctx.setLineDash([6, 4]);
+    });
+
+    ctx.setLineDash([]);
+
+    // Section labels on right
+    const sections = [
+      { y: (s.faceTop + s.browTop) / 2 * sx, label: '上停', sub: '少年運' },
+      { y: (s.browTop + s.noseBottom) / 2 * sx, label: '中停', sub: '中年運' },
+      { y: (s.noseBottom + s.chinBottom) / 2 * sx, label: '下停', sub: '晚年運' }
+    ];
+    sections.forEach(sec => {
+      ctx.font = '700 13px "Noto Sans TC", sans-serif';
+      ctx.fillStyle = '#c9a84c';
+      ctx.textAlign = 'right';
+      ctx.fillText(sec.label, w * 0.95, sec.y - 2);
+      ctx.font = '400 10px "Noto Sans TC", sans-serif';
+      ctx.fillStyle = 'rgba(201,168,76,0.7)';
+      ctx.fillText(sec.sub, w * 0.95, sec.y + 12);
+    });
+
+    // Key landmark dots
+    const kp = analysis.keyPoints;
+    const drawDot = (p, color = 'rgba(201,168,76,0.7)') => {
+      ctx.beginPath();
+      ctx.arc(p.x * sx, p.y * sx, 3, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+    };
+    kp.leftEye.forEach(p => drawDot(p));
+    kp.rightEye.forEach(p => drawDot(p));
+    kp.nose.forEach(p => drawDot(p, 'rgba(201,168,76,0.5)'));
+    kp.mouth.slice(0, 12).forEach(p => drawDot(p, 'rgba(201,168,76,0.4)'));
+  }
+
+  // ===== Render Results =====
+  function renderResults(analysis) {
+    const s = analysis.santing;
+
+    // Santing grid
+    const santingData = [
+      { label: '少年運（15-30歲）', name: '上停', score: s.upperScore, ratio: (s.upperRatio * 100).toFixed(1),
+        desc: s.upperRatio > 0.36 ? '額頭寬廣，早年運勢佳' : s.upperRatio < 0.3 ? '額頭較窄，需靠後天努力' : '比例均衡，穩步發展' },
+      { label: '中年運（31-50歲）', name: '中停', score: s.middleScore, ratio: (s.middleRatio * 100).toFixed(1),
+        desc: s.middleRatio > 0.36 ? '鼻樑挺拔，中年事業亨通' : s.middleRatio < 0.3 ? '中庭偏短，宜多積累' : '比例適中，運勢穩定' },
+      { label: '晚年運（51歲+）', name: '下停', score: s.lowerScore, ratio: (s.lowerRatio * 100).toFixed(1),
+        desc: s.lowerRatio > 0.36 ? '下巴飽滿，晚年福壽' : s.lowerRatio < 0.3 ? '下庭略短，宜注重養生' : '比例平衡，安享晚年' }
+    ];
+
+    document.getElementById('santingGrid').innerHTML = santingData.map(d => `
+      <div class="santing-item">
+        <div class="santing-label">${d.label}</div>
+        <div class="santing-name">${d.name}</div>
+        <div class="santing-score">${d.score}<span style="font-size:0.7rem;color:var(--text-dim)">分</span></div>
+        <div class="santing-desc">${d.desc}</div>
+        <div style="font-size:0.72rem;color:var(--text-dim);margin-top:4px">佔比 ${d.ratio}%</div>
+      </div>
+    `).join('');
+
+    // Ratio bar
+    document.getElementById('ratioBar').innerHTML = `
+      <div class="ratio-upper" style="width:${s.upperRatio * 100}%"></div>
+      <div class="ratio-middle" style="width:${s.middleRatio * 100}%"></div>
+      <div class="ratio-lower" style="width:${s.lowerRatio * 100}%"></div>
+    `;
+    document.getElementById('ratioLabels').innerHTML = `
+      <span>上停 ${(s.upperRatio * 100).toFixed(1)}%</span>
+      <span>中停 ${(s.middleRatio * 100).toFixed(1)}%</span>
+      <span>下停 ${(s.lowerRatio * 100).toFixed(1)}%</span>
+    `;
+
+    // Features
+    const f = analysis.features;
+    document.getElementById('featureGrid').innerHTML = `
+      <div class="feature-item"><div class="feature-label">眉形</div><div class="feature-value">${f.browType}</div></div>
+      <div class="feature-item"><div class="feature-label">眼型</div><div class="feature-value">${f.eyeType}</div></div>
+      <div class="feature-item"><div class="feature-label">鼻形</div><div class="feature-value">${f.noseType}</div></div>
+      <div class="feature-item"><div class="feature-label">嘴形</div><div class="feature-value">${f.mouthType}</div></div>
+      <div class="feature-item"><div class="feature-label">臉型</div><div class="feature-value">${f.faceShape}</div></div>
+      <div class="feature-item"><div class="feature-label">三停總評</div><div class="feature-value">${
+        Math.abs(s.upperRatio - s.middleRatio) < 0.05 && Math.abs(s.middleRatio - s.lowerRatio) < 0.05
+          ? '三停均衡（上佳面相）' : '略有偏差（各有特色）'
+      }</div></div>
+    `;
+  }
+
+  // ===== AI Analysis =====
+  async function generateAI(analysis) {
+    const container = document.getElementById('aiContent');
+    if (!AIClient.isConfigured()) {
+      container.innerHTML = '<div class="ai-error">請先設定 Gemini API Key（點擊右下角 ⚙）</div>';
+      return;
+    }
+    container.innerHTML = '<div class="ai-loading"><div class="dots"><span></span><span></span><span></span></div><span>AI 正在解讀面相...</span></div>';
+
+    const s = analysis.santing;
+    const f = analysis.features;
+    const prompt = `請根據以下面相分析數據，撰寫一份面相命理報告（繁體中文，400-600字）：
+
+【三停分析】
+- 上停（額頭→眉）：佔比 ${(s.upperRatio * 100).toFixed(1)}%，評分 ${s.upperScore}分
+- 中停（眉→鼻尖）：佔比 ${(s.middleRatio * 100).toFixed(1)}%，評分 ${s.middleScore}分
+- 下停（鼻尖→下巴）：佔比 ${(s.lowerRatio * 100).toFixed(1)}%，評分 ${s.lowerScore}分
+
+【五官分析】
+- 眉形：${f.browType}
+- 眼型：${f.eyeType}
+- 鼻形：${f.noseType}
+- 嘴形：${f.mouthType}
+- 臉型：${f.faceShape}
+
+請從三停運勢（少年/中年/晚年）、五官特質、整體格局三個面向解讀，語氣溫暖正面，最後給出開運建議。`;
+
+    const systemPrompt = '你是一位資深面相學大師，精通三停五官面相命理。請用繁體中文回覆，語氣專業溫暖，避免負面用語。';
+
+    try {
+      const text = await AIClient.chat(prompt, systemPrompt, { temperature: 0.8, maxTokens: 1200 });
+      container.innerHTML = `<div class="ai-result">${text}</div>`;
+    } catch(e) {
+      container.innerHTML = `<div class="ai-error">AI 解讀失敗：${e.message === 'NO_API_KEY' ? '請先設定 API Key' : e.message}</div>`;
+    }
+  }
+
+  // ===== Share Card =====
+  function generateShareCard(analysis) {
+    const s = analysis.santing;
+    const f = analysis.features;
+    const { canvas, ctx, w, h } = ShareCard.createCanvas(600, 450);
+    const grad = ctx.createLinearGradient(0, 0, w, h);
+    grad.addColorStop(0, '#0a0b0d'); grad.addColorStop(1, '#121014');
+    ctx.fillStyle = grad; ctx.fillRect(0, 0, w, h);
+    ShareCard.drawBorder(ctx, w, h);
+
+    ctx.font = '700 20px "Noto Serif TC", serif';
+    ctx.fillStyle = '#c9a84c'; ctx.textAlign = 'center';
+    ctx.fillText('面相分析報告', w / 2, 50);
+
+    // Santing scores
+    const items = [
+      { label: '上停（少年運）', score: s.upperScore, ratio: s.upperRatio },
+      { label: '中停（中年運）', score: s.middleScore, ratio: s.middleRatio },
+      { label: '下停（晚年運）', score: s.lowerScore, ratio: s.lowerRatio }
+    ];
+    items.forEach((item, i) => {
+      const y = 100 + i * 50;
+      ctx.font = '400 13px "Noto Sans TC", sans-serif';
+      ctx.fillStyle = '#706b62'; ctx.textAlign = 'left';
+      ctx.fillText(item.label, 50, y);
+      ctx.fillStyle = '#c9a84c'; ctx.textAlign = 'right';
+      ctx.fillText(`${item.score}分 (${(item.ratio * 100).toFixed(1)}%)`, w - 50, y);
+      ShareCard.roundRect(ctx, 50, y + 8, w - 100, 5, 2.5);
+      ctx.fillStyle = 'rgba(255,255,255,0.05)'; ctx.fill();
+      const fw = (item.score / 100) * (w - 100);
+      ShareCard.roundRect(ctx, 50, y + 8, fw, 5, 2.5);
+      ctx.fillStyle = '#c9a84c'; ctx.fill();
+    });
+
+    // Features
+    const features = [f.browType, f.eyeType, f.noseType, f.mouthType, f.faceShape];
+    const featureLabels = ['眉形', '眼型', '鼻形', '嘴形', '臉型'];
+    ctx.font = '700 14px "Noto Serif TC", serif';
+    ctx.fillStyle = '#c9a84c'; ctx.textAlign = 'center';
+    ctx.fillText('五官特徵', w / 2, 290);
+
+    features.forEach((feat, i) => {
+      const y = 316 + i * 22;
+      ctx.font = '400 12px "Noto Sans TC", sans-serif';
+      ctx.fillStyle = '#706b62'; ctx.textAlign = 'left';
+      ctx.fillText(featureLabels[i], 80, y);
+      ctx.fillStyle = '#e8e4dc'; ctx.textAlign = 'right';
+      ctx.fillText(feat, w - 80, y);
+    });
+
+    ShareCard.drawWatermark(ctx, w, h);
+    return canvas;
+  }
+
+  // ===== UI Events =====
+  const uploadArea = document.getElementById('uploadArea');
+  const cameraInput = document.getElementById('cameraInput');
+  const galleryInput = document.getElementById('galleryInput');
+  const previewWrap = document.getElementById('previewWrap');
+  const previewImg = document.getElementById('previewImg');
+  const loadingSection = document.getElementById('loadingSection');
+  const resultSection = document.getElementById('resultSection');
+
+  document.getElementById('cameraBtn').addEventListener('click', () => cameraInput.click());
+  document.getElementById('galleryBtn').addEventListener('click', () => galleryInput.click());
+
+  async function handleFile(file) {
+    if (!file || !file.type.startsWith('image/')) return;
+    currentImage = await processImage(file);
+    previewImg.src = currentImage.src;
+    uploadArea.style.display = 'none';
+    previewWrap.classList.add('visible');
+    resultSection.classList.remove('visible');
+  }
+
+  cameraInput.addEventListener('change', (e) => { if (e.target.files[0]) handleFile(e.target.files[0]); });
+  galleryInput.addEventListener('change', (e) => { if (e.target.files[0]) handleFile(e.target.files[0]); });
+
+  // Drag & drop
+  uploadArea.addEventListener('dragover', (e) => { e.preventDefault(); uploadArea.classList.add('dragover'); });
+  uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
+  uploadArea.addEventListener('drop', (e) => {
+    e.preventDefault(); uploadArea.classList.remove('dragover');
+    if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+  });
+
+  document.getElementById('reuploadBtn').addEventListener('click', () => {
+    previewWrap.classList.remove('visible');
+    uploadArea.style.display = '';
+    resultSection.classList.remove('visible');
+    currentImage = null;
+  });
+
+  document.getElementById('analyzeBtn').addEventListener('click', async () => {
+    if (!currentImage) return;
+    const btn = document.getElementById('analyzeBtn');
+    btn.disabled = true;
+    previewWrap.classList.remove('visible');
+    loadingSection.classList.add('visible');
+
+    try {
+      document.getElementById('loadingText').textContent = '正在載入 AI 模型...';
+      await loadModels();
+      document.getElementById('loadingText').textContent = '正在分析面部特徵...';
+      const analysis = await analyzeFace(currentImage);
+      lastAnalysis = analysis;
+
+      loadingSection.classList.remove('visible');
+      resultSection.classList.add('visible');
+
+      drawAnnotation(currentImage, analysis);
+      renderResults(analysis);
+      generateAI(analysis);
+
+      setTimeout(() => resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    } catch(e) {
+      loadingSection.classList.remove('visible');
+      previewWrap.classList.add('visible');
+      alert(e.message || '分析失敗，請重試');
+    }
+    btn.disabled = false;
+  });
+
+  document.getElementById('retryBtn').addEventListener('click', () => {
+    resultSection.classList.remove('visible');
+    uploadArea.style.display = '';
+    currentImage = null;
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    if (!lastAnalysis) return;
+    const card = generateShareCard(lastAnalysis);
+    const modal = document.getElementById('cardModal');
+    ShareCard.preview(card, document.getElementById('cardPreview'));
+    modal.classList.add('open');
+    modal._card = card;
+  });
+
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    if (!lastAnalysis) return;
+    ShareCard.download(generateShareCard(lastAnalysis), 'face-reading.png');
+  });
+
+  document.getElementById('modalShareBtn').addEventListener('click', () => {
+    const modal = document.getElementById('cardModal');
+    if (modal._card) ShareCard.share(modal._card, { title: '面相分析報告', filename: 'face-reading.png' });
+  });
+  document.getElementById('modalDownloadBtn').addEventListener('click', () => {
+    const modal = document.getElementById('cardModal');
+    if (modal._card) ShareCard.download(modal._card, 'face-reading.png');
+  });
+  document.getElementById('modalCloseBtn').addEventListener('click', () => {
+    document.getElementById('cardModal').classList.remove('open');
+  });
+  document.getElementById('cardModal').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
+  });
+
+  // Config
+  document.getElementById('configToggle').addEventListener('click', () => {
+    const panel = document.getElementById('configPanel');
+    panel.classList.toggle('open');
+    if (panel.classList.contains('open')) AIClient.renderConfigUI(panel);
+  });
+})();
+</script>
+</body>
+</html>

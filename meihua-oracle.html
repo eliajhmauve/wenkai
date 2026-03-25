@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>梅花易數 AI 解卦 — 福青施老師</title>
+  <meta name="description" content="數字、時間、文字、搖卦四種起卦方式，AI 結合體用生剋深度解讀卦象。梅花易數線上工具。">
+  <meta name="keywords" content="梅花易數,起卦,解卦,易經,八卦,AI解讀,體用,五行,福青施老師">
+  <meta name="author" content="福青施老師">
+  <meta name="theme-color" content="#c9a84c">
+  <link rel="canonical" href="https://eliajhmauve.github.io/wenkai/meihua-oracle.html">
+  <meta property="og:title" content="梅花易數 AI 解卦 — 福青施老師">
+  <meta property="og:description" content="數字、時間、文字、搖卦四種起卦方式，AI 深度解讀卦象">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://eliajhmauve.github.io/wenkai/meihua-oracle.html">
+  <meta property="og:image" content="https://eliajhmauve.github.io/wenkai/og-image.png">
+  <meta property="og:locale" content="zh_TW">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="梅花易數 AI 解卦 — 福青施老師">
+  <meta name="twitter:description" content="四種起卦方式 + AI 深度解讀">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☰</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #060708; --bg-alt: #0a0b0d; --surface: rgba(255,255,255,0.03);
+      --surface-hover: rgba(255,255,255,0.06); --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(212,175,55,0.2); --text: #e8e4dc; --text-dim: #706b62;
+      --gold: #c9a84c; --gold-light: #dfc06a; --radius: 12px;
+      --font-serif: 'Noto Serif TC', serif; --font-sans: 'Noto Sans TC', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height: 1.8; -webkit-font-smoothing: antialiased; overflow-x: hidden; min-height: 100vh; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(6,7,8,0.9); backdrop-filter: blur(30px); border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .nav-inner { max-width: 900px; margin: 0 auto; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .nav-back { color: var(--text-dim); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
+    .nav-back:hover { color: var(--gold); }
+    .nav-brand { font-family: var(--font-serif); font-size: 0.95rem; font-weight: 700; color: var(--gold); letter-spacing: 3px; }
+
+    .hero { padding: 140px 24px 40px; text-align: center; background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 70%); }
+    .hero h1 { font-family: var(--font-serif); font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 900; letter-spacing: 6px; margin-bottom: 12px; background: linear-gradient(135deg, var(--text) 0%, var(--gold-light) 50%, var(--text) 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { color: var(--text-dim); font-size: 0.92rem; letter-spacing: 2px; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px 60px; }
+
+    /* Question */
+    .question-wrap { margin-bottom: 28px; }
+    .question-wrap label { display: block; font-family: var(--font-serif); color: var(--gold); font-size: 0.95rem; margin-bottom: 8px; letter-spacing: 2px; }
+    .question-wrap textarea { width: 100%; padding: 12px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text); font-size: 0.9rem; font-family: var(--font-sans); resize: none; min-height: 60px; line-height: 1.6; transition: border-color 0.3s; }
+    .question-wrap textarea:focus { outline: none; border-color: var(--border-hover); }
+    .question-wrap textarea::placeholder { color: var(--text-dim); }
+
+    /* Method Tabs */
+    .method-tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+    .method-tab { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 8px; text-align: center; cursor: pointer; transition: all 0.3s; }
+    .method-tab:hover { border-color: var(--border-hover); }
+    .method-tab.active { border-color: var(--gold); background: rgba(201,168,76,0.05); }
+    .method-tab .icon { font-size: 1.5rem; display: block; margin-bottom: 6px; }
+    .method-tab .name { font-size: 0.82rem; color: var(--text-dim); }
+    .method-tab.active .name { color: var(--gold); }
+
+    /* Method Panels */
+    .method-panel { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 24px; }
+    .method-panel.active { display: block; animation: fadeUp 0.3s ease; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    .method-panel h3 { font-family: var(--font-serif); color: var(--gold); font-size: 1rem; margin-bottom: 16px; letter-spacing: 2px; }
+    .method-panel .desc { font-size: 0.82rem; color: var(--text-dim); margin-bottom: 16px; }
+
+    .num-inputs { display: flex; gap: 12px; margin-bottom: 16px; }
+    .num-inputs input { flex: 1; padding: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--text); font-size: 1.1rem; text-align: center; font-family: var(--font-sans); }
+    .num-inputs input:focus { outline: none; border-color: var(--gold); }
+    .num-inputs input::placeholder { color: var(--text-dim); font-size: 0.8rem; }
+
+    .time-display { text-align: center; padding: 16px; background: rgba(255,255,255,0.02); border-radius: 8px; margin-bottom: 16px; }
+    .time-display .lunar-time { font-family: var(--font-serif); font-size: 1.3rem; color: var(--gold); margin-bottom: 4px; }
+    .time-display .solar-time { font-size: 0.82rem; color: var(--text-dim); }
+
+    .text-input { width: 100%; padding: 10px 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--text); font-size: 0.9rem; font-family: var(--font-sans); margin-bottom: 16px; }
+    .text-input:focus { outline: none; border-color: var(--gold); }
+
+    .method-btn { display: block; width: 100%; padding: 12px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--bg); border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 700; font-family: var(--font-serif); cursor: pointer; letter-spacing: 3px; transition: all 0.3s; }
+    .method-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(201,168,76,0.2); }
+
+    /* Shake Animation */
+    .shake-area { text-align: center; padding: 20px; }
+    .shake-visual { display: flex; justify-content: center; gap: 4px; margin: 20px 0; height: 100px; align-items: flex-end; }
+    .shake-yao { width: 40px; height: 8px; background: var(--gold); border-radius: 2px; opacity: 0; transition: opacity 0.3s; }
+    .shake-yao.visible { opacity: 1; animation: yaoAppear 0.4s ease; }
+    .shake-yao.yin { width: 16px; }
+    .shake-yao-gap { width: 6px; }
+    @keyframes yaoAppear { from { opacity: 0; transform: scaleX(0); } to { opacity: 1; transform: scaleX(1); } }
+
+    /* Result Section */
+    .result-section { display: none; }
+    .result-section.visible { display: block; animation: fadeUp 0.6s ease; }
+
+    /* Hexagram Display */
+    .hex-display { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+    .hex-col { text-align: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 12px; }
+    .hex-col h4 { font-family: var(--font-serif); color: var(--gold); font-size: 0.9rem; margin-bottom: 12px; letter-spacing: 2px; }
+    .hex-col canvas { display: block; margin: 0 auto 10px; }
+    .hex-name { font-family: var(--font-serif); font-size: 1.1rem; color: var(--text); font-weight: 700; margin-bottom: 4px; }
+    .hex-element { font-size: 0.78rem; color: var(--text-dim); }
+
+    /* Analysis Cards */
+    .analysis-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 20px; }
+    .analysis-card h3 { font-family: var(--font-serif); color: var(--gold); font-size: 1.05rem; margin-bottom: 16px; letter-spacing: 2px; }
+    .analysis-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 0.88rem; }
+    .analysis-row:last-child { border-bottom: none; }
+    .analysis-row .label { color: var(--text-dim); }
+    .analysis-row .value { color: var(--text); font-weight: 500; }
+    .tag { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 0.72rem; }
+    .tag-good { background: rgba(76,175,80,0.15); color: #81c784; }
+    .tag-neutral { background: rgba(255,193,7,0.15); color: #ffd54f; }
+    .tag-bad { background: rgba(244,67,54,0.15); color: #e57373; }
+    .judgement-text { font-family: var(--font-serif); font-style: italic; color: var(--gold-light); padding: 12px; background: rgba(201,168,76,0.04); border-radius: 8px; border-left: 3px solid rgba(201,168,76,0.3); margin-top: 12px; font-size: 0.88rem; }
+
+    /* AI Section */
+    .ai-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 20px; }
+    .ai-section h3 { font-family: var(--font-serif); color: var(--gold); font-size: 1.05rem; margin-bottom: 16px; letter-spacing: 2px; }
+    .ai-loading { display: flex; align-items: center; gap: 12px; color: var(--text-dim); font-size: 0.88rem; }
+    .ai-loading .dots { display: flex; gap: 4px; }
+    .ai-loading .dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: dotPulse 1.4s ease-in-out infinite; }
+    .ai-loading .dots span:nth-child(2) { animation-delay: 0.2s; }
+    .ai-loading .dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes dotPulse { 0%,80%,100% { opacity: 0.3; transform: scale(0.6); } 40% { opacity: 1; transform: scale(1); } }
+    .ai-result { font-size: 0.88rem; line-height: 2; white-space: pre-wrap; }
+    .ai-error { color: #e57373; font-size: 0.85rem; }
+
+    .share-actions { display: flex; gap: 12px; justify-content: center; margin: 32px 0; flex-wrap: wrap; }
+    .share-btn { padding: 10px 24px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; font-family: var(--font-sans); transition: all 0.3s; }
+    .share-btn-primary { background: var(--gold); color: var(--bg); border: none; font-weight: 500; }
+    .share-btn-primary:hover { background: var(--gold-light); }
+    .share-btn-secondary { background: none; border: 1px solid var(--border); color: var(--text-dim); }
+    .share-btn-secondary:hover { border-color: var(--border-hover); color: var(--text); }
+
+    .card-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
+    .card-modal.open { display: flex; }
+    .card-modal-inner { max-width: 600px; width: 100%; text-align: center; }
+    .card-modal-inner canvas { max-width: 100%; height: auto; border-radius: 8px; }
+    .card-modal-actions { margin-top: 16px; display: flex; gap: 12px; justify-content: center; }
+    .card-modal-actions button { padding: 10px 24px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; font-family: var(--font-sans); }
+
+    .config-toggle { position: fixed; bottom: 24px; right: 24px; z-index: 80; background: var(--surface); border: 1px solid var(--border); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; transition: all 0.3s; }
+    .config-toggle:hover { border-color: var(--border-hover); }
+    .config-panel { position: fixed; bottom: 80px; right: 24px; z-index: 80; width: 320px; display: none; }
+    .config-panel.open { display: block; animation: fadeUp 0.3s ease; }
+
+    .footer { text-align: center; padding: 40px 24px; border-top: 1px solid rgba(255,255,255,0.04); }
+    .footer-brand { font-family: var(--font-serif); color: var(--gold); font-size: 0.9rem; letter-spacing: 4px; margin-bottom: 8px; }
+    .footer-copy { color: var(--text-dim); font-size: 0.75rem; }
+
+    @media (max-width: 768px) {
+      .method-tabs { grid-template-columns: repeat(2, 1fr); }
+      .hex-display { grid-template-columns: 1fr; }
+      .config-panel { right: 12px; width: calc(100vw - 24px); max-width: 320px; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.6rem; letter-spacing: 3px; }
+      .num-inputs input { padding: 8px; font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-back" aria-label="返回作品集">← 返回作品集</a>
+    <span class="nav-brand">福青施老師</span>
+    <span></span>
+  </div>
+</nav>
+
+<header class="hero">
+  <h1>梅花易數 AI 解卦</h1>
+  <p>數字 · 時間 · 文字 · 搖卦 四種起卦方式</p>
+</header>
+
+<div class="container">
+  <div class="question-wrap">
+    <label for="question">你想問什麼？</label>
+    <textarea id="question" placeholder="輸入你的問題，AI 會結合卦象為你解讀（選填）" rows="2"></textarea>
+  </div>
+
+  <div class="method-tabs">
+    <div class="method-tab active" data-method="number"><span class="icon">🔢</span><span class="name">數字起卦</span></div>
+    <div class="method-tab" data-method="time"><span class="icon">🕐</span><span class="name">時間起卦</span></div>
+    <div class="method-tab" data-method="text"><span class="icon">📝</span><span class="name">文字起卦</span></div>
+    <div class="method-tab" data-method="random"><span class="icon">🎲</span><span class="name">隨機起卦</span></div>
+  </div>
+
+  <div class="method-panel active" id="panel-number">
+    <h3>數字起卦</h3>
+    <p class="desc">輸入三個數字（1-999），系統將以此計算上卦、下卦與動爻</p>
+    <div class="num-inputs">
+      <input type="number" id="num1" min="1" max="999" placeholder="第一數">
+      <input type="number" id="num2" min="1" max="999" placeholder="第二數">
+      <input type="number" id="num3" min="1" max="999" placeholder="第三數">
+    </div>
+    <button class="method-btn" id="numBtn">起卦</button>
+  </div>
+
+  <div class="method-panel" id="panel-time">
+    <h3>時間起卦</h3>
+    <p class="desc">以當前農曆年月日時自動計算卦象</p>
+    <div class="time-display">
+      <div class="lunar-time" id="lunarTime">載入中...</div>
+      <div class="solar-time" id="solarTime"></div>
+    </div>
+    <button class="method-btn" id="timeBtn">以此時辰起卦</button>
+  </div>
+
+  <div class="method-panel" id="panel-text">
+    <h3>文字起卦</h3>
+    <p class="desc">輸入文字，以字數計算卦象</p>
+    <input type="text" class="text-input" id="textInput" placeholder="輸入任意文字">
+    <button class="method-btn" id="textBtn">以字數起卦</button>
+  </div>
+
+  <div class="method-panel" id="panel-random">
+    <h3>隨機起卦</h3>
+    <p class="desc">心中默想問題，點擊搖卦</p>
+    <div class="shake-area">
+      <button class="method-btn" id="randomBtn">搖卦</button>
+    </div>
+  </div>
+
+  <div class="result-section" id="resultSection">
+    <div class="hex-display">
+      <div class="hex-col"><h4>本卦</h4><canvas id="hexMain" width="120" height="130"></canvas><div class="hex-name" id="hexMainName"></div><div class="hex-element" id="hexMainElement"></div></div>
+      <div class="hex-col"><h4>互卦</h4><canvas id="hexMutual" width="120" height="130"></canvas><div class="hex-name" id="hexMutualName"></div><div class="hex-element" id="hexMutualElement"></div></div>
+      <div class="hex-col"><h4>變卦</h4><canvas id="hexChanged" width="120" height="130"></canvas><div class="hex-name" id="hexChangedName"></div><div class="hex-element" id="hexChangedElement"></div></div>
+    </div>
+
+    <div class="analysis-card" id="guaInfo">
+      <h3>卦象資訊</h3>
+      <div id="guaInfoContent"></div>
+    </div>
+
+    <div class="analysis-card" id="tiyongCard">
+      <h3>體用生剋分析</h3>
+      <div id="tiyongContent"></div>
+    </div>
+
+    <div class="ai-section">
+      <h3>AI 解卦</h3>
+      <div id="aiContent"></div>
+    </div>
+
+    <div class="share-actions">
+      <button class="share-btn share-btn-primary" id="shareBtn">分享卦象</button>
+      <button class="share-btn share-btn-secondary" id="downloadBtn">下載圖片</button>
+      <button class="share-btn share-btn-secondary" id="retryBtn">重新起卦</button>
+    </div>
+  </div>
+</div>
+
+<div class="card-modal" id="cardModal">
+  <div class="card-modal-inner">
+    <div id="cardPreview"></div>
+    <div class="card-modal-actions">
+      <button class="share-btn share-btn-primary" id="modalShareBtn">分享</button>
+      <button class="share-btn share-btn-secondary" id="modalDownloadBtn">下載</button>
+      <button class="share-btn share-btn-secondary" id="modalCloseBtn">關閉</button>
+    </div>
+  </div>
+</div>
+
+<button class="config-toggle" id="configToggle" aria-label="AI 設定">⚙</button>
+<div class="config-panel" id="configPanel"></div>
+
+<footer class="footer">
+  <p class="footer-brand">福青施老師</p>
+  <p class="footer-copy">&copy; 2026 All rights reserved.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lunar-javascript@1.7.1/lunar.min.js"></script>
+<script src="shared/ai-client.js"></script>
+<script src="shared/share-card.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  // ===== 八經卦（lines 從下到上） =====
+  const TRIGRAMS = [
+    null, // index 0 unused
+    { name: '乾', symbol: '☰', element: '金', nature: '天', lines: [1,1,1] },
+    { name: '兌', symbol: '☱', element: '金', nature: '澤', lines: [1,1,0] },
+    { name: '離', symbol: '☲', element: '火', nature: '火', lines: [1,0,1] },
+    { name: '震', symbol: '☳', element: '木', nature: '雷', lines: [0,0,1] },
+    { name: '巽', symbol: '☴', element: '木', nature: '風', lines: [0,1,1] },
+    { name: '坎', symbol: '☵', element: '水', nature: '水', lines: [0,1,0] },
+    { name: '艮', symbol: '☶', element: '土', nature: '山', lines: [1,0,0] },
+    { name: '坤', symbol: '☷', element: '土', nature: '地', lines: [0,0,0] }
+  ];
+
+  // ===== 64 卦 =====
+  const H = {
+    '1-1':['乾為天','元亨利貞'],'1-2':['天澤履','履虎尾，不咥人，亨'],'1-3':['天火同人','同人于野，亨，利涉大川'],'1-4':['天雷無妄','元亨利貞，其匪正有眚'],'1-5':['天風姤','女壯，勿用取女'],'1-6':['天水訟','有孚窒惕，中吉，終凶'],'1-7':['天山遁','亨，小利貞'],'1-8':['天地否','否之匪人，不利君子貞'],
+    '2-1':['澤天夬','揚于王庭，孚號有厲'],'2-2':['兌為澤','亨，利貞'],'2-3':['澤火革','巳日乃孚，元亨利貞'],'2-4':['澤雷隨','元亨利貞，無咎'],'2-5':['澤風大過','棟橈，利有攸往，亨'],'2-6':['澤水困','亨，貞大人吉，無咎'],'2-7':['澤山咸','亨，利貞，取女吉'],'2-8':['澤地萃','亨，王假有廟，利見大人'],
+    '3-1':['火天大有','元亨'],'3-2':['火澤睽','小事吉'],'3-3':['離為火','利貞，亨，畜牝牛吉'],'3-4':['火雷噬嗑','亨，利用獄'],'3-5':['火風鼎','元吉，亨'],'3-6':['火水未濟','亨，小狐汔濟'],'3-7':['火山旅','小亨，旅貞吉'],'3-8':['火地晉','康侯用錫馬蕃庶'],
+    '4-1':['雷天大壯','利貞'],'4-2':['雷澤歸妹','征凶，無攸利'],'4-3':['雷火豐','亨，王假之，勿憂'],'4-4':['震為雷','亨，震來虩虩'],'4-5':['雷風恒','亨，無咎，利貞'],'4-6':['雷水解','利西南，無所往'],'4-7':['雷山小過','亨，利貞，可小事'],'4-8':['雷地豫','利建侯行師'],
+    '5-1':['風天小畜','亨，密雲不雨'],'5-2':['風澤中孚','豚魚吉，利涉大川'],'5-3':['風火家人','利女貞'],'5-4':['風雷益','利有攸往，利涉大川'],'5-5':['巽為風','小亨，利有攸往'],'5-6':['風水渙','亨，王假有廟'],'5-7':['風山漸','女歸吉，利貞'],'5-8':['風地觀','盥而不薦，有孚顒若'],
+    '6-1':['水天需','有孚，光亨貞吉'],'6-2':['水澤節','亨，苦節不可貞'],'6-3':['水火既濟','亨小，利貞'],'6-4':['水雷屯','元亨利貞，勿用有攸往'],'6-5':['水風井','改邑不改井，無喪無得'],'6-6':['坎為水','有孚維心亨'],'6-7':['水山蹇','利西南，不利東北'],'6-8':['水地比','吉，原筮元永貞'],
+    '7-1':['山天大畜','利貞，不家食吉'],'7-2':['山澤損','有孚，元吉，無咎'],'7-3':['山火賁','亨，小利有攸往'],'7-4':['山雷頤','貞吉，觀頤自求口實'],'7-5':['山風蠱','元亨，利涉大川'],'7-6':['山水蒙','亨，匪我求童蒙'],'7-7':['艮為山','艮其背，不獲其身'],'7-8':['山地剝','不利有攸往'],
+    '8-1':['地天泰','小往大來，吉亨'],'8-2':['地澤臨','元亨利貞'],'8-3':['地火明夷','利艱貞'],'8-4':['地雷復','亨，出入無疾'],'8-5':['地風升','元亨，用見大人'],'8-6':['地水師','貞，丈人吉，無咎'],'8-7':['地山謙','亨，君子有終'],'8-8':['坤為地','元亨，利牝馬之貞']
+  };
+
+  // ===== 五行生剋 =====
+  const WUXING_SHENG = { '木':'火','火':'土','土':'金','金':'水','水':'木' };
+  const WUXING_KE = { '木':'土','土':'水','水':'火','火':'金','金':'木' };
+
+  function wuxingRelation(wx1, wx2) {
+    if (wx1 === wx2) return { relation: '比和', desc: '體用相同，平穩之象', tag: 'neutral' };
+    if (WUXING_SHENG[wx1] === wx2) return { relation: '體生用', desc: '體洩氣於用，稍有消耗', tag: 'neutral' };
+    if (WUXING_SHENG[wx2] === wx1) return { relation: '用生體', desc: '用生體，大吉之象', tag: 'good' };
+    if (WUXING_KE[wx1] === wx2) return { relation: '體剋用', desc: '體強剋用，有利可圖', tag: 'good' };
+    if (WUXING_KE[wx2] === wx1) return { relation: '用剋體', desc: '用剋體，不利之象', tag: 'bad' };
+    return { relation: '無', desc: '', tag: 'neutral' };
+  }
+
+  // ===== 起卦引擎 =====
+  function calculateGua(upperNum, lowerNum, yaoNum) {
+    const upper = ((upperNum - 1) % 8) + 1;
+    const lower = ((lowerNum - 1) % 8) + 1;
+    const yao = ((yaoNum - 1) % 6) + 1;
+    return processGua(upper, lower, yao);
+  }
+
+  function processGua(upperIdx, lowerIdx, yaoPos) {
+    const upperTri = TRIGRAMS[upperIdx];
+    const lowerTri = TRIGRAMS[lowerIdx];
+
+    // 本卦六爻（從下到上：下卦3爻 + 上卦3爻）
+    const mainLines = [...lowerTri.lines, ...upperTri.lines];
+    const hexKey = `${upperIdx}-${lowerIdx}`;
+    const mainHex = H[hexKey];
+
+    // 互卦：2,3,4爻為下，3,4,5爻為上（index 1,2,3 和 2,3,4）
+    const mutualLowerLines = [mainLines[1], mainLines[2], mainLines[3]];
+    const mutualUpperLines = [mainLines[2], mainLines[3], mainLines[4]];
+    const mutualLowerIdx = findTrigramIndex(mutualLowerLines);
+    const mutualUpperIdx = findTrigramIndex(mutualUpperLines);
+    const mutualKey = `${mutualUpperIdx}-${mutualLowerIdx}`;
+    const mutualHex = H[mutualKey];
+
+    // 變卦：動爻陰陽互換
+    const changedLines = [...mainLines];
+    changedLines[yaoPos - 1] = changedLines[yaoPos - 1] === 1 ? 0 : 1;
+    const changedLowerLines = changedLines.slice(0, 3);
+    const changedUpperLines = changedLines.slice(3, 6);
+    const changedLowerIdx = findTrigramIndex(changedLowerLines);
+    const changedUpperIdx = findTrigramIndex(changedUpperLines);
+    const changedKey = `${changedUpperIdx}-${changedLowerIdx}`;
+    const changedHex = H[changedKey];
+
+    // 體用判定
+    const isYaoInUpper = yaoPos >= 4;
+    const tiIdx = isYaoInUpper ? lowerIdx : upperIdx;
+    const yongIdx = isYaoInUpper ? upperIdx : lowerIdx;
+    const tiTri = TRIGRAMS[tiIdx];
+    const yongTri = TRIGRAMS[yongIdx];
+    const tiyong = wuxingRelation(tiTri.element, yongTri.element);
+
+    return {
+      main: { lines: mainLines, name: mainHex[0], judgement: mainHex[1], upperIdx, lowerIdx, upper: upperTri, lower: lowerTri },
+      mutual: { lines: [...mutualLowerLines, ...mutualUpperLines], name: mutualHex[0], judgement: mutualHex[1], upperIdx: mutualUpperIdx, lowerIdx: mutualLowerIdx, upper: TRIGRAMS[mutualUpperIdx], lower: TRIGRAMS[mutualLowerIdx] },
+      changed: { lines: changedLines, name: changedHex[0], judgement: changedHex[1], upperIdx: changedUpperIdx, lowerIdx: changedLowerIdx, upper: TRIGRAMS[changedUpperIdx], lower: TRIGRAMS[changedLowerIdx] },
+      yaoPos,
+      ti: tiTri,
+      yong: yongTri,
+      tiyong,
+      isYaoInUpper
+    };
+  }
+
+  function findTrigramIndex(lines) {
+    for (let i = 1; i <= 8; i++) {
+      const t = TRIGRAMS[i];
+      if (t.lines[0] === lines[0] && t.lines[1] === lines[1] && t.lines[2] === lines[2]) return i;
+    }
+    return 8;
+  }
+
+  // ===== 四種起卦 =====
+  function numberGua(n1, n2, n3) {
+    return calculateGua(n1, n2, n1 + n2 + n3);
+  }
+
+  function timeGua() {
+    const now = new Date();
+    const lunar = Lunar.fromDate(now);
+    const yearNum = Math.abs(lunar.getYear()) % 12 || 12;
+    const month = lunar.getMonth();
+    const day = lunar.getDay();
+    const hour = Math.floor((now.getHours() + 1) / 2) % 12 || 12;
+
+    const upperNum = yearNum + Math.abs(month) + day;
+    const lowerNum = upperNum + hour;
+    return calculateGua(upperNum, lowerNum, lowerNum);
+  }
+
+  function textGua(text) {
+    const len = text.length;
+    if (len === 0) return null;
+    if (len === 1) return calculateGua(len, len, len);
+    const half = Math.ceil(len / 2);
+    return calculateGua(half, len - half, len);
+  }
+
+  function randomGua() {
+    const n1 = Math.floor(Math.random() * 999) + 1;
+    const n2 = Math.floor(Math.random() * 999) + 1;
+    const n3 = Math.floor(Math.random() * 999) + 1;
+    return calculateGua(n1, n2, n1 + n2 + n3);
+  }
+
+  // ===== Canvas 卦象繪製 =====
+  function drawHexagram(canvasId, lines, yaoPos, isMain) {
+    const canvas = document.getElementById(canvasId);
+    const ctx = canvas.getContext('2d');
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = 120 * dpr; canvas.height = 130 * dpr;
+    canvas.style.width = '120px'; canvas.style.height = '130px';
+    ctx.scale(dpr, dpr);
+
+    const cx = 60;
+    const lineW = 80, lineH = 8, gap = 14;
+    const startY = 110;
+
+    for (let i = 0; i < 6; i++) {
+      const y = startY - i * (lineH + gap);
+      const isYao = isMain && (i + 1) === yaoPos;
+      const color = isYao ? '#c9a84c' : '#e8e4dc';
+      ctx.fillStyle = color;
+
+      if (lines[i] === 1) {
+        // 陽爻
+        ShareCard.roundRect(ctx, cx - lineW / 2, y, lineW, lineH, 2);
+        ctx.fill();
+      } else {
+        // 陰爻
+        const segW = (lineW - 10) / 2;
+        ShareCard.roundRect(ctx, cx - lineW / 2, y, segW, lineH, 2);
+        ctx.fill();
+        ShareCard.roundRect(ctx, cx + 5, y, segW, lineH, 2);
+        ctx.fill();
+      }
+
+      if (isYao) {
+        ctx.font = '10px "Noto Sans TC", sans-serif';
+        ctx.fillStyle = '#c9a84c';
+        ctx.textAlign = 'left';
+        ctx.fillText('◯', cx + lineW / 2 + 4, y + lineH - 1);
+      }
+    }
+  }
+
+  // ===== Render =====
+  let lastResult = null;
+
+  function renderResult(result) {
+    lastResult = result;
+    const section = document.getElementById('resultSection');
+    section.classList.add('visible');
+
+    drawHexagram('hexMain', result.main.lines, result.yaoPos, true);
+    drawHexagram('hexMutual', result.mutual.lines, 0, false);
+    drawHexagram('hexChanged', result.changed.lines, 0, false);
+
+    document.getElementById('hexMainName').textContent = result.main.name;
+    document.getElementById('hexMainElement').textContent = `${result.main.upper.name}${result.main.upper.symbol} 上 / ${result.main.lower.name}${result.main.lower.symbol} 下`;
+    document.getElementById('hexMutualName').textContent = result.mutual.name;
+    document.getElementById('hexMutualElement').textContent = `${result.mutual.upper.name}${result.mutual.upper.symbol} 上 / ${result.mutual.lower.name}${result.mutual.lower.symbol} 下`;
+    document.getElementById('hexChangedName').textContent = result.changed.name;
+    document.getElementById('hexChangedElement').textContent = `${result.changed.upper.name}${result.changed.upper.symbol} 上 / ${result.changed.lower.name}${result.changed.lower.symbol} 下`;
+
+    // Gua info
+    document.getElementById('guaInfoContent').innerHTML = `
+      <div class="analysis-row"><span class="label">本卦</span><span class="value">${result.main.name}</span></div>
+      <div class="analysis-row"><span class="label">互卦</span><span class="value">${result.mutual.name}</span></div>
+      <div class="analysis-row"><span class="label">變卦</span><span class="value">${result.changed.name}</span></div>
+      <div class="analysis-row"><span class="label">動爻</span><span class="value">第 ${result.yaoPos} 爻（${result.isYaoInUpper ? '上卦' : '下卦'}）</span></div>
+      <div class="judgement-text">「${result.main.judgement}」— ${result.main.name}</div>
+    `;
+
+    // Ti-Yong
+    const ty = result.tiyong;
+    document.getElementById('tiyongContent').innerHTML = `
+      <div class="analysis-row"><span class="label">體卦</span><span class="value">${result.ti.name}${result.ti.symbol}（${result.ti.element}）— ${result.isYaoInUpper ? '下卦不動' : '上卦不動'}</span></div>
+      <div class="analysis-row"><span class="label">用卦</span><span class="value">${result.yong.name}${result.yong.symbol}（${result.yong.element}）— ${result.isYaoInUpper ? '上卦含動爻' : '下卦含動爻'}</span></div>
+      <div class="analysis-row"><span class="label">體用關係</span><span class="value">${ty.relation} <span class="tag tag-${ty.tag}">${ty.desc}</span></span></div>
+      <div class="analysis-row"><span class="label">五行</span><span class="value">${result.ti.element} vs ${result.yong.element}</span></div>
+    `;
+
+    setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+    generateAI(result);
+  }
+
+  // ===== AI =====
+  async function generateAI(result) {
+    const container = document.getElementById('aiContent');
+    const question = document.getElementById('question').value.trim();
+    if (!AIClient.isConfigured()) {
+      container.innerHTML = '<div class="ai-error">請先設定 Gemini API Key（點擊右下角 ⚙）</div>';
+      return;
+    }
+    container.innerHTML = '<div class="ai-loading"><div class="dots"><span></span><span></span><span></span></div><span>AI 正在解讀卦象...</span></div>';
+
+    const prompt = `請根據以下梅花易數卦象進行解讀（繁體中文，400-600字）：
+
+${question ? `【所問之事】${question}\n` : ''}
+【本卦】${result.main.name}（${result.main.judgement}）
+  上卦：${result.main.upper.name}（${result.main.upper.element}/${result.main.upper.nature}）
+  下卦：${result.main.lower.name}（${result.main.lower.element}/${result.main.lower.nature}）
+
+【互卦】${result.mutual.name}（${result.mutual.judgement}）
+【變卦】${result.changed.name}（${result.changed.judgement}）
+【動爻】第 ${result.yaoPos} 爻
+
+【體用分析】
+  體卦：${result.ti.name}（${result.ti.element}）
+  用卦：${result.yong.name}（${result.yong.element}）
+  關係：${result.tiyong.relation}（${result.tiyong.desc}）
+
+請從以下角度解讀：
+1. 本卦所示的當前狀態
+2. 互卦所示的內在因素
+3. 變卦所示的發展趨勢
+4. 體用生剋的吉凶判斷
+5. 綜合建議`;
+
+    const systemPrompt = '你是一位精通梅花易數的命理大師。請用繁體中文回覆，語氣專業沉穩，解讀要具體有深度，最後給出行動建議。';
+
+    try {
+      const text = await AIClient.chat(prompt, systemPrompt, { temperature: 0.8, maxTokens: 1200 });
+      container.innerHTML = `<div class="ai-result">${text}</div>`;
+    } catch(e) {
+      container.innerHTML = `<div class="ai-error">AI 解讀失敗：${e.message === 'NO_API_KEY' ? '請先設定 API Key' : e.message}</div>`;
+    }
+  }
+
+  // ===== Share Card =====
+  function generateShareCard(result) {
+    const { canvas, ctx, w, h } = ShareCard.createCanvas(600, 400);
+    const grad = ctx.createLinearGradient(0, 0, w, h);
+    grad.addColorStop(0, '#0a0b0d'); grad.addColorStop(1, '#121014');
+    ctx.fillStyle = grad; ctx.fillRect(0, 0, w, h);
+    ShareCard.drawBorder(ctx, w, h);
+
+    ctx.font = '700 20px "Noto Serif TC", serif';
+    ctx.fillStyle = '#c9a84c'; ctx.textAlign = 'center';
+    ctx.fillText('梅花易數', w / 2, 48);
+
+    // Main hexagram lines
+    const drawMiniHex = (cx, cy, lines, yaoPos) => {
+      const lw = 50, lh = 5, gap = 9;
+      for (let i = 0; i < 6; i++) {
+        const y = cy + (5 - i) * (lh + gap) - 30;
+        const isYao = (i + 1) === yaoPos;
+        ctx.fillStyle = isYao ? '#c9a84c' : '#e8e4dc';
+        if (lines[i] === 1) {
+          ctx.fillRect(cx - lw / 2, y, lw, lh);
+        } else {
+          const sw = (lw - 6) / 2;
+          ctx.fillRect(cx - lw / 2, y, sw, lh);
+          ctx.fillRect(cx + 3, y, sw, lh);
+        }
+      }
+    };
+
+    drawMiniHex(120, 160, result.main.lines, result.yaoPos);
+    drawMiniHex(300, 160, result.mutual.lines, 0);
+    drawMiniHex(480, 160, result.changed.lines, 0);
+
+    ctx.font = '400 12px "Noto Sans TC", sans-serif';
+    ctx.fillStyle = '#706b62'; ctx.textAlign = 'center';
+    ctx.fillText('本卦', 120, 100); ctx.fillText('互卦', 300, 100); ctx.fillText('變卦', 480, 100);
+    ctx.font = '700 14px "Noto Serif TC", serif';
+    ctx.fillStyle = '#e8e4dc';
+    ctx.fillText(result.main.name, 120, 240);
+    ctx.fillText(result.mutual.name, 300, 240);
+    ctx.fillText(result.changed.name, 480, 240);
+
+    // Ti-Yong
+    ctx.font = '400 12px "Noto Sans TC", sans-serif';
+    ctx.fillStyle = '#706b62'; ctx.textAlign = 'center';
+    ctx.fillText(`體：${result.ti.name}（${result.ti.element}）　用：${result.yong.name}（${result.yong.element}）　${result.tiyong.relation}`, w / 2, 280);
+
+    // Judgement
+    ctx.font = '400 13px "Noto Serif TC", serif';
+    ctx.fillStyle = '#dfc06a';
+    ctx.fillText(`「${result.main.judgement}」`, w / 2, 320);
+
+    const question = document.getElementById('question').value.trim();
+    if (question) {
+      ctx.font = '400 11px "Noto Sans TC", sans-serif';
+      ctx.fillStyle = '#706b62';
+      ctx.fillText(`問：${question.slice(0, 30)}${question.length > 30 ? '...' : ''}`, w / 2, 350);
+    }
+
+    ShareCard.drawWatermark(ctx, w, h);
+    return canvas;
+  }
+
+  // ===== UI Events =====
+  // Method tabs
+  document.querySelectorAll('.method-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.method-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.method-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.method).classList.add('active');
+    });
+  });
+
+  // Number
+  document.getElementById('numBtn').addEventListener('click', () => {
+    const n1 = parseInt(document.getElementById('num1').value);
+    const n2 = parseInt(document.getElementById('num2').value);
+    const n3 = parseInt(document.getElementById('num3').value);
+    if (!n1 || !n2 || !n3 || n1 < 1 || n2 < 1 || n3 < 1) {
+      alert('請輸入三個正整數');
+      return;
+    }
+    renderResult(numberGua(n1, n2, n3));
+  });
+
+  // Time
+  function updateLunarTime() {
+    try {
+      const lunar = Lunar.fromDate(new Date());
+      const shiChen = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+      const hour = new Date().getHours();
+      const shiIdx = Math.floor((hour + 1) / 2) % 12;
+      document.getElementById('lunarTime').textContent = `農曆 ${lunar.getYearInGanZhi()}年 ${lunar.getMonthInChinese()}月${lunar.getDayInChinese()} ${shiChen[shiIdx]}時`;
+      document.getElementById('solarTime').textContent = `西曆 ${new Date().toLocaleDateString('zh-TW')} ${new Date().toLocaleTimeString('zh-TW')}`;
+    } catch(e) {
+      document.getElementById('lunarTime').textContent = '農曆時間載入中...';
+    }
+  }
+  updateLunarTime();
+  setInterval(updateLunarTime, 60000);
+
+  document.getElementById('timeBtn').addEventListener('click', () => {
+    renderResult(timeGua());
+  });
+
+  // Text
+  document.getElementById('textBtn').addEventListener('click', () => {
+    const text = document.getElementById('textInput').value.trim();
+    if (!text) { alert('請輸入文字'); return; }
+    const result = textGua(text);
+    if (result) renderResult(result);
+  });
+
+  // Random
+  document.getElementById('randomBtn').addEventListener('click', () => {
+    renderResult(randomGua());
+  });
+
+  // Retry
+  document.getElementById('retryBtn').addEventListener('click', () => {
+    document.getElementById('resultSection').classList.remove('visible');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Share
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    if (!lastResult) return;
+    const card = generateShareCard(lastResult);
+    const modal = document.getElementById('cardModal');
+    ShareCard.preview(card, document.getElementById('cardPreview'));
+    modal.classList.add('open');
+    modal._card = card;
+  });
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    if (!lastResult) return;
+    ShareCard.download(generateShareCard(lastResult), 'meihua-oracle.png');
+  });
+  document.getElementById('modalShareBtn').addEventListener('click', () => {
+    const modal = document.getElementById('cardModal');
+    if (modal._card) ShareCard.share(modal._card, { title: '梅花易數', filename: 'meihua-oracle.png' });
+  });
+  document.getElementById('modalDownloadBtn').addEventListener('click', () => {
+    const modal = document.getElementById('cardModal');
+    if (modal._card) ShareCard.download(modal._card, 'meihua-oracle.png');
+  });
+  document.getElementById('modalCloseBtn').addEventListener('click', () => {
+    document.getElementById('cardModal').classList.remove('open');
+  });
+  document.getElementById('cardModal').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
+  });
+
+  // Config
+  document.getElementById('configToggle').addEventListener('click', () => {
+    const panel = document.getElementById('configPanel');
+    panel.classList.toggle('open');
+    if (panel.classList.contains('open')) AIClient.renderConfigUI(panel);
+  });
+})();
+</script>
+</body>
+</html>
