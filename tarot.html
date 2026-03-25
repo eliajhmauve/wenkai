@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>吉伊卡哇塔羅牌 — 福青施老師</title>
+  <meta name="description" content="78 張吉伊卡哇風格塔羅牌圖卡，含正逆位牌義、隨機抽牌功能。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🃏</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #060708;
+      --bg-alt: #0a0b0d;
+      --surface: rgba(255,255,255,0.03);
+      --surface-hover: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(212,175,55,0.2);
+      --text: #e8e4dc;
+      --text-dim: #706b62;
+      --gold: #c9a84c;
+      --gold-light: #dfc06a;
+      --radius: 12px;
+      --font-serif: 'Noto Serif TC', serif;
+      --font-sans: 'Noto Sans TC', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Nav */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(6,7,8,0.8);
+      backdrop-filter: blur(30px);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .nav-inner {
+      max-width: 1400px; margin: 0 auto; padding: 16px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-logo {
+      font-family: var(--font-serif); font-size: 1rem; font-weight: 700;
+      color: var(--gold); text-decoration: none; letter-spacing: 4px;
+    }
+    .nav-back {
+      color: var(--text-dim); text-decoration: none; font-size: 0.82rem;
+      letter-spacing: 1px; transition: color 0.3s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    /* Hero */
+    .tarot-hero {
+      padding: 140px 24px 60px; text-align: center;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 70%);
+    }
+    .tarot-hero h1 {
+      font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900; letter-spacing: 8px; margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--text) 0%, var(--gold-light) 50%, var(--text) 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .tarot-hero p {
+      color: var(--text-dim); font-size: 0.88rem; letter-spacing: 2px; max-width: 500px; margin: 0 auto;
+    }
+
+    /* Actions */
+    .actions {
+      display: flex; justify-content: center; gap: 12px; margin: 32px 0 16px; flex-wrap: wrap; padding: 0 16px;
+    }
+    .btn {
+      padding: 10px 24px; border: 1px solid var(--border); border-radius: 8px;
+      background: var(--surface); color: var(--text); font-size: 0.85rem;
+      cursor: pointer; transition: all 0.3s; font-family: var(--font-sans);
+      letter-spacing: 1px;
+    }
+    .btn:hover { border-color: var(--border-hover); background: var(--surface-hover); }
+    .btn-gold {
+      background: rgba(201,168,76,0.12); border-color: rgba(201,168,76,0.3); color: var(--gold);
+    }
+    .btn-gold:hover { background: rgba(201,168,76,0.2); }
+
+    /* Filters */
+    .filters {
+      display: flex; justify-content: center; gap: 8px; padding: 0 16px 40px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 6px 18px; border: 1px solid var(--border); border-radius: 20px;
+      background: transparent; color: var(--text-dim); font-size: 0.78rem;
+      cursor: pointer; transition: all 0.3s; font-family: var(--font-sans); letter-spacing: 1px;
+    }
+    .filter-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.12); }
+    .filter-btn.active {
+      background: rgba(201,168,76,0.12); border-color: rgba(201,168,76,0.3); color: var(--gold);
+    }
+
+    /* Card Grid */
+    .card-grid {
+      max-width: 1400px; margin: 0 auto; padding: 0 24px 80px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    /* Tarot Card */
+    .tarot-card {
+      perspective: 1000px; cursor: pointer; aspect-ratio: 2/3;
+    }
+    .tarot-card.hidden { display: none; }
+    .card-inner {
+      position: relative; width: 100%; height: 100%;
+      transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+      transform-style: preserve-3d;
+    }
+    .tarot-card:hover .card-inner { transform: rotateY(8deg) scale(1.02); }
+    .card-front, .card-back {
+      position: absolute; inset: 0; border-radius: var(--radius);
+      backface-visibility: hidden; overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .card-front {
+      background: var(--surface);
+      display: flex; flex-direction: column;
+    }
+    .card-front img {
+      width: 100%; flex: 1; object-fit: cover;
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+    .card-front .card-label {
+      padding: 8px 10px; text-align: center; font-size: 0.72rem;
+      color: var(--text-dim); letter-spacing: 1px; white-space: nowrap;
+      overflow: hidden; text-overflow: ellipsis;
+      background: rgba(0,0,0,0.4);
+    }
+    .card-front .card-label strong {
+      color: var(--gold); font-weight: 500;
+    }
+    .card-back {
+      background: linear-gradient(135deg, #1a1520 0%, #0d0b12 100%);
+      transform: rotateY(180deg);
+      display: flex; align-items: center; justify-content: center;
+      border-color: rgba(201,168,76,0.15);
+    }
+    .card-back-design {
+      width: 60%; height: 70%; border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      background: repeating-conic-gradient(rgba(201,168,76,0.04) 0% 25%, transparent 0% 50%) 50%/20px 20px;
+    }
+    .card-back-design::after {
+      content: '🔮'; font-size: 2rem;
+    }
+
+    /* Loading placeholder */
+    .card-front img[data-src] {
+      background: linear-gradient(135deg, rgba(201,168,76,0.05), rgba(201,168,76,0.02));
+      min-height: 200px;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
+      align-items: center; justify-content: center; padding: 24px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--bg-alt); border: 1px solid var(--border);
+      border-radius: 16px; max-width: 800px; width: 100%;
+      max-height: 90vh; overflow-y: auto; display: flex;
+    }
+    .modal-image {
+      flex: 0 0 280px; padding: 24px;
+    }
+    .modal-image img {
+      width: 100%; border-radius: var(--radius);
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+    .modal-content {
+      flex: 1; padding: 32px 32px 32px 8px;
+    }
+    .modal-title {
+      font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700;
+      color: var(--text); margin-bottom: 4px; letter-spacing: 2px;
+    }
+    .modal-subtitle {
+      color: var(--gold); font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 20px;
+    }
+    .modal-section { margin-bottom: 16px; }
+    .modal-section h4 {
+      font-family: var(--font-serif); font-size: 0.9rem; color: var(--gold);
+      margin-bottom: 6px; letter-spacing: 1px;
+    }
+    .modal-section p {
+      font-size: 0.85rem; color: var(--text-dim); line-height: 1.8;
+    }
+    .modal-close {
+      position: absolute; top: 20px; right: 20px;
+      background: none; border: none; color: var(--text-dim);
+      font-size: 1.5rem; cursor: pointer; transition: color 0.3s;
+      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+    }
+    .modal-close:hover { color: var(--text); }
+
+    /* Draw Modal */
+    .draw-overlay {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.9); backdrop-filter: blur(10px);
+      flex-direction: column; align-items: center; justify-content: center; padding: 24px;
+    }
+    .draw-overlay.open { display: flex; }
+    .draw-title {
+      font-family: var(--font-serif); font-size: 1.3rem; color: var(--gold);
+      margin-bottom: 24px; letter-spacing: 4px;
+    }
+    .draw-cards {
+      display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; max-width: 900px;
+    }
+    .draw-card {
+      width: 160px; aspect-ratio: 2/3; perspective: 1000px; cursor: pointer;
+    }
+    .draw-card .card-inner {
+      position: relative; width: 100%; height: 100%;
+      transition: transform 0.8s cubic-bezier(0.16,1,0.3,1);
+      transform-style: preserve-3d;
+    }
+    .draw-card.flipped .card-inner { transform: rotateY(180deg); }
+    .draw-card .card-front {
+      transform: rotateY(180deg);
+    }
+    .draw-close {
+      margin-top: 32px; padding: 10px 32px; border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 8px; background: rgba(201,168,76,0.1); color: var(--gold);
+      font-size: 0.85rem; cursor: pointer; font-family: var(--font-sans); letter-spacing: 2px;
+    }
+
+    /* Search */
+    .search-wrap {
+      display: flex; justify-content: center; padding: 0 16px; margin-bottom: 16px;
+    }
+    .search-input {
+      width: 100%; max-width: 400px; padding: 10px 20px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); font-size: 0.85rem;
+      font-family: var(--font-sans); outline: none; transition: border-color 0.3s;
+    }
+    .search-input::placeholder { color: var(--text-dim); }
+    .search-input:focus { border-color: rgba(201,168,76,0.3); }
+
+    /* Footer */
+    .tarot-footer {
+      padding: 60px 24px; text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .tarot-footer a {
+      color: var(--gold); text-decoration: none; font-family: var(--font-serif);
+      font-size: 0.9rem; letter-spacing: 4px;
+    }
+    .tarot-footer p {
+      color: var(--text-dim); font-size: 0.7rem; margin-top: 8px; opacity: 0.4;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .card-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+    }
+    @media (max-width: 768px) {
+      .nav-inner { padding: 14px 20px; }
+      .tarot-hero { padding: 120px 20px 40px; }
+      .card-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 10px; padding: 0 12px 60px;
+      }
+      .modal { flex-direction: column; }
+      .modal-image { flex: none; padding: 20px 20px 0; }
+      .modal-content { padding: 20px; }
+      .draw-card { width: 120px; }
+    }
+    @media (max-width: 480px) {
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+      .draw-card { width: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">福青施老師</a>
+      <a href="index.html" class="nav-back">← 返回作品集</a>
+    </div>
+  </nav>
+
+  <header class="tarot-hero">
+    <h1>吉伊卡哇塔羅牌</h1>
+    <p>78 張超萌日系可愛風格塔羅牌圖卡</p>
+  </header>
+
+  <div class="actions">
+    <button class="btn btn-gold" onclick="drawCards(1)">抽一張</button>
+    <button class="btn btn-gold" onclick="drawCards(3)">抽三張</button>
+    <button class="btn" onclick="drawCards(10)">凱爾特十字</button>
+  </div>
+
+  <div class="search-wrap">
+    <input type="text" class="search-input" placeholder="搜尋牌名..." oninput="filterCards()">
+  </div>
+
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">全部 (78)</button>
+    <button class="filter-btn" data-filter="major" onclick="setFilter('major',this)">大阿爾克那 (22)</button>
+    <button class="filter-btn" data-filter="wands" onclick="setFilter('wands',this)">權杖 (14)</button>
+    <button class="filter-btn" data-filter="cups" onclick="setFilter('cups',this)">聖杯 (14)</button>
+    <button class="filter-btn" data-filter="swords" onclick="setFilter('swords',this)">寶劍 (14)</button>
+    <button class="filter-btn" data-filter="pentacles" onclick="setFilter('pentacles',this)">錢幣 (14)</button>
+  </div>
+
+  <div class="card-grid" id="cardGrid"></div>
+
+  <!-- Detail Modal -->
+  <div class="modal-overlay" id="detailModal" onclick="if(event.target===this)closeDetail()">
+    <div class="modal" style="position:relative">
+      <button class="modal-close" onclick="closeDetail()">&times;</button>
+      <div class="modal-image"><img id="modalImg" src="" alt=""></div>
+      <div class="modal-content">
+        <div class="modal-title" id="modalTitle"></div>
+        <div class="modal-subtitle" id="modalSubtitle"></div>
+        <div class="modal-section"><h4>正位含義</h4><p id="modalUpright"></p></div>
+        <div class="modal-section"><h4>逆位含義</h4><p id="modalReversed"></p></div>
+        <div class="modal-section"><h4>關鍵詞</h4><p id="modalKeywords"></p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Draw Modal -->
+  <div class="draw-overlay" id="drawModal" onclick="if(event.target===this)closeDrawModal()">
+    <div class="draw-title" id="drawTitle"></div>
+    <div class="draw-cards" id="drawCards"></div>
+    <button class="draw-close" onclick="closeDrawModal()">收起</button>
+  </div>
+
+  <footer class="tarot-footer">
+    <a href="index.html">福青施老師</a>
+    <p>&copy; 2026 All rights reserved.</p>
+  </footer>
+
+<script>
+// === Card Data ===
+const CARDS = [
+  // Major Arcana
+  {id:"major-00-fool",cat:"major",num:"0",zh:"愚者",en:"The Fool",img:"tarot/images/major-00-fool.png",
+   upright:"新的開始、自由、冒險精神、天真無邪、信念的跳躍",reversed:"魯莽、愚蠢、冒不必要的風險、缺乏方向",keywords:"開始、自由、潛能、信仰"},
+  {id:"major-01-magician",cat:"major",num:"I",zh:"魔術師",en:"The Magician",img:"tarot/images/major-01-magician.png",
+   upright:"創造力、意志力、技巧、掌握資源、顯化能力",reversed:"操控、欺騙、能力未發揮、缺乏規劃",keywords:"意志、創造、專注、技巧"},
+  {id:"major-02-high-priestess",cat:"major",num:"II",zh:"女祭司",en:"The High Priestess",img:"tarot/images/major-02-high-priestess.png",
+   upright:"直覺、神秘、內在智慧、潛意識、靈性覺醒",reversed:"忽略直覺、秘密被揭露、表面判斷",keywords:"直覺、神秘、智慧、耐心"},
+  {id:"major-03-empress",cat:"major",num:"III",zh:"皇后",en:"The Empress",img:"tarot/images/major-03-empress.png",
+   upright:"豐饒、母性、自然之美、感官享受、創造力",reversed:"依賴、過度保護、創造力阻塞、忽視自我",keywords:"豐饒、美麗、滋養、創造"},
+  {id:"major-04-emperor",cat:"major",num:"IV",zh:"皇帝",en:"The Emperor",img:"tarot/images/major-04-emperor.png",
+   upright:"權威、穩定、結構、領導力、父親形象",reversed:"專制、控制過度、僵化、缺乏紀律",keywords:"權威、結構、穩定、保護"},
+  {id:"major-05-hierophant",cat:"major",num:"V",zh:"教皇",en:"The Hierophant",img:"tarot/images/major-05-hierophant.png",
+   upright:"傳統、信仰體系、教育、指導、精神導師",reversed:"打破傳統、挑戰權威、非傳統思維",keywords:"傳統、信仰、教導、智慧"},
+  {id:"major-06-lovers",cat:"major",num:"VI",zh:"戀人",en:"The Lovers",img:"tarot/images/major-06-lovers.png",
+   upright:"愛情、和諧、選擇、價值觀統一、靈魂伴侶",reversed:"不和諧、價值觀衝突、錯誤選擇",keywords:"愛、選擇、和諧、結合"},
+  {id:"major-07-chariot",cat:"major",num:"VII",zh:"戰車",en:"The Chariot",img:"tarot/images/major-07-chariot.png",
+   upright:"決心、意志力、勝利、控制、前進動力",reversed:"失去方向、缺乏控制、攻擊性",keywords:"意志、勝利、決心、控制"},
+  {id:"major-08-strength",cat:"major",num:"VIII",zh:"力量",en:"Strength",img:"tarot/images/major-08-strength.png",
+   upright:"內在力量、勇氣、耐心、柔軟的力量、自信",reversed:"自我懷疑、缺乏信心、壓抑情緒",keywords:"勇氣、耐心、內在力量、慈悲"},
+  {id:"major-09-hermit",cat:"major",num:"IX",zh:"隱者",en:"The Hermit",img:"tarot/images/major-09-hermit.png",
+   upright:"內省、獨處、探索內心、指引、智慧追求",reversed:"孤立、退縮、拒絕幫助、迷失方向",keywords:"內省、智慧、獨處、指引"},
+  {id:"major-10-wheel-of-fortune",cat:"major",num:"X",zh:"命運之輪",en:"Wheel of Fortune",img:"tarot/images/major-10-wheel-of-fortune.png",
+   upright:"命運轉折、好運降臨、週期循環、機會來臨",reversed:"壞運氣、抗拒改變、失去控制",keywords:"命運、轉變、機會、循環"},
+  {id:"major-11-justice",cat:"major",num:"XI",zh:"正義",en:"Justice",img:"tarot/images/major-11-justice.png",
+   upright:"公正、真理、因果報應、法律、平衡",reversed:"不公正、不誠實、逃避責任",keywords:"公正、真理、平衡、因果"},
+  {id:"major-12-hanged-man",cat:"major",num:"XII",zh:"倒吊人",en:"The Hanged Man",img:"tarot/images/major-12-hanged-man.png",
+   upright:"放下、新視角、等待、犧牲、靈性覺醒",reversed:"拖延、抗拒、白費犧牲",keywords:"放下、等待、犧牲、新視角"},
+  {id:"major-13-death",cat:"major",num:"XIII",zh:"死神",en:"Death",img:"tarot/images/major-13-death.png",
+   upright:"結束與新生、轉變、放下過去、蛻變重生",reversed:"抗拒改變、停滯不前、恐懼轉變",keywords:"轉變、結束、重生、放下"},
+  {id:"major-14-temperance",cat:"major",num:"XIV",zh:"節制",en:"Temperance",img:"tarot/images/major-14-temperance.png",
+   upright:"平衡、耐心、調和、中庸之道、適度",reversed:"失衡、過度、缺乏耐心、衝突",keywords:"平衡、耐心、調和、節制"},
+  {id:"major-15-devil",cat:"major",num:"XV",zh:"惡魔",en:"The Devil",img:"tarot/images/major-15-devil.png",
+   upright:"束縛、誘惑、物質主義、陰暗面、執著",reversed:"釋放束縛、克服誘惑、重獲自由",keywords:"束縛、誘惑、陰影、覺察"},
+  {id:"major-16-tower",cat:"major",num:"XVI",zh:"高塔",en:"The Tower",img:"tarot/images/major-16-tower.png",
+   upright:"突變、崩塌、覺醒、打破舊有、解放",reversed:"恐懼改變、延遲災難、避免崩潰",keywords:"突變、崩塌、覺醒、重建"},
+  {id:"major-17-star",cat:"major",num:"XVII",zh:"星星",en:"The Star",img:"tarot/images/major-17-star.png",
+   upright:"希望、靈感、平靜、療癒、信念更新",reversed:"失去希望、悲觀、缺乏信念",keywords:"希望、靈感、療癒、信念"},
+  {id:"major-18-moon",cat:"major",num:"XVIII",zh:"月亮",en:"The Moon",img:"tarot/images/major-18-moon.png",
+   upright:"幻覺、恐懼、潛意識、直覺、不確定性",reversed:"釋放恐懼、真相大白、清明回歸",keywords:"幻覺、直覺、恐懼、潛意識"},
+  {id:"major-19-sun",cat:"major",num:"XIX",zh:"太陽",en:"The Sun",img:"tarot/images/major-19-sun.png",
+   upright:"快樂、成功、活力、光明、純真喜悅",reversed:"短暫快樂、過度樂觀、缺乏活力",keywords:"快樂、成功、活力、光明"},
+  {id:"major-20-judgement",cat:"major",num:"XX",zh:"審判",en:"Judgement",img:"tarot/images/major-20-judgement.png",
+   upright:"覺醒、重生、反思、召喚、人生新階段",reversed:"自我懷疑、拒絕覺醒、逃避反思",keywords:"覺醒、重生、反思、召喚"},
+  {id:"major-21-world",cat:"major",num:"XXI",zh:"世界",en:"The World",img:"tarot/images/major-21-world.png",
+   upright:"完成、圓滿、成就、旅程結束、與世界合一",reversed:"不完整、延遲完成、缺乏結束感",keywords:"完成、圓滿、成就、整合"},
+
+  // Wands
+  {id:"wands-ace",cat:"wands",num:"Ace",zh:"權杖王牌",en:"Ace of Wands",img:"tarot/images/wands-ace.png",
+   upright:"新的開始、靈感、熱情、創意萌芽",reversed:"延遲、缺乏方向、錯過機會",keywords:"靈感、創造、熱情、開始"},
+  {id:"wands-02",cat:"wands",num:"2",zh:"權杖二",en:"Two of Wands",img:"tarot/images/wands-02.png",
+   upright:"規劃未來、做決定、探索可能性",reversed:"猶豫不決、恐懼未知、缺乏規劃",keywords:"規劃、決定、遠見、探索"},
+  {id:"wands-03",cat:"wands",num:"3",zh:"權杖三",en:"Three of Wands",img:"tarot/images/wands-03.png",
+   upright:"前瞻、擴展、等待成果、機會來臨",reversed:"受阻、延遲回報、缺乏遠見",keywords:"擴展、等待、前瞻、成長"},
+  {id:"wands-04",cat:"wands",num:"4",zh:"權杖四",en:"Four of Wands",img:"tarot/images/wands-04.png",
+   upright:"慶祝、歸屬感、和諧、里程碑",reversed:"不穩定、缺乏和諧、未被認可",keywords:"慶祝、和諧、家庭、穩定"},
+  {id:"wands-05",cat:"wands",num:"5",zh:"權杖五",en:"Five of Wands",img:"tarot/images/wands-05.png",
+   upright:"競爭、衝突、辯論、挑戰、成長",reversed:"避免衝突、內在掙扎、和解",keywords:"競爭、衝突、挑戰、辯論"},
+  {id:"wands-06",cat:"wands",num:"6",zh:"權杖六",en:"Six of Wands",img:"tarot/images/wands-06.png",
+   upright:"勝利、榮耀、公眾認可、自信",reversed:"自負、名聲受損、缺乏信心",keywords:"勝利、榮耀、認可、自信"},
+  {id:"wands-07",cat:"wands",num:"7",zh:"權杖七",en:"Seven of Wands",img:"tarot/images/wands-07.png",
+   upright:"防禦、堅持立場、勇氣、競爭優勢",reversed:"放棄、被壓倒、缺乏勇氣",keywords:"防禦、堅持、勇氣、毅力"},
+  {id:"wands-08",cat:"wands",num:"8",zh:"權杖八",en:"Eight of Wands",img:"tarot/images/wands-08.png",
+   upright:"迅速行動、進展、旅行、訊息到來",reversed:"延遲、混亂、受阻、等待",keywords:"速度、行動、進展、變動"},
+  {id:"wands-09",cat:"wands",num:"9",zh:"權杖九",en:"Nine of Wands",img:"tarot/images/wands-09.png",
+   upright:"堅韌、毅力、最後防線、測試中",reversed:"精疲力盡、放棄、過度防備",keywords:"堅韌、毅力、防備、考驗"},
+  {id:"wands-10",cat:"wands",num:"10",zh:"權杖十",en:"Ten of Wands",img:"tarot/images/wands-10.png",
+   upright:"重擔、責任、過度負荷、堅持到底",reversed:"放下重擔、委託他人、精力恢復",keywords:"責任、重擔、堅持、完成"},
+  {id:"wands-page",cat:"wands",num:"Page",zh:"權杖侍者",en:"Page of Wands",img:"tarot/images/wands-page.png",
+   upright:"探索、熱情、好奇心、新冒險",reversed:"猶豫、缺乏方向、幼稚衝動",keywords:"探索、熱情、好奇、冒險"},
+  {id:"wands-knight",cat:"wands",num:"Knight",zh:"權杖騎士",en:"Knight of Wands",img:"tarot/images/wands-knight.png",
+   upright:"行動力、冒險、充滿能量、追逐夢想",reversed:"衝動、魯莽、半途而廢",keywords:"行動、冒險、熱情、能量"},
+  {id:"wands-queen",cat:"wands",num:"Queen",zh:"權杖王后",en:"Queen of Wands",img:"tarot/images/wands-queen.png",
+   upright:"自信、決斷、溫暖魅力、獨立堅強",reversed:"嫉妒、自私、缺乏自信",keywords:"自信、魅力、獨立、熱情"},
+  {id:"wands-king",cat:"wands",num:"King",zh:"權杖國王",en:"King of Wands",img:"tarot/images/wands-king.png",
+   upright:"領導力、遠見、創業精神、鼓舞人心",reversed:"專橫、急躁、高期望低執行",keywords:"領導、遠見、魅力、決斷"},
+
+  // Cups
+  {id:"cups-ace",cat:"cups",num:"Ace",zh:"聖杯王牌",en:"Ace of Cups",img:"tarot/images/cups-ace.png",
+   upright:"新的感情、愛的開始、直覺湧現、靈性啟發",reversed:"情感阻塞、空虛、自愛不足",keywords:"愛、情感、直覺、開始"},
+  {id:"cups-02",cat:"cups",num:"2",zh:"聖杯二",en:"Two of Cups",img:"tarot/images/cups-02.png",
+   upright:"夥伴關係、互相吸引、連結、和諧",reversed:"關係失衡、分離、溝通不良",keywords:"夥伴、連結、吸引、和諧"},
+  {id:"cups-03",cat:"cups",num:"3",zh:"聖杯三",en:"Three of Cups",img:"tarot/images/cups-03.png",
+   upright:"慶祝、友誼、社交、合作成功",reversed:"過度放縱、八卦、社交疲勞",keywords:"慶祝、友誼、社交、歡聚"},
+  {id:"cups-04",cat:"cups",num:"4",zh:"聖杯四",en:"Four of Cups",img:"tarot/images/cups-04.png",
+   upright:"沉思、不滿足、漠然、錯過機會",reversed:"接受新機會、重新振作、覺醒",keywords:"沉思、冷漠、內省、機會"},
+  {id:"cups-05",cat:"cups",num:"5",zh:"聖杯五",en:"Five of Cups",img:"tarot/images/cups-05.png",
+   upright:"失落、悲傷、遺憾、專注於損失",reversed:"接受失去、繼續前進、尋找希望",keywords:"悲傷、失落、遺憾、放下"},
+  {id:"cups-06",cat:"cups",num:"6",zh:"聖杯六",en:"Six of Cups",img:"tarot/images/cups-06.png",
+   upright:"懷舊、童年回憶、純真、給予與接受",reversed:"活在過去、不切實際的回憶",keywords:"懷舊、純真、回憶、給予"},
+  {id:"cups-07",cat:"cups",num:"7",zh:"聖杯七",en:"Seven of Cups",img:"tarot/images/cups-07.png",
+   upright:"幻想、選擇太多、白日夢、想像力",reversed:"清晰決斷、面對現實、聚焦目標",keywords:"幻想、選擇、夢想、迷惑"},
+  {id:"cups-08",cat:"cups",num:"8",zh:"聖杯八",en:"Eight of Cups",img:"tarot/images/cups-08.png",
+   upright:"離開、尋求更深意義、放棄舒適區",reversed:"恐懼改變、逃避、原地踏步",keywords:"離開、尋求、放下、轉變"},
+  {id:"cups-09",cat:"cups",num:"9",zh:"聖杯九",en:"Nine of Cups",img:"tarot/images/cups-09.png",
+   upright:"滿足、願望成真、幸福感、享受成果",reversed:"不知足、貪婪、物質主義",keywords:"滿足、願望、幸福、享受"},
+  {id:"cups-10",cat:"cups",num:"10",zh:"聖杯十",en:"Ten of Cups",img:"tarot/images/cups-10.png",
+   upright:"家庭幸福、圓滿、情感和諧、長久的愛",reversed:"家庭不和、價值觀衝突、破碎的夢",keywords:"幸福、家庭、圓滿、和諧"},
+  {id:"cups-page",cat:"cups",num:"Page",zh:"聖杯侍者",en:"Page of Cups",img:"tarot/images/cups-page.png",
+   upright:"創意訊息、直覺、夢想、情感新開始",reversed:"情感不成熟、創意阻塞、敏感過度",keywords:"創意、直覺、夢想、訊息"},
+  {id:"cups-knight",cat:"cups",num:"Knight",zh:"聖杯騎士",en:"Knight of Cups",img:"tarot/images/cups-knight.png",
+   upright:"浪漫、魅力、追求夢想、邀請與提案",reversed:"情緒不穩、不切實際、失望",keywords:"浪漫、追求、夢想、魅力"},
+  {id:"cups-queen",cat:"cups",num:"Queen",zh:"聖杯王后",en:"Queen of Cups",img:"tarot/images/cups-queen.png",
+   upright:"同理心、直覺、情感支持、療癒者",reversed:"情緒過度、過度犧牲、依賴他人",keywords:"同理、直覺、關懷、療癒"},
+  {id:"cups-king",cat:"cups",num:"King",zh:"聖杯國王",en:"King of Cups",img:"tarot/images/cups-king.png",
+   upright:"情感成熟、智慧、平衡、外交手腕",reversed:"情緒壓抑、操控、冷漠偽善",keywords:"智慧、平衡、成熟、慈悲"},
+
+  // Swords
+  {id:"swords-ace",cat:"swords",num:"Ace",zh:"寶劍王牌",en:"Ace of Swords",img:"tarot/images/swords-ace.png",
+   upright:"清晰、真理、突破、新的想法與觀點",reversed:"混亂、誤解、缺乏清晰度",keywords:"真理、清晰、突破、理智"},
+  {id:"swords-02",cat:"swords",num:"2",zh:"寶劍二",en:"Two of Swords",img:"tarot/images/swords-02.png",
+   upright:"抉擇困難、僵局、迴避問題、需要平衡",reversed:"資訊過載、做出決定、面對真相",keywords:"抉擇、平衡、僵局、等待"},
+  {id:"swords-03",cat:"swords",num:"3",zh:"寶劍三",en:"Three of Swords",img:"tarot/images/swords-03.png",
+   upright:"心碎、悲傷、失望、分離之痛",reversed:"療癒開始、原諒、走出傷痛",keywords:"心痛、悲傷、分離、釋放"},
+  {id:"swords-04",cat:"swords",num:"4",zh:"寶劍四",en:"Four of Swords",img:"tarot/images/swords-04.png",
+   upright:"休息、恢復、沉思、暫停充電",reversed:"不安、精疲力盡、無法放鬆",keywords:"休息、恢復、沉思、充電"},
+  {id:"swords-05",cat:"swords",num:"5",zh:"寶劍五",en:"Five of Swords",img:"tarot/images/swords-05.png",
+   upright:"衝突、失敗、自利行為、空洞的勝利",reversed:"和解、寬恕、學到教訓",keywords:"衝突、失敗、教訓、放下"},
+  {id:"swords-06",cat:"swords",num:"6",zh:"寶劍六",en:"Six of Swords",img:"tarot/images/swords-06.png",
+   upright:"轉變、離開困境、療癒之旅、前進",reversed:"無法放下、抗拒轉變、舊創傷",keywords:"轉變、旅程、療癒、前進"},
+  {id:"swords-07",cat:"swords",num:"7",zh:"寶劍七",en:"Seven of Swords",img:"tarot/images/swords-07.png",
+   upright:"策略、欺騙、隱藏、聰明行事",reversed:"被揭穿、自欺欺人、良心不安",keywords:"策略、隱藏、欺騙、智謀"},
+  {id:"swords-08",cat:"swords",num:"8",zh:"寶劍八",en:"Eight of Swords",img:"tarot/images/swords-08.png",
+   upright:"困境、自我限制、無助感、思維束縛",reversed:"自我解放、新的視角、突破限制",keywords:"困境、限制、束縛、解放"},
+  {id:"swords-09",cat:"swords",num:"9",zh:"寶劍九",en:"Nine of Swords",img:"tarot/images/swords-09.png",
+   upright:"焦慮、噩夢、過度擔憂、自責",reversed:"希望浮現、放下恐懼、尋求幫助",keywords:"焦慮、擔憂、恐懼、釋放"},
+  {id:"swords-10",cat:"swords",num:"10",zh:"寶劍十",en:"Ten of Swords",img:"tarot/images/swords-10.png",
+   upright:"終結、觸底、痛苦結束、黎明前的黑暗",reversed:"復甦、最壞已過、重新站起",keywords:"終結、觸底、重生、轉機"},
+  {id:"swords-page",cat:"swords",num:"Page",zh:"寶劍侍者",en:"Page of Swords",img:"tarot/images/swords-page.png",
+   upright:"好奇、求知、新想法、警覺、溝通",reversed:"八卦、缺乏計劃、衝動言語",keywords:"好奇、求知、觀察、溝通"},
+  {id:"swords-knight",cat:"swords",num:"Knight",zh:"寶劍騎士",en:"Knight of Swords",img:"tarot/images/swords-knight.png",
+   upright:"快速行動、雄心、直率、追求真理",reversed:"衝動、攻擊性、散漫無方向",keywords:"行動、雄心、直率、速度"},
+  {id:"swords-queen",cat:"swords",num:"Queen",zh:"寶劍王后",en:"Queen of Swords",img:"tarot/images/swords-queen.png",
+   upright:"獨立思考、清晰判斷、直言不諱、理性",reversed:"冷漠、尖酸刻薄、過度批判",keywords:"獨立、清晰、理性、公正"},
+  {id:"swords-king",cat:"swords",num:"King",zh:"寶劍國王",en:"King of Swords",img:"tarot/images/swords-king.png",
+   upright:"權威、知識力量、公正、清晰領導",reversed:"操控、暴君、濫用權力",keywords:"權威、知識、公正、領導"},
+
+  // Pentacles
+  {id:"pentacles-ace",cat:"pentacles",num:"Ace",zh:"錢幣王牌",en:"Ace of Pentacles",img:"tarot/images/pentacles-ace.png",
+   upright:"新的財務機會、物質豐饒、務實的開始",reversed:"錯失機會、缺乏規劃、不穩定",keywords:"機會、財富、開始、物質"},
+  {id:"pentacles-02",cat:"pentacles",num:"2",zh:"錢幣二",en:"Two of Pentacles",img:"tarot/images/pentacles-02.png",
+   upright:"平衡、適應、時間管理、靈活應變",reversed:"失衡、過度勉強、財務壓力",keywords:"平衡、適應、靈活、管理"},
+  {id:"pentacles-03",cat:"pentacles",num:"3",zh:"錢幣三",en:"Three of Pentacles",img:"tarot/images/pentacles-03.png",
+   upright:"團隊合作、技藝、學習、品質追求",reversed:"缺乏合作、品質低落、不受認可",keywords:"合作、技藝、學習、成長"},
+  {id:"pentacles-04",cat:"pentacles",num:"4",zh:"錢幣四",en:"Four of Pentacles",img:"tarot/images/pentacles-04.png",
+   upright:"安全感、保守、守財、穩定控制",reversed:"過度吝嗇、財務不安全、學會放手",keywords:"安全、保守、控制、守護"},
+  {id:"pentacles-05",cat:"pentacles",num:"5",zh:"錢幣五",en:"Five of Pentacles",img:"tarot/images/pentacles-05.png",
+   upright:"困難、貧困、孤立、身心匱乏",reversed:"恢復、找到幫助、走出困境",keywords:"困難、匱乏、考驗、希望"},
+  {id:"pentacles-06",cat:"pentacles",num:"6",zh:"錢幣六",en:"Six of Pentacles",img:"tarot/images/pentacles-06.png",
+   upright:"慷慨、給予與接受、分享財富、公平",reversed:"債務、單方面付出、不公平交換",keywords:"慷慨、給予、公平、慈善"},
+  {id:"pentacles-07",cat:"pentacles",num:"7",zh:"錢幣七",en:"Seven of Pentacles",img:"tarot/images/pentacles-07.png",
+   upright:"耐心等待、長期投資、評估成果、收穫在望",reversed:"急躁、回報不如預期、缺乏耐心",keywords:"耐心、投資、等待、收穫"},
+  {id:"pentacles-08",cat:"pentacles",num:"8",zh:"錢幣八",en:"Eight of Pentacles",img:"tarot/images/pentacles-08.png",
+   upright:"專注學習、精益求精、勤奮工作、技能提升",reversed:"完美主義、重複無趣、缺乏熱情",keywords:"勤奮、學習、技藝、專注"},
+  {id:"pentacles-09",cat:"pentacles",num:"9",zh:"錢幣九",en:"Nine of Pentacles",img:"tarot/images/pentacles-09.png",
+   upright:"富足、獨立、自給自足、優雅生活",reversed:"過度揮霍、財務依賴、缺乏安全感",keywords:"富足、獨立、優雅、享受"},
+  {id:"pentacles-10",cat:"pentacles",num:"10",zh:"錢幣十",en:"Ten of Pentacles",img:"tarot/images/pentacles-10.png",
+   upright:"財富傳承、家族繁榮、長期安穩、遺產",reversed:"家族紛爭、財務損失、不穩定基礎",keywords:"傳承、繁榮、安穩、家族"},
+  {id:"pentacles-page",cat:"pentacles",num:"Page",zh:"錢幣侍者",en:"Page of Pentacles",img:"tarot/images/pentacles-page.png",
+   upright:"學習新技能、務實目標、好學勤勉",reversed:"缺乏進展、目標不明、懶散",keywords:"學習、務實、目標、勤勉"},
+  {id:"pentacles-knight",cat:"pentacles",num:"Knight",zh:"錢幣騎士",en:"Knight of Pentacles",img:"tarot/images/pentacles-knight.png",
+   upright:"穩定前進、有條不紊、責任感、可靠",reversed:"停滯、過度保守、無聊、頑固",keywords:"穩定、可靠、耐心、務實"},
+  {id:"pentacles-queen",cat:"pentacles",num:"Queen",zh:"錢幣王后",en:"Queen of Pentacles",img:"tarot/images/pentacles-queen.png",
+   upright:"務實慷慨、安全舒適、滋養照顧、財務智慧",reversed:"過度依賴物質、忽視精神、焦慮不安",keywords:"務實、照顧、豐饒、智慧"},
+  {id:"pentacles-king",cat:"pentacles",num:"King",zh:"錢幣國王",en:"King of Pentacles",img:"tarot/images/pentacles-king.png",
+   upright:"財富成就、商業才能、可靠領導、物質成功",reversed:"過度物質主義、貪婪、權力濫用",keywords:"財富、成就、領導、穩健"},
+];
+
+let currentFilter = 'all';
+let searchText = '';
+
+function renderCards() {
+  const grid = document.getElementById('cardGrid');
+  grid.innerHTML = '';
+  CARDS.forEach((card, i) => {
+    const matchFilter = currentFilter === 'all' || card.cat === currentFilter;
+    const matchSearch = !searchText ||
+      card.zh.includes(searchText) ||
+      card.en.toLowerCase().includes(searchText.toLowerCase()) ||
+      card.num.toLowerCase().includes(searchText.toLowerCase());
+    const hidden = !(matchFilter && matchSearch);
+
+    const div = document.createElement('div');
+    div.className = 'tarot-card' + (hidden ? ' hidden' : '');
+    div.dataset.index = i;
+    div.onclick = () => openDetail(i);
+    div.innerHTML = `
+      <div class="card-inner">
+        <div class="card-front">
+          <img loading="lazy" src="${card.img}" alt="${card.zh} ${card.en}" onerror="this.style.background='linear-gradient(135deg,rgba(201,168,76,0.08),rgba(201,168,76,0.03))';this.alt='${card.zh}'">
+          <div class="card-label"><strong>${card.num}</strong> ${card.zh}</div>
+        </div>
+        <div class="card-back"><div class="card-back-design"></div></div>
+      </div>`;
+    grid.appendChild(div);
+  });
+}
+
+function setFilter(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCards();
+}
+
+function filterCards() {
+  searchText = document.querySelector('.search-input').value.trim();
+  renderCards();
+}
+
+function openDetail(i) {
+  const card = CARDS[i];
+  document.getElementById('modalImg').src = card.img;
+  document.getElementById('modalImg').alt = card.zh;
+  document.getElementById('modalTitle').textContent = card.zh;
+  document.getElementById('modalSubtitle').textContent = `${card.num} — ${card.en}`;
+  document.getElementById('modalUpright').textContent = card.upright;
+  document.getElementById('modalReversed').textContent = card.reversed;
+  document.getElementById('modalKeywords').textContent = card.keywords;
+  document.getElementById('detailModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDetail() {
+  document.getElementById('detailModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function drawCards(count) {
+  const titles = {1: '每日一牌', 3: '過去・現在・未來', 10: '凱爾特十字牌陣'};
+  document.getElementById('drawTitle').textContent = titles[count] || `抽 ${count} 張`;
+
+  // Shuffle and pick
+  const shuffled = [...CARDS].sort(() => Math.random() - 0.5);
+  const drawn = shuffled.slice(0, count);
+
+  const container = document.getElementById('drawCards');
+  container.innerHTML = '';
+  drawn.forEach((card, i) => {
+    const isReversed = Math.random() > 0.5;
+    const div = document.createElement('div');
+    div.className = 'draw-card';
+    div.onclick = () => {
+      div.classList.add('flipped');
+      setTimeout(() => openDetail(CARDS.indexOf(card)), 600);
+    };
+    div.innerHTML = `
+      <div class="card-inner">
+        <div class="card-back"><div class="card-back-design"></div></div>
+        <div class="card-front" style="${isReversed ? 'transform:rotateY(180deg) rotateZ(180deg)' : 'transform:rotateY(180deg)'}">
+          <img src="${card.img}" alt="${card.zh}" onerror="this.style.background='linear-gradient(135deg,rgba(201,168,76,0.08),rgba(201,168,76,0.03))'">
+          <div class="card-label"><strong>${card.num}</strong> ${card.zh}${isReversed ? ' (逆位)' : ''}</div>
+        </div>
+      </div>`;
+    // Stagger animation
+    div.style.opacity = '0';
+    div.style.transform = 'translateY(20px)';
+    div.style.transition = `opacity 0.5s ease ${i * 0.1}s, transform 0.5s ease ${i * 0.1}s`;
+    container.appendChild(div);
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      div.style.opacity = '1';
+      div.style.transform = 'translateY(0)';
+    }));
+  });
+
+  document.getElementById('drawModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDrawModal() {
+  document.getElementById('drawModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Keyboard
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeDetail(); closeDrawModal(); }
+});
+
+// Init
+renderCards();
+</script>
+</body>
+</html>
