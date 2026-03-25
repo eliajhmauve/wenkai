@@ -1,0 +1,41 @@
+{
+  "jobs": 2,
+  "tasks": [
+    {
+      "id": "spring",
+      "prompt": "A cute Pikachu-style Pokémon character representing Spring season in traditional Chinese culture. The creature is surrounded by cherry blossoms and green sprouts, wearing a tiny flower crown. Soft pink and green pastel colors, cheerful happy expression with big sparkly eyes. Chibi proportions, rounded simple outlines, clean minimal design, kawaii Japanese art style. Circular composition with white background. No text.",
+      "image": "spring.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "summer",
+      "prompt": "A cute Pikachu-style Pokémon character representing Summer season in traditional Chinese culture. The creature is under a bright sun with lotus flowers and fireflies, holding a tiny fan. Warm red and orange pastel colors, energetic playful expression with big sparkly eyes. Chibi proportions, rounded simple outlines, clean minimal design, kawaii Japanese art style. Circular composition with white background. No text.",
+      "image": "summer.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "autumn",
+      "prompt": "A cute Pikachu-style Pokémon character representing Autumn season in traditional Chinese culture. The creature is surrounded by falling maple leaves and golden wheat, holding a tiny persimmon. Warm orange and amber pastel colors, content peaceful expression with big sparkly eyes. Chibi proportions, rounded simple outlines, clean minimal design, kawaii Japanese art style. Circular composition with white background. No text.",
+      "image": "autumn.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "winter",
+      "prompt": "A cute Pikachu-style Pokémon character representing Winter season in traditional Chinese culture. The creature is in a snowy scene with plum blossoms, wearing a tiny scarf. Cool blue and silver pastel colors, cozy warm expression with big sparkly eyes. Chibi proportions, rounded simple outlines, clean minimal design, kawaii Japanese art style. Circular composition with white background. No text.",
+      "image": "winter.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    }
+  ]
+}

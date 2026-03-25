@@ -434,6 +434,7 @@
   <!-- Hero: 當前節氣 -->
   <header class="hero" id="hero">
     <div class="hero-color-bar" id="heroColorBar"></div>
+    <img id="heroSeasonImg" src="" alt="" style="width:90px;height:90px;border-radius:50%;object-fit:cover;border:2px solid rgba(201,168,76,0.2);margin-bottom:12px;display:none;">
     <h1 id="heroName"></h1>
     <div class="hero-pinyin" id="heroPinyin"></div>
     <div class="hero-meaning" id="heroMeaning"></div>
@@ -1048,6 +1049,13 @@
 
   function renderHero(term, info) {
     document.getElementById('heroColorBar').style.background = term.color;
+    // 季節圖
+    const termIdx = SOLAR_TERMS.indexOf(term);
+    const seasonKeys = ['spring','spring','spring','spring','spring','spring','summer','summer','summer','summer','summer','summer','autumn','autumn','autumn','autumn','autumn','autumn','winter','winter','winter','winter','winter','winter'];
+    const heroImg = document.getElementById('heroSeasonImg');
+    heroImg.src = `images/seasons/${seasonKeys[termIdx]}.png`;
+    heroImg.alt = term.name;
+    heroImg.style.display = 'block';
     document.getElementById('heroName').textContent = term.name;
     document.getElementById('heroPinyin').textContent = term.pinyin;
     document.getElementById('heroMeaning').textContent = term.meaning;
@@ -1182,7 +1190,7 @@
       }).join('');
 
       return `<div class="season-group season-${s.key}">
-        <div class="season-label">${s.label}</div>
+        <div class="season-label"><img src="images/seasons/${s.key}.png" alt="${s.label}" style="width:40px;height:40px;border-radius:50%;vertical-align:middle;margin-right:8px;object-fit:cover;border:1px solid rgba(201,168,76,0.2);">${s.label}</div>
         <div class="term-grid">${termCards}</div>
       </div>`;
     }).join('');
