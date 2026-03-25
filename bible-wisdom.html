@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>聖經智慧問答 — 福青施老師</title>
+  <meta name="description" content="輸入人生困惑，AI 以聖經智慧回應並附相關經文。溫暖的基督教輔導師，隨時為你解答。">
+  <meta name="keywords" content="聖經,智慧問答,AI,靈修,基督教,經文,輔導,福青施老師">
+  <meta name="author" content="福青施老師">
+  <meta name="theme-color" content="#c9a84c">
+  <link rel="canonical" href="https://eliajhmauve.github.io/wenkai/bible-wisdom.html">
+  <meta property="og:title" content="聖經智慧問答 — 福青施老師">
+  <meta property="og:description" content="輸入人生困惑，AI 以聖經智慧回應並附相關經文">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://eliajhmauve.github.io/wenkai/bible-wisdom.html">
+  <meta property="og:locale" content="zh_TW">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="聖經智慧問答 — 福青施老師">
+  <meta name="twitter:description" content="輸入人生困惑，AI 以聖經智慧回應並附相關經文">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #060708; --bg-alt: #0a0b0d; --surface: rgba(255,255,255,0.03);
+      --surface-hover: rgba(255,255,255,0.06); --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(212,175,55,0.2); --text: #e8e4dc; --text-dim: #706b62;
+      --gold: #c9a84c; --gold-light: #dfc06a; --radius: 12px;
+      --font-serif: 'Noto Serif TC', serif; --font-sans: 'Noto Sans TC', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height: 1.8; -webkit-font-smoothing: antialiased; overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+
+    /* Nav */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(6,7,8,0.9); backdrop-filter: blur(30px); border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .nav-inner { max-width: 900px; margin: 0 auto; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .nav-back { color: var(--text-dim); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--gold); }
+    .nav-brand { font-family: var(--font-serif); font-size: 0.95rem; font-weight: 700; color: var(--gold); letter-spacing: 3px; }
+    .nav-actions { display: flex; gap: 12px; align-items: center; }
+    .nav-btn { background: none; border: 1px solid var(--border); color: var(--text-dim); padding: 6px 14px; border-radius: 6px; font-size: 0.78rem; cursor: pointer; transition: all 0.3s; font-family: var(--font-sans); }
+    .nav-btn:hover { border-color: var(--border-hover); color: var(--text); }
+
+    /* Hero / Welcome */
+    .welcome { padding: 120px 24px 40px; text-align: center; max-width: 700px; margin: 0 auto; transition: opacity 0.5s, max-height 0.5s; overflow: hidden; }
+    .welcome.hidden { opacity: 0; max-height: 0; padding: 0 24px; pointer-events: none; }
+    .welcome-icon { font-size: 3rem; margin-bottom: 16px; }
+    .welcome h1 { font-family: var(--font-serif); font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 900; color: var(--text); letter-spacing: 4px; margin-bottom: 12px; }
+    .welcome p { color: var(--text-dim); font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 32px; }
+
+    /* Category Cards */
+    .categories { max-width: 700px; margin: 0 auto; padding: 0 24px 40px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; transition: opacity 0.5s, max-height 0.5s; overflow: hidden; }
+    .categories.hidden { opacity: 0; max-height: 0; padding: 0 24px; pointer-events: none; }
+    .cat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; cursor: pointer; transition: all 0.3s; }
+    .cat-card:hover { border-color: var(--border-hover); background: var(--surface-hover); transform: translateY(-2px); }
+    .cat-title { font-family: var(--font-serif); font-size: 0.95rem; font-weight: 700; color: var(--gold); margin-bottom: 8px; }
+    .cat-questions { list-style: none; }
+    .cat-questions li { font-size: 0.82rem; color: var(--text-dim); padding: 6px 0; cursor: pointer; transition: color 0.2s; border-bottom: 1px solid rgba(255,255,255,0.03); }
+    .cat-questions li:last-child { border-bottom: none; }
+    .cat-questions li:hover { color: var(--text); }
+
+    /* Chat Area */
+    .chat-container { flex: 1; max-width: 900px; width: 100%; margin: 0 auto; padding: 80px 24px 140px; display: flex; flex-direction: column; gap: 20px; }
+    .chat-container.with-welcome { padding-top: 0; }
+
+    /* Message Bubbles */
+    .msg { display: flex; gap: 12px; animation: msgIn 0.4s ease; max-width: 85%; }
+    .msg-user { align-self: flex-end; flex-direction: row-reverse; }
+    .msg-ai { align-self: flex-start; }
+    @keyframes msgIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    .msg-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .msg-ai .msg-avatar { background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2); }
+    .msg-user .msg-avatar { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
+
+    .msg-body { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 16px 20px; font-size: 0.88rem; line-height: 1.9; }
+    .msg-user .msg-body { background: rgba(201,168,76,0.05); border-color: rgba(201,168,76,0.15); }
+    .msg-body p { margin-bottom: 10px; }
+    .msg-body p:last-child { margin-bottom: 0; }
+    .msg-body .verse-ref { color: var(--gold); font-weight: 500; }
+    .msg-body .verse-text { font-family: var(--font-serif); color: var(--gold-light); font-style: italic; display: block; margin: 6px 0; padding-left: 12px; border-left: 2px solid rgba(201,168,76,0.2); }
+
+    /* Loading dots */
+    .loading-dots { display: flex; gap: 6px; padding: 8px 0; }
+    .loading-dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); animation: dotBounce 1.4s ease-in-out infinite; }
+    .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes dotBounce { 0%, 80%, 100% { transform: scale(0.6); opacity: 0.3; } 40% { transform: scale(1); opacity: 1; } }
+
+    /* Share button under AI msg */
+    .msg-actions { margin-top: 10px; display: flex; gap: 8px; }
+    .msg-action-btn { background: none; border: 1px solid var(--border); color: var(--text-dim); padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; cursor: pointer; transition: all 0.3s; font-family: var(--font-sans); }
+    .msg-action-btn:hover { border-color: var(--border-hover); color: var(--gold); }
+
+    /* Input Area */
+    .input-area { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(6,7,8,0.95); backdrop-filter: blur(30px); border-top: 1px solid rgba(255,255,255,0.04); padding: 16px 24px; z-index: 90; }
+    .input-inner { max-width: 900px; margin: 0 auto; display: flex; gap: 12px; align-items: flex-end; }
+    .input-inner textarea { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; color: var(--text); font-size: 0.88rem; font-family: var(--font-sans); resize: none; line-height: 1.6; min-height: 44px; max-height: 120px; transition: border-color 0.3s; }
+    .input-inner textarea:focus { outline: none; border-color: var(--border-hover); }
+    .input-inner textarea::placeholder { color: var(--text-dim); }
+    .send-btn { width: 44px; height: 44px; border-radius: 50%; background: var(--gold); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s; flex-shrink: 0; }
+    .send-btn:hover { background: var(--gold-light); transform: scale(1.05); }
+    .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+    .send-btn svg { width: 20px; height: 20px; color: var(--bg); }
+
+    /* History Sidebar */
+    .history-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 150; opacity: 0; visibility: hidden; transition: all 0.3s; }
+    .history-overlay.open { opacity: 1; visibility: visible; }
+    .history-panel { position: fixed; top: 0; right: -320px; width: 320px; height: 100vh; background: var(--bg-alt); border-left: 1px solid var(--border); z-index: 160; transition: right 0.3s; overflow-y: auto; padding: 24px; }
+    .history-panel.open { right: 0; }
+    .history-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .history-header h3 { font-family: var(--font-serif); color: var(--gold); font-size: 1rem; letter-spacing: 2px; }
+    .history-close { background: none; border: none; color: var(--text-dim); font-size: 1.2rem; cursor: pointer; padding: 4px; }
+    .history-item { padding: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; cursor: pointer; transition: all 0.3s; }
+    .history-item:hover { border-color: var(--border-hover); }
+    .history-item-q { font-size: 0.82rem; color: var(--text); margin-bottom: 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .history-item-date { font-size: 0.72rem; color: var(--text-dim); }
+    .history-clear { width: 100%; padding: 10px; background: none; border: 1px solid rgba(255,100,100,0.2); color: rgba(255,100,100,0.7); border-radius: 8px; cursor: pointer; font-size: 0.8rem; margin-top: 12px; font-family: var(--font-sans); transition: all 0.3s; }
+    .history-clear:hover { background: rgba(255,100,100,0.1); }
+    .history-empty { text-align: center; color: var(--text-dim); font-size: 0.85rem; padding: 40px 0; }
+
+    /* Config Panel */
+    .config-toggle { position: fixed; bottom: 80px; right: 24px; z-index: 80; background: var(--surface); border: 1px solid var(--border); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem; transition: all 0.3s; }
+    .config-toggle:hover { border-color: var(--border-hover); }
+    .config-panel { position: fixed; bottom: 130px; right: 24px; z-index: 80; width: 320px; display: none; }
+    .config-panel.open { display: block; animation: msgIn 0.3s ease; }
+
+    /* Card Preview Modal */
+    .card-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
+    .card-modal.open { display: flex; }
+    .card-modal-inner { max-width: 600px; width: 100%; text-align: center; }
+    .card-modal-inner canvas { max-width: 100%; height: auto; border-radius: 8px; }
+    .card-modal-actions { margin-top: 16px; display: flex; gap: 12px; justify-content: center; }
+    .card-modal-actions button { padding: 10px 24px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; font-family: var(--font-sans); transition: all 0.3s; }
+    .card-modal-share { background: var(--gold); color: var(--bg); border: none; }
+    .card-modal-download { background: none; border: 1px solid var(--border); color: var(--text); }
+    .card-modal-close { background: none; border: 1px solid rgba(255,255,255,0.1); color: var(--text-dim); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .categories { grid-template-columns: 1fr; }
+      .msg { max-width: 95%; }
+      .history-panel { width: 280px; }
+      .config-panel { right: 12px; width: calc(100vw - 24px); max-width: 320px; }
+    }
+    @media (max-width: 480px) {
+      .welcome h1 { font-size: 1.6rem; }
+      .msg-avatar { width: 30px; height: 30px; font-size: 0.9rem; }
+      .msg-body { padding: 12px 14px; font-size: 0.84rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> 返回作品集</a>
+      <div class="nav-actions">
+        <button class="nav-btn" id="historyBtn">歷史紀錄</button>
+        <span class="nav-brand">福青施老師</span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="welcome" id="welcome">
+    <div class="welcome-icon">📖</div>
+    <h1>聖經智慧問答</h1>
+    <p>輸入你的人生困惑，AI 將以聖經智慧回應，並附上相關經文</p>
+  </div>
+
+  <div class="categories" id="categories">
+    <!-- JS 填充 -->
+  </div>
+
+  <div class="chat-container with-welcome" id="chatContainer">
+    <!-- 對話訊息 JS 動態插入 -->
+  </div>
+
+  <div class="input-area">
+    <div class="input-inner">
+      <textarea id="userInput" rows="1" placeholder="輸入你的困惑或問題…" maxlength="500"></textarea>
+      <button class="send-btn" id="sendBtn" aria-label="送出">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- History Sidebar -->
+  <div class="history-overlay" id="historyOverlay"></div>
+  <div class="history-panel" id="historyPanel">
+    <div class="history-header">
+      <h3>歷史紀錄</h3>
+      <button class="history-close" id="historyClose" aria-label="關閉">&times;</button>
+    </div>
+    <div id="historyList"></div>
+  </div>
+
+  <!-- Config -->
+  <button class="config-toggle" id="configToggle" title="AI 設定">&#9881;</button>
+  <div class="config-panel" id="configPanel"></div>
+
+  <!-- Card Preview Modal -->
+  <div class="card-modal" id="cardModal">
+    <div class="card-modal-inner">
+      <div id="cardPreview"></div>
+      <div class="card-modal-actions">
+        <button class="card-modal-share" id="cardShareBtn">分享</button>
+        <button class="card-modal-download" id="cardDownloadBtn">下載</button>
+        <button class="card-modal-close" id="cardCloseBtn">關閉</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="shared/ai-client.js"></script>
+  <script src="shared/share-card.js"></script>
+  <script>
+  (() => {
+    // === 預設問題分類 ===
+    const QUESTION_CATEGORIES = [
+      { title: '人生方向', icon: '🧭', questions: ['我對未來感到迷茫，不知道該走哪條路', '如何找到人生的方向和意義？', '面對重大抉擇時該如何做決定？'] },
+      { title: '人際關係', icon: '🤝', questions: ['如何原諒傷害過我的人？', '怎樣經營健康的人際關係？', '與朋友意見不合時該怎麼處理？'] },
+      { title: '工作壓力', icon: '💼', questions: ['工作壓力大到快崩潰，怎麼辦？', '如何在職場中保持正直？', '對工作感到倦怠，失去了熱情'] },
+      { title: '信仰疑惑', icon: '✝️', questions: ['為什麼好人也會遭遇苦難？', '禱告真的有用嗎？', '如何在困難中堅持信心？'] },
+      { title: '情緒管理', icon: '💭', questions: ['最近一直很焦慮，無法平靜下來', '如何面對失去親人的悲傷？', '常常感到孤獨，該怎麼辦？'] },
+      { title: '家庭關係', icon: '🏠', questions: ['跟父母關係緊張怎麼辦？', '如何教養孩子走正確的路？', '夫妻之間如何溝通更有效？'] },
+      { title: '自我價值', icon: '🌱', questions: ['覺得自己不夠好，常常自我否定', '如何接受自己的不完美？', '怎樣發現自己的價值和使命？'] },
+      { title: '感恩與盼望', icon: '🌟', questions: ['想學習凡事感恩的心態', '在困難中如何看見盼望？', '如何活出喜樂的生命？'] }
+    ];
+
+    const SYSTEM_PROMPT = `你是一位智慧且溫暖的基督教輔導師。使用者會向你傾訴生活困惑。請：
+1. 先同理使用者的感受（1-2 句）
+2. 引用 3-5 節相關聖經經文（和合本，標註完整書名章節，例如：約翰福音 3:16）
+3. 根據經文提供具體的智慧建議（2-3 段，每段 2-3 句）
+4. 以一句鼓勵的話結尾
+
+格式要求：
+- 經文引用格式：【書名 章:節】「經文內容」
+- 使用繁體中文
+- 語氣溫柔但有力量
+- 總字數控制在 400 字以內`;
+
+    const HISTORY_KEY = 'bible_wisdom_history';
+    const MAX_HISTORY = 20;
+
+    let conversations = []; // current session messages
+    let isGenerating = false;
+    let currentCardCanvas = null;
+
+    // === DOM ===
+    const $welcome = document.getElementById('welcome');
+    const $categories = document.getElementById('categories');
+    const $chat = document.getElementById('chatContainer');
+    const $input = document.getElementById('userInput');
+    const $sendBtn = document.getElementById('sendBtn');
+    const $historyBtn = document.getElementById('historyBtn');
+    const $historyOverlay = document.getElementById('historyOverlay');
+    const $historyPanel = document.getElementById('historyPanel');
+    const $historyClose = document.getElementById('historyClose');
+    const $historyList = document.getElementById('historyList');
+    const $configToggle = document.getElementById('configToggle');
+    const $configPanel = document.getElementById('configPanel');
+    const $cardModal = document.getElementById('cardModal');
+    const $cardPreview = document.getElementById('cardPreview');
+
+    // === Init ===
+    function init() {
+      renderCategories();
+      AIClient.renderConfigUI($configPanel);
+      bindEvents();
+    }
+
+    // === Render Categories ===
+    function renderCategories() {
+      $categories.innerHTML = QUESTION_CATEGORIES.map((cat, ci) => `
+        <div class="cat-card">
+          <div class="cat-title">${cat.icon} ${cat.title}</div>
+          <ul class="cat-questions">
+            ${cat.questions.map((q, qi) => `<li data-ci="${ci}" data-qi="${qi}">${q}</li>`).join('')}
+          </ul>
+        </div>
+      `).join('');
+    }
+
+    // === Events ===
+    function bindEvents() {
+      // Category question click
+      $categories.addEventListener('click', (e) => {
+        const li = e.target.closest('li[data-ci]');
+        if (li) sendMessage(li.textContent);
+      });
+
+      // Send
+      $sendBtn.addEventListener('click', () => {
+        const text = $input.value.trim();
+        if (text && !isGenerating) sendMessage(text);
+      });
+
+      $input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          const text = $input.value.trim();
+          if (text && !isGenerating) sendMessage(text);
+        }
+      });
+
+      // Auto-resize textarea
+      $input.addEventListener('input', () => {
+        $input.style.height = 'auto';
+        $input.style.height = Math.min($input.scrollHeight, 120) + 'px';
+      });
+
+      // History
+      $historyBtn.addEventListener('click', openHistory);
+      $historyClose.addEventListener('click', closeHistory);
+      $historyOverlay.addEventListener('click', closeHistory);
+
+      // Config
+      $configToggle.addEventListener('click', () => {
+        $configPanel.classList.toggle('open');
+      });
+
+      // Card modal
+      document.getElementById('cardShareBtn').addEventListener('click', () => {
+        if (currentCardCanvas) ShareCard.share(currentCardCanvas, { title: '聖經智慧', filename: 'bible-wisdom.png' });
+      });
+      document.getElementById('cardDownloadBtn').addEventListener('click', () => {
+        if (currentCardCanvas) ShareCard.download(currentCardCanvas, 'bible-wisdom.png');
+      });
+      document.getElementById('cardCloseBtn').addEventListener('click', () => {
+        $cardModal.classList.remove('open');
+      });
+      $cardModal.addEventListener('click', (e) => {
+        if (e.target === $cardModal) $cardModal.classList.remove('open');
+      });
+    }
+
+    // === Hide Welcome ===
+    function hideWelcome() {
+      $welcome.classList.add('hidden');
+      $categories.classList.add('hidden');
+      $chat.classList.remove('with-welcome');
+    }
+
+    // === Send Message ===
+    async function sendMessage(text) {
+      hideWelcome();
+      $input.value = '';
+      $input.style.height = 'auto';
+
+      // Add user message
+      appendMessage('user', text);
+      conversations.push({ role: 'user', text });
+
+      // Check API
+      if (!AIClient.isConfigured()) {
+        $configPanel.classList.add('open');
+        appendMessage('ai', '請先設定 Gemini API Key，才能開始對話。點右下角齒輪圖示進行設定。');
+        return;
+      }
+
+      // Show loading
+      const loadingEl = appendLoading();
+      isGenerating = true;
+      $sendBtn.disabled = true;
+
+      try {
+        const response = await AIClient.chat(text, SYSTEM_PROMPT, {
+          route: '/api/bible-qa',
+          temperature: 0.8,
+          maxTokens: 1500
+        });
+
+        loadingEl.remove();
+        appendMessage('ai', response, true);
+        conversations.push({ role: 'ai', text: response });
+        saveToHistory(text, response);
+      } catch (err) {
+        loadingEl.remove();
+        if (err.message === 'NO_API_KEY') {
+          $configPanel.classList.add('open');
+          appendMessage('ai', '請先設定 Gemini API Key。點右下角齒輪圖示進行設定。');
+        } else {
+          appendMessage('ai', '抱歉，目前無法取得回應。請稍後再試。\n\n錯誤：' + err.message);
+        }
+      } finally {
+        isGenerating = false;
+        $sendBtn.disabled = false;
+      }
+    }
+
+    // === Append Message ===
+    function appendMessage(role, text, showActions = false) {
+      const div = document.createElement('div');
+      div.className = `msg msg-${role}`;
+
+      const avatar = role === 'ai' ? '✝' : '🙏';
+      const formattedText = role === 'ai' ? formatAIResponse(text) : escapeHtml(text);
+
+      div.innerHTML = `
+        <div class="msg-avatar">${avatar}</div>
+        <div>
+          <div class="msg-body">${formattedText}</div>
+          ${showActions ? `<div class="msg-actions"><button class="msg-action-btn share-card-btn">生成分享卡</button></div>` : ''}
+        </div>
+      `;
+
+      if (showActions) {
+        div.querySelector('.share-card-btn').addEventListener('click', () => {
+          generateShareCard(text);
+        });
+      }
+
+      $chat.appendChild(div);
+      scrollToBottom();
+      return div;
+    }
+
+    // === Append Loading ===
+    function appendLoading() {
+      const div = document.createElement('div');
+      div.className = 'msg msg-ai';
+      div.innerHTML = `
+        <div class="msg-avatar">✝</div>
+        <div class="msg-body">
+          <div class="loading-dots"><span></span><span></span><span></span></div>
+        </div>
+      `;
+      $chat.appendChild(div);
+      scrollToBottom();
+      return div;
+    }
+
+    // === Format AI Response ===
+    function formatAIResponse(text) {
+      let html = escapeHtml(text);
+      // Highlight verse references: 【書名 章:節】
+      html = html.replace(/【([^】]+)】/g, '<span class="verse-ref">【$1】</span>');
+      // Highlight quoted verses: 「...」after a reference
+      html = html.replace(/「([^」]+)」/g, '<span class="verse-text">「$1」</span>');
+      // Paragraphs
+      html = html.split('\n').filter(l => l.trim()).map(l => `<p>${l}</p>`).join('');
+      return html;
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function scrollToBottom() {
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      });
+    }
+
+    // === Share Card ===
+    function generateShareCard(aiText) {
+      // Extract first verse from response
+      const verseMatch = aiText.match(/【([^】]+)】[^「]*「([^」]+)」/);
+      const content = verseMatch ? verseMatch[2] : aiText.substring(0, 100);
+      const source = verseMatch ? verseMatch[1] : '聖經智慧問答';
+
+      const canvas = ShareCard.templateQuote({
+        title: '聖經智慧問答',
+        content: content.length > 80 ? content.substring(0, 80) + '…' : content,
+        source: source,
+        category: '福青施老師'
+      });
+
+      currentCardCanvas = canvas;
+      ShareCard.preview(canvas, $cardPreview);
+      $cardModal.classList.add('open');
+    }
+
+    // === History ===
+    function getHistory() {
+      try { return JSON.parse(localStorage.getItem(HISTORY_KEY)) || []; }
+      catch { return []; }
+    }
+
+    function saveToHistory(question, answer) {
+      const history = getHistory();
+      history.unshift({
+        question,
+        answer,
+        date: new Date().toISOString()
+      });
+      if (history.length > MAX_HISTORY) history.length = MAX_HISTORY;
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+    }
+
+    function openHistory() {
+      const history = getHistory();
+      if (history.length === 0) {
+        $historyList.innerHTML = '<div class="history-empty">尚無歷史紀錄</div>';
+      } else {
+        $historyList.innerHTML = history.map((h, i) => `
+          <div class="history-item" data-idx="${i}">
+            <div class="history-item-q">${escapeHtml(h.question)}</div>
+            <div class="history-item-date">${new Date(h.date).toLocaleDateString('zh-TW')}</div>
+          </div>
+        `).join('') + '<button class="history-clear" id="clearHistory">清除所有紀錄</button>';
+
+        // Click to load conversation
+        $historyList.querySelectorAll('.history-item').forEach(el => {
+          el.addEventListener('click', () => {
+            const idx = parseInt(el.dataset.idx);
+            const h = history[idx];
+            hideWelcome();
+            // Clear current chat
+            $chat.innerHTML = '';
+            conversations = [];
+            appendMessage('user', h.question);
+            appendMessage('ai', h.answer, true);
+            conversations.push({ role: 'user', text: h.question });
+            conversations.push({ role: 'ai', text: h.answer });
+            closeHistory();
+          });
+        });
+
+        const clearBtn = $historyList.querySelector('#clearHistory');
+        if (clearBtn) {
+          clearBtn.addEventListener('click', () => {
+            localStorage.removeItem(HISTORY_KEY);
+            $historyList.innerHTML = '<div class="history-empty">已清除所有紀錄</div>';
+          });
+        }
+      }
+
+      $historyOverlay.classList.add('open');
+      $historyPanel.classList.add('open');
+    }
+
+    function closeHistory() {
+      $historyOverlay.classList.remove('open');
+      $historyPanel.classList.remove('open');
+    }
+
+    // === Go ===
+    init();
+  })();
+  </script>
+</body>
+</html>
