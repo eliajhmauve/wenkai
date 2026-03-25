@@ -1,0 +1,113 @@
+{
+  "jobs": 2,
+  "tasks": [
+    {
+      "id": "aries",
+      "prompt": "A cute Pikachu-style Pokémon character representing Aries zodiac sign. The creature has small ram horns, fiery red-orange coloring, determined expression with big sparkly eyes. Chibi proportions, rounded simple outlines, soft pastel background with fire element hints. Clean minimal design, professional illustration, white circle background, kawaii Japanese art style. No text.",
+      "image": "aries.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "taurus",
+      "prompt": "A cute Pikachu-style Pokémon character representing Taurus zodiac sign. The creature has small bull horns, earthy green-brown coloring, gentle calm expression with big sparkly eyes. Chibi proportions, rounded simple outlines, soft pastel background with earth/flower elements. Clean minimal design, professional illustration, white circle background, kawaii Japanese art style. No text.",
+      "image": "taurus.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "gemini",
+      "prompt": "A cute Pikachu-style Pokémon character representing Gemini zodiac sign. Twin cute creatures side by side, light blue and lavender coloring, playful mischievous expressions with big sparkly eyes. Chibi proportions, rounded simple outlines, soft pastel background with air/wind elements. Clean minimal design, professional illustration, white circle background, kawaii Japanese art style. No text.",
+      "image": "gemini.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "cancer",
+      "prompt": "A cute Pikachu-style Pokémon character representing Cancer zodiac sign. The creature has a small shell on its back, soft silver-blue coloring, nurturing gentle expression with big sparkly eyes. Chibi proportions, rounded simple outlines, soft pastel background with moon and water elements. Clean minimal design, professional illustration, white circle background, kawaii Japanese art style. No text.",
+      "image": "cancer.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "leo",
+      "prompt": "A cute Pikachu-style Pokémon character representing Leo zodiac sign. The creature has a fluffy golden mane, warm yellow-orange coloring, proud confident expression with big sparkly eyes. Chibi proportions, rounded simple outlines, soft pastel background with sun and fire elements. Clean minimal design, professional illustration, white circle background, kawaii Japanese art style. No text.",
+      "image": "leo.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "virgo",
+      "prompt": "A cute Pikachu-style Pokémon character representing Virgo zodiac sign. The creature holds a tiny flower, soft green-cream coloring, gentle meticulous expression with big sparkly eyes. Chibi proportions, rounded simple outlines, soft pastel background with wheat and nature elements. Clean minimal design, professional illustration, white circle background, kawaii Japanese art style. No text.",
+      "image": "virgo.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "libra",
+      "prompt": "A cute Pikachu-style Pokémon character representing Libra zodiac sign. The creature holds a tiny balance scale, soft pink-lavender coloring, harmonious peaceful expression with big sparkly eyes. Chibi proportions, rounded simple outlines, soft pastel background with air and symmetry elements. Clean minimal design, professional illustration, white circle background, kawaii Japanese art style. No text.",
+      "image": "libra.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "scorpio",
+      "prompt": "A cute Pikachu-style Pokémon character representing Scorpio zodiac sign. The creature has a small curled tail like a scorpion, deep purple-crimson coloring, mysterious intense expression with big sparkly eyes. Chibi proportions, rounded simple outlines, soft pastel background with water and dark elements. Clean minimal design, professional illustration, white circle background, kawaii Japanese art style. No text.",
+      "image": "scorpio.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "sagittarius",
+      "prompt": "A cute Pikachu-style Pokémon character representing Sagittarius zodiac sign. The creature holds a tiny bow and arrow, warm purple-orange coloring, adventurous cheerful expression with big sparkly eyes. Chibi proportions, rounded simple outlines, soft pastel background with fire and travel elements. Clean minimal design, professional illustration, white circle background, kawaii Japanese art style. No text.",
+      "image": "sagittarius.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "capricorn",
+      "prompt": "A cute Pikachu-style Pokémon character representing Capricorn zodiac sign. The creature has small goat horns, earthy dark green-brown coloring, determined disciplined expression with big sparkly eyes. Chibi proportions, rounded simple outlines, soft pastel background with mountain and earth elements. Clean minimal design, professional illustration, white circle background, kawaii Japanese art style. No text.",
+      "image": "capricorn.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "aquarius",
+      "prompt": "A cute Pikachu-style Pokémon character representing Aquarius zodiac sign. The creature pours water from a tiny jar, electric blue-teal coloring, quirky innovative expression with big sparkly eyes. Chibi proportions, rounded simple outlines, soft pastel background with water and lightning elements. Clean minimal design, professional illustration, white circle background, kawaii Japanese art style. No text.",
+      "image": "aquarius.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    },
+    {
+      "id": "pisces",
+      "prompt": "A cute Pikachu-style Pokémon character representing Pisces zodiac sign. The creature has small fish fins, dreamy soft blue-seafoam coloring, gentle dreamy expression with big sparkly eyes. Chibi proportions, rounded simple outlines, soft pastel background with ocean and bubble elements. Clean minimal design, professional illustration, white circle background, kawaii Japanese art style. No text.",
+      "image": "pisces.png",
+      "provider": "google",
+      "model": "gemini-3.1-flash-image-preview",
+      "ar": "1:1",
+      "quality": "2k"
+    }
+  ]
+}

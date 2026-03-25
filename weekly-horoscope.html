@@ -140,6 +140,16 @@
       font-size: 2.2rem; line-height: 1; margin-bottom: 10px;
       display: block;
     }
+    .zodiac-img {
+      width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 10px;
+      object-fit: cover; display: block;
+      border: 2px solid rgba(201,168,76,0.15);
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .zodiac-card:hover .zodiac-img {
+      transform: scale(1.08);
+      border-color: var(--gold);
+    }
     .zodiac-name {
       font-family: var(--font-serif); font-size: 1rem; font-weight: 700;
       color: var(--text); letter-spacing: 2px; margin-bottom: 4px;
@@ -484,7 +494,8 @@
   <div class="fortune-page" id="fortunePage">
     <header class="fortune-header">
       <button class="back-btn" onclick="goHome()">&larr; 返回星座列表</button>
-      <div class="fortune-sign-symbol" id="fortuneSymbol"></div>
+      <img class="fortune-sign-img" id="fortuneImg" src="" alt="" style="width:100px;height:100px;border-radius:50%;object-fit:cover;border:2px solid rgba(201,168,76,0.3);margin-bottom:8px;">
+      <div class="fortune-sign-symbol" id="fortuneSymbol" style="display:none;"></div>
       <div class="fortune-sign-name" id="fortuneName"></div>
       <div class="fortune-week-range" id="fortuneWeekRange"></div>
     </header>
@@ -776,7 +787,7 @@ function renderZodiacGrid() {
          onclick="selectSign(${i})" role="button" tabindex="0"
          aria-label="${s.name} ${s.dateRange}"
          onkeydown="if(event.key==='Enter')selectSign(${i})">
-      <span class="zodiac-symbol">${s.symbol}</span>
+      <img class="zodiac-img" src="images/zodiac/${s.key}.png" alt="${s.name}" loading="lazy">
       <div class="zodiac-name">${s.name}</div>
       <div class="zodiac-date">${s.dateRange}</div>
     </div>
@@ -787,6 +798,8 @@ function renderFortune(signIndex, fortune) {
   const sign = SIGNS[signIndex];
   const week = getWeekRange();
 
+  document.getElementById('fortuneImg').src = `images/zodiac/${sign.key}.png`;
+  document.getElementById('fortuneImg').alt = sign.name;
   document.getElementById('fortuneSymbol').textContent = sign.symbol;
   document.getElementById('fortuneName').textContent = sign.name;
   document.getElementById('fortuneWeekRange').textContent = week.label;
