@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生命靈數計算器 — 福青施老師</title>
+  <meta name="description" content="輸入生日揭示你的生命靈數，8 大面向深度解讀：人格、事業、愛情、健康、靈性、天賦、挑戰、幸運。支援大師數 11/22/33，中英雙語。">
+  <meta name="keywords" content="生命靈數,靈數計算器,生日密碼,命理,大師數,Life Path Number,Numerology">
+  <meta name="author" content="福青施老師">
+  <meta name="theme-color" content="#D4A843">
+  <link rel="canonical" href="https://eliajhmauve.github.io/wenkai/numerology.html">
+  <meta property="og:title" content="生命靈數計算器 — 福青施老師">
+  <meta property="og:description" content="輸入生日，8 大面向深度解讀你的生命靈數">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://eliajhmauve.github.io/wenkai/numerology.html">
+  <meta property="og:image" content="https://eliajhmauve.github.io/wenkai/og-image.png">
+  <meta property="og:locale" content="zh_TW">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="生命靈數計算器 — 福青施老師">
+  <meta name="twitter:description" content="輸入生日，8 大面向深度解讀你的生命靈數">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔮</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg-start: #0A0A1A; --bg-end: #1A0A2E;
+      --glass: rgba(255,255,255,0.06); --glass-hover: rgba(255,255,255,0.1);
+      --glass-border: rgba(255,255,255,0.1); --glass-border-hover: rgba(212,168,67,0.3);
+      --gold: #D4A843; --gold-light: #F0C95A; --gold-dim: rgba(212,168,67,0.4);
+      --purple: #8B5CF6; --purple-dim: rgba(139,92,246,0.3);
+      --text: #E8E0F0; --text-dim: rgba(232,224,240,0.6); --text-muted: rgba(232,224,240,0.35);
+      --radius: 16px; --radius-sm: 10px;
+      --font-serif: 'Noto Serif TC', serif; --font-sans: 'Noto Sans TC', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans); color: var(--text); line-height: 1.8;
+      -webkit-font-smoothing: antialiased; overflow-x: hidden; min-height: 100vh;
+      background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+      background-attachment: fixed;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* Stars */
+    .stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .stars span {
+      position: absolute; border-radius: 50%; background: #fff;
+      animation: twinkle var(--d, 3s) ease-in-out infinite alternate;
+    }
+    @keyframes twinkle { 0% { opacity: var(--o1, 0.1); } 100% { opacity: var(--o2, 0.6); } }
+
+    /* Nav */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10,10,26,0.85); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .nav-inner { max-width: 960px; margin: 0 auto; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .nav-back { color: var(--text-dim); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
+    .nav-back:hover { color: var(--gold); }
+    .nav-brand { font-family: var(--font-serif); font-size: 0.95rem; font-weight: 700; color: var(--gold); letter-spacing: 3px; }
+    .lang-btn {
+      padding: 5px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 500; cursor: pointer;
+      background: var(--glass); border: 1px solid var(--glass-border); color: var(--text-dim);
+      font-family: var(--font-sans); transition: all 0.3s; letter-spacing: 1px;
+    }
+    .lang-btn:hover { border-color: var(--gold-dim); color: var(--gold); }
+
+    /* Hero */
+    .hero {
+      position: relative; z-index: 1; padding: 140px 24px 50px; text-align: center;
+      background: radial-gradient(ellipse at 50% 20%, rgba(139,92,246,0.1) 0%, transparent 60%),
+                  radial-gradient(ellipse at 50% 80%, rgba(212,168,67,0.06) 0%, transparent 50%);
+    }
+    .hero-badge {
+      display: inline-block; padding: 4px 16px; border-radius: 20px; font-size: 0.75rem;
+      background: var(--glass); border: 1px solid var(--glass-border); color: var(--gold);
+      letter-spacing: 3px; margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: var(--font-serif); font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 900;
+      letter-spacing: 6px; margin-bottom: 14px;
+      background: linear-gradient(135deg, var(--text) 0%, var(--gold-light) 50%, var(--text) 100%);
+      background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero p { color: var(--text-dim); font-size: 0.92rem; letter-spacing: 2px; }
+
+    /* Container */
+    .container { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 0 24px 60px; }
+
+    /* Section Title */
+    .section-title {
+      font-family: var(--font-serif); color: var(--gold); font-size: 0.85rem;
+      letter-spacing: 4px; text-align: center; margin-bottom: 28px; font-weight: 400;
+    }
+
+    /* Input Section */
+    .input-card {
+      background: var(--glass); border: 1px solid var(--glass-border); border-radius: var(--radius);
+      padding: 36px 32px; margin-bottom: 32px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      transition: border-color 0.3s;
+    }
+    .input-card:focus-within { border-color: var(--glass-border-hover); }
+    .date-row { display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap; margin-bottom: 28px; }
+    .date-group { display: flex; align-items: center; gap: 6px; }
+    .date-group label { font-size: 0.82rem; color: var(--text-dim); min-width: fit-content; }
+    .date-select {
+      padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.92rem;
+      font-family: var(--font-sans); cursor: pointer; transition: all 0.3s; appearance: none;
+      background: rgba(255,255,255,0.04) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23E8E0F0' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat right 12px center;
+      border: 1px solid rgba(255,255,255,0.08); color: var(--text); padding-right: 32px;
+    }
+    .date-select:focus { outline: none; border-color: var(--purple-dim); box-shadow: 0 0 0 3px rgba(139,92,246,0.15); }
+    .date-select:hover { border-color: rgba(255,255,255,0.15); }
+    #sel-year { width: 110px; }
+    #sel-month { width: 85px; }
+    #sel-day { width: 85px; }
+
+    .calc-btn {
+      display: block; width: 100%; max-width: 340px; margin: 0 auto; padding: 14px 32px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--bg-start);
+      border: none; border-radius: var(--radius-sm); font-size: 1rem; font-weight: 700;
+      font-family: var(--font-serif); cursor: pointer; letter-spacing: 4px;
+      transition: all 0.3s; position: relative; overflow: hidden;
+    }
+    .calc-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(212,168,67,0.3); }
+    .calc-btn:active { transform: translateY(0); }
+    .calc-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    /* Calculation Animation */
+    .calc-anim { margin-bottom: 40px; display: none; }
+    .calc-anim.visible { display: block; }
+    .calc-steps {
+      background: var(--glass); border: 1px solid var(--glass-border); border-radius: var(--radius);
+      padding: 28px 24px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    }
+    .calc-step {
+      padding: 8px 0; font-size: 0.9rem; color: var(--text-dim); border-bottom: 1px solid rgba(255,255,255,0.03);
+      opacity: 0; transform: translateX(-10px); transition: all 0.4s ease;
+    }
+    .calc-step.show { opacity: 1; transform: translateX(0); }
+    .calc-step:last-child { border-bottom: none; }
+    .calc-step .highlight { color: var(--gold); font-weight: 700; }
+    .calc-step .master-badge {
+      display: inline-block; padding: 1px 8px; border-radius: 4px; font-size: 0.72rem;
+      background: rgba(139,92,246,0.2); color: #a78bfa; margin-left: 6px; vertical-align: middle;
+    }
+    .calc-result-line {
+      text-align: center; padding-top: 16px; margin-top: 8px; border-top: 1px solid rgba(212,168,67,0.15);
+      font-family: var(--font-serif); font-size: 1.1rem; color: var(--gold); font-weight: 700;
+      opacity: 0; transform: scale(0.9); transition: all 0.5s ease;
+    }
+    .calc-result-line.show { opacity: 1; transform: scale(1); }
+
+    /* Result Section */
+    .result-section { display: none; }
+    .result-section.visible { display: block; animation: fadeUp 0.6s ease; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Number Hero */
+    .number-hero { text-align: center; margin-bottom: 48px; }
+    .number-ring {
+      position: relative; width: 180px; height: 180px; margin: 0 auto 24px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%);
+    }
+    .number-ring::before {
+      content: ''; position: absolute; inset: 0; border-radius: 50%;
+      border: 2px solid transparent;
+      background: linear-gradient(135deg, var(--gold), var(--purple)) border-box;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      animation: ringRotate 8s linear infinite;
+    }
+    @keyframes ringRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .number-big {
+      font-family: var(--font-serif); font-size: 4.5rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--purple));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      text-shadow: none; filter: drop-shadow(0 0 30px rgba(212,168,67,0.3));
+    }
+    .number-image {
+      width: 240px; height: 240px; margin: 0 auto 20px; border-radius: 50%; overflow: hidden;
+      border: 2px solid var(--glass-border); display: none;
+      background: var(--glass); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    }
+    .number-image.loaded { display: block; }
+    .number-image img { width: 100%; height: 100%; object-fit: cover; }
+    .number-title {
+      font-family: var(--font-serif); font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 700;
+      color: var(--text); margin-bottom: 8px; letter-spacing: 3px;
+    }
+    .number-title-en { font-size: 0.9rem; color: var(--text-dim); letter-spacing: 2px; margin-bottom: 16px; }
+    .number-meta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .meta-badge {
+      padding: 4px 14px; border-radius: 20px; font-size: 0.78rem;
+      background: var(--glass); border: 1px solid var(--glass-border); color: var(--text-dim); letter-spacing: 1px;
+    }
+    .master-tag {
+      display: inline-block; padding: 3px 12px; border-radius: 20px; font-size: 0.72rem;
+      background: rgba(139,92,246,0.2); border: 1px solid rgba(139,92,246,0.3);
+      color: #a78bfa; letter-spacing: 1px; margin-bottom: 12px;
+    }
+
+    /* Aspect Cards */
+    .aspects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+    .aspect-card {
+      background: var(--glass); border: 1px solid var(--glass-border); border-radius: var(--radius);
+      padding: 24px 20px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      transition: all 0.3s; cursor: default;
+    }
+    .aspect-card:hover { border-color: var(--glass-border-hover); background: var(--glass-hover); transform: translateY(-2px); }
+    .aspect-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .aspect-icon {
+      width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      background: rgba(212,168,67,0.1); flex-shrink: 0;
+    }
+    .aspect-icon svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+    .aspect-name { font-family: var(--font-serif); font-size: 0.92rem; color: var(--gold); letter-spacing: 2px; }
+    .aspect-text { font-size: 0.84rem; color: var(--text-dim); line-height: 1.9; }
+
+    /* Lucky Card */
+    .lucky-card {
+      background: var(--glass); border: 1px solid var(--glass-border); border-radius: var(--radius);
+      padding: 28px 24px; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); margin-bottom: 32px;
+    }
+    .lucky-title {
+      font-family: var(--font-serif); color: var(--gold); font-size: 0.92rem;
+      letter-spacing: 2px; text-align: center; margin-bottom: 20px;
+    }
+    .lucky-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .lucky-item { display: flex; flex-direction: column; gap: 4px; text-align: center; }
+    .lucky-label { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 1px; }
+    .lucky-value { font-size: 0.88rem; color: var(--text); display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap; }
+    .color-dot { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); display: inline-block; vertical-align: middle; }
+
+    /* Share */
+    .share-actions { display: flex; gap: 12px; justify-content: center; margin: 32px 0; flex-wrap: wrap; }
+    .share-btn {
+      padding: 10px 28px; border-radius: var(--radius-sm); font-size: 0.85rem; cursor: pointer;
+      font-family: var(--font-sans); transition: all 0.3s; letter-spacing: 1px;
+    }
+    .share-btn-primary { background: var(--gold); color: var(--bg-start); border: none; font-weight: 600; }
+    .share-btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .share-btn-secondary { background: none; border: 1px solid var(--glass-border); color: var(--text-dim); }
+    .share-btn-secondary:hover { border-color: var(--gold-dim); color: var(--text); }
+
+    /* Share Modal */
+    .share-modal {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 200;
+      display: none; align-items: center; justify-content: center; padding: 24px;
+    }
+    .share-modal.open { display: flex; }
+    .share-modal-inner { max-width: 620px; width: 100%; text-align: center; }
+    .share-modal-inner canvas { max-width: 100%; height: auto; border-radius: 12px; }
+    .share-modal-actions { margin-top: 16px; display: flex; gap: 12px; justify-content: center; }
+    .share-modal-actions button {
+      padding: 10px 24px; border-radius: var(--radius-sm); font-size: 0.85rem; cursor: pointer;
+      font-family: var(--font-sans); transition: all 0.3s;
+    }
+
+    /* Footer */
+    .footer { position: relative; z-index: 1; text-align: center; padding: 40px 24px; border-top: 1px solid rgba(255,255,255,0.04); }
+    .footer-brand { font-family: var(--font-serif); color: var(--gold); font-size: 0.9rem; letter-spacing: 4px; margin-bottom: 8px; }
+    .footer-copy { color: var(--text-muted); font-size: 0.75rem; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .aspects-grid { grid-template-columns: 1fr; }
+      .lucky-grid { grid-template-columns: 1fr 1fr; }
+      .date-row { gap: 8px; }
+      .input-card { padding: 24px 16px; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { letter-spacing: 3px; }
+      .date-group { flex-direction: column; gap: 2px; }
+      .date-select { width: 100% !important; }
+      .date-row { flex-direction: column; align-items: stretch; }
+      .number-ring { width: 140px; height: 140px; }
+      .number-big { font-size: 3.5rem; }
+      .aspect-card { padding: 20px 16px; }
+    }
+
+    /* Utilities */
+    .hidden { display: none !important; }
+    .fade-in { animation: fadeUp 0.5s ease forwards; }
+  </style>
+</head>
+<body>
+
+<!-- Stars Background -->
+<div class="stars" id="stars"></div>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-back" data-i18n="back">← 返回作品集</a>
+    <span class="nav-brand">福青施老師</span>
+    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">EN</button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-badge" data-i18n="heroBadge">NUMEROLOGY</div>
+  <h1 data-i18n="title">生命靈數計算器</h1>
+  <p data-i18n="subtitle">輸入你的出生日期，揭示靈魂深處的密碼</p>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+
+  <!-- Input -->
+  <div class="input-card">
+    <div class="section-title" data-i18n="inputTitle">選擇你的出生日期</div>
+    <div class="date-row">
+      <div class="date-group">
+        <select class="date-select" id="sel-year" aria-label="出生年份"></select>
+        <label for="sel-year" data-i18n="year">年</label>
+      </div>
+      <div class="date-group">
+        <select class="date-select" id="sel-month" aria-label="出生月份"></select>
+        <label for="sel-month" data-i18n="month">月</label>
+      </div>
+      <div class="date-group">
+        <select class="date-select" id="sel-day" aria-label="出生日期"></select>
+        <label for="sel-day" data-i18n="day">日</label>
+      </div>
+    </div>
+    <button class="calc-btn" id="calc-btn" data-i18n="calcBtn" onclick="calculate()">揭示你的靈數</button>
+  </div>
+
+  <!-- Calculation Animation -->
+  <div class="calc-anim" id="calc-anim">
+    <div class="section-title" data-i18n="calcTitle">計算過程</div>
+    <div class="calc-steps" id="calc-steps"></div>
+  </div>
+
+  <!-- Result -->
+  <section class="result-section" id="result-section">
+    <div class="number-hero" id="number-hero"></div>
+    <div class="section-title" data-i18n="aspectsTitle">八大面向解讀</div>
+    <div class="aspects-grid" id="aspects-grid"></div>
+    <div class="lucky-card" id="lucky-card"></div>
+    <div class="share-actions">
+      <button class="share-btn share-btn-primary" onclick="openShareModal()" data-i18n="downloadCard">下載分享卡</button>
+      <button class="share-btn share-btn-secondary" onclick="shareResult()" data-i18n="shareBtn">分享</button>
+    </div>
+  </section>
+
+</div>
+
+<!-- Share Modal -->
+<div class="share-modal" id="share-modal" onclick="if(event.target===this)closeShareModal()">
+  <div class="share-modal-inner">
+    <div id="share-preview"></div>
+    <div class="share-modal-actions">
+      <button class="share-btn share-btn-primary" onclick="downloadCard()" data-i18n="saveImage">儲存圖片</button>
+      <button class="share-btn share-btn-secondary" onclick="webShare()" data-i18n="shareToApp">分享至 App</button>
+      <button class="share-btn share-btn-secondary" onclick="closeShareModal()" data-i18n="close">關閉</button>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <p class="footer-brand">福青施老師</p>
+  <p class="footer-copy">&copy; 2026 All rights reserved.</p>
+</footer>
+
+<script>
+/* ===== State ===== */
+let LANG = 'zh';
+let DATA = [];
+let currentResult = null;
+
+/* ===== Translations ===== */
+const T = {
+  zh: {
+    back: '← 返回作品集', title: '生命靈數計算器', subtitle: '輸入你的出生日期，揭示靈魂深處的密碼',
+    heroBadge: 'NUMEROLOGY', inputTitle: '選擇你的出生日期', year: '年', month: '月', day: '日',
+    calcBtn: '揭示你的靈數', calcTitle: '計算過程', aspectsTitle: '八大面向解讀',
+    downloadCard: '下載分享卡', shareBtn: '分享', saveImage: '儲存圖片', shareToApp: '分享至 App', close: '關閉',
+    personality: '人格特質', career: '事業方向', love: '愛情關係', health: '健康指引',
+    spiritual: '靈性成長', talents: '天賦才能', challenges: '人生挑戰',
+    luckyTitle: '幸運資訊', luckyColors: '幸運色', luckyNumbers: '幸運數字',
+    luckyCrystal: '幸運水晶', luckyDay: '幸運日', element: '元素', planet: '守護星',
+    masterNum: '大師數', masterKeep: '大師數，保留', yearLabel: '年份', monthLabel: '月份',
+    dayLabel: '日期', sum: '加總', resultIs: '你的生命靈數是', recalc: '重新計算',
+    selectYear: '選擇年份', selectMonth: '選擇月份', selectDay: '選擇日期',
+    shareTitle: '我的生命靈數', shareText: '我的生命靈數是 {n} — {t}！快來算算你的：',
+  },
+  en: {
+    back: '← Portfolio', title: 'Life Path Calculator', subtitle: 'Enter your birthday to discover your soul code',
+    heroBadge: 'NUMEROLOGY', inputTitle: 'Select Your Birthday', year: 'Y', month: 'M', day: 'D',
+    calcBtn: 'Reveal Your Number', calcTitle: 'Calculation', aspectsTitle: 'Eight Aspects Reading',
+    downloadCard: 'Download Card', shareBtn: 'Share', saveImage: 'Save Image', shareToApp: 'Share to App', close: 'Close',
+    personality: 'Personality', career: 'Career', love: 'Love', health: 'Health',
+    spiritual: 'Spiritual', talents: 'Talents', challenges: 'Challenges',
+    luckyTitle: 'Lucky Info', luckyColors: 'Lucky Colors', luckyNumbers: 'Lucky Numbers',
+    luckyCrystal: 'Lucky Crystal', luckyDay: 'Lucky Day', element: 'Element', planet: 'Planet',
+    masterNum: 'Master', masterKeep: 'Master, keep', yearLabel: 'Year', monthLabel: 'Month',
+    dayLabel: 'Day', sum: 'Sum', resultIs: 'Your Life Path Number is', recalc: 'Recalculate',
+    selectYear: 'Year', selectMonth: 'Month', selectDay: 'Day',
+    shareTitle: 'My Life Path Number', shareText: 'My Life Path Number is {n} — {t}! Calculate yours:',
+  }
+};
+
+/* ===== Aspect Icons (SVG paths) ===== */
+const ICONS = {
+  personality: '<circle cx="12" cy="7" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/>',
+  career: '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>',
+  love: '<path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>',
+  health: '<path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><path d="M6 1v3M10 1v3M14 1v3"/>',
+  spiritual: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+  talents: '<polygon points="12 2 2 10 12 22 22 10"/>',
+  challenges: '<path d="M8 3l4 8 4-8"/><path d="M4 14l8 7 8-7"/><path d="M12 11v10"/>',
+};
+
+/* ===== Color Map ===== */
+const CMAP = {
+  '紅色':'#e74c3c','金色':'#D4A843','白色':'#f0eded','銀色':'#b8c0c8','黃色':'#f1c40f',
+  '紫色':'#8B5CF6','綠色':'#2ecc71','棕色':'#8B6914','青綠色':'#1abc9c','藍色':'#3498db',
+  '玫瑰色':'#e91e63','黑色':'#2c3e50','靛藍色':'#3f51b5','珊瑚色':'#ff7f50',
+  'Red':'#e74c3c','Gold':'#D4A843','White':'#f0eded','Silver':'#b8c0c8','Yellow':'#f1c40f',
+  'Purple':'#8B5CF6','Green':'#2ecc71','Brown':'#8B6914','Turquoise':'#1abc9c','Blue':'#3498db',
+  'Rose':'#e91e63','Black':'#2c3e50','Indigo':'#3f51b5','Coral':'#ff7f50',
+};
+
+/* ===== Init ===== */
+document.addEventListener('DOMContentLoaded', async () => {
+  generateStars();
+  initDateSelectors();
+  await loadData();
+  parseURLParams();
+});
+
+function generateStars() {
+  const container = document.getElementById('stars');
+  const count = 80;
+  let html = '';
+  for (let i = 0; i < count; i++) {
+    const size = Math.random() * 2 + 1;
+    const x = Math.random() * 100;
+    const y = Math.random() * 100;
+    const dur = (Math.random() * 3 + 2).toFixed(1);
+    const o1 = (Math.random() * 0.2).toFixed(2);
+    const o2 = (Math.random() * 0.5 + 0.3).toFixed(2);
+    html += `<span style="width:${size}px;height:${size}px;left:${x}%;top:${y}%;--d:${dur}s;--o1:${o1};--o2:${o2}"></span>`;
+  }
+  container.innerHTML = html;
+}
+
+function initDateSelectors() {
+  const yearSel = document.getElementById('sel-year');
+  const monthSel = document.getElementById('sel-month');
+  const daySel = document.getElementById('sel-day');
+  const now = new Date();
+  const curYear = now.getFullYear();
+
+  // Year
+  yearSel.innerHTML = `<option value="" disabled selected>${T[LANG].selectYear}</option>`;
+  for (let y = curYear; y >= 1920; y--) yearSel.innerHTML += `<option value="${y}">${y}</option>`;
+
+  // Month
+  monthSel.innerHTML = `<option value="" disabled selected>${T[LANG].selectMonth}</option>`;
+  for (let m = 1; m <= 12; m++) monthSel.innerHTML += `<option value="${m}">${m}</option>`;
+
+  // Day
+  updateDays();
+  yearSel.addEventListener('change', updateDays);
+  monthSel.addEventListener('change', updateDays);
+}
+
+function updateDays() {
+  const y = +document.getElementById('sel-year').value || 2000;
+  const m = +document.getElementById('sel-month').value || 1;
+  const maxDay = new Date(y, m, 0).getDate();
+  const daySel = document.getElementById('sel-day');
+  const curVal = +daySel.value;
+  daySel.innerHTML = `<option value="" disabled selected>${T[LANG].selectDay}</option>`;
+  for (let d = 1; d <= maxDay; d++) daySel.innerHTML += `<option value="${d}" ${d === curVal ? 'selected' : ''}>${d}</option>`;
+}
+
+async function loadData() {
+  try {
+    const res = await fetch('data/numerology.json');
+    DATA = await res.json();
+  } catch (e) {
+    console.error('Failed to load numerology data:', e);
+  }
+}
+
+function parseURLParams() {
+  const p = new URLSearchParams(location.search);
+  const y = p.get('y'), m = p.get('m'), d = p.get('d');
+  if (y && m && d) {
+    document.getElementById('sel-year').value = y;
+    document.getElementById('sel-month').value = m;
+    updateDays();
+    document.getElementById('sel-day').value = d;
+    setTimeout(() => calculate(), 300);
+  }
+}
+
+/* ===== Calculation ===== */
+function reduceDigits(n) {
+  while (n > 9 && n !== 11 && n !== 22 && n !== 33) {
+    n = String(n).split('').reduce((s, d) => s + +d, 0);
+  }
+  return n;
+}
+
+function sumDigits(n) {
+  return String(n).split('').reduce((s, d) => s + +d, 0);
+}
+
+function reductionSteps(n) {
+  const steps = [n];
+  while (n > 9 && n !== 11 && n !== 22 && n !== 33) {
+    n = sumDigits(n);
+    steps.push(n);
+  }
+  return steps;
+}
+
+function calculate() {
+  const y = +document.getElementById('sel-year').value;
+  const m = +document.getElementById('sel-month').value;
+  const d = +document.getElementById('sel-day').value;
+  if (!y || !m || !d) return;
+
+  const t = T[LANG];
+  const yearSum = sumDigits(y);
+  const yearReduced = reduceDigits(yearSum);
+  const monthReduced = reduceDigits(m);
+  const dayReduced = reduceDigits(d);
+  const total = yearReduced + monthReduced + dayReduced;
+  const finalNum = reduceDigits(total);
+
+  // Build animation steps
+  const steps = [];
+  const isMaster = (n) => [11, 22, 33].includes(n);
+  const badge = (n) => isMaster(n) ? `<span class="master-badge">${t.masterKeep}</span>` : '';
+
+  // Year step
+  const yDigits = String(y).split('').join(' + ');
+  let yearStr = `${t.yearLabel}：${yDigits} = ${yearSum}`;
+  if (yearSum !== yearReduced) {
+    const ySteps = reductionSteps(yearSum);
+    yearStr += ' → ' + ySteps.slice(1).join(' → ');
+  }
+  yearStr += badge(yearReduced);
+  steps.push(yearStr);
+
+  // Month step
+  if (m > 9) {
+    const mDigits = String(m).split('').join(' + ');
+    steps.push(`${t.monthLabel}：${mDigits} = ${monthReduced}${badge(monthReduced)}`);
+  } else {
+    steps.push(`${t.monthLabel}：${m}${badge(monthReduced)}`);
+  }
+
+  // Day step
+  if (d > 9) {
+    const dDigits = String(d).split('').join(' + ');
+    let dayStr = `${t.dayLabel}：${dDigits} = ${sumDigits(d)}`;
+    if (sumDigits(d) !== dayReduced) {
+      const dSteps = reductionSteps(sumDigits(d));
+      dayStr += ' → ' + dSteps.slice(1).join(' → ');
+    }
+    dayStr += badge(dayReduced);
+    steps.push(dayStr);
+  } else {
+    steps.push(`${t.dayLabel}：${d}`);
+  }
+
+  // Sum step
+  let sumStr = `${t.sum}：${yearReduced} + ${monthReduced} + ${dayReduced} = ${total}`;
+  if (total !== finalNum) {
+    const tSteps = reductionSteps(total);
+    sumStr += ' → ' + tSteps.slice(1).join(' → ');
+  }
+  sumStr += badge(finalNum);
+  steps.push(sumStr);
+
+  showCalcAnimation(steps, finalNum);
+}
+
+function showCalcAnimation(steps, finalNum) {
+  const t = T[LANG];
+  const container = document.getElementById('calc-steps');
+  const anim = document.getElementById('calc-anim');
+  anim.classList.add('visible');
+
+  // Build HTML
+  let html = '';
+  steps.forEach((s, i) => html += `<div class="calc-step" id="step-${i}">${s}</div>`);
+  html += `<div class="calc-result-line" id="step-result"><span class="highlight">${t.resultIs} ${finalNum}</span></div>`;
+  container.innerHTML = html;
+
+  // Scroll to animation
+  anim.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  // Animate steps one by one
+  steps.forEach((_, i) => {
+    setTimeout(() => document.getElementById(`step-${i}`).classList.add('show'), 200 + i * 400);
+  });
+  setTimeout(() => {
+    document.getElementById('step-result').classList.add('show');
+    // Show result after animation
+    setTimeout(() => showResult(finalNum), 600);
+  }, 200 + steps.length * 400);
+}
+
+/* ===== Result Display ===== */
+function showResult(num) {
+  const data = DATA.find(d => d.number === num);
+  if (!data) return;
+  currentResult = data;
+
+  const section = document.getElementById('result-section');
+  renderNumberHero(data);
+  renderAspects(data);
+  renderLucky(data);
+  section.classList.add('visible');
+  setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+
+  // Update URL
+  const y = document.getElementById('sel-year').value;
+  const m = document.getElementById('sel-month').value;
+  const d = document.getElementById('sel-day').value;
+  const url = new URL(location.href);
+  url.searchParams.set('y', y);
+  url.searchParams.set('m', m);
+  url.searchParams.set('d', d);
+  history.replaceState(null, '', url);
+
+  // Update button
+  const btn = document.getElementById('calc-btn');
+  btn.setAttribute('data-i18n', 'recalc');
+  btn.textContent = T[LANG].recalc;
+}
+
+function renderNumberHero(data) {
+  const t = T[LANG];
+  const container = document.getElementById('number-hero');
+  const isMaster = data.master;
+  const titleZh = data.title_zh;
+  const titleEn = data.title_en;
+  const elLabel = LANG === 'zh' ? data.element_zh : data.element_en;
+  const plLabel = LANG === 'zh' ? data.planet_zh : data.planet_en;
+
+  let html = '';
+
+  // Image
+  html += `<div class="number-image" id="num-img">
+    <img src="${data.image}" alt="${titleZh}" onload="this.parentElement.classList.add('loaded')" onerror="">
+  </div>`;
+
+  // Number ring
+  html += `<div class="number-ring"><span class="number-big">${data.number}</span></div>`;
+
+  // Master badge
+  if (isMaster) html += `<div class="master-tag">${t.masterNum} ${data.number}</div>`;
+
+  // Title
+  if (LANG === 'zh') {
+    html += `<div class="number-title">${titleZh}</div><div class="number-title-en">${titleEn}</div>`;
+  } else {
+    html += `<div class="number-title">${titleEn}</div><div class="number-title-en">${titleZh}</div>`;
+  }
+
+  // Meta
+  html += `<div class="number-meta">
+    <span class="meta-badge">${t.element}：${elLabel}</span>
+    <span class="meta-badge">${t.planet}：${plLabel}</span>
+  </div>`;
+
+  container.innerHTML = html;
+}
+
+function renderAspects(data) {
+  const t = T[LANG];
+  const grid = document.getElementById('aspects-grid');
+  const aspects = ['personality', 'career', 'love', 'health', 'spiritual', 'talents', 'challenges'];
+  let html = '';
+  aspects.forEach(key => {
+    const icon = ICONS[key] || '';
+    const name = t[key] || key;
+    const text = data.aspects[key]?.[LANG] || data.aspects[key]?.zh || '';
+    html += `<div class="aspect-card">
+      <div class="aspect-header">
+        <div class="aspect-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">${icon}</svg></div>
+        <span class="aspect-name">${name}</span>
+      </div>
+      <div class="aspect-text">${text}</div>
+    </div>`;
+  });
+  grid.innerHTML = html;
+}
+
+function renderLucky(data) {
+  const t = T[LANG];
+  const lucky = data.lucky;
+  const card = document.getElementById('lucky-card');
+  const colors = lucky.colors[LANG] || lucky.colors.zh;
+  const crystal = lucky.crystal[LANG] || lucky.crystal.zh;
+  const day = lucky.day[LANG] || lucky.day.zh;
+
+  const colorDots = colors.map(c => `<span class="color-dot" style="background:${CMAP[c] || '#888'}"></span> ${c}`).join('&nbsp;&nbsp;');
+
+  card.innerHTML = `
+    <div class="lucky-title">${t.luckyTitle}</div>
+    <div class="lucky-grid">
+      <div class="lucky-item"><span class="lucky-label">${t.luckyColors}</span><span class="lucky-value">${colorDots}</span></div>
+      <div class="lucky-item"><span class="lucky-label">${t.luckyNumbers}</span><span class="lucky-value">${lucky.numbers.join(', ')}</span></div>
+      <div class="lucky-item"><span class="lucky-label">${t.luckyCrystal}</span><span class="lucky-value">${crystal}</span></div>
+      <div class="lucky-item"><span class="lucky-label">${t.luckyDay}</span><span class="lucky-value">${day}</span></div>
+    </div>`;
+}
+
+/* ===== i18n ===== */
+function toggleLang() {
+  LANG = LANG === 'zh' ? 'en' : 'zh';
+  document.getElementById('lang-btn').textContent = LANG === 'zh' ? 'EN' : '中';
+  document.documentElement.lang = LANG === 'zh' ? 'zh-Hant' : 'en';
+
+  // Update static text
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (T[LANG][key]) el.textContent = T[LANG][key];
+  });
+
+  // Update date selectors placeholder
+  initDateSelectors();
+
+  // Re-render result if visible
+  if (currentResult) {
+    renderNumberHero(currentResult);
+    renderAspects(currentResult);
+    renderLucky(currentResult);
+  }
+}
+
+/* ===== Share Card ===== */
+function createShareCanvas() {
+  if (!currentResult) return null;
+  const data = currentResult;
+  const t = T[LANG];
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const W = 600, H = 800;
+  const canvas = document.createElement('canvas');
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  // Background gradient
+  const bg = ctx.createLinearGradient(0, 0, W, H);
+  bg.addColorStop(0, '#0A0A1A');
+  bg.addColorStop(0.5, '#15082A');
+  bg.addColorStop(1, '#1A0A2E');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+
+  // Stars
+  for (let i = 0; i < 60; i++) {
+    const x = Math.random() * W, y = Math.random() * H;
+    const r = Math.random() * 1.2;
+    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${Math.random() * 0.3 + 0.1})`;
+    ctx.fill();
+  }
+
+  // Gold border
+  ctx.strokeStyle = 'rgba(212,168,67,0.2)';
+  ctx.lineWidth = 1;
+  roundRect(ctx, 20, 20, W - 40, H - 40, 16);
+  ctx.stroke();
+
+  // Corner decorations
+  const cL = 28;
+  ctx.strokeStyle = '#D4A843';
+  ctx.lineWidth = 1.5;
+  [[20, 20, 1, 1], [W-20, 20, -1, 1], [20, H-20, 1, -1], [W-20, H-20, -1, -1]].forEach(([x, y, dx, dy]) => {
+    ctx.beginPath();
+    ctx.moveTo(x, y + cL * dy);
+    ctx.lineTo(x, y);
+    ctx.lineTo(x + cL * dx, y);
+    ctx.stroke();
+  });
+
+  // Badge
+  ctx.font = '400 13px "Noto Sans TC", sans-serif';
+  ctx.fillStyle = 'rgba(212,168,67,0.6)';
+  ctx.textAlign = 'center';
+  ctx.fillText('NUMEROLOGY', W / 2, 66);
+
+  // Large number
+  ctx.font = '900 96px "Noto Serif TC", serif';
+  const numGrad = ctx.createLinearGradient(W/2-50, 100, W/2+50, 220);
+  numGrad.addColorStop(0, '#F0C95A');
+  numGrad.addColorStop(0.5, '#D4A843');
+  numGrad.addColorStop(1, '#8B5CF6');
+  ctx.fillStyle = numGrad;
+  ctx.fillText(String(data.number), W / 2, 190);
+
+  // Master badge
+  let yOffset = 220;
+  if (data.master) {
+    ctx.font = '400 12px "Noto Sans TC", sans-serif';
+    ctx.fillStyle = '#a78bfa';
+    ctx.fillText(`✦ ${t.masterNum} ${data.number}`, W / 2, yOffset);
+    yOffset += 28;
+  }
+
+  // Title
+  const titlePrimary = LANG === 'zh' ? data.title_zh : data.title_en;
+  const titleSecondary = LANG === 'zh' ? data.title_en : data.title_zh;
+  ctx.font = '700 28px "Noto Serif TC", serif';
+  ctx.fillStyle = '#E8E0F0';
+  ctx.fillText(titlePrimary, W / 2, yOffset + 10);
+  ctx.font = '400 15px "Noto Sans TC", sans-serif';
+  ctx.fillStyle = 'rgba(232,224,240,0.5)';
+  ctx.fillText(titleSecondary, W / 2, yOffset + 38);
+
+  // Divider
+  const divY = yOffset + 60;
+  ctx.strokeStyle = 'rgba(212,168,67,0.3)';
+  ctx.lineWidth = 0.5;
+  ctx.beginPath();
+  ctx.moveTo(W/2 - 60, divY);
+  ctx.lineTo(W/2 + 60, divY);
+  ctx.stroke();
+
+  // Element + Planet
+  ctx.font = '400 13px "Noto Sans TC", sans-serif';
+  ctx.fillStyle = 'rgba(232,224,240,0.5)';
+  const el = LANG === 'zh' ? data.element_zh : data.element_en;
+  const pl = LANG === 'zh' ? data.planet_zh : data.planet_en;
+  ctx.fillText(`${t.element}：${el}  |  ${t.planet}：${pl}`, W / 2, divY + 28);
+
+  // Personality excerpt
+  const excerptY = divY + 65;
+  ctx.font = '400 14px "Noto Serif TC", serif';
+  ctx.fillStyle = 'rgba(232,224,240,0.7)';
+  const pText = data.aspects.personality[LANG] || data.aspects.personality.zh;
+  wrapText(ctx, pText, W / 2, excerptY, W - 100, 24);
+
+  // Lucky info
+  const luckyY = H - 140;
+  ctx.font = '400 12px "Noto Sans TC", sans-serif';
+  ctx.fillStyle = 'rgba(212,168,67,0.5)';
+  ctx.fillText(t.luckyTitle, W / 2, luckyY);
+  const colors = data.lucky.colors[LANG] || data.lucky.colors.zh;
+  const crystal = data.lucky.crystal[LANG] || data.lucky.crystal.zh;
+  ctx.font = '400 13px "Noto Sans TC", sans-serif';
+  ctx.fillStyle = 'rgba(232,224,240,0.5)';
+  ctx.fillText(`${colors.join(' · ')}  |  ${crystal}  |  ${data.lucky.numbers.join(', ')}`, W / 2, luckyY + 24);
+
+  // Brand watermark
+  ctx.font = '400 11px "Noto Sans TC", sans-serif';
+  ctx.fillStyle = 'rgba(212,168,67,0.35)';
+  ctx.fillText('福青施老師 | eliajhmauve.github.io/wenkai', W / 2, H - 24);
+
+  return canvas;
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r); ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y);
+  ctx.closePath();
+}
+
+function wrapText(ctx, text, x, y, maxW, lh) {
+  let line = '';
+  let lines = 0;
+  const maxLines = 6;
+  for (const ch of text) {
+    if (ctx.measureText(line + ch).width > maxW && line) {
+      ctx.fillText(line, x, y + lines * lh);
+      line = ch; lines++;
+      if (lines >= maxLines) { ctx.fillText('...', x, y + lines * lh); return lines + 1; }
+    } else { line += ch; }
+  }
+  if (line) { ctx.fillText(line, x, y + lines * lh); lines++; }
+  return lines;
+}
+
+function openShareModal() {
+  const canvas = createShareCanvas();
+  if (!canvas) return;
+  const preview = document.getElementById('share-preview');
+  preview.innerHTML = '';
+  canvas.style.maxWidth = '100%';
+  canvas.style.height = 'auto';
+  canvas.style.borderRadius = '12px';
+  preview.appendChild(canvas);
+  document.getElementById('share-modal').classList.add('open');
+}
+
+function closeShareModal() {
+  document.getElementById('share-modal').classList.remove('open');
+}
+
+function downloadCard() {
+  const canvas = document.querySelector('#share-preview canvas');
+  if (!canvas) return;
+  canvas.toBlob(blob => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `numerology-${currentResult.number}.png`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }, 'image/png');
+}
+
+async function webShare() {
+  const canvas = document.querySelector('#share-preview canvas');
+  if (!canvas) return;
+  const t = T[LANG];
+  const blob = await new Promise(r => canvas.toBlob(r, 'image/png'));
+  const file = new File([blob], `numerology-${currentResult.number}.png`, { type: 'image/png' });
+  const title = LANG === 'zh' ? currentResult.title_zh : currentResult.title_en;
+  const text = t.shareText.replace('{n}', currentResult.number).replace('{t}', title);
+  const shareUrl = location.href;
+
+  if (navigator.canShare && navigator.canShare({ files: [file] })) {
+    try { await navigator.share({ title: t.shareTitle, text, url: shareUrl, files: [file] }); }
+    catch (e) { if (e.name !== 'AbortError') downloadCard(); }
+  } else {
+    downloadCard();
+  }
+}
+
+function shareResult() {
+  openShareModal();
+}
+</script>
+</body>
+</html>

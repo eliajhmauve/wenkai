@@ -1,0 +1,74 @@
+[
+  {
+    "id": "01-leader",
+    "number": 1,
+    "image": "images/numerology/01-leader.png",
+    "prompt": "A single Pokémon-style creature representing Life Path Number 1 — The Leader.\nA majestic lion-like creature with a golden mane made of flames, wearing a small golden crown. Standing confidently on a rocky peak. Fiery, bold energy. Powerful stance, determined eyes.\nBackground: deep cosmic purple-black gradient with twinkling stars and nebula wisps.\nGold decorative circular frame around the character.\nAt the bottom, text: \"1 — 領袖\"\nSquare 1:1 composition, centered, digital illustration, vibrant colors, high quality."
+  },
+  {
+    "id": "02-diplomat",
+    "number": 2,
+    "image": "images/numerology/02-diplomat.png",
+    "prompt": "A single Pokémon-style creature representing Life Path Number 2 — The Diplomat.\nA graceful moon-rabbit creature with luminous silver-blue fur and long flowing ears that shimmer like moonlight. Gentle, peaceful expression. Holding a small glowing orb of balance between its paws.\nBackground: deep cosmic purple-black gradient with a crescent moon and twinkling stars.\nGold decorative circular frame around the character.\nAt the bottom, text: \"2 — 外交家\"\nSquare 1:1 composition, centered, digital illustration, soft colors, high quality."
+  },
+  {
+    "id": "03-communicator",
+    "number": 3,
+    "image": "images/numerology/03-communicator.png",
+    "prompt": "A single Pokémon-style creature representing Life Path Number 3 — The Communicator.\nA vibrant, colorful bird-like creature with rainbow-gradient plumage and a cheerful expression. Musical notes and sparkles float around it. Wings spread joyfully.\nBackground: deep cosmic purple-black gradient with colorful nebula swirls and stars.\nGold decorative circular frame around the character.\nAt the bottom, text: \"3 — 表達者\"\nSquare 1:1 composition, centered, digital illustration, vivid colors, high quality."
+  },
+  {
+    "id": "04-builder",
+    "number": 4,
+    "image": "images/numerology/04-builder.png",
+    "prompt": "A single Pokémon-style creature representing Life Path Number 4 — The Builder.\nA sturdy bear-golem creature with earth-brown and emerald stone armor plates. Strong, reliable stance. Small glowing green crystal on its forehead. Holding a miniature golden building block.\nBackground: deep cosmic purple-black gradient with stars and faint geometric patterns.\nGold decorative circular frame around the character.\nAt the bottom, text: \"4 — 建造者\"\nSquare 1:1 composition, centered, digital illustration, earthy tones, high quality."
+  },
+  {
+    "id": "05-freedom",
+    "number": 5,
+    "image": "images/numerology/05-freedom.png",
+    "prompt": "A single Pokémon-style creature representing Life Path Number 5 — The Freedom Seeker.\nA sleek winged fox-like creature with turquoise and silver fur, soaring through the sky with wind trails. Dynamic flying pose, adventurous expression. Feathered tail streaming behind.\nBackground: deep cosmic purple-black gradient with shooting stars and aurora borealis wisps.\nGold decorative circular frame around the character.\nAt the bottom, text: \"5 — 自由者\"\nSquare 1:1 composition, centered, digital illustration, dynamic colors, high quality."
+  },
+  {
+    "id": "06-nurturer",
+    "number": 6,
+    "image": "images/numerology/06-nurturer.png",
+    "prompt": "A single Pokémon-style creature representing Life Path Number 6 — The Nurturer.\nA gentle deer-like creature with rose-pink and cream fur. Small cherry blossom flowers growing from its antlers. Warm, caring expression. A soft heart-shaped glow on its chest.\nBackground: deep cosmic purple-black gradient with gentle pink nebula and stars.\nGold decorative circular frame around the character.\nAt the bottom, text: \"6 — 照顧者\"\nSquare 1:1 composition, centered, digital illustration, warm pastel tones, high quality."
+  },
+  {
+    "id": "07-seeker",
+    "number": 7,
+    "image": "images/numerology/07-seeker.png",
+    "prompt": "A single Pokémon-style creature representing Life Path Number 7 — The Seeker.\nA wise owl-like creature with deep purple and silver feathers. A glowing third eye on its forehead. Surrounded by floating ancient runes and tiny orbiting books. Contemplative, mysterious aura.\nBackground: deep cosmic purple-black gradient with swirling galaxy and bright stars.\nGold decorative circular frame around the character.\nAt the bottom, text: \"7 — 探索者\"\nSquare 1:1 composition, centered, digital illustration, mystical tones, high quality."
+  },
+  {
+    "id": "08-powerhouse",
+    "number": 8,
+    "image": "images/numerology/08-powerhouse.png",
+    "prompt": "A single Pokémon-style creature representing Life Path Number 8 — The Powerhouse.\nA powerful dragon-like creature with black and gold scales. An infinity symbol (∞) glowing on its chest. Coiled around a pile of glowing crystals and gems. Commanding, authoritative presence.\nBackground: deep cosmic purple-black gradient with golden nebula streaks and stars.\nGold decorative circular frame around the character.\nAt the bottom, text: \"8 — 權威者\"\nSquare 1:1 composition, centered, digital illustration, bold dark-gold tones, high quality."
+  },
+  {
+    "id": "09-humanitarian",
+    "number": 9,
+    "image": "images/numerology/09-humanitarian.png",
+    "prompt": "A single Pokémon-style creature representing Life Path Number 9 — The Humanitarian.\nA phoenix-like creature with gradient wings from red to gold to white. Spreading its wings wide, emitting warm golden light rays. Compassionate, wise eyes. Small creatures gather below it.\nBackground: deep cosmic purple-black gradient with warm golden nebula and stars.\nGold decorative circular frame around the character.\nAt the bottom, text: \"9 — 博愛者\"\nSquare 1:1 composition, centered, digital illustration, warm radiant tones, high quality."
+  },
+  {
+    "id": "11-illuminator",
+    "number": 11,
+    "image": "images/numerology/11-illuminator.png",
+    "prompt": "A single Pokémon-style creature representing Master Number 11 — The Illuminator.\nAn ethereal twin-tailed celestial fox with pure white and silver fur, glowing with inner light. Its two tails form the number 11. Bright glowing eyes radiating spiritual energy. Lightning-like aura.\nBackground: deep cosmic purple-black gradient with intense starfield and light beams.\nGold decorative circular frame with a special 'Master Number' star emblem.\nAt the bottom, text: \"11 — 啟示者\"\nSquare 1:1 composition, centered, digital illustration, luminous ethereal tones, high quality."
+  },
+  {
+    "id": "22-master-builder",
+    "number": 22,
+    "image": "images/numerology/22-master-builder.png",
+    "prompt": "A single Pokémon-style creature representing Master Number 22 — The Master Builder.\nA colossal cosmic turtle creature with a miniature golden city/temple built on its shell. Earth and star elements merged in its design. Powerful yet wise appearance. Glowing gold and earth-brown tones.\nBackground: deep cosmic purple-black gradient with planetary rings and bright stars.\nGold decorative circular frame with a special 'Master Number' star emblem.\nAt the bottom, text: \"22 — 大建築師\"\nSquare 1:1 composition, centered, digital illustration, grand majestic tones, high quality."
+  },
+  {
+    "id": "33-master-healer",
+    "number": 33,
+    "image": "images/numerology/33-master-healer.png",
+    "prompt": "A single Pokémon-style creature representing Master Number 33 — The Master Healer.\nA majestic unicorn-like creature with a crystal horn that emits healing rainbow light. Indigo and rose-colored flowing mane. Surrounded by healing energy orbs. Serene, unconditionally loving expression.\nBackground: deep cosmic purple-black gradient with soft healing light and stars.\nGold decorative circular frame with a special 'Master Number' star emblem.\nAt the bottom, text: \"33 — 大療癒者\"\nSquare 1:1 composition, centered, digital illustration, soft healing tones, high quality."
+  }
+]

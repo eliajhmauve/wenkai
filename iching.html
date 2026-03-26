@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>西遊記風易經卜卦 — 福青施老師</title>
+  <meta name="description" content="64 卦西遊記水墨風圖卡，含擲幣卜卦、卦象詳解、八宮分類瀏覽。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☯</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #060708;
+      --bg-alt: #0a0b0d;
+      --surface: rgba(255,255,255,0.03);
+      --surface-hover: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(212,175,55,0.2);
+      --text: #e8e4dc;
+      --text-dim: #706b62;
+      --gold: #c9a84c;
+      --gold-light: #dfc06a;
+      --radius: 12px;
+      --font-serif: 'Noto Serif TC', serif;
+      --font-sans: 'Noto Sans TC', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Nav */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(6,7,8,0.8);
+      backdrop-filter: blur(30px);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+    }
+    .nav-inner {
+      max-width: 1400px; margin: 0 auto; padding: 16px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-logo {
+      font-family: var(--font-serif); font-size: 1rem; font-weight: 700;
+      color: var(--gold); text-decoration: none; letter-spacing: 4px;
+    }
+    .nav-back {
+      color: var(--text-dim); text-decoration: none; font-size: 0.82rem;
+      letter-spacing: 1px; transition: color 0.3s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    /* Hero */
+    .iching-hero {
+      padding: 140px 24px 60px; text-align: center;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 70%);
+    }
+    .iching-hero h1 {
+      font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900; letter-spacing: 8px; margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--text) 0%, var(--gold-light) 50%, var(--text) 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .iching-hero p {
+      color: var(--text-dim); font-size: 0.88rem; letter-spacing: 2px; max-width: 500px; margin: 0 auto;
+    }
+
+    /* Actions */
+    .actions {
+      display: flex; justify-content: center; gap: 12px; margin: 32px 0 16px; flex-wrap: wrap; padding: 0 16px;
+    }
+    .btn {
+      padding: 10px 24px; border: 1px solid var(--border); border-radius: 8px;
+      background: var(--surface); color: var(--text); font-size: 0.85rem;
+      cursor: pointer; transition: all 0.3s; font-family: var(--font-sans);
+      letter-spacing: 1px;
+    }
+    .btn:hover { border-color: var(--border-hover); background: var(--surface-hover); }
+    .btn-gold {
+      background: rgba(201,168,76,0.12); border-color: rgba(201,168,76,0.3); color: var(--gold);
+    }
+    .btn-gold:hover { background: rgba(201,168,76,0.2); }
+
+    /* Filters */
+    .filters {
+      display: flex; justify-content: center; gap: 8px; padding: 0 16px 16px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 6px 18px; border: 1px solid var(--border); border-radius: 20px;
+      background: transparent; color: var(--text-dim); font-size: 0.78rem;
+      cursor: pointer; transition: all 0.3s; font-family: var(--font-sans); letter-spacing: 1px;
+    }
+    .filter-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.12); }
+    .filter-btn.active {
+      background: rgba(201,168,76,0.12); border-color: rgba(201,168,76,0.3); color: var(--gold);
+    }
+
+    /* Search */
+    .search-wrap {
+      display: flex; justify-content: center; padding: 0 16px; margin-bottom: 16px;
+    }
+    .search-input {
+      width: 100%; max-width: 400px; padding: 10px 20px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--text); font-size: 0.85rem;
+      font-family: var(--font-sans); outline: none; transition: border-color 0.3s;
+    }
+    .search-input::placeholder { color: var(--text-dim); }
+    .search-input:focus { border-color: rgba(201,168,76,0.3); }
+
+    /* Card Grid */
+    .card-grid {
+      max-width: 1400px; margin: 0 auto; padding: 0 24px 80px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    /* Hexagram Card */
+    .hex-card {
+      cursor: pointer; aspect-ratio: 2/3;
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      display: flex; flex-direction: column;
+      transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+    .hex-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+    }
+    .hex-card.hidden { display: none; }
+    .hex-card img {
+      width: 100%; flex: 1; object-fit: cover;
+      object-position: top center;
+      clip-path: inset(0 0 12% 0);
+      margin-bottom: -12%;
+    }
+    .hex-card .card-label {
+      padding: 10px 10px 8px; text-align: center; font-size: 0.75rem;
+      color: var(--text); letter-spacing: 1px; white-space: nowrap;
+      overflow: hidden; text-overflow: ellipsis;
+      background: linear-gradient(to bottom, rgba(20,18,15,0.85), rgba(20,18,15,0.95));
+      border-top: 1px solid rgba(201,168,76,0.2);
+      font-family: var(--font-serif);
+    }
+    .hex-card .card-label strong {
+      color: var(--gold); font-weight: 700; font-size: 0.85rem;
+    }
+    /* Loading placeholder */
+    .hex-card img[data-src] {
+      background: linear-gradient(135deg, rgba(201,168,76,0.05), rgba(201,168,76,0.02));
+      min-height: 200px;
+    }
+
+    /* Detail Modal */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
+      align-items: center; justify-content: center; padding: 24px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--bg-alt); border: 1px solid var(--border);
+      border-radius: 16px; max-width: 860px; width: 100%;
+      max-height: 90vh; overflow-y: auto; display: flex;
+      position: relative;
+    }
+    .modal-image {
+      flex: 0 0 260px; padding: 24px;
+    }
+    .modal-image img {
+      width: 100%; border-radius: var(--radius);
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+    .modal-content {
+      flex: 1; padding: 32px 32px 32px 8px;
+    }
+    .modal-title {
+      font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700;
+      color: var(--text); margin-bottom: 4px; letter-spacing: 2px;
+    }
+    .modal-subtitle {
+      color: var(--gold); font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 20px;
+    }
+    .modal-section { margin-bottom: 16px; }
+    .modal-section h4 {
+      font-family: var(--font-serif); font-size: 0.9rem; color: var(--gold);
+      margin-bottom: 6px; letter-spacing: 1px;
+    }
+    .modal-section p {
+      font-size: 0.85rem; color: var(--text-dim); line-height: 1.8;
+    }
+    .modal-close {
+      position: absolute; top: 16px; right: 16px;
+      background: none; border: none; color: var(--text-dim);
+      font-size: 1.5rem; cursor: pointer; transition: color 0.3s;
+      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+      z-index: 10;
+    }
+    .modal-close:hover { color: var(--text); }
+
+    /* Trigram display */
+    .trigram-row {
+      display: flex; gap: 24px; margin-bottom: 16px;
+    }
+    .trigram-item {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+    }
+    .trigram-symbol { font-size: 2rem; line-height: 1; }
+    .trigram-name { font-size: 0.75rem; color: var(--text-dim); }
+
+    /* Yao lines (hexagram visual) */
+    .yao-display {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      margin: 12px 0;
+    }
+    .yao-line {
+      display: flex; gap: 6px; justify-content: center;
+    }
+    .yao-line .segment {
+      height: 4px; border-radius: 2px;
+    }
+    .yao-line .segment.yang {
+      width: 48px; background: var(--gold);
+    }
+    .yao-line .segment.yin {
+      width: 20px; background: var(--gold);
+    }
+    .yao-line .segment.moving {
+      background: #e06050;
+    }
+
+    /* Divination Modal */
+    .divination-overlay {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.92); backdrop-filter: blur(10px);
+      flex-direction: column; align-items: center; justify-content: center; padding: 24px;
+    }
+    .divination-overlay.open { display: flex; }
+
+    .div-title {
+      font-family: var(--font-serif); font-size: 1.3rem; color: var(--gold);
+      letter-spacing: 4px; margin-bottom: 24px;
+    }
+
+    .coins-area {
+      display: flex; gap: 20px; margin-bottom: 24px;
+    }
+    .coin {
+      width: 64px; height: 64px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem; font-weight: 700;
+      border: 2px solid var(--gold);
+      transition: all 0.3s;
+      background: rgba(201,168,76,0.08);
+      color: var(--gold);
+    }
+    .coin.flipping {
+      animation: coinFlip 0.4s ease-in-out;
+    }
+    .coin.heads { background: rgba(201,168,76,0.2); }
+    .coin.tails { background: rgba(100,100,100,0.2); border-color: #666; color: #999; }
+
+    @keyframes coinFlip {
+      0% { transform: rotateX(0); }
+      50% { transform: rotateX(180deg); }
+      100% { transform: rotateX(360deg); }
+    }
+
+    .yao-progress {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      margin: 16px 0 24px; min-height: 80px;
+    }
+    .yao-result-line {
+      display: flex; gap: 6px; align-items: center;
+    }
+    .yao-result-line .seg {
+      height: 5px; border-radius: 3px;
+    }
+    .yao-result-line .seg.yang { width: 56px; background: var(--gold); }
+    .yao-result-line .seg.yin { width: 24px; background: var(--gold); }
+    .yao-result-line .seg.moving { background: #e06050; }
+    .yao-result-line .yao-label {
+      font-size: 0.7rem; color: var(--text-dim); width: 36px; text-align: right;
+    }
+    .yao-result-line .yao-val {
+      font-size: 0.7rem; color: var(--text-dim); width: 24px;
+    }
+
+    .div-result {
+      text-align: center; margin-top: 12px;
+    }
+    .div-result-hex {
+      font-size: 3rem; margin-bottom: 4px;
+    }
+    .div-result-name {
+      font-family: var(--font-serif); font-size: 1.4rem; color: var(--gold);
+      letter-spacing: 4px; margin-bottom: 4px;
+    }
+    .div-result-en {
+      font-size: 0.82rem; color: var(--text-dim); letter-spacing: 1px; margin-bottom: 8px;
+    }
+    .div-result-meaning {
+      font-size: 0.85rem; color: var(--text-dim); max-width: 500px; margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    .div-change {
+      margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);
+    }
+    .div-change-label {
+      font-size: 0.78rem; color: var(--text-dim); letter-spacing: 2px; margin-bottom: 4px;
+    }
+
+    .div-btns {
+      display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; justify-content: center;
+    }
+    .div-close {
+      padding: 10px 32px; border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 8px; background: rgba(201,168,76,0.1); color: var(--gold);
+      font-size: 0.85rem; cursor: pointer; font-family: var(--font-sans); letter-spacing: 2px;
+    }
+    .div-close:hover { background: rgba(201,168,76,0.2); }
+
+    /* Footer */
+    .iching-footer {
+      padding: 60px 24px; text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .iching-footer a {
+      color: var(--gold); text-decoration: none; font-family: var(--font-serif);
+      font-size: 0.9rem; letter-spacing: 4px;
+    }
+    .iching-footer p {
+      color: var(--text-dim); font-size: 0.7rem; margin-top: 8px; opacity: 0.4;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .card-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+    }
+    @media (max-width: 768px) {
+      .nav-inner { padding: 14px 20px; }
+      .iching-hero { padding: 120px 20px 40px; }
+      .card-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 10px; padding: 0 12px 60px;
+      }
+      .modal { flex-direction: column; }
+      .modal-image { flex: none; padding: 20px 20px 0; }
+      .modal-content { padding: 20px; }
+      .coin { width: 52px; height: 52px; font-size: 1.3rem; }
+    }
+    @media (max-width: 480px) {
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">福青施老師</a>
+      <a href="index.html" class="nav-back">&larr; 返回作品集</a>
+    </div>
+  </nav>
+
+  <header class="iching-hero">
+    <h1>西遊記風易經卜卦</h1>
+    <p>64 卦水墨國風圖卡 &middot; 擲幣占卦 &middot; 卦象詳解</p>
+  </header>
+
+  <div class="actions">
+    <button class="btn btn-gold" onclick="startDivination()">擲幣卜卦</button>
+  </div>
+
+  <div class="search-wrap">
+    <input type="text" class="search-input" placeholder="搜尋卦名、關鍵字..." oninput="filterCards()">
+  </div>
+
+  <div class="filters" id="filters">
+    <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">全部 (64)</button>
+    <button class="filter-btn" data-filter="乾宮" onclick="setFilter('乾宮',this)">乾宮 (8)</button>
+    <button class="filter-btn" data-filter="坤宮" onclick="setFilter('坤宮',this)">坤宮 (8)</button>
+    <button class="filter-btn" data-filter="震宮" onclick="setFilter('震宮',this)">震宮 (8)</button>
+    <button class="filter-btn" data-filter="巽宮" onclick="setFilter('巽宮',this)">巽宮 (8)</button>
+    <button class="filter-btn" data-filter="坎宮" onclick="setFilter('坎宮',this)">坎宮 (8)</button>
+    <button class="filter-btn" data-filter="離宮" onclick="setFilter('離宮',this)">離宮 (8)</button>
+    <button class="filter-btn" data-filter="艮宮" onclick="setFilter('艮宮',this)">艮宮 (8)</button>
+    <button class="filter-btn" data-filter="兌宮" onclick="setFilter('兌宮',this)">兌宮 (8)</button>
+  </div>
+
+  <div class="card-grid" id="cardGrid"></div>
+
+  <!-- Detail Modal -->
+  <div class="modal-overlay" id="detailModal" onclick="if(event.target===this)closeDetail()">
+    <div class="modal">
+      <button class="modal-close" onclick="closeDetail()">&times;</button>
+      <div class="modal-image"><img id="modalImg" src="" alt=""></div>
+      <div class="modal-content">
+        <div class="modal-title" id="modalTitle"></div>
+        <div class="modal-subtitle" id="modalSubtitle"></div>
+        <div class="trigram-row" id="modalTrigrams"></div>
+        <div class="yao-display" id="modalYao"></div>
+        <div class="modal-section"><h4>卦辭</h4><p id="modalJudgment"></p></div>
+        <div class="modal-section"><h4>象辭</h4><p id="modalImage"></p></div>
+        <div class="modal-section"><h4>吉象</h4><p id="modalUpright"></p></div>
+        <div class="modal-section"><h4>凶象</h4><p id="modalReversed"></p></div>
+        <div class="modal-section"><h4>關鍵詞</h4><p id="modalKeywords"></p></div>
+        <div class="modal-section"><h4>西遊記角色</h4><p id="modalCharacter"></p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Divination Modal -->
+  <div class="divination-overlay" id="divModal">
+    <div class="div-title" id="divTitle">擲幣卜卦</div>
+
+    <div class="coins-area" id="coinsArea">
+      <div class="coin" id="coin0">正</div>
+      <div class="coin" id="coin1">正</div>
+      <div class="coin" id="coin2">正</div>
+    </div>
+
+    <div class="yao-progress" id="yaoProgress"></div>
+
+    <div class="div-result" id="divResult" style="display:none"></div>
+
+    <div class="div-btns">
+      <button class="div-close" id="divAction" onclick="divThrow()">擲第一爻</button>
+      <button class="div-close" onclick="closeDivination()">關閉</button>
+    </div>
+  </div>
+
+  <footer class="iching-footer">
+    <a href="index.html">福青施老師</a>
+    <p>&copy; 2026 All rights reserved.</p>
+  </footer>
+
+<script>
+// ===== DATA =====
+let HEXAGRAMS = [];
+
+// Hexagram binary lookup: key = binary string (bottom to top, yang=1, yin=0), value = hexagram number
+const HEXAGRAM_LOOKUP = {
+  "111111":1,"000000":2,"010001":3,"100010":4,"010111":5,"111010":6,
+  "000010":7,"010000":8,"110111":9,"111011":10,"000111":11,"111000":12,
+  "111101":13,"101111":14,"000100":15,"001000":16,"011001":17,"100110":18,
+  "000011":19,"110000":20,"101001":21,"100101":22,"100000":23,"000001":24,
+  "111001":25,"100111":26,"100001":27,"011110":28,"010010":29,"101101":30,
+  "011100":31,"001110":32,"111100":33,"001111":34,"101000":35,"000101":36,
+  "110101":37,"101011":38,"010100":39,"001010":40,"100011":41,"110001":42,
+  "011111":43,"111110":44,"011000":45,"000110":46,"011010":47,"010110":48,
+  "011101":49,"101110":50,"001001":51,"100100":52,"110100":53,"001011":54,
+  "001101":55,"101100":56,"110110":57,"011011":58,"110010":59,"010011":60,
+  "110011":61,"001100":62,"010101":63,"101010":64
+};
+
+// Load data
+fetch('iching/data/hexagrams.json')
+  .then(r => r.json())
+  .then(data => { HEXAGRAMS = data; renderGrid(); })
+  .catch(() => {
+    // Fallback: try relative path
+    fetch('data/hexagrams.json')
+      .then(r => r.json())
+      .then(data => { HEXAGRAMS = data; renderGrid(); });
+  });
+
+// ===== GRID RENDERING =====
+let currentFilter = 'all';
+
+function renderGrid() {
+  const grid = document.getElementById('cardGrid');
+  grid.innerHTML = '';
+  const search = document.querySelector('.search-input').value.toLowerCase();
+
+  HEXAGRAMS.forEach(h => {
+    const matchFilter = currentFilter === 'all' || h.palace === currentFilter;
+    const matchSearch = !search ||
+      h.name_zh.includes(search) ||
+      h.name_en.toLowerCase().includes(search) ||
+      h.keywords.includes(search) ||
+      h.character.includes(search) ||
+      h.unicode.includes(search);
+
+    const card = document.createElement('div');
+    card.className = 'hex-card' + (matchFilter && matchSearch ? '' : ' hidden');
+    card.onclick = () => showDetail(h);
+
+    const imgFile = `iching/images/${String(h.number).padStart(2,'0')}-${h.name_zh}.webp`;
+    card.innerHTML = `
+      <img src="${imgFile}" alt="${h.name_zh}" loading="lazy"
+           onerror="this.style.display='none';this.nextElementSibling.style.flex='1';this.nextElementSibling.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;font-size:3rem;opacity:0.3\\'>${h.unicode}</div><div style=\\'text-align:center\\'><strong>${h.name_zh}</strong></div>'">
+      <div class="card-label"><strong>${h.unicode} ${h.name_zh}</strong> ${h.name_en}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function setFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid();
+}
+
+function filterCards() { renderGrid(); }
+
+// ===== DETAIL MODAL =====
+function showDetail(h) {
+  document.getElementById('modalImg').src = `iching/images/${String(h.number).padStart(2,'0')}-${h.name_zh}.webp`;
+  document.getElementById('modalTitle').textContent = `${h.unicode} ${h.name_zh}`;
+  document.getElementById('modalSubtitle').textContent = `#${h.number} ${h.name_en} — ${h.palace} · ${h.element}`;
+
+  // Trigrams
+  const upperParts = h.upper.split(' ');
+  const lowerParts = h.lower.split(' ');
+  document.getElementById('modalTrigrams').innerHTML = `
+    <div class="trigram-item"><span class="trigram-symbol">${upperParts[0]}</span><span class="trigram-name">上卦 ${upperParts[1] || ''}</span></div>
+    <div class="trigram-item"><span class="trigram-symbol">${lowerParts[0]}</span><span class="trigram-name">下卦 ${lowerParts[1] || ''}</span></div>
+  `;
+
+  // Yao lines
+  const binary = Object.entries(HEXAGRAM_LOOKUP).find(([,v]) => v === h.number);
+  if (binary) {
+    const bits = binary[0];
+    let yaoHtml = '';
+    for (let i = 5; i >= 0; i--) {
+      const isYang = bits[i] === '1';
+      yaoHtml += `<div class="yao-line">${isYang
+        ? '<span class="segment yang"></span>'
+        : '<span class="segment yin"></span><span class="segment yin"></span>'
+      }</div>`;
+    }
+    document.getElementById('modalYao').innerHTML = yaoHtml;
+  }
+
+  document.getElementById('modalJudgment').textContent = h.judgment;
+  document.getElementById('modalImage').textContent = h.image;
+  document.getElementById('modalUpright').textContent = h.meaning_upright;
+  document.getElementById('modalReversed').textContent = h.meaning_reversed;
+  document.getElementById('modalKeywords').textContent = h.keywords;
+  document.getElementById('modalCharacter').textContent = `${h.character} — ${h.scene}`;
+
+  document.getElementById('detailModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDetail() {
+  document.getElementById('detailModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ===== DIVINATION =====
+let divYaoValues = [];  // 6 values: 6,7,8,9
+let divYaoCount = 0;
+let divAnimating = false;
+
+function startDivination() {
+  divYaoValues = [];
+  divYaoCount = 0;
+  divAnimating = false;
+  document.getElementById('yaoProgress').innerHTML = '';
+  document.getElementById('divResult').style.display = 'none';
+  document.getElementById('divResult').innerHTML = '';
+  document.getElementById('divTitle').textContent = '擲幣卜卦';
+  document.getElementById('divAction').textContent = '擲第一爻';
+  document.getElementById('divAction').style.display = '';
+  resetCoins();
+  document.getElementById('divModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDivination() {
+  document.getElementById('divModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function resetCoins() {
+  for (let i = 0; i < 3; i++) {
+    const c = document.getElementById('coin' + i);
+    c.textContent = '正';
+    c.className = 'coin';
+  }
+}
+
+function divThrow() {
+  if (divAnimating) return;
+  if (divYaoCount >= 6) return;
+
+  divAnimating = true;
+  document.getElementById('divAction').style.pointerEvents = 'none';
+
+  // Animate coins
+  const coins = [0,1,2].map(i => document.getElementById('coin' + i));
+  const results = [0,1,2].map(() => Math.random() < 0.5 ? 3 : 2); // 3=heads(正), 2=tails(反)
+
+  coins.forEach(c => c.classList.add('flipping'));
+
+  setTimeout(() => {
+    coins.forEach((c, i) => {
+      c.classList.remove('flipping');
+      if (results[i] === 3) {
+        c.textContent = '正';
+        c.className = 'coin heads';
+      } else {
+        c.textContent = '反';
+        c.className = 'coin tails';
+      }
+    });
+
+    const sum = results[0] + results[1] + results[2]; // 6,7,8,9
+    divYaoValues.push(sum);
+    divYaoCount++;
+
+    // Show yao line
+    addYaoLine(sum, divYaoCount);
+
+    if (divYaoCount < 6) {
+      document.getElementById('divTitle').textContent = `擲幣卜卦 — 第 ${divYaoCount}/6 爻`;
+      document.getElementById('divAction').textContent = `擲第${['一','二','三','四','五','六'][divYaoCount]}爻`;
+      document.getElementById('divAction').style.pointerEvents = '';
+      divAnimating = false;
+    } else {
+      document.getElementById('divTitle').textContent = '卦象已成';
+      document.getElementById('divAction').style.display = 'none';
+      showDivResult();
+      divAnimating = false;
+    }
+  }, 500);
+}
+
+function addYaoLine(val, pos) {
+  const isYang = (val === 7 || val === 9);
+  const isMoving = (val === 6 || val === 9);
+  const movingClass = isMoving ? ' moving' : '';
+  const names = ['初','二','三','四','五','上'];
+  const label = names[pos - 1];
+
+  const line = document.createElement('div');
+  line.className = 'yao-result-line';
+  line.innerHTML = `
+    <span class="yao-label">${label}爻</span>
+    ${isYang
+      ? `<span class="seg yang${movingClass}"></span>`
+      : `<span class="seg yin${movingClass}"></span><span class="seg yin${movingClass}"></span>`
+    }
+    <span class="yao-val">${val}${isMoving ? '◯' : ''}</span>
+  `;
+
+  // Insert at top (so bottom yao appears at bottom)
+  const progress = document.getElementById('yaoProgress');
+  progress.insertBefore(line, progress.firstChild);
+}
+
+function showDivResult() {
+  // Build binary: bottom to top, yang=1, yin=0
+  let mainBinary = '';
+  let changeBinary = '';
+  let hasMoving = false;
+
+  for (let i = 0; i < 6; i++) {
+    const v = divYaoValues[i];
+    const isYang = (v === 7 || v === 9);
+    const isMoving = (v === 6 || v === 9);
+
+    mainBinary += isYang ? '1' : '0';
+
+    if (isMoving) {
+      hasMoving = true;
+      changeBinary += isYang ? '0' : '1'; // Moving lines flip
+    } else {
+      changeBinary += isYang ? '1' : '0';
+    }
+  }
+
+  const mainNum = HEXAGRAM_LOOKUP[mainBinary];
+  const mainHex = HEXAGRAMS.find(h => h.number === mainNum);
+
+  let html = '';
+  if (mainHex) {
+    html += `
+      <div class="div-result-hex">${mainHex.unicode}</div>
+      <div class="div-result-name">${mainHex.name_zh}</div>
+      <div class="div-result-en">#${mainHex.number} ${mainHex.name_en}</div>
+      <div class="div-result-meaning">${mainHex.judgment}</div>
+      <div class="div-result-meaning" style="margin-top:8px">${mainHex.image}</div>
+      <div class="div-result-meaning" style="margin-top:8px;color:var(--text)">${mainHex.meaning_upright}</div>
+    `;
+  }
+
+  if (hasMoving) {
+    const changeNum = HEXAGRAM_LOOKUP[changeBinary];
+    const changeHex = HEXAGRAMS.find(h => h.number === changeNum);
+    if (changeHex) {
+      html += `
+        <div class="div-change">
+          <div class="div-change-label">變卦</div>
+          <div class="div-result-hex" style="font-size:2rem">${changeHex.unicode}</div>
+          <div class="div-result-name" style="font-size:1.1rem">${changeHex.name_zh}</div>
+          <div class="div-result-en">#${changeHex.number} ${changeHex.name_en}</div>
+          <div class="div-result-meaning">${changeHex.meaning_upright}</div>
+        </div>
+      `;
+    }
+  }
+
+  const resultDiv = document.getElementById('divResult');
+  resultDiv.innerHTML = html;
+  resultDiv.style.display = 'block';
+}
+
+// Keyboard
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeDetail();
+    closeDivination();
+  }
+});
+</script>
+
+</body>
+</html>

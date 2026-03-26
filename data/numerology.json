@@ -1,0 +1,557 @@
+[
+  {
+    "number": 1,
+    "title_zh": "領袖",
+    "title_en": "The Leader",
+    "element_zh": "火",
+    "element_en": "Fire",
+    "planet_zh": "太陽",
+    "planet_en": "Sun",
+    "image": "images/numerology/01-leader.webp",
+    "aspects": {
+      "personality": {
+        "zh": "你是天生的先驅者，擁有強烈的獨立精神與開創力。勇於走自己的路，不喜歡被他人的規則束縛。你的決斷力和自信讓你在人群中自然成為焦點，內心深處渴望做出獨一無二的貢獻。",
+        "en": "You are a born pioneer with a fierce independent spirit and creative drive. You forge your own path and resist being bound by others' rules. Your decisiveness and confidence naturally place you at the center of attention, driven by a deep desire to make a unique contribution."
+      },
+      "career": {
+        "zh": "適合領導角色、創業或任何需要開創性思維的工作。你在需要自主決策的環境中表現最佳，能將願景轉化為行動。管理、科技創新與自由職業都是你的舞台。",
+        "en": "Leadership roles, entrepreneurship, and any work requiring innovative thinking suit you best. You thrive in environments where you can make autonomous decisions and turn vision into action. Management, tech innovation, and freelancing are your ideal arenas."
+      },
+      "love": {
+        "zh": "在感情中你需要一個尊重你獨立性的伴侶。你的熱情和忠誠讓關係充滿火花，但要注意不要過於強勢或忽視對方的需求。當你學會在主導與傾聽之間平衡，愛情將會開花結果。",
+        "en": "In relationships, you need a partner who respects your independence. Your passion and loyalty ignite sparks, but be careful not to dominate or overlook your partner's needs. When you balance leading with listening, love truly blossoms."
+      },
+      "health": {
+        "zh": "你的能量充沛但容易過度消耗。注意頭部相關問題、壓力性頭痛和心血管健康。規律運動能幫助你釋放過剩的能量，冥想則有助於平衡你強烈的內在驅動力。",
+        "en": "Your energy is abundant but easily overextended. Watch for head-related issues, stress headaches, and cardiovascular health. Regular exercise helps channel excess energy, while meditation balances your intense inner drive."
+      },
+      "spiritual": {
+        "zh": "你的靈性課題是學習「自我」與「服務」的平衡。透過勇氣與行動力實現靈魂使命，同時保持謙遜。你來此世是為了學習如何以獨立的力量點亮他人的道路。",
+        "en": "Your spiritual lesson is balancing self with service. Fulfill your soul's mission through courage and action while maintaining humility. You came here to learn how to use your independent strength to illuminate the path for others."
+      },
+      "talents": {
+        "zh": "你擁有卓越的領導力、開創能力和堅定的意志力。善於將想法化為現實，面對挑戰時展現出非凡的勇氣。你的創新思維和行動力是最大的天賦。",
+        "en": "You possess exceptional leadership, pioneering ability, and unwavering willpower. Skilled at turning ideas into reality, you show remarkable courage when facing challenges. Your innovative thinking and action-oriented nature are your greatest gifts."
+      },
+      "challenges": {
+        "zh": "最大的挑戰是控制自我中心的傾向和過度固執。學會接受他人的意見、培養耐心、避免孤立自己。當你能放下「只有我能做好」的執念，將迎來更大的成就。",
+        "en": "Your greatest challenge is managing self-centered tendencies and excessive stubbornness. Learn to accept others' input, cultivate patience, and avoid isolating yourself. When you release the belief that only you can do it right, even greater achievements await."
+      }
+    },
+    "lucky": {
+      "colors": { "zh": ["紅色", "金色"], "en": ["Red", "Gold"] },
+      "numbers": [1, 10, 19],
+      "crystal": { "zh": "紅寶石", "en": "Ruby" },
+      "day": { "zh": "週日", "en": "Sunday" }
+    }
+  },
+  {
+    "number": 2,
+    "title_zh": "外交家",
+    "title_en": "The Diplomat",
+    "element_zh": "水",
+    "element_en": "Water",
+    "planet_zh": "月亮",
+    "planet_en": "Moon",
+    "image": "images/numerology/02-diplomat.webp",
+    "aspects": {
+      "personality": {
+        "zh": "你擁有敏銳的直覺與深厚的同理心，是天生的和平使者。你能感受到環境中最微妙的情緒變化，並巧妙地調和衝突。溫柔而堅韌，你的力量來自於合作而非對抗。",
+        "en": "You possess keen intuition and deep empathy, a natural peacemaker. You sense the subtlest emotional shifts in any environment and skillfully mediate conflicts. Gentle yet resilient, your strength comes from cooperation rather than confrontation."
+      },
+      "career": {
+        "zh": "適合諮商、外交、人力資源、藝術創作等需要細膩感受力的工作。你在團隊合作中發揮最大價值，擅長在幕後推動事物前進。音樂、療癒和調解領域都適合你。",
+        "en": "Counseling, diplomacy, HR, and artistic creation requiring refined sensitivity suit you. You deliver maximum value in teamwork, excelling at driving progress behind the scenes. Music, healing, and mediation are all fitting fields."
+      },
+      "love": {
+        "zh": "你是最體貼的伴侶，善於營造和諧溫暖的關係。但要注意不要過度犧牲自己來維持和平，學會表達自己的真實需求。你需要一個能給予你安全感和情感支持的伴侶。",
+        "en": "You are the most considerate partner, skilled at creating harmonious, warm relationships. But be careful not to over-sacrifice yourself to maintain peace — learn to express your true needs. You need a partner who provides security and emotional support."
+      },
+      "health": {
+        "zh": "情緒波動容易影響你的身體健康，特別是消化系統和神經系統。水療、藝術療法和充足的獨處時間對你至關重要。學會設立情緒界線，不要過度吸收他人的負面能量。",
+        "en": "Emotional fluctuations easily affect your physical health, especially the digestive and nervous systems. Hydrotherapy, art therapy, and ample alone time are vital for you. Learn to set emotional boundaries and stop absorbing others' negative energy."
+      },
+      "spiritual": {
+        "zh": "你的靈性課題是學習在「給予」與「接受」之間找到平衡。月亮般的你反射他人的光芒，但也需要找到自己的內在之光。信任你的直覺，它是你最強大的靈性指引。",
+        "en": "Your spiritual lesson is finding balance between giving and receiving. Moon-like, you reflect others' light, but you must also find your own inner radiance. Trust your intuition — it is your most powerful spiritual guide."
+      },
+      "talents": {
+        "zh": "你擁有絕佳的外交手腕、深度的直覺力和天生的療癒能力。能在衝突中找到雙贏的解法，用溫柔的力量影響他人。你的敏感度是一種超能力，不是弱點。",
+        "en": "You possess exceptional diplomatic skill, deep intuition, and natural healing ability. You find win-win solutions in conflict and influence others with gentle strength. Your sensitivity is a superpower, not a weakness."
+      },
+      "challenges": {
+        "zh": "最大的挑戰是克服過度敏感和優柔寡斷。學會為自己發聲，不要總是迎合他人。建立健康的界線，允許自己說「不」，你的善良不應該成為被利用的弱點。",
+        "en": "Your greatest challenge is overcoming over-sensitivity and indecisiveness. Learn to speak up for yourself instead of always accommodating others. Establish healthy boundaries, allow yourself to say no — your kindness should never become a vulnerability."
+      }
+    },
+    "lucky": {
+      "colors": { "zh": ["白色", "銀色"], "en": ["White", "Silver"] },
+      "numbers": [2, 11, 20],
+      "crystal": { "zh": "月光石", "en": "Moonstone" },
+      "day": { "zh": "週一", "en": "Monday" }
+    }
+  },
+  {
+    "number": 3,
+    "title_zh": "表達者",
+    "title_en": "The Communicator",
+    "element_zh": "火",
+    "element_en": "Fire",
+    "planet_zh": "木星",
+    "planet_en": "Jupiter",
+    "image": "images/numerology/03-communicator.webp",
+    "aspects": {
+      "personality": {
+        "zh": "你是創意的化身，擁有感染力十足的樂觀態度和表達天賦。你的出現總能為周圍帶來歡樂和活力，言語中帶有魔力，能將複雜的事情用生動的方式表達。想像力豐富的你，是天生的藝術家。",
+        "en": "You are creativity incarnate, with infectious optimism and expressive gifts. Your presence always brings joy and vitality, your words carry magic that conveys complex ideas vividly. Rich in imagination, you are a born artist."
+      },
+      "career": {
+        "zh": "寫作、演藝、設計、教學、行銷等創意領域是你的主場。你擅長用故事打動人心，在需要溝通和創造力的崗位上如魚得水。社交媒體經營、公關和表演藝術也非常適合你。",
+        "en": "Writing, performing arts, design, teaching, and marketing are your home turf. You excel at touching hearts through storytelling and thrive in roles requiring communication and creativity. Social media, PR, and performing arts are also ideal."
+      },
+      "love": {
+        "zh": "你在感情中充滿魅力和趣味，讓伴侶永遠不會感到無聊。但要注意不要用幽默掩蓋真實的情感，學會深層的情感交流。你需要一個能欣賞你的才華且不會限制你表達自由的伴侶。",
+        "en": "You bring charm and fun to relationships — your partner never feels bored. But don't use humor to mask real emotions; learn deeper emotional exchange. You need a partner who appreciates your talents and won't restrict your expressive freedom."
+      },
+      "health": {
+        "zh": "喉嚨、甲狀腺和呼吸系統是你需要注意的區域。情緒化的飲食習慣可能影響體重。創造性的運動方式如舞蹈、瑜伽比枯燥的健身更適合你。保持規律的創作輸出也有助於心理健康。",
+        "en": "Throat, thyroid, and respiratory system need your attention. Emotional eating habits may affect weight. Creative movement like dance and yoga suits you better than monotonous workouts. Maintaining regular creative output also supports mental health."
+      },
+      "spiritual": {
+        "zh": "你的靈性課題是學習用創造力服務更高的目的。不要停留在表面的娛樂，而是深入探索你的表達能帶來怎樣的療癒和啟發。你的話語具有創造的力量，善用它來傳遞智慧。",
+        "en": "Your spiritual lesson is using creativity to serve a higher purpose. Don't stay at surface entertainment — explore deeply how your expression can heal and inspire. Your words hold creative power; use it wisely to transmit wisdom."
+      },
+      "talents": {
+        "zh": "你擁有非凡的溝通天賦、豐富的想像力和天生的藝術感。能用創意將平凡變為非凡，用樂觀的態度感染身邊的人。你的幽默感和社交能力讓你在人群中如魚得水。",
+        "en": "You possess extraordinary communication gifts, rich imagination, and innate artistic sense. You transform the ordinary into extraordinary with creativity and infect those around you with optimism. Your humor and social skills make you shine in any crowd."
+      },
+      "challenges": {
+        "zh": "最大的挑戰是克服注意力分散和情緒波動。太多的點子可能讓你什麼都開始卻難以完成。學會專注和堅持，不要因為害怕深度而停留在表面。自律是將才華轉化為成就的關鍵。",
+        "en": "Your greatest challenge is overcoming scattered attention and mood swings. Too many ideas may leave you starting everything but finishing nothing. Learn focus and persistence — don't stay shallow out of fear of depth. Self-discipline is key to turning talent into achievement."
+      }
+    },
+    "lucky": {
+      "colors": { "zh": ["黃色", "紫色"], "en": ["Yellow", "Purple"] },
+      "numbers": [3, 12, 21],
+      "crystal": { "zh": "黃水晶", "en": "Citrine" },
+      "day": { "zh": "週四", "en": "Thursday" }
+    }
+  },
+  {
+    "number": 4,
+    "title_zh": "建造者",
+    "title_en": "The Builder",
+    "element_zh": "土",
+    "element_en": "Earth",
+    "planet_zh": "天王星",
+    "planet_en": "Uranus",
+    "image": "images/numerology/04-builder.webp",
+    "aspects": {
+      "personality": {
+        "zh": "你是穩健可靠的基石，擁有卓越的組織力和實踐精神。你相信踏實的努力勝過一切捷徑，用系統化的方法將夢想變為現實。你的忠誠和可靠讓身邊的人感到安心。",
+        "en": "You are a steady, reliable foundation with exceptional organizational skill and practical spirit. You believe solid effort surpasses all shortcuts, using systematic methods to turn dreams into reality. Your loyalty and dependability bring comfort to those around you."
+      },
+      "career": {
+        "zh": "工程、建築、會計、項目管理、金融等需要精準和紀律的領域適合你。你是團隊中最可靠的執行者，能將混亂變為秩序。任何需要長期規劃和穩步推進的工作都是你的強項。",
+        "en": "Engineering, architecture, accounting, project management, and finance requiring precision and discipline suit you. You're the most reliable executor on any team, turning chaos into order. Any work requiring long-term planning and steady progress is your forte."
+      },
+      "love": {
+        "zh": "你在感情中追求穩定和安全感，是最忠誠可靠的伴侶。你用行動而非言語表達愛意，為家庭建造堅固的堡壘。但要記得偶爾放鬆，加入一些浪漫和驚喜，讓關係保持新鮮。",
+        "en": "You seek stability and security in relationships, the most loyal and dependable partner. You express love through actions rather than words, building a solid fortress for your family. But remember to relax occasionally — add romance and surprises to keep things fresh."
+      },
+      "health": {
+        "zh": "骨骼、關節和牙齒是你需要關注的區域。過度工作可能導致慢性疲勞和肌肉緊繃。定期的伸展運動和戶外活動對你非常重要。學會放鬆，不要讓責任感壓垮你的身體。",
+        "en": "Bones, joints, and teeth need your attention. Overwork may lead to chronic fatigue and muscle tension. Regular stretching and outdoor activities are vital for you. Learn to relax — don't let your sense of responsibility crush your body."
+      },
+      "spiritual": {
+        "zh": "你的靈性課題是在「秩序」與「流動」之間找到平衡。不是所有事情都需要計劃，學會信任生命的節奏。你的使命是將靈性的洞見帶入物質世界，架起天地之間的橋樑。",
+        "en": "Your spiritual lesson is finding balance between order and flow. Not everything needs a plan — learn to trust life's rhythm. Your mission is to bring spiritual insight into the material world, building a bridge between heaven and earth."
+      },
+      "talents": {
+        "zh": "你擁有出色的組織能力、務實的執行力和堅韌的毅力。能將抽象概念轉化為具體成果，在混亂中建立秩序。你的可靠性和專注力是團隊中不可或缺的力量。",
+        "en": "You possess outstanding organizational ability, practical execution, and tenacious perseverance. You transform abstract concepts into concrete results and establish order amid chaos. Your reliability and focus are indispensable forces on any team."
+      },
+      "challenges": {
+        "zh": "最大的挑戰是過度僵化和抗拒改變。學會擁抱彈性，接受生活中的不確定性。不要讓完美主義阻礙進步，有時候「夠好」就已經足夠。對自己和他人多一些寬容。",
+        "en": "Your greatest challenge is excessive rigidity and resistance to change. Learn to embrace flexibility and accept life's uncertainties. Don't let perfectionism hinder progress — sometimes 'good enough' is enough. Show more tolerance toward yourself and others."
+      }
+    },
+    "lucky": {
+      "colors": { "zh": ["綠色", "棕色"], "en": ["Green", "Brown"] },
+      "numbers": [4, 13, 22],
+      "crystal": { "zh": "翡翠", "en": "Jade" },
+      "day": { "zh": "週六", "en": "Saturday" }
+    }
+  },
+  {
+    "number": 5,
+    "title_zh": "自由者",
+    "title_en": "The Freedom Seeker",
+    "element_zh": "風",
+    "element_en": "Air",
+    "planet_zh": "水星",
+    "planet_en": "Mercury",
+    "image": "images/numerology/05-freedom.webp",
+    "aspects": {
+      "personality": {
+        "zh": "你是永恆的冒險家，渴望自由、變化和新體驗。好奇心是你的驅動力，讓你成為多才多藝的學習者。你的適應力極強，在變動中如魚得水，害怕的是一成不變的生活。",
+        "en": "You are an eternal adventurer, craving freedom, change, and new experiences. Curiosity drives you, making you a versatile learner. Your adaptability is remarkable — you thrive in change, and what you fear most is a monotonous life."
+      },
+      "career": {
+        "zh": "旅遊、銷售、媒體、公關、探險等充滿變化的工作最適合你。你需要自由度高、不受限制的工作環境。數位遊牧、自媒體創作或任何讓你接觸多元人事物的職業都能讓你發光。",
+        "en": "Travel, sales, media, PR, and adventure — careers full of variety suit you best. You need a high-freedom, unrestricted work environment. Digital nomading, content creation, or any career exposing you to diverse people and experiences lets you shine."
+      },
+      "love": {
+        "zh": "你在感情中追求刺激和新鮮感，需要一個同樣熱愛生活的伴侶。承諾對你來說需要時間，但一旦找到能給你自由空間的靈魂伴侶，你會是充滿激情的伴侶。保持關係中的冒險精神是關鍵。",
+        "en": "You seek excitement and freshness in love, needing a partner who equally loves life. Commitment takes time for you, but once you find a soulmate who gives you space, you become a passionate partner. Keeping the spirit of adventure alive in relationships is key."
+      },
+      "health": {
+        "zh": "神經系統和上癮傾向是你需要注意的。過度追求刺激可能導致身體透支。多元化的運動方式能滿足你對變化的渴望，但要注意不要過度放縱。旅行和自然探索是你最好的療癒方式。",
+        "en": "The nervous system and addictive tendencies need your attention. Over-seeking stimulation may exhaust your body. Varied exercise satisfies your craving for change, but watch for overindulgence. Travel and nature exploration are your best healing methods."
+      },
+      "spiritual": {
+        "zh": "你的靈性課題是學習在「自由」中找到「深度」。不要只是蜻蜓點水般體驗一切，而是在某些經歷中深入扎根。真正的自由來自內在的覺知，而非外在的漂泊。",
+        "en": "Your spiritual lesson is finding depth within freedom. Don't just skim the surface of every experience — root deeply in some. True freedom comes from inner awareness, not external wandering."
+      },
+      "talents": {
+        "zh": "你擁有超強的適應力、多元的才能和天生的冒險精神。能在任何環境中快速找到自己的位置，用靈活的思維解決問題。你的好奇心和勇氣讓你成為開拓新領域的先鋒。",
+        "en": "You possess exceptional adaptability, diverse talents, and innate adventurous spirit. You quickly find your place in any environment, solving problems with flexible thinking. Your curiosity and courage make you a pioneer in new frontiers."
+      },
+      "challenges": {
+        "zh": "最大的挑戰是克服不穩定和缺乏專注。學會在自由與責任之間取得平衡，不要逃避承諾。深度體驗比廣度體驗更能帶來成長。學會珍惜已擁有的，而不是總是追逐下一個。",
+        "en": "Your greatest challenge is overcoming instability and lack of focus. Balance freedom with responsibility — don't flee from commitment. Depth of experience brings more growth than breadth. Learn to cherish what you have instead of always chasing the next thing."
+      }
+    },
+    "lucky": {
+      "colors": { "zh": ["青綠色", "銀色"], "en": ["Turquoise", "Silver"] },
+      "numbers": [5, 14, 23],
+      "crystal": { "zh": "海藍寶", "en": "Aquamarine" },
+      "day": { "zh": "週三", "en": "Wednesday" }
+    }
+  },
+  {
+    "number": 6,
+    "title_zh": "照顧者",
+    "title_en": "The Nurturer",
+    "element_zh": "金",
+    "element_en": "Metal",
+    "planet_zh": "金星",
+    "planet_en": "Venus",
+    "image": "images/numerology/06-nurturer.webp",
+    "aspects": {
+      "personality": {
+        "zh": "你是溫暖的守護者，天生具有強烈的責任感和照顧他人的本能。你追求和諧與美感，在家庭和社群中扮演著不可或缺的角色。你的愛具有療癒的力量，能讓身邊的人感到被呵護和重視。",
+        "en": "You are a warm guardian with a strong sense of responsibility and instinct to care for others. You pursue harmony and beauty, playing an indispensable role in family and community. Your love has healing power, making those around you feel cherished and valued."
+      },
+      "career": {
+        "zh": "醫療、教育、諮商、室內設計、美食等領域適合你。任何能讓你照顧他人、創造美好環境的工作都會讓你感到滿足。你也適合社區服務、家庭治療和藝術相關的職業。",
+        "en": "Healthcare, education, counseling, interior design, and culinary arts suit you. Any work that lets you care for others and create beautiful environments brings fulfillment. Community service, family therapy, and art-related careers also fit."
+      },
+      "love": {
+        "zh": "你是最無私的伴侶，願意為愛付出一切。但要注意不要過度犧牲而失去自我，也不要用控制來表達關心。學會接受愛與給予愛同樣重要。你需要一個懂得回報你付出的伴侶。",
+        "en": "You are the most selfless partner, willing to give everything for love. But don't over-sacrifice and lose yourself, and don't express care through control. Learning to receive love is as important as giving it. You need a partner who reciprocates your devotion."
+      },
+      "health": {
+        "zh": "心臟、肩膀和呼吸系統需要關注。過度承擔他人的重擔可能導致情緒疲勞和免疫力下降。花時間照顧自己不是自私，而是必須。芳香療法和園藝是很好的紓壓方式。",
+        "en": "Heart, shoulders, and respiratory system need attention. Over-bearing others' burdens may cause emotional fatigue and lowered immunity. Taking time for self-care isn't selfish — it's essential. Aromatherapy and gardening are excellent stress relievers."
+      },
+      "spiritual": {
+        "zh": "你的靈性課題是學習「無條件的愛」與「健康的界線」並存。真正的愛不是控制或犧牲，而是在自由中選擇彼此。你來此世是為了學習愛的最高形式——既愛他人，也愛自己。",
+        "en": "Your spiritual lesson is learning that unconditional love and healthy boundaries can coexist. True love isn't control or sacrifice — it's choosing each other in freedom. You came here to learn love's highest form: loving others while loving yourself."
+      },
+      "talents": {
+        "zh": "你擁有天生的療癒能力、強烈的美感和無私的奉獻精神。能在混亂中創造和諧，用愛和關懷轉化他人的生命。你的存在本身就是一種溫暖的力量。",
+        "en": "You possess natural healing ability, strong aesthetic sense, and selfless devotion. You create harmony amid chaos and transform lives through love and care. Your very presence is a warm, uplifting force."
+      },
+      "challenges": {
+        "zh": "最大的挑戰是克服過度付出和控制傾向。學會放手，允許他人成長和犯錯。不要用「我都是為你好」來合理化干涉他人的行為。照顧好自己，才能真正照顧好他人。",
+        "en": "Your greatest challenge is overcoming over-giving and controlling tendencies. Learn to let go, allowing others to grow and make mistakes. Don't justify interfering with 'it's for your own good.' Taking care of yourself first enables you to truly care for others."
+      }
+    },
+    "lucky": {
+      "colors": { "zh": ["藍色", "玫瑰色"], "en": ["Blue", "Rose"] },
+      "numbers": [6, 15, 24],
+      "crystal": { "zh": "粉晶", "en": "Rose Quartz" },
+      "day": { "zh": "週五", "en": "Friday" }
+    }
+  },
+  {
+    "number": 7,
+    "title_zh": "探索者",
+    "title_en": "The Seeker",
+    "element_zh": "水",
+    "element_en": "Water",
+    "planet_zh": "海王星",
+    "planet_en": "Neptune",
+    "image": "images/numerology/07-seeker.webp",
+    "aspects": {
+      "personality": {
+        "zh": "你是深沉的思想家，擁有超越表象的洞察力和對真理的渴望。你不滿足於表面的答案，總是追問「為什麼」。內省和獨處是你充電的方式，你的內在世界比任何人想像的都豐富。",
+        "en": "You are a profound thinker with insight that pierces beyond appearances and a thirst for truth. You never settle for surface answers, always asking 'why.' Introspection and solitude are how you recharge — your inner world is richer than anyone imagines."
+      },
+      "career": {
+        "zh": "研究、科學、哲學、心理學、靈性教導等需要深度思考的領域適合你。你是卓越的分析者和研究者，能在他人忽略的地方發現真理。寫作、科技研發和學術研究都是你的強項。",
+        "en": "Research, science, philosophy, psychology, and spiritual teaching requiring deep thought suit you. You are an outstanding analyst and researcher, discovering truths where others overlook them. Writing, tech R&D, and academic research are your strengths."
+      },
+      "love": {
+        "zh": "你在感情中需要深度的心智連結，膚淺的社交讓你疲憊。你選擇伴侶非常謹慎，但一旦打開心房，會展現出深刻而忠誠的愛。給自己和伴侶足夠的個人空間，是維持關係的關鍵。",
+        "en": "You need deep intellectual connection in relationships — shallow socializing exhausts you. You choose partners very carefully, but once you open up, you show profound, loyal love. Giving yourself and your partner enough personal space is key to sustaining the relationship."
+      },
+      "health": {
+        "zh": "心理健康、睡眠品質和神經系統是你需要關注的重點。過度思考可能導致焦慮和失眠。靜心冥想、接觸自然和規律作息對你極為重要。不要忽視身體的需求，它和心靈同樣需要滋養。",
+        "en": "Mental health, sleep quality, and the nervous system are your key focus areas. Overthinking may cause anxiety and insomnia. Meditation, nature contact, and regular routines are extremely important. Don't neglect physical needs — your body needs nourishment just like your mind."
+      },
+      "spiritual": {
+        "zh": "你的靈性課題是將知識轉化為智慧。不要只是收集資訊，而是將所學內化為生命的指引。你天生就與靈性世界有著深厚的連結，信任你的內在知曉，它會引導你走向覺醒。",
+        "en": "Your spiritual lesson is transforming knowledge into wisdom. Don't just collect information — internalize what you learn as life guidance. You naturally have a deep connection to the spiritual world. Trust your inner knowing — it will guide you toward awakening."
+      },
+      "talents": {
+        "zh": "你擁有卓越的分析能力、深邃的直覺力和追求真理的精神。能在複雜的問題中找到核心，用獨特的洞見啟發他人。你的思考深度和研究能力是無可取代的天賦。",
+        "en": "You possess exceptional analytical ability, deep intuition, and a truth-seeking spirit. You find the core in complex problems and inspire others with unique insights. Your depth of thought and research ability are irreplaceable gifts."
+      },
+      "challenges": {
+        "zh": "最大的挑戰是克服過度孤立和憤世嫉俗。學會與他人分享你的內在世界，不要讓完美的追求阻止你走入人群。智慧不僅來自獨處的思考，也來自與人的真實連結。",
+        "en": "Your greatest challenge is overcoming excessive isolation and cynicism. Learn to share your inner world with others — don't let the pursuit of perfection keep you from engaging with people. Wisdom comes not only from solitary thought but also from genuine human connection."
+      }
+    },
+    "lucky": {
+      "colors": { "zh": ["紫色", "銀色"], "en": ["Purple", "Silver"] },
+      "numbers": [7, 16, 25],
+      "crystal": { "zh": "紫水晶", "en": "Amethyst" },
+      "day": { "zh": "週一", "en": "Monday" }
+    }
+  },
+  {
+    "number": 8,
+    "title_zh": "權威者",
+    "title_en": "The Powerhouse",
+    "element_zh": "土",
+    "element_en": "Earth",
+    "planet_zh": "土星",
+    "planet_en": "Saturn",
+    "image": "images/numerology/08-powerhouse.webp",
+    "aspects": {
+      "personality": {
+        "zh": "你擁有強大的實現力和天生的權威感。目標導向的你，善於將遠大的願景轉化為實際的成就。你散發著一種自然的力量，讓人不自覺地信任和追隨你。物質與精神的平衡是你的終生課題。",
+        "en": "You possess powerful manifestation ability and natural authority. Goal-oriented, you excel at converting grand visions into concrete achievements. You radiate a natural power that makes people instinctively trust and follow you. Balancing material and spiritual realms is your lifelong theme."
+      },
+      "career": {
+        "zh": "企業管理、金融投資、法律、房地產等高層商業領域是你的主場。你有天生的商業直覺和資源整合能力。任何需要魄力和策略的高位決策都是你的舞台。",
+        "en": "Business management, financial investment, law, and real estate are your domain. You have innate business instincts and resource integration skills. Any high-level decision-making requiring boldness and strategy is your stage."
+      },
+      "love": {
+        "zh": "你在感情中傾向於扮演提供者和保護者的角色。你用實際行動和物質保障來表達愛意。但要注意不要讓工作佔據了所有的時間，也不要用權力來控制關係。真正的力量是脆弱中的坦誠。",
+        "en": "In relationships, you tend to play the provider and protector. You express love through practical actions and material security. But don't let work consume all your time, and don't use power to control relationships. True strength is honesty in vulnerability."
+      },
+      "health": {
+        "zh": "血壓、骨骼和壓力相關疾病是你需要注意的。高壓的生活方式可能導致心血管問題。學會授權和放鬆，不必事事親力親為。太極或高爾夫等能結合社交和運動的活動適合你。",
+        "en": "Blood pressure, bones, and stress-related conditions need attention. A high-pressure lifestyle may lead to cardiovascular issues. Learn to delegate and relax — you don't need to handle everything personally. Tai chi or golf, combining social and physical activity, suit you well."
+      },
+      "spiritual": {
+        "zh": "你的靈性課題是理解「豐盛」的真正含義。真正的富足不僅是銀行帳戶的數字，更是內在的圓滿。學會慷慨地給予，因為宇宙的豐盛是流動的——越分享，越豐富。",
+        "en": "Your spiritual lesson is understanding true abundance. Real wealth isn't just bank account numbers but inner fulfillment. Learn to give generously, for universal abundance flows — the more you share, the richer you become."
+      },
+      "talents": {
+        "zh": "你擁有卓越的商業頭腦、強大的執行力和天生的領導魅力。能在競爭中保持冷靜，用策略和毅力達成看似不可能的目標。你的決斷力和遠見是帶領團隊走向成功的關鍵。",
+        "en": "You possess exceptional business acumen, powerful execution, and natural leadership charisma. You stay calm in competition, using strategy and perseverance to achieve seemingly impossible goals. Your decisiveness and foresight are key to leading teams to success."
+      },
+      "challenges": {
+        "zh": "最大的挑戰是避免物質主義和權力成癮。學會衡量成功的標準不只有金錢和地位。過度追求控制會推開身邊的人。記住：真正的力量來自服務他人，而非凌駕他人。",
+        "en": "Your greatest challenge is avoiding materialism and power addiction. Learn that success isn't measured solely by money and status. Excessive pursuit of control pushes people away. Remember: true power comes from serving others, not dominating them."
+      }
+    },
+    "lucky": {
+      "colors": { "zh": ["黑色", "金色"], "en": ["Black", "Gold"] },
+      "numbers": [8, 17, 26],
+      "crystal": { "zh": "虎眼石", "en": "Tiger's Eye" },
+      "day": { "zh": "週六", "en": "Saturday" }
+    }
+  },
+  {
+    "number": 9,
+    "title_zh": "博愛者",
+    "title_en": "The Humanitarian",
+    "element_zh": "火",
+    "element_en": "Fire",
+    "planet_zh": "火星",
+    "planet_en": "Mars",
+    "image": "images/numerology/09-humanitarian.webp",
+    "aspects": {
+      "personality": {
+        "zh": "你是理想主義的夢想家，擁有寬廣的胸懷和對人類的深厚愛心。你能看到更大的圖景，關注的不只是個人利益而是集體福祉。你的慈悲心和創造力使你成為能改變世界的人。",
+        "en": "You are an idealistic dreamer with a broad heart and deep love for humanity. You see the bigger picture, focusing not just on personal interests but collective welfare. Your compassion and creativity make you someone who can change the world."
+      },
+      "career": {
+        "zh": "人道主義工作、藝術創作、教育、環保、國際組織等領域適合你。你需要一份有意義、能貢獻社會的工作。慈善事業、心理諮商和全球議題倡議都能讓你發揮所長。",
+        "en": "Humanitarian work, artistic creation, education, environmental advocacy, and international organizations suit you. You need meaningful work that contributes to society. Charity, psychological counseling, and global issue advocacy let you leverage your strengths."
+      },
+      "love": {
+        "zh": "你在感情中浪漫且無私，渴望靈魂層面的深度連結。但要注意不要過度理想化伴侶或犧牲個人需求。學會在愛「全世界」的同時，也能專注地愛眼前的這個人。",
+        "en": "You are romantic and selfless in love, craving deep soul-level connections. But don't over-idealize your partner or sacrifice personal needs. Learn to love the person right in front of you while loving the whole world."
+      },
+      "health": {
+        "zh": "循環系統、免疫力和慢性發炎是需要注意的區域。你容易因為過度付出而忽視自己的身體。適度的運動和創意活動能幫助你保持身心平衡。學會定期為自己充電，而不只是為他人服務。",
+        "en": "Circulatory system, immunity, and chronic inflammation need attention. You easily neglect your body through over-giving. Moderate exercise and creative activities help maintain physical and mental balance. Learn to recharge regularly, not just serve others."
+      },
+      "spiritual": {
+        "zh": "你的靈性課題是學習「放下」與「完成」。作為數字週期的最後一個，你帶著前世的智慧而來。學會不執著於結果，信任宇宙的安排。你的使命是用無條件的愛服務世界。",
+        "en": "Your spiritual lesson is learning to let go and complete. As the last in the number cycle, you carry wisdom from past lives. Learn non-attachment to outcomes and trust universal plan. Your mission is serving the world with unconditional love."
+      },
+      "talents": {
+        "zh": "你擁有廣闊的視野、深厚的同理心和非凡的藝術才能。能用創造力和慈悲心感動人心，在大格局中找到解決方案。你的智慧和包容力讓你成為天生的導師和療癒者。",
+        "en": "You possess broad vision, deep empathy, and extraordinary artistic talent. You move hearts with creativity and compassion, finding solutions in the big picture. Your wisdom and inclusiveness make you a natural mentor and healer."
+      },
+      "challenges": {
+        "zh": "最大的挑戰是學會放手和設立界線。不要試圖拯救每個人，也不要因為理想與現實的差距而感到失望。接受世界的不完美，同時繼續為更好的未來努力。結束是為了更好的開始。",
+        "en": "Your greatest challenge is learning to let go and set boundaries. Don't try to save everyone, and don't be disappointed by the gap between ideals and reality. Accept the world's imperfections while continuing to work for a better future. Endings enable better beginnings."
+      }
+    },
+    "lucky": {
+      "colors": { "zh": ["紅色", "金色"], "en": ["Red", "Gold"] },
+      "numbers": [9, 18, 27],
+      "crystal": { "zh": "石榴石", "en": "Garnet" },
+      "day": { "zh": "週二", "en": "Tuesday" }
+    }
+  },
+  {
+    "number": 11,
+    "title_zh": "啟示者",
+    "title_en": "The Illuminator",
+    "element_zh": "風",
+    "element_en": "Air",
+    "planet_zh": "冥王星",
+    "planet_en": "Pluto",
+    "image": "images/numerology/11-illuminator.webp",
+    "master": true,
+    "aspects": {
+      "personality": {
+        "zh": "你是大師數 11 的持有者，擁有極度敏銳的直覺和靈性洞察力。你能接收到常人無法察覺的訊息，彷彿是宇宙與人間的管道。你的存在本身就帶有啟發性的能量，但這份天賦也帶來巨大的內在壓力。",
+        "en": "As a holder of Master Number 11, you possess extremely keen intuition and spiritual insight. You receive messages invisible to most, as if channeling between cosmos and earth. Your very existence carries inspirational energy, but this gift also brings immense inner pressure."
+      },
+      "career": {
+        "zh": "靈性教導、藝術創作、心理治療、演講、療癒工作等領域適合你。你能用直覺和靈感引領他人看見更高的可能性。媒體、音樂和任何需要靈感和願景的創意領域都是你的舞台。",
+        "en": "Spiritual teaching, artistic creation, psychotherapy, public speaking, and healing work suit you. You use intuition and inspiration to lead others toward higher possibilities. Media, music, and any creative field requiring inspiration and vision are your stage."
+      },
+      "love": {
+        "zh": "你在感情中極度敏感和深沉。你需要一個理解你靈性需求的伴侶，不要試圖壓抑你的直覺。你的愛帶有轉化的力量，能幫助伴侶看見自己的更高可能。但要注意不要承擔對方的情緒重擔。",
+        "en": "You are extremely sensitive and deep in love. You need a partner who understands your spiritual needs — don't try to suppress your intuition. Your love carries transformative power, helping partners see their higher potential. But be careful not to bear their emotional burdens."
+      },
+      "health": {
+        "zh": "神經系統極度敏感，容易出現焦慮、失眠和能量耗竭。你需要大量的獨處時間來重新校準自己的能量場。冥想、能量療癒和接地練習對你至關重要。避免過度刺激的環境。",
+        "en": "Your extremely sensitive nervous system is prone to anxiety, insomnia, and energy depletion. You need ample solitude to recalibrate your energy field. Meditation, energy healing, and grounding practices are vital. Avoid overly stimulating environments."
+      },
+      "spiritual": {
+        "zh": "你的靈性使命是成為「光的管道」，將更高維度的智慧帶入人間。但要先學會穩定自己，才能穩定地傳遞光明。你不需要證明自己的靈性，只需要真實地活出它。11 的道路是啟發，不是表演。",
+        "en": "Your spiritual mission is to be a 'channel of light,' bringing higher-dimensional wisdom to earth. But first learn to stabilize yourself before steadily transmitting light. You don't need to prove your spirituality — just live it authentically. The path of 11 is illumination, not performance."
+      },
+      "talents": {
+        "zh": "你擁有超凡的直覺力、靈性洞察力和啟發他人的天賦。能在混沌中看見秩序，在平凡中發現神聖。你的存在本身就是一種靈感的來源，能觸動人們內心深處的覺醒。",
+        "en": "You possess transcendent intuition, spiritual insight, and the gift of inspiring others. You see order in chaos and divinity in the ordinary. Your very existence is a source of inspiration, touching people's deepest awakening."
+      },
+      "challenges": {
+        "zh": "最大的挑戰是處理巨大的內在壓力和自我懷疑。高度的敏感性讓你容易被外界能量淹沒。學會區分自己的情緒和他人的情緒，建立強大的能量保護。不要因為害怕自己的力量而退縮。",
+        "en": "Your greatest challenge is handling immense inner pressure and self-doubt. High sensitivity easily overwhelms you with external energies. Learn to distinguish your emotions from others' and build strong energetic protection. Don't retreat from fear of your own power."
+      }
+    },
+    "lucky": {
+      "colors": { "zh": ["銀色", "白色"], "en": ["Silver", "White"] },
+      "numbers": [11, 29],
+      "crystal": { "zh": "拉長石", "en": "Labradorite" },
+      "day": { "zh": "週一", "en": "Monday" }
+    }
+  },
+  {
+    "number": 22,
+    "title_zh": "大建築師",
+    "title_en": "The Master Builder",
+    "element_zh": "土",
+    "element_en": "Earth",
+    "planet_zh": "冥王星",
+    "planet_en": "Pluto",
+    "image": "images/numerology/22-master-builder.webp",
+    "master": true,
+    "aspects": {
+      "personality": {
+        "zh": "你是大師數 22 的持有者，被稱為「夢想的建築師」。你擁有將宏大願景落地為現實的罕見能力。結合了 11 的直覺和 4 的實踐力，你能在物質世界中實現靈性的藍圖。你的潛能是所有靈數中最強大的。",
+        "en": "As a holder of Master Number 22, known as the 'Architect of Dreams,' you possess the rare ability to ground grand visions into reality. Combining 11's intuition with 4's practicality, you manifest spiritual blueprints in the material world. Your potential is the most powerful of all life path numbers."
+      },
+      "career": {
+        "zh": "大型項目管理、建築、政治、國際組織、社會改革等需要宏觀願景和實踐能力的領域適合你。你能建造改變世界的系統和結構。科技創業、城市規劃和教育改革都是你能大展身手的舞台。",
+        "en": "Large-scale project management, architecture, politics, international organizations, and social reform requiring macro vision and practical ability suit you. You can build systems and structures that change the world. Tech startups, urban planning, and education reform are your stages."
+      },
+      "love": {
+        "zh": "你在感情中需要一個能理解你宏大使命的伴侶。你的愛深沉而持久，但工作的壓力可能讓你難以平衡事業與家庭。找到一個願意與你並肩作戰的夥伴，比找一個只能崇拜你的人更重要。",
+        "en": "You need a partner who understands your grand mission. Your love is deep and enduring, but work pressure may challenge your work-life balance. Finding a partner willing to fight alongside you matters more than finding one who merely admires you."
+      },
+      "health": {
+        "zh": "過勞和神經衰弱是你最大的健康風險。你承擔的壓力是普通人的數倍，需要特別注意壓力管理。建立規律的休息節奏，學會委派任務。大自然中的休息和創造性的放鬆方式對你尤為重要。",
+        "en": "Burnout and nervous exhaustion are your greatest health risks. The pressure you bear is many times that of ordinary people — stress management needs special attention. Establish regular rest rhythms and learn to delegate. Nature retreats and creative relaxation are especially important."
+      },
+      "spiritual": {
+        "zh": "你的靈性使命是成為「天地之間的建築師」——將靈性的洞見轉化為造福人類的實際建設。你的潛能巨大，但也需要極大的自律和奉獻才能實現。不要被使命的重量壓垮，記住一步一步來。",
+        "en": "Your spiritual mission is being the 'architect between heaven and earth' — transforming spiritual insight into practical constructions that benefit humanity. Your potential is immense, but requires great self-discipline and dedication. Don't be crushed by the weight of your mission — take it one step at a time."
+      },
+      "talents": {
+        "zh": "你擁有將願景實現的罕見能力、卓越的策略思維和強大的執行力。能看到別人看不到的可能性，並用實際行動將其變為現實。你是能改變世界格局的稀有靈魂。",
+        "en": "You possess the rare ability to manifest visions, exceptional strategic thinking, and powerful execution. You see possibilities invisible to others and turn them into reality through action. You are a rare soul capable of changing the world's landscape."
+      },
+      "challenges": {
+        "zh": "最大的挑戰是面對巨大潛能帶來的壓力和自我懷疑。很多 22 可能因為害怕自己的力量而退縮到 4 的層次。學會擁抱你的大師能量，不要畏懼宏大的目標。找到志同道合的團隊至關重要。",
+        "en": "Your greatest challenge is facing the pressure and self-doubt that comes with immense potential. Many 22s may retreat to the level of 4 from fear of their own power. Learn to embrace your master energy — don't fear grand goals. Finding a like-minded team is crucial."
+      }
+    },
+    "lucky": {
+      "colors": { "zh": ["金色", "珊瑚色"], "en": ["Gold", "Coral"] },
+      "numbers": [22, 11, 4],
+      "crystal": { "zh": "紅寶石", "en": "Ruby" },
+      "day": { "zh": "週六", "en": "Saturday" }
+    }
+  },
+  {
+    "number": 33,
+    "title_zh": "大療癒者",
+    "title_en": "The Master Healer",
+    "element_zh": "水",
+    "element_en": "Water",
+    "planet_zh": "海王星",
+    "planet_en": "Neptune",
+    "image": "images/numerology/33-master-healer.webp",
+    "master": true,
+    "aspects": {
+      "personality": {
+        "zh": "你是極為稀有的大師數 33 持有者，被稱為「大師療癒者」。你的存在散發著無條件的愛和慈悲，能自然地提升周圍的能量頻率。你結合了 11 的靈性洞察和 22 的實踐力，再加上 6 的愛與療癒。",
+        "en": "As an extremely rare holder of Master Number 33, known as the 'Master Healer,' your presence radiates unconditional love and compassion, naturally elevating surrounding energy frequencies. You combine 11's spiritual insight, 22's practicality, and 6's love and healing."
+      },
+      "career": {
+        "zh": "療癒藝術、靈性教導、諮商心理、社會服務、醫療等領域最適合你。你的天職是服務人類的身心靈健康。教育、慈善事業和任何以愛為基礎的職業都能讓你實現使命。",
+        "en": "Healing arts, spiritual teaching, counseling psychology, social services, and healthcare suit you best. Your calling is serving humanity's physical, mental, and spiritual health. Education, charity, and any love-based profession let you fulfill your mission."
+      },
+      "love": {
+        "zh": "你的愛是無條件且具有療癒力的，能讓伴侶在你身邊感受到深深的安全感。但你最大的課題是學會設立健康的界線，不要為了愛而完全失去自我。你值得被愛，不只是成為愛的給予者。",
+        "en": "Your love is unconditional and healing — partners feel deep safety beside you. But your greatest lesson is establishing healthy boundaries without losing yourself for love. You deserve to be loved, not just to be the giver of love."
+      },
+      "health": {
+        "zh": "你容易吸收他人的痛苦和負面能量，導致情緒和身體的疲憊。能量清理和保護對你至關重要。定期的靈性淨化、充足的休息和與自然的連結是維持健康的關鍵。學會區分自己的感受和他人的感受。",
+        "en": "You easily absorb others' pain and negative energy, causing emotional and physical exhaustion. Energy cleansing and protection are vital. Regular spiritual purification, adequate rest, and nature connection are key to maintaining health. Learn to distinguish your feelings from others'."
+      },
+      "spiritual": {
+        "zh": "你的靈性使命是成為「人間的療癒之光」。你帶著古老的靈魂智慧而來，使命是在地球上傳播無條件的愛和療癒。這是最崇高也最具挑戰的靈性道路。記住照顧好自己，才能持續照亮他人。",
+        "en": "Your spiritual mission is to be 'healing light on earth.' You came bearing ancient soul wisdom, with a mission to spread unconditional love and healing on this planet. This is the most noble yet most challenging spiritual path. Remember: care for yourself first to keep illuminating others."
+      },
+      "talents": {
+        "zh": "你擁有極為稀有的療癒天賦、深厚的慈悲心和提升他人的能力。你的話語和存在本身就具有療癒的力量。能在絕望中帶來希望，在黑暗中點亮光明。你是世界最需要的靈魂類型。",
+        "en": "You possess extremely rare healing gifts, deep compassion, and the ability to uplift others. Your words and very presence carry healing power. You bring hope to despair and light to darkness. You are the type of soul the world needs most."
+      },
+      "challenges": {
+        "zh": "最大的挑戰是避免殉道者情結和過度自我犧牲。你的慈悲可能讓你承擔超出負荷的責任。學會接受自己也有需要被照顧的時候。設立清晰的界線不是自私，而是讓你能更持久地服務他人。",
+        "en": "Your greatest challenge is avoiding martyr complex and excessive self-sacrifice. Your compassion may lead you to bear more responsibility than you can handle. Accept that you also need care sometimes. Setting clear boundaries isn't selfish — it enables you to serve others sustainably."
+      }
+    },
+    "lucky": {
+      "colors": { "zh": ["靛藍色", "玫瑰色"], "en": ["Indigo", "Rose"] },
+      "numbers": [33, 6, 3],
+      "crystal": { "zh": "紫水晶", "en": "Amethyst" },
+      "day": { "zh": "週五", "en": "Friday" }
+    }
+  }
+]
