@@ -66,6 +66,9 @@
 </head>
 <body>
 
+  <!-- Scroll Progress Bar -->
+  <div id="progress-bar"></div>
+
   <!-- Skip Navigation -->
   <a href="#main-content" class="skip-link">跳至主要內容</a>
 
@@ -98,9 +101,12 @@
   <!-- Hero -->
   <header class="hero">
     <div class="hero-bg"></div>
+    <div class="hero-aurora"></div>
     <div class="hero-content">
-      <div class="hero-photo">
-        <img src="avatar.jpg" alt="福青施老師">
+      <div class="hero-photo-wrap">
+        <div class="hero-photo">
+          <img src="avatar.jpg" alt="福青施老師">
+        </div>
       </div>
       <p class="hero-tag">命理 · 靈修 · AI</p>
       <h1 class="hero-title">福青施老師</h1>
@@ -119,7 +125,7 @@
 
   <!-- 命理工具 -->
   <section id="divination" class="section">
-    <div class="section-header">
+    <div class="section-header" data-index="01">
       <h2>命理工具</h2>
       <p class="section-desc">紫微斗數、八字、易經、星盤、人類圖、塔羅、姓名學等命理系統</p>
     </div>
@@ -256,8 +262,10 @@
   </section>
 
   <!-- 聖經靈修 -->
+  <div class="section-divider"><span class="section-divider-symbol">✦ ✦ ✦</span></div>
+
   <section id="bible" class="section section-alt">
-    <div class="section-header">
+    <div class="section-header" data-index="02">
       <h2>聖經靈修</h2>
       <p class="section-desc">經文搜尋、金句圖、讀經計畫、問答、禱告、每日靈修等工具</p>
     </div>
@@ -300,8 +308,10 @@
   </section>
 
   <!-- 趣味互動 -->
+  <div class="section-divider"><span class="section-divider-symbol">☽ ☯ ☽</span></div>
+
   <section id="fun" class="section">
-    <div class="section-header">
+    <div class="section-header" data-index="03">
       <h2>趣味互動</h2>
       <p class="section-desc">心理測驗、色彩分析、愛情配對、每日抽籤等趣味工具</p>
     </div>
@@ -361,8 +371,10 @@
   </section>
 
   <!-- 生活工具 -->
+  <div class="section-divider"><span class="section-divider-symbol">◈ ✧ ◈</span></div>
+
   <section id="life" class="section section-alt">
-    <div class="section-header">
+    <div class="section-header" data-index="04">
       <h2>生活工具</h2>
       <p class="section-desc">實用的日常小工具</p>
     </div>
@@ -397,6 +409,11 @@
   </section>
 
   </main>
+
+  <!-- Symbol Ticker Band -->
+  <div class="symbol-band">
+    <div class="symbol-track">☽ ☿ ♀ ☀ ♂ ♃ ♄ ♅ ♆ ✦ ☯ ✧ ◈ ☰ ☱ ☲ ☳ ☴ ☵ ☶ ☷ ☽ ☿ ♀ ☀ ♂ ♃ ♄ ♅ ♆ ✦ ☯ ✧ ◈ ☰ ☱ ☲ ☳ ☴ ☵ ☶ ☷</div>
+  </div>
 
   <!-- Footer -->
   <footer class="footer">

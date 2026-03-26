@@ -39,18 +39,32 @@ window.addEventListener('load', () => {
   });
 });
 
-// === Card hover glow effect (throttled with rAF) ===
+// === Card hover glow + 3D tilt effect ===
 document.querySelectorAll('.card').forEach(card => {
   card.addEventListener('mousemove', (e) => {
     if (!card._ticking) {
       card._ticking = true;
       requestAnimationFrame(() => {
         const rect = card.getBoundingClientRect();
-        card.style.setProperty('--glow-x', `${e.clientX - rect.left}px`);
-        card.style.setProperty('--glow-y', `${e.clientY - rect.top}px`);
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--glow-x', `${x}px`);
+        card.style.setProperty('--glow-y', `${y}px`);
+
+        // 3D tilt
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -4;
+        const rotateY = ((x - centerX) / centerX) * 4;
+        card.style.transform = `translateY(-6px) perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
         card._ticking = false;
       });
     }
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
   });
 });
 
@@ -105,24 +119,51 @@ window.addEventListener('scroll', () => {
   }
 }, { passive: true });
 
+// === Scroll progress bar (JS fallback for browsers without scroll-timeline) ===
+const progressBar = document.getElementById('progress-bar');
+if (progressBar && !CSS.supports('animation-timeline', 'scroll()')) {
+  window.addEventListener('scroll', () => {
+    const scrollTop = document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollTop / scrollHeight;
+    progressBar.style.transform = `scaleX(${progress})`;
+  }, { passive: true });
+}
+
 // === Hamburger menu toggle ===
 const hamburger = document.querySelector('.hamburger');
 const mobileMenu = document.querySelector('.mobile-menu');
 
-hamburger.addEventListener('click', () => {
-  const isOpen = mobileMenu.classList.toggle('open');
-  hamburger.classList.toggle('active');
-  hamburger.setAttribute('aria-expanded', isOpen);
-  mobileMenu.setAttribute('aria-hidden', !isOpen);
-  document.body.style.overflow = isOpen ? 'hidden' : '';
-});
-
-mobileMenu.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    mobileMenu.classList.remove('open');
-    hamburger.classList.remove('active');
-    hamburger.setAttribute('aria-expanded', 'false');
-    mobileMenu.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+if (hamburger && mobileMenu) {
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    mobileMenu.setAttribute('aria-hidden', !isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   });
-});
+
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    });
+  });
+}
+
+// === Parallax hero on scroll ===
+const heroContent = document.querySelector('.hero-content');
+const heroBg = document.querySelector('.hero-bg');
+if (heroContent && heroBg) {
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y < window.innerHeight) {
+      heroContent.style.transform = `translateY(${y * 0.15}px)`;
+      heroContent.style.opacity = 1 - y / (window.innerHeight * 0.8);
+      heroBg.style.transform = `translateY(${y * 0.3}px)`;
+    }
+  }, { passive: true });
+}
