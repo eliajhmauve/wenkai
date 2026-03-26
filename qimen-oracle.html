@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>奇門遁甲決策盤 — 福青施老師</title>
+  <meta name="description" content="奇門遁甲線上排盤工具。自動取時辰排九宮，天盤九星、人盤八門、神盤八神、地盤八卦，AI 深度解讀決策方向。">
+  <meta name="keywords" content="奇門遁甲,排盤,九宮,八門,九星,八神,決策,命理,福青施老師">
+  <meta name="author" content="福青施老師">
+  <meta name="theme-color" content="#c9a84c">
+  <link rel="canonical" href="https://eliajhmauve.github.io/wenkai/qimen-oracle.html">
+  <meta property="og:title" content="奇門遁甲決策盤 — 福青施老師">
+  <meta property="og:description" content="奇門遁甲九宮排盤 + AI 決策解讀">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://eliajhmauve.github.io/wenkai/qimen-oracle.html">
+  <meta property="og:locale" content="zh_TW">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔯</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #060708; --bg-alt: #0a0b0d; --surface: rgba(255,255,255,0.03);
+      --surface-hover: rgba(255,255,255,0.06); --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(212,175,55,0.2); --text: #e8e4dc; --text-dim: #706b62;
+      --gold: #c9a84c; --gold-light: #dfc06a; --radius: 12px;
+      --font-serif: 'Noto Serif TC', serif; --font-sans: 'Noto Sans TC', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); background: var(--bg); color: var(--text); line-height: 1.8; -webkit-font-smoothing: antialiased; overflow-x: hidden; min-height: 100vh; }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(6,7,8,0.9); backdrop-filter: blur(30px); border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .nav-inner { max-width: 900px; margin: 0 auto; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .nav-back { color: var(--text-dim); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
+    .nav-back:hover { color: var(--gold); }
+    .nav-brand { font-family: var(--font-serif); font-size: 0.95rem; font-weight: 700; color: var(--gold); letter-spacing: 3px; }
+
+    .hero { padding: 140px 24px 40px; text-align: center; background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 70%); }
+    .hero h1 { font-family: var(--font-serif); font-size: clamp(1.8rem, 5vw, 2.8rem); font-weight: 900; letter-spacing: 6px; margin-bottom: 12px; background: linear-gradient(135deg, var(--text) 0%, var(--gold-light) 50%, var(--text) 100%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { color: var(--text-dim); font-size: 0.92rem; letter-spacing: 2px; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px 60px; }
+
+    /* Input */
+    .input-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 24px; }
+    .input-section h3 { font-family: var(--font-serif); color: var(--gold); font-size: 1rem; margin-bottom: 12px; letter-spacing: 2px; }
+    .time-info { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
+    .time-display { font-family: var(--font-serif); font-size: 1.1rem; color: var(--gold); }
+    .time-sub { font-size: 0.82rem; color: var(--text-dim); }
+    .question-input { width: 100%; padding: 10px 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: var(--text); font-size: 0.9rem; font-family: var(--font-sans); margin-bottom: 14px; }
+    .question-input:focus { outline: none; border-color: var(--gold); }
+    .gen-btn { padding: 12px 32px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--bg); border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 700; font-family: var(--font-serif); cursor: pointer; letter-spacing: 3px; transition: all 0.3s; }
+    .gen-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(201,168,76,0.2); }
+
+    /* 九宮格 */
+    .result-section { display: none; }
+    .result-section.visible { display: block; animation: fadeUp 0.6s ease; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    .palace-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 24px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .palace-cell { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 10px; text-align: center; min-height: 120px; transition: border-color 0.3s; position: relative; }
+    .palace-cell:hover { border-color: var(--border-hover); }
+    .palace-cell.active-palace { border-color: var(--gold); background: rgba(201,168,76,0.04); }
+    .palace-dir { font-size: 0.7rem; color: var(--text-dim); margin-bottom: 4px; }
+    .palace-gua { font-size: 1.2rem; margin-bottom: 2px; }
+    .palace-star { font-size: 0.78rem; color: var(--gold); font-weight: 500; }
+    .palace-door { font-size: 0.78rem; color: #81c784; }
+    .palace-god { font-size: 0.78rem; color: #90caf9; }
+    .palace-element { font-size: 0.65rem; color: var(--text-dim); margin-top: 4px; }
+
+    .legend { display: flex; gap: 16px; justify-content: center; margin-bottom: 24px; flex-wrap: wrap; }
+    .legend-item { display: flex; align-items: center; gap: 4px; font-size: 0.75rem; }
+    .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dot-star { background: var(--gold); }
+    .dot-door { background: #81c784; }
+    .dot-god { background: #90caf9; }
+
+    /* Info Cards */
+    .analysis-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 20px; }
+    .analysis-card h3 { font-family: var(--font-serif); color: var(--gold); font-size: 1.05rem; margin-bottom: 14px; letter-spacing: 2px; }
+    .analysis-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 0.85rem; }
+    .analysis-row:last-child { border-bottom: none; }
+    .analysis-row .label { color: var(--text-dim); }
+    .analysis-row .value { color: var(--text); font-weight: 500; }
+    .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; margin-left: 6px; }
+    .tag-good { background: rgba(76,175,80,0.15); color: #81c784; }
+    .tag-neutral { background: rgba(255,193,7,0.15); color: #ffd54f; }
+    .tag-bad { background: rgba(244,67,54,0.15); color: #e57373; }
+
+    /* AI */
+    .ai-section { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; margin-bottom: 20px; }
+    .ai-section h3 { font-family: var(--font-serif); color: var(--gold); font-size: 1.05rem; margin-bottom: 14px; letter-spacing: 2px; }
+    .ai-loading { display: flex; align-items: center; gap: 10px; color: var(--text-dim); font-size: 0.85rem; }
+    .ai-loading .dots { display: flex; gap: 4px; }
+    .ai-loading .dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: dp 1.4s ease-in-out infinite; }
+    .ai-loading .dots span:nth-child(2) { animation-delay: 0.2s; }
+    .ai-loading .dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes dp { 0%,80%,100% { opacity:0.3; transform:scale(0.6); } 40% { opacity:1; transform:scale(1); } }
+    .ai-result { font-size: 0.88rem; line-height: 2; white-space: pre-wrap; }
+    .ai-error { color: #e57373; font-size: 0.85rem; }
+
+    .share-actions { display: flex; gap: 12px; justify-content: center; margin: 24px 0; flex-wrap: wrap; }
+    .share-btn { padding: 10px 24px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; font-family: var(--font-sans); transition: all 0.3s; }
+    .share-btn-primary { background: var(--gold); color: var(--bg); border: none; }
+    .share-btn-secondary { background: none; border: 1px solid var(--border); color: var(--text-dim); }
+
+    .card-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px; }
+    .card-modal.open { display: flex; }
+    .card-modal-inner { max-width: 600px; width: 100%; text-align: center; }
+    .card-modal-inner canvas { max-width: 100%; height: auto; border-radius: 8px; }
+    .card-modal-actions { margin-top: 16px; display: flex; gap: 12px; justify-content: center; }
+    .card-modal-actions button { padding: 10px 24px; border-radius: 8px; font-size: 0.85rem; cursor: pointer; font-family: var(--font-sans); }
+
+    .config-toggle { position: fixed; bottom: 24px; right: 24px; z-index: 80; background: var(--surface); border: 1px solid var(--border); border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; transition: all 0.3s; }
+    .config-toggle:hover { border-color: var(--border-hover); }
+    .config-panel { position: fixed; bottom: 80px; right: 24px; z-index: 80; width: 320px; display: none; }
+    .config-panel.open { display: block; }
+
+    .footer { text-align: center; padding: 40px 24px; border-top: 1px solid rgba(255,255,255,0.04); }
+    .footer-brand { font-family: var(--font-serif); color: var(--gold); font-size: 0.9rem; letter-spacing: 4px; margin-bottom: 8px; }
+    .footer-copy { color: var(--text-dim); font-size: 0.75rem; }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.5rem; letter-spacing: 3px; }
+      .palace-cell { padding: 10px 6px; min-height: 100px; }
+      .palace-cell * { font-size: 0.7rem !important; }
+      .palace-gua { font-size: 1rem !important; }
+      .config-panel { right: 12px; width: calc(100vw - 24px); max-width: 320px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav"><div class="nav-inner"><a href="index.html" class="nav-back">← 返回作品集</a><span class="nav-brand">福青施老師</span><span></span></div></nav>
+
+<header class="hero">
+  <h1>奇門遁甲決策盤</h1>
+  <p>以時辰排九宮，天星地門神助為你指路</p>
+</header>
+
+<div class="container">
+
+  <div class="input-section">
+    <h3>起盤資訊</h3>
+    <div class="time-info">
+      <span class="time-display" id="lunarTime">載入中...</span>
+      <span class="time-sub" id="solarTime"></span>
+    </div>
+    <input type="text" class="question-input" id="question" placeholder="你想問什麼？（選填，例如：這份工作該不該接？）">
+    <button class="gen-btn" id="genBtn">排盤解讀</button>
+  </div>
+
+  <div class="result-section" id="resultSection">
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot dot-star"></span>九星（天盤）</div>
+      <div class="legend-item"><span class="legend-dot dot-door"></span>八門（人盤）</div>
+      <div class="legend-item"><span class="legend-dot dot-god"></span>八神（神盤）</div>
+    </div>
+    <div class="palace-grid" id="palaceGrid"></div>
+
+    <div class="analysis-card">
+      <h3>盤面資訊</h3>
+      <div id="panInfo"></div>
+    </div>
+
+    <div class="analysis-card">
+      <h3>用神分析</h3>
+      <div id="yongshenInfo"></div>
+    </div>
+
+    <div class="ai-section">
+      <h3>AI 奇門解讀</h3>
+      <div id="aiContent"></div>
+    </div>
+
+    <div class="share-actions">
+      <button class="share-btn share-btn-primary" id="shareBtn">分享盤面</button>
+      <button class="share-btn share-btn-secondary" id="downloadBtn">下載圖片</button>
+      <button class="share-btn share-btn-secondary" id="retryBtn">重新排盤</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="card-modal" id="cardModal">
+  <div class="card-modal-inner"><div id="cardPreview"></div>
+  <div class="card-modal-actions">
+    <button class="share-btn share-btn-primary" id="modalShareBtn">分享</button>
+    <button class="share-btn share-btn-secondary" id="modalDownloadBtn">下載</button>
+    <button class="share-btn share-btn-secondary" id="modalCloseBtn">關閉</button>
+  </div></div>
+</div>
+
+<button class="config-toggle" id="configToggle" aria-label="AI 設定">⚙</button>
+<div class="config-panel" id="configPanel"></div>
+
+<footer class="footer"><p class="footer-brand">福青施老師</p><p class="footer-copy">&copy; 2026 All rights reserved.</p></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lunar-javascript@1.7.1/lunar.min.js"></script>
+<script src="shared/ai-client.js"></script>
+<script src="shared/share-card.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  // ===== 奇門遁甲基礎資料 =====
+  const JIUXING = ['天蓬','天芮','天沖','天輔','天禽','天心','天柱','天任','天英'];
+  const JIUXING_ELEMENT = ['水','土','木','木','土','金','金','土','火'];
+  const JIUXING_LUCK = ['凶','凶','吉','吉','中','吉','凶','吉','吉'];
+
+  const BAMEN = ['休門','死門','傷門','杜門','—','開門','驚門','生門','景門'];
+  const BAMEN_LUCK = ['吉','凶','凶','中','—','吉','凶','吉','中'];
+
+  const BASHEN = ['值符','騰蛇','太陰','六合','—','白虎','玄武','九地','九天'];
+
+  const BAGUA_NAMES = ['坎','坤','震','巽','中','乾','兌','艮','離'];
+  const BAGUA_SYMBOLS = ['☵','☷','☳','☴','','☰','☱','☶','☲'];
+  const BAGUA_ELEMENTS = ['水','土','木','木','土','金','金','土','火'];
+
+  // 九宮位序（洛書序：4 9 2 / 3 5 7 / 8 1 6）→ 陣列 index
+  // 顯示順序：巽(4)離(9)坤(2) / 震(3)中(5)兌(7) / 艮(8)坎(1)乾(6)
+  const LOSHU = [3, 8, 1, 2, 4, 6, 7, 0, 5]; // grid position → palace index (0-based)
+  const DIR_NAMES = ['東南','南','西南','東','中宮','西','東北','北','西北'];
+
+  // ===== 簡化排盤（基於時辰的偽隨機分佈） =====
+  function generatePan() {
+    const now = new Date();
+    const lunar = Lunar.fromDate(now);
+    const hour = now.getHours();
+    const shiIdx = Math.floor((hour + 1) / 2) % 12;
+    const dayGanZhi = lunar.getDayInGanZhi();
+    const monthGanZhi = lunar.getMonthInGanZhi();
+    const yearGanZhi = lunar.getYearInGanZhi();
+
+    // 用時辰+日干支生成種子
+    const seed = (shiIdx * 7 + dayGanZhi.charCodeAt(0) * 3 + now.getMinutes()) % 9;
+
+    // 九星排列（從種子位開始順排）
+    const starOrder = [];
+    for (let i = 0; i < 9; i++) starOrder.push((seed + i) % 9);
+
+    // 八門排列（偏移不同）
+    const doorSeed = (seed + 3 + shiIdx) % 9;
+    const doorOrder = [];
+    for (let i = 0; i < 9; i++) doorOrder.push((doorSeed + i) % 9);
+
+    // 八神排列
+    const godSeed = (seed + 5 + Math.floor(hour / 3)) % 9;
+    const godOrder = [];
+    for (let i = 0; i < 9; i++) godOrder.push((godSeed + i) % 9);
+
+    // 遁甲類型
+    const dunType = seed < 5 ? '陽遁' : '陰遁';
+    const ju = (seed % 9) + 1;
+
+    // 組合九宮
+    const palaces = [];
+    for (let i = 0; i < 9; i++) {
+      palaces.push({
+        dir: DIR_NAMES[i],
+        gua: BAGUA_NAMES[LOSHU[i]],
+        guaSymbol: BAGUA_SYMBOLS[LOSHU[i]],
+        guaElement: BAGUA_ELEMENTS[LOSHU[i]],
+        star: JIUXING[starOrder[i]],
+        starElement: JIUXING_ELEMENT[starOrder[i]],
+        starLuck: JIUXING_LUCK[starOrder[i]],
+        door: BAMEN[doorOrder[i]],
+        doorLuck: BAMEN_LUCK[doorOrder[i]],
+        god: BASHEN[godOrder[i]]
+      });
+    }
+
+    // 找值使門和值符星
+    const zhifuPalace = palaces.findIndex(p => p.god === '值符');
+    const zhishiDoor = palaces[zhifuPalace]?.door || '休門';
+
+    return {
+      palaces,
+      dunType,
+      ju,
+      lunarInfo: {
+        year: yearGanZhi,
+        month: monthGanZhi,
+        day: dayGanZhi,
+        shi: lunar.getTimeInGanZhi(),
+        lunarDate: `${lunar.getYearInGanZhi()}年 ${lunar.getMonthInChinese()}月${lunar.getDayInChinese()}`
+      },
+      zhifuPalace,
+      zhishiDoor,
+      solarTime: now.toLocaleString('zh-TW')
+    };
+  }
+
+  // ===== Render =====
+  let lastPan = null;
+
+  function renderPan(pan) {
+    lastPan = pan;
+    const grid = document.getElementById('palaceGrid');
+    grid.innerHTML = pan.palaces.map((p, i) => `
+      <div class="palace-cell${i === pan.zhifuPalace ? ' active-palace' : ''}">
+        <div class="palace-dir">${p.dir}（${p.gua}）</div>
+        <div class="palace-gua">${p.guaSymbol}</div>
+        <div class="palace-star">${p.star}</div>
+        <div class="palace-door">${p.door}</div>
+        <div class="palace-god">${p.god}</div>
+        <div class="palace-element">${p.guaElement}</div>
+      </div>
+    `).join('');
+
+    // Pan info
+    document.getElementById('panInfo').innerHTML = `
+      <div class="analysis-row"><span class="label">遁甲類型</span><span class="value">${pan.dunType}${pan.ju}局</span></div>
+      <div class="analysis-row"><span class="label">農曆</span><span class="value">${pan.lunarInfo.lunarDate}</span></div>
+      <div class="analysis-row"><span class="label">日干支</span><span class="value">${pan.lunarInfo.day}</span></div>
+      <div class="analysis-row"><span class="label">時干支</span><span class="value">${pan.lunarInfo.shi}</span></div>
+      <div class="analysis-row"><span class="label">值符</span><span class="value">${pan.palaces[pan.zhifuPalace]?.star || '-'}（${pan.palaces[pan.zhifuPalace]?.dir || '-'}宮）</span></div>
+      <div class="analysis-row"><span class="label">值使門</span><span class="value">${pan.zhishiDoor}</span></div>
+    `;
+
+    // Yongshen
+    const goodPalaces = pan.palaces.filter(p => p.starLuck === '吉' && p.doorLuck === '吉');
+    const badPalaces = pan.palaces.filter(p => p.starLuck === '凶' && p.doorLuck === '凶');
+    document.getElementById('yongshenInfo').innerHTML = `
+      <div class="analysis-row"><span class="label">吉方位</span><span class="value">${goodPalaces.map(p => p.dir).join('、') || '無明顯吉方'}<span class="tag tag-good">宜</span></span></div>
+      <div class="analysis-row"><span class="label">凶方位</span><span class="value">${badPalaces.map(p => p.dir).join('、') || '無明顯凶方'}<span class="tag tag-bad">忌</span></span></div>
+      <div class="analysis-row"><span class="label">格局</span><span class="value">${pan.palaces[pan.zhifuPalace]?.starLuck === '吉' ? '值符落吉宮，整體利好' : '值符受制，宜守不宜進'}</span></div>
+    `;
+
+    document.getElementById('resultSection').classList.add('visible');
+    setTimeout(() => document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  }
+
+  // ===== AI =====
+  async function generateAI(pan) {
+    const container = document.getElementById('aiContent');
+    const question = document.getElementById('question').value.trim();
+    if (!AIClient.isConfigured()) {
+      container.innerHTML = '<div class="ai-error">請先設定 Gemini API Key（點擊右下角 ⚙）</div>';
+      return;
+    }
+    container.innerHTML = '<div class="ai-loading"><div class="dots"><span></span><span></span><span></span></div><span>AI 正在解讀奇門盤...</span></div>';
+
+    const palaceDesc = pan.palaces.map(p => `${p.dir}宮（${p.gua}${p.guaSymbol}/${p.guaElement}）：${p.star}(${p.starElement}) + ${p.door} + ${p.god}`).join('\n');
+
+    const prompt = `請根據以下奇門遁甲盤面進行決策解讀（繁體中文，400-600字）：
+
+${question ? `【問事】${question}\n` : ''}
+【基本資訊】
+- ${pan.dunType}${pan.ju}局
+- 農曆：${pan.lunarInfo.lunarDate}
+- 日干支：${pan.lunarInfo.day}，時干支：${pan.lunarInfo.shi}
+- 值符：${pan.palaces[pan.zhifuPalace]?.star}（${pan.palaces[pan.zhifuPalace]?.dir}宮）
+- 值使門：${pan.zhishiDoor}
+
+【九宮盤面】
+${palaceDesc}
+
+請從以下角度解讀：
+1. 值符值使的整體判斷
+2. 吉門吉星所在方位的建議
+3. 需要注意的凶方凶門
+4. ${question ? '針對所問之事的具體建議' : '整體運勢建議'}
+5. 行動方向與時機`;
+
+    const systemPrompt = '你是一位精通奇門遁甲的命理大師。請用繁體中文回覆，語氣專業沉穩，解讀要具體實用，最後給出明確的行動建議。';
+
+    try {
+      const text = await AIClient.chat(prompt, systemPrompt, { temperature: 0.8, maxTokens: 1200 });
+      container.innerHTML = `<div class="ai-result">${text}</div>`;
+    } catch(e) {
+      container.innerHTML = `<div class="ai-error">AI 解讀失敗：${e.message === 'NO_API_KEY' ? '請先設定 API Key' : e.message}</div>`;
+    }
+  }
+
+  // ===== Share Card =====
+  function generateShareCard(pan) {
+    const { canvas, ctx, w, h } = ShareCard.createCanvas(600, 440);
+    const grad = ctx.createLinearGradient(0, 0, w, h);
+    grad.addColorStop(0, '#0a0b0d'); grad.addColorStop(1, '#121014');
+    ctx.fillStyle = grad; ctx.fillRect(0, 0, w, h);
+    ShareCard.drawBorder(ctx, w, h);
+
+    ctx.font = '700 20px "Noto Serif TC", serif';
+    ctx.fillStyle = '#c9a84c'; ctx.textAlign = 'center';
+    ctx.fillText('奇門遁甲決策盤', w / 2, 48);
+
+    ctx.font = '400 11px "Noto Sans TC", sans-serif';
+    ctx.fillStyle = '#706b62';
+    ctx.fillText(`${pan.dunType}${pan.ju}局 | ${pan.lunarInfo.lunarDate} | ${pan.lunarInfo.shi}`, w / 2, 70);
+
+    // Mini 九宮
+    const cellW = 120, cellH = 70, startX = (w - cellW * 3 - 16) / 2, startY = 90, gap = 8;
+    pan.palaces.forEach((p, i) => {
+      const col = i % 3, row = Math.floor(i / 3);
+      const x = startX + col * (cellW + gap), y = startY + row * (cellH + gap);
+      ctx.fillStyle = i === pan.zhifuPalace ? 'rgba(201,168,76,0.08)' : 'rgba(255,255,255,0.03)';
+      ctx.fillRect(x, y, cellW, cellH);
+      ctx.strokeStyle = i === pan.zhifuPalace ? 'rgba(201,168,76,0.4)' : 'rgba(255,255,255,0.06)';
+      ctx.strokeRect(x, y, cellW, cellH);
+
+      ctx.font = '400 9px "Noto Sans TC", sans-serif';
+      ctx.fillStyle = '#706b62'; ctx.textAlign = 'center';
+      ctx.fillText(`${p.dir}（${p.gua}）`, x + cellW / 2, y + 14);
+      ctx.font = '500 11px "Noto Sans TC", sans-serif';
+      ctx.fillStyle = '#c9a84c';
+      ctx.fillText(p.star, x + cellW / 2, y + 32);
+      ctx.fillStyle = '#81c784';
+      ctx.fillText(p.door, x + cellW / 2, y + 48);
+      ctx.fillStyle = '#90caf9';
+      ctx.fillText(p.god, x + cellW / 2, y + 64);
+    });
+
+    // Bottom info
+    const goodP = pan.palaces.filter(p => p.starLuck === '吉' && p.doorLuck === '吉');
+    ctx.font = '400 12px "Noto Sans TC", sans-serif';
+    ctx.fillStyle = '#706b62'; ctx.textAlign = 'center';
+    ctx.fillText(`吉方：${goodP.map(p => p.dir).join('、') || '—'}`, w / 2, h - 55);
+    ctx.fillText(`值符：${pan.palaces[pan.zhifuPalace]?.star}  值使：${pan.zhishiDoor}`, w / 2, h - 35);
+
+    ShareCard.drawWatermark(ctx, w, h);
+    return canvas;
+  }
+
+  // ===== Events =====
+  function updateTime() {
+    try {
+      const lunar = Lunar.fromDate(new Date());
+      document.getElementById('lunarTime').textContent = `${lunar.getYearInGanZhi()}年 ${lunar.getMonthInChinese()}月${lunar.getDayInChinese()} ${lunar.getTimeInGanZhi()}時`;
+      document.getElementById('solarTime').textContent = new Date().toLocaleString('zh-TW');
+    } catch(e) { document.getElementById('lunarTime').textContent = '時間載入中...'; }
+  }
+  updateTime();
+  setInterval(updateTime, 60000);
+
+  document.getElementById('genBtn').addEventListener('click', () => {
+    const pan = generatePan();
+    renderPan(pan);
+    generateAI(pan);
+  });
+
+  document.getElementById('retryBtn').addEventListener('click', () => {
+    document.getElementById('resultSection').classList.remove('visible');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.getElementById('shareBtn').addEventListener('click', () => {
+    if (!lastPan) return;
+    const card = generateShareCard(lastPan);
+    const modal = document.getElementById('cardModal');
+    ShareCard.preview(card, document.getElementById('cardPreview'));
+    modal.classList.add('open');
+    modal._card = card;
+  });
+  document.getElementById('downloadBtn').addEventListener('click', () => {
+    if (!lastPan) return;
+    ShareCard.download(generateShareCard(lastPan), 'qimen-oracle.png');
+  });
+  document.getElementById('modalShareBtn').addEventListener('click', () => { const m = document.getElementById('cardModal'); if (m._card) ShareCard.share(m._card, { title: '奇門遁甲', filename: 'qimen-oracle.png' }); });
+  document.getElementById('modalDownloadBtn').addEventListener('click', () => { const m = document.getElementById('cardModal'); if (m._card) ShareCard.download(m._card, 'qimen-oracle.png'); });
+  document.getElementById('modalCloseBtn').addEventListener('click', () => document.getElementById('cardModal').classList.remove('open'));
+  document.getElementById('cardModal').addEventListener('click', (e) => { if (e.target === e.currentTarget) e.currentTarget.classList.remove('open'); });
+
+  document.getElementById('configToggle').addEventListener('click', () => {
+    const p = document.getElementById('configPanel');
+    p.classList.toggle('open');
+    if (p.classList.contains('open')) AIClient.renderConfigUI(p);
+  });
+})();
+</script>
+</body>
+</html>
