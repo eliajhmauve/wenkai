@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>禱告計時器 — 福青施老師</title>
+  <meta name="description" content="安靜的禱告計時器，預設時段、自訂時間、經文陪伴、禱告紀錄統計。在寧靜中與神對話。">
+  <meta name="keywords" content="禱告計時器,祈禱,靈修,基督教,禱告時間,福青施老師">
+  <meta name="author" content="福青施老師">
+  <meta name="theme-color" content="#9b7e3a">
+  <link rel="canonical" href="https://eliajhmauve.github.io/wenkai/prayer-timer.html">
+  <meta property="og:title" content="禱告計時器 — 福青施老師">
+  <meta property="og:description" content="安靜的禱告計時器，在寧靜中與神對話">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://eliajhmauve.github.io/wenkai/prayer-timer.html">
+  <meta property="og:locale" content="zh_TW">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="禱告計時器 — 福青施老師">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕊️</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif+TC:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #f6f6f4;
+      --bg-card: #ffffff;
+      --text: #1a1a1a;
+      --text-secondary: #888;
+      --accent: #9b7e3a;
+      --accent-light: #c4a94f;
+      --accent-bg: rgba(155,126,58,0.08);
+      --border: rgba(0,0,0,0.06);
+      --border-hover: rgba(155,126,58,0.3);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+      --shadow-hover: 0 8px 30px rgba(0,0,0,0.08);
+      --radius: 16px;
+      --radius-sm: 12px;
+      --radius-pill: 100px;
+      --font-serif: 'Noto Serif TC', serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Breathing background */
+    .breath-bg {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .breath-bg::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 140%;
+      height: 60%;
+      background: radial-gradient(ellipse, rgba(155,126,58,0.04) 0%, transparent 70%);
+      animation: breathe 8s ease-in-out infinite;
+    }
+
+    .breath-bg::after {
+      content: '';
+      position: absolute;
+      bottom: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120%;
+      height: 50%;
+      background: radial-gradient(ellipse, rgba(155,126,58,0.03) 0%, transparent 70%);
+      animation: breathe 8s ease-in-out infinite 4s;
+    }
+
+    @keyframes breathe {
+      0%, 100% { opacity: 0.4; transform: translateX(-50%) scale(1); }
+      50% { opacity: 1; transform: translateX(-50%) scale(1.08); }
+    }
+
+    /* Nav */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(246,246,244,0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-back {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-back:hover { color: var(--accent); }
+
+    .nav-brand {
+      font-family: var(--font-serif);
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 2px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 110px 24px 24px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 4.5vw, 2.2rem);
+      font-weight: 900;
+      letter-spacing: 4px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .hero p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.3s;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    /* Preset buttons */
+    .preset-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .preset-btn {
+      background: var(--accent-bg);
+      border: 1.5px solid transparent;
+      border-radius: var(--radius-sm);
+      padding: 12px 8px;
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--accent);
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+    }
+
+    .preset-btn:hover {
+      border-color: var(--border-hover);
+      background: rgba(155,126,58,0.12);
+    }
+
+    .preset-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    /* Custom input */
+    .custom-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .custom-input {
+      flex: 1;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-family: var(--font-sans);
+      font-size: 0.92rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.3s;
+      -moz-appearance: textfield;
+    }
+
+    .custom-input::-webkit-outer-spin-button,
+    .custom-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .custom-input:focus {
+      border-color: var(--accent);
+    }
+
+    .custom-input::placeholder {
+      color: var(--text-secondary);
+    }
+
+    .custom-label {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+
+    .custom-set-btn {
+      background: var(--accent-bg);
+      border: 1.5px solid var(--border-hover);
+      border-radius: var(--radius-sm);
+      padding: 10px 16px;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+      cursor: pointer;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+
+    .custom-set-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* Timer display */
+    .timer-card {
+      text-align: center;
+      padding: 36px 24px;
+    }
+
+    .timer-ring-wrapper {
+      position: relative;
+      width: 240px;
+      height: 240px;
+      margin: 0 auto 24px;
+    }
+
+    .timer-ring-svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+
+    .timer-ring-bg {
+      fill: none;
+      stroke: var(--border);
+      stroke-width: 6;
+    }
+
+    .timer-ring-progress {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 6;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.5s ease;
+    }
+
+    .timer-ring-glow {
+      fill: none;
+      stroke: var(--accent-light);
+      stroke-width: 12;
+      stroke-linecap: round;
+      opacity: 0.15;
+      filter: blur(4px);
+      transition: stroke-dashoffset 0.5s ease;
+    }
+
+    .timer-time {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-sans);
+      font-size: 3.2rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .timer-time .timer-label {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+      letter-spacing: 1px;
+      margin-top: 6px;
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .ctrl-btn {
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 14px 32px;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ctrl-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .ctrl-btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .ctrl-btn-primary:hover:not(:disabled) {
+      background: var(--accent-light);
+      box-shadow: 0 4px 20px rgba(155,126,58,0.25);
+    }
+
+    .ctrl-btn-secondary {
+      background: var(--accent-bg);
+      color: var(--accent);
+    }
+
+    .ctrl-btn-secondary:hover:not(:disabled) {
+      background: rgba(155,126,58,0.15);
+    }
+
+    .ctrl-btn-danger {
+      background: rgba(200,80,80,0.08);
+      color: #c85050;
+    }
+
+    .ctrl-btn-danger:hover:not(:disabled) {
+      background: rgba(200,80,80,0.15);
+    }
+
+    /* Verse card */
+    .verse-card {
+      text-align: center;
+      padding: 32px 28px;
+      min-height: 130px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .verse-text {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      line-height: 1.9;
+      color: var(--text);
+      margin-bottom: 12px;
+      opacity: 1;
+      transition: opacity 0.6s ease;
+    }
+
+    .verse-text.fading { opacity: 0; }
+
+    .verse-ref {
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 500;
+      letter-spacing: 1px;
+      opacity: 1;
+      transition: opacity 0.6s ease;
+    }
+
+    .verse-ref.fading { opacity: 0; }
+
+    /* Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 16px 8px;
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* Session log */
+    .log-list {
+      list-style: none;
+      max-height: 240px;
+      overflow-y: auto;
+    }
+
+    .log-list::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .log-list::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .log-list::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 2px;
+    }
+
+    .log-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+
+    .log-item:last-child { border-bottom: none; }
+
+    .log-date {
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+    }
+
+    .log-duration {
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .log-empty {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      padding: 24px 0;
+    }
+
+    .log-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .log-clear-btn {
+      background: none;
+      border: none;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: color 0.3s;
+    }
+
+    .log-clear-btn:hover { color: #c85050; }
+
+    /* Timer completion animation */
+    .timer-complete .timer-ring-progress {
+      stroke: var(--accent-light);
+      animation: pulseRing 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulseRing {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .hero { padding: 100px 20px 20px; }
+      .container { padding: 0 16px 60px; }
+      .card { padding: 22px 18px; }
+      .timer-card { padding: 28px 18px; }
+      .preset-grid { grid-template-columns: repeat(2, 1fr); }
+      .timer-ring-wrapper { width: 200px; height: 200px; }
+      .timer-time { font-size: 2.6rem; }
+      .controls { flex-wrap: wrap; }
+      .ctrl-btn { padding: 12px 24px; font-size: 0.85rem; }
+      .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .stat-value { font-size: 1.2rem; }
+      .verse-card { padding: 24px 18px; }
+    }
+
+    @media (max-width: 360px) {
+      .nav-inner { padding: 12px 16px; }
+      .nav-brand { font-size: 0.82rem; }
+      .stat-item { padding: 12px 4px; }
+    }
+
+    /* Notification overlay */
+    .notify-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 200;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .notify-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .notify-box {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      text-align: center;
+      max-width: 360px;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+      transform: scale(0.9);
+      transition: transform 0.4s ease;
+    }
+
+    .notify-overlay.show .notify-box {
+      transform: scale(1);
+    }
+
+    .notify-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .notify-title {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .notify-msg {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .notify-close-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 12px 36px;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .notify-close-btn:hover {
+      background: var(--accent-light);
+      box-shadow: 0 4px 20px rgba(155,126,58,0.25);
+    }
+  </style>
+</head>
+<body>
+  <div class="breath-bg"></div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-back">&larr; 返回作品集</a>
+      <span class="nav-brand">禱告計時器</span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>禱告計時器</h1>
+    <p>在安靜中，與神同在</p>
+  </section>
+
+  <div class="container">
+
+    <!-- Time Selection -->
+    <div class="card">
+      <div class="card-title">選擇時間</div>
+      <div class="preset-grid">
+        <button class="preset-btn" data-minutes="5">5 分鐘</button>
+        <button class="preset-btn" data-minutes="10">10 分鐘</button>
+        <button class="preset-btn active" data-minutes="15">15 分鐘</button>
+        <button class="preset-btn" data-minutes="30">30 分鐘</button>
+      </div>
+      <div class="custom-row">
+        <input type="number" class="custom-input" id="customMinutes" placeholder="自訂分鐘" min="1" max="120">
+        <span class="custom-label">分鐘</span>
+        <button class="custom-set-btn" id="customSetBtn">設定</button>
+      </div>
+    </div>
+
+    <!-- Timer -->
+    <div class="card timer-card" id="timerCard">
+      <div class="timer-ring-wrapper">
+        <svg class="timer-ring-svg" viewBox="0 0 240 240">
+          <circle class="timer-ring-bg" cx="120" cy="120" r="108" />
+          <circle class="timer-ring-glow" cx="120" cy="120" r="108"
+            stroke-dasharray="678.58" stroke-dashoffset="0" id="ringGlow" />
+          <circle class="timer-ring-progress" cx="120" cy="120" r="108"
+            stroke-dasharray="678.58" stroke-dashoffset="0" id="ringProgress" />
+        </svg>
+        <div class="timer-time">
+          <span id="timerDisplay">15:00</span>
+          <span class="timer-label" id="timerLabel">準備就緒</span>
+        </div>
+      </div>
+      <div class="controls">
+        <button class="ctrl-btn ctrl-btn-primary" id="startBtn">開始禱告</button>
+        <button class="ctrl-btn ctrl-btn-secondary" id="pauseBtn" disabled>暫停</button>
+        <button class="ctrl-btn ctrl-btn-danger" id="resetBtn" disabled>重置</button>
+      </div>
+    </div>
+
+    <!-- Verse -->
+    <div class="card verse-card" id="verseCard">
+      <div class="verse-text" id="verseText"></div>
+      <div class="verse-ref" id="verseRef"></div>
+    </div>
+
+    <!-- Stats -->
+    <div class="card">
+      <div class="card-title">禱告統計</div>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-value" id="statWeek">0</div>
+          <div class="stat-label">本週（分鐘）</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="statMonth">0</div>
+          <div class="stat-label">本月（分鐘）</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" id="statSessions">0</div>
+          <div class="stat-label">總次數</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Session Log -->
+    <div class="card">
+      <div class="log-header">
+        <div class="card-title" style="margin-bottom:0">禱告紀錄</div>
+        <button class="log-clear-btn" id="clearLogBtn">清除全部</button>
+      </div>
+      <ul class="log-list" id="logList">
+        <li class="log-empty">尚無禱告紀錄</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Completion Notification -->
+  <div class="notify-overlay" id="notifyOverlay">
+    <div class="notify-box">
+      <span class="notify-icon">&#x1F54A;&#xFE0F;</span>
+      <div class="notify-title">禱告完成</div>
+      <div class="notify-msg" id="notifyMsg">感謝神的同在，你完成了 15 分鐘的禱告。</div>
+      <button class="notify-close-btn" id="notifyCloseBtn">阿們</button>
+    </div>
+  </div>
+
+  <script>
+  (function() {
+    'use strict';
+
+    // ========== Bible Verses ==========
+    const verses = [
+      { text: '不住地禱告。', ref: '帖撒羅尼迦前書 5:17' },
+      { text: '應當一無掛慮，凡事藉著禱告、祈求和感謝，將你們所要的告訴神。', ref: '腓立比書 4:6' },
+      { text: '你們祈求，就給你們；尋找，就尋見；叩門，就給你們開門。', ref: '馬太福音 7:7' },
+      { text: '神是我們的避難所，是我們的力量，是我們在患難中隨時的幫助。', ref: '詩篇 46:1' },
+      { text: '你們要將一切的憂慮卸給神，因為祂顧念你們。', ref: '彼得前書 5:7' },
+      { text: '你們要休息，要知道我是神。', ref: '詩篇 46:10' },
+      { text: '耶和華靠近傷心的人，拯救靈性痛悔的人。', ref: '詩篇 34:18' },
+      { text: '我留下平安給你們，我將我的平安賜給你們。', ref: '約翰福音 14:27' },
+      { text: '你們親近神，神就必親近你們。', ref: '雅各書 4:8' },
+      { text: '疲乏的，祂賜能力；軟弱的，祂加力量。', ref: '以賽亞書 40:29' },
+      { text: '耶和華是我的牧者，我必不致缺乏。', ref: '詩篇 23:1' },
+      { text: '因為那在你們裡面的，比那在世界上的更大。', ref: '約翰一書 4:4' },
+      { text: '我靠著那加給我力量的，凡事都能做。', ref: '腓立比書 4:13' },
+      { text: '祂使我的靈魂甦醒，為自己的名引導我走義路。', ref: '詩篇 23:3' },
+      { text: '你們要嘗嘗主恩的滋味，便知道祂是美善。', ref: '詩篇 34:8' },
+      { text: '我的恩典夠你用的，因為我的能力是在人的軟弱上顯得完全。', ref: '哥林多後書 12:9' },
+      { text: '信就是所望之事的實底，是未見之事的確據。', ref: '希伯來書 11:1' },
+      { text: '凡勞苦擔重擔的人，可以到我這裡來，我就使你們得安息。', ref: '馬太福音 11:28' },
+      { text: '耶和華必在你前面行，祂必與你同在，必不撇下你，也不丟棄你。', ref: '申命記 31:8' },
+      { text: '萬事都互相效力，叫愛神的人得益處。', ref: '羅馬書 8:28' },
+      { text: '神愛世人，甚至將祂的獨生子賜給他們，叫一切信祂的，不致滅亡，反得永生。', ref: '約翰福音 3:16' },
+      { text: '但那等候耶和華的，必從新得力。他們必如鷹展翅上騰。', ref: '以賽亞書 40:31' },
+      { text: '耶和華是我的亮光，是我的拯救，我還怕誰呢？', ref: '詩篇 27:1' },
+      { text: '你不要害怕，因為我與你同在；不要驚惶，因為我是你的神。', ref: '以賽亞書 41:10' },
+      { text: '我將這些事告訴你們，是要叫你們在我裡面有平安。', ref: '約翰福音 16:33' },
+    ];
+
+    // ========== State ==========
+    let totalSeconds = 15 * 60;
+    let remainingSeconds = totalSeconds;
+    let timerInterval = null;
+    let isRunning = false;
+    let isPaused = false;
+    let currentVerseIndex = -1;
+    let verseInterval = null;
+    let sessionStartTime = null;
+
+    // ========== DOM ==========
+    const timerDisplay = document.getElementById('timerDisplay');
+    const timerLabel = document.getElementById('timerLabel');
+    const timerCard = document.getElementById('timerCard');
+    const ringProgress = document.getElementById('ringProgress');
+    const ringGlow = document.getElementById('ringGlow');
+    const startBtn = document.getElementById('startBtn');
+    const pauseBtn = document.getElementById('pauseBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const verseText = document.getElementById('verseText');
+    const verseRef = document.getElementById('verseRef');
+    const customMinutes = document.getElementById('customMinutes');
+    const customSetBtn = document.getElementById('customSetBtn');
+    const notifyOverlay = document.getElementById('notifyOverlay');
+    const notifyMsg = document.getElementById('notifyMsg');
+    const notifyCloseBtn = document.getElementById('notifyCloseBtn');
+    const logList = document.getElementById('logList');
+    const clearLogBtn = document.getElementById('clearLogBtn');
+    const statWeek = document.getElementById('statWeek');
+    const statMonth = document.getElementById('statMonth');
+    const statSessions = document.getElementById('statSessions');
+    const presetBtns = document.querySelectorAll('.preset-btn');
+
+    const CIRCUMFERENCE = 2 * Math.PI * 108; // ~678.58
+
+    // ========== Web Audio Bell ==========
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      return audioCtx;
+    }
+
+    function playBell() {
+      try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+
+        // Create a gentle, meditative bell with multiple harmonics
+        function createTone(freq, startTime, duration, volume) {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          const filter = ctx.createBiquadFilter();
+
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, startTime);
+          // Slight detuning for warmth
+          osc.frequency.exponentialRampToValueAtTime(freq * 0.998, startTime + duration);
+
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(3000, startTime);
+          filter.Q.setValueAtTime(1, startTime);
+
+          gain.gain.setValueAtTime(0, startTime);
+          gain.gain.linearRampToValueAtTime(volume, startTime + 0.01);
+          gain.gain.exponentialRampToValueAtTime(volume * 0.6, startTime + duration * 0.3);
+          gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+
+          osc.connect(filter);
+          filter.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(startTime);
+          osc.stop(startTime + duration);
+        }
+
+        // Three gentle bell strikes
+        for (let i = 0; i < 3; i++) {
+          const t = now + i * 1.2;
+          createTone(523.25, t, 2.5, 0.12);     // C5 fundamental
+          createTone(1046.5, t + 0.005, 2.0, 0.06); // C6 overtone
+          createTone(784.0, t + 0.01, 1.8, 0.04);   // G5 overtone
+          createTone(1318.5, t + 0.015, 1.5, 0.02);  // E6 shimmer
+        }
+      } catch (e) {
+        // Silently fail if audio not available
+      }
+    }
+
+    // ========== Timer Logic ==========
+    function formatTime(seconds) {
+      const m = Math.floor(seconds / 60);
+      const s = seconds % 60;
+      return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    }
+
+    function updateDisplay() {
+      timerDisplay.textContent = formatTime(remainingSeconds);
+      const progress = totalSeconds > 0 ? (totalSeconds - remainingSeconds) / totalSeconds : 0;
+      const offset = CIRCUMFERENCE * (1 - progress);
+
+      // When progress is 0 (full), offset = CIRCUMFERENCE (no stroke visible... wait, reversed)
+      // Actually: full circle = offset 0. Empty circle = offset CIRCUMFERENCE.
+      // We want full circle at start, depleting. So offset = progress * CIRCUMFERENCE
+      const depleteOffset = progress * CIRCUMFERENCE;
+      ringProgress.style.strokeDashoffset = depleteOffset;
+      ringGlow.style.strokeDashoffset = depleteOffset;
+    }
+
+    function setTime(minutes) {
+      if (isRunning) return;
+      totalSeconds = minutes * 60;
+      remainingSeconds = totalSeconds;
+      updateDisplay();
+      timerLabel.textContent = '準備就緒';
+      timerCard.classList.remove('timer-complete');
+    }
+
+    function startTimer() {
+      if (remainingSeconds <= 0) return;
+
+      if (!isRunning && !isPaused) {
+        sessionStartTime = Date.now();
+      }
+
+      isRunning = true;
+      isPaused = false;
+      timerLabel.textContent = '禱告中...';
+      startBtn.style.display = 'none';
+      pauseBtn.disabled = false;
+      pauseBtn.textContent = '暫停';
+      resetBtn.disabled = false;
+      timerCard.classList.remove('timer-complete');
+
+      // Ensure AudioContext is resumed (required after user gesture)
+      try { getAudioContext().resume(); } catch(e) {}
+
+      startVerseRotation();
+
+      timerInterval = setInterval(function() {
+        remainingSeconds--;
+        updateDisplay();
+
+        if (remainingSeconds <= 0) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+          isRunning = false;
+          onTimerComplete();
+        }
+      }, 1000);
+    }
+
+    function pauseTimer() {
+      if (!isRunning) return;
+      clearInterval(timerInterval);
+      timerInterval = null;
+      isRunning = false;
+      isPaused = true;
+      timerLabel.textContent = '已暫停';
+      startBtn.style.display = '';
+      startBtn.textContent = '繼續';
+      pauseBtn.disabled = true;
+      stopVerseRotation();
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      isRunning = false;
+      isPaused = false;
+      remainingSeconds = totalSeconds;
+      updateDisplay();
+      timerLabel.textContent = '準備就緒';
+      startBtn.style.display = '';
+      startBtn.textContent = '開始禱告';
+      pauseBtn.disabled = true;
+      pauseBtn.textContent = '暫停';
+      resetBtn.disabled = true;
+      timerCard.classList.remove('timer-complete');
+      stopVerseRotation();
+    }
+
+    function onTimerComplete() {
+      timerLabel.textContent = '禱告完成';
+      timerCard.classList.add('timer-complete');
+      startBtn.style.display = '';
+      startBtn.textContent = '開始禱告';
+      pauseBtn.disabled = true;
+      resetBtn.disabled = false;
+      stopVerseRotation();
+
+      playBell();
+      saveSession();
+      updateStats();
+      renderLog();
+
+      const mins = Math.round(totalSeconds / 60);
+      notifyMsg.textContent = '感謝神的同在，你完成了 ' + mins + ' 分鐘的禱告。';
+      notifyOverlay.classList.add('show');
+
+      // Reset for next use
+      remainingSeconds = totalSeconds;
+    }
+
+    // ========== Verse Rotation ==========
+    function showVerse() {
+      // Pick a random verse different from current
+      let newIndex;
+      do {
+        newIndex = Math.floor(Math.random() * verses.length);
+      } while (newIndex === currentVerseIndex && verses.length > 1);
+      currentVerseIndex = newIndex;
+
+      const verse = verses[currentVerseIndex];
+
+      // Fade out
+      verseText.classList.add('fading');
+      verseRef.classList.add('fading');
+
+      setTimeout(function() {
+        verseText.textContent = '「' + verse.text + '」';
+        verseRef.textContent = '— ' + verse.ref;
+        verseText.classList.remove('fading');
+        verseRef.classList.remove('fading');
+      }, 600);
+    }
+
+    function startVerseRotation() {
+      showVerse();
+      verseInterval = setInterval(showVerse, 30000);
+    }
+
+    function stopVerseRotation() {
+      if (verseInterval) {
+        clearInterval(verseInterval);
+        verseInterval = null;
+      }
+    }
+
+    // ========== LocalStorage ==========
+    const STORAGE_KEY = 'prayerTimerSessions';
+
+    function getSessions() {
+      try {
+        const data = localStorage.getItem(STORAGE_KEY);
+        return data ? JSON.parse(data) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveSession() {
+      const sessions = getSessions();
+      sessions.unshift({
+        date: new Date().toISOString(),
+        duration: Math.round(totalSeconds / 60)
+      });
+      // Keep max 200 sessions
+      if (sessions.length > 200) sessions.length = 200;
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(sessions));
+      } catch (e) {
+        // Storage full, silently fail
+      }
+    }
+
+    function clearSessions() {
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+      } catch (e) {}
+      updateStats();
+      renderLog();
+    }
+
+    // ========== Stats ==========
+    function updateStats() {
+      const sessions = getSessions();
+      const now = new Date();
+
+      // Week: Monday to Sunday
+      const dayOfWeek = now.getDay() === 0 ? 6 : now.getDay() - 1; // 0=Mon
+      const weekStart = new Date(now);
+      weekStart.setDate(now.getDate() - dayOfWeek);
+      weekStart.setHours(0, 0, 0, 0);
+
+      // Month start
+      const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+
+      let weekMins = 0;
+      let monthMins = 0;
+
+      sessions.forEach(function(s) {
+        const d = new Date(s.date);
+        if (d >= weekStart) weekMins += s.duration;
+        if (d >= monthStart) monthMins += s.duration;
+      });
+
+      statWeek.textContent = weekMins;
+      statMonth.textContent = monthMins;
+      statSessions.textContent = sessions.length;
+    }
+
+    function renderLog() {
+      const sessions = getSessions();
+      if (sessions.length === 0) {
+        logList.innerHTML = '<li class="log-empty">尚無禱告紀錄</li>';
+        return;
+      }
+
+      // Show latest 30
+      const shown = sessions.slice(0, 30);
+      logList.innerHTML = shown.map(function(s) {
+        const d = new Date(s.date);
+        const dateStr = (d.getMonth() + 1) + '/' + d.getDate() + ' ' +
+          String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+        return '<li class="log-item">' +
+          '<span class="log-date">' + dateStr + '</span>' +
+          '<span class="log-duration">' + s.duration + ' 分鐘</span>' +
+          '</li>';
+      }).join('');
+    }
+
+    // ========== Event Listeners ==========
+    presetBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        if (isRunning) return;
+        presetBtns.forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        setTime(parseInt(btn.dataset.minutes));
+      });
+    });
+
+    customSetBtn.addEventListener('click', function() {
+      const val = parseInt(customMinutes.value);
+      if (!val || val < 1 || val > 120) return;
+      if (isRunning) return;
+      presetBtns.forEach(function(b) { b.classList.remove('active'); });
+      setTime(val);
+    });
+
+    customMinutes.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') customSetBtn.click();
+    });
+
+    startBtn.addEventListener('click', function() {
+      if (isRunning) return;
+      if (remainingSeconds <= 0) {
+        remainingSeconds = totalSeconds;
+        updateDisplay();
+      }
+      startTimer();
+    });
+
+    pauseBtn.addEventListener('click', pauseTimer);
+    resetBtn.addEventListener('click', resetTimer);
+
+    notifyCloseBtn.addEventListener('click', function() {
+      notifyOverlay.classList.remove('show');
+      updateDisplay();
+    });
+
+    notifyOverlay.addEventListener('click', function(e) {
+      if (e.target === notifyOverlay) {
+        notifyOverlay.classList.remove('show');
+        updateDisplay();
+      }
+    });
+
+    clearLogBtn.addEventListener('click', function() {
+      if (confirm('確定要清除所有禱告紀錄嗎？')) {
+        clearSessions();
+      }
+    });
+
+    // ========== Init ==========
+    updateDisplay();
+    updateStats();
+    renderLog();
+
+    // Show initial verse
+    const initVerse = verses[Math.floor(Math.random() * verses.length)];
+    currentVerseIndex = verses.indexOf(initVerse);
+    verseText.textContent = '「' + initVerse.text + '」';
+    verseRef.textContent = '— ' + initVerse.ref;
+
+  })();
+  </script>
+</body>
+</html>

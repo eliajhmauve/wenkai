@@ -4,15 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>福青施老師 — 作品集</title>
-  <meta name="description" content="福青施老師作品集 — 34 件命理工具、聖經靈修、趣味互動與生活工具。紫微斗數、八字、易經、星盤、人類圖、塔羅、面相、梅花易數、奇門遁甲、節氣養生一站到齊。">
+  <meta name="description" content="福青施老師作品集 — 41 件命理工具、聖經靈修、趣味互動與生活工具。紫微斗數、八字、易經、星盤、人類圖、塔羅、面相、梅花易數、奇門遁甲、節氣養生一站到齊。">
   <meta name="keywords" content="福青施老師,命理,紫微斗數,八字,易經,塔羅,人類圖,聖經靈修,AI工具">
   <meta name="author" content="福青施老師">
-  <meta name="theme-color" content="#c9a84c">
+  <meta name="theme-color" content="#9b7e3a">
   <link rel="canonical" href="https://eliajhmauve.github.io/wenkai/">
 
   <!-- Open Graph -->
   <meta property="og:title" content="福青施老師 — 作品集">
-  <meta property="og:description" content="34 件命理工具、聖經靈修、趣味互動與生活工具">
+  <meta property="og:description" content="41 件命理工具、聖經靈修、趣味互動與生活工具">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://eliajhmauve.github.io/wenkai/">
   <meta property="og:image" content="https://eliajhmauve.github.io/wenkai/og-image.png">
@@ -21,22 +21,21 @@
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="福青施老師 — 作品集">
-  <meta name="twitter:description" content="34 件命理工具與靈修工具">
+  <meta name="twitter:description" content="41 件命理工具與靈修工具">
   <meta name="twitter:image" content="https://eliajhmauve.github.io/wenkai/og-image.png">
 
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔮</text></svg>">
 
-  <!-- Preconnect & DNS Prefetch -->
+  <!-- Preconnect -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="dns-prefetch" href="https://images.unsplash.com">
 
-  <!-- Fonts (trimmed weights) -->
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 
-  <!-- JSON-LD Structured Data -->
+  <!-- JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -51,14 +50,11 @@
       {
         "@type": "CollectionPage",
         "name": "福青施老師 — 作品集",
-        "description": "34 件命理工具、聖經靈修、趣味互動與生活工具",
+        "description": "41 件命理工具、聖經靈修、趣味互動與生活工具",
         "url": "https://eliajhmauve.github.io/wenkai/",
         "inLanguage": "zh-TW",
-        "numberOfItems": 34,
-        "author": {
-          "@type": "Person",
-          "name": "福青施老師"
-        }
+        "numberOfItems": 41,
+        "author": { "@type": "Person", "name": "福青施老師" }
       }
     ]
   }
@@ -76,11 +72,12 @@
   <nav class="nav">
     <div class="nav-inner">
       <a href="#" class="nav-logo">福青施老師</a>
-      <div class="nav-links">
-        <a href="#divination">命理工具</a>
-        <a href="#bible">聖經靈修</a>
-        <a href="#fun">趣味互動</a>
-        <a href="#life">生活工具</a>
+      <div class="nav-tabs">
+        <button class="tab active" data-filter="all">全部 <span class="tab-count">41</span></button>
+        <button class="tab" data-filter="divination">命理 <span class="tab-count">20</span></button>
+        <button class="tab" data-filter="bible">靈修 <span class="tab-count">9</span></button>
+        <button class="tab" data-filter="fun">趣味 <span class="tab-count">8</span></button>
+        <button class="tab" data-filter="life">生活 <span class="tab-count">4</span></button>
       </div>
       <button class="hamburger" aria-label="開啟選單" aria-expanded="false">
         <span class="hamburger-line"></span>
@@ -92,325 +89,371 @@
 
   <!-- Mobile Menu Overlay -->
   <div class="mobile-menu" aria-hidden="true">
-    <a href="#divination">命理工具</a>
-    <a href="#bible">聖經靈修</a>
-    <a href="#fun">趣味互動</a>
-    <a href="#life">生活工具</a>
+    <button class="mobile-tab" data-filter="all">全部</button>
+    <button class="mobile-tab" data-filter="divination">命理工具</button>
+    <button class="mobile-tab" data-filter="bible">聖經靈修</button>
+    <button class="mobile-tab" data-filter="fun">趣味互動</button>
+    <button class="mobile-tab" data-filter="life">生活工具</button>
   </div>
 
   <!-- Hero -->
   <header class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-aurora"></div>
     <div class="hero-content">
       <div class="hero-photo-wrap">
         <div class="hero-photo">
-          <img src="avatar.jpg" alt="福青施老師">
+          <img src="avatar.jpg" alt="福青施老師" width="100" height="100">
         </div>
       </div>
-      <p class="hero-tag">命理 · 靈修 · AI</p>
+      <p class="hero-tag">DIVINATION / AI / SPIRITUAL</p>
       <h1 class="hero-title">福青施老師</h1>
-      <div class="hero-divider"></div>
       <p class="hero-subtitle">以古法為骨、以 AI 為翼<br>命理與靈修的數位工坊</p>
       <div class="hero-stats">
-        <div class="stat"><span class="stat-num">34</span><span class="stat-label">件作品</span></div>
+        <div class="stat"><span class="stat-num">41</span><span class="stat-label">件作品</span></div>
         <div class="stat-sep"></div>
         <div class="stat"><span class="stat-num">4</span><span class="stat-label">大領域</span></div>
       </div>
+      <div class="hero-social">
+        <a href="https://line.me/ti/p/@mauve_dym" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LINE">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+        </a>
+        <a href="https://instagram.com/elijah.shi.sensei" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://threads.net/@elijah.shi.sensei" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Threads">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.59 12c.025 3.086.718 5.496 2.057 7.164 1.432 1.781 3.632 2.695 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.17.408-2.243 1.33-3.023.88-.744 2.084-1.168 3.59-1.264 1.07-.068 2.062.02 2.967.24-.087-.705-.28-1.264-.58-1.673-.41-.559-1.05-.876-1.9-.944l-.1-.003c-.876 0-1.895.275-2.26 1.248l-1.932-.702c.604-1.605 2.019-2.49 3.985-2.49l.15.003c1.386.082 2.48.602 3.153 1.503.558.746.896 1.726 1.007 2.91.37.136.72.298 1.046.49 1.334.783 2.258 1.895 2.67 3.208.553 1.765.384 4.49-1.83 6.655-1.879 1.837-4.153 2.63-7.37 2.65zm-.4-7.064c.095 0 .19-.002.288-.006 1.015-.055 1.762-.416 2.283-1.065.474-.59.784-1.415.924-2.452-.79-.262-1.664-.384-2.607-.33-1.093.07-1.928.368-2.482.886-.494.462-.694 1.035-.66 1.65.04.735.434 1.317 1.392 1.317z"/></svg>
+        </a>
+      </div>
     </div>
-    <div class="scroll-hint">向下探索 ↓</div>
   </header>
 
+  <!-- Symbol Band -->
+  <div class="symbol-band">
+    <div class="symbol-track">☽ ☿ ♀ ☀ ♂ ♃ ♄ ♅ ♆ ✦ ☯ ✧ ◈ ☰ ☱ ☲ ☳ ☴ ☵ ☶ ☷ ☽ ☿ ♀ ☀ ♂ ♃ ♄ ♅ ♆ ✦ ☯ ✧ ◈ ☰ ☱ ☲ ☳ ☴ ☵ ☶ ☷</div>
+  </div>
+
+  <!-- Main Content -->
   <main id="main-content">
+    <section class="section">
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="text" id="search-input" class="search-input" placeholder="搜尋作品..." aria-label="搜尋作品">
+      </div>
+      <div class="grid">
 
-  <!-- 命理工具 -->
-  <section id="divination" class="section">
-    <div class="section-header" data-index="01">
-      <h2>命理工具</h2>
-      <p class="section-desc">紫微斗數、八字、易經、星盤、人類圖、塔羅、姓名學等命理系統</p>
-    </div>
-    <div class="grid">
+        <!-- ===== 命理工具 ===== -->
 
-      <a href="https://eliajhmauve.github.io/celestial-compass/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36z"/></svg></div>
-        <h3>紫微斗數復盤學習系統</h3>
-        <p>完整 SPA，含隨機命盤生成、手動復盤、報告、歷史紀錄</p>
-      </a>
+        <a href="https://eliajhmauve.github.io/celestial-compass/" target="_blank" rel="noopener noreferrer" class="card" data-category="divination">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36z"/></svg></div>
+          <h3>紫微斗數復盤學習系統</h3>
+          <p>完整 SPA，含隨機命盤生成、手動復盤、報告、歷史紀錄</p>
+          <span class="card-tag">命理工具</span>
+        </a>
 
-      <a href="https://eliajhmauve.github.io/celestial-compass-12/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-        <h3>八字命盤觀測台</h3>
-        <p>八字排盤與命理分析工具</p>
-      </a>
+        <a href="https://eliajhmauve.github.io/celestial-compass-12/" target="_blank" rel="noopener noreferrer" class="card" data-category="divination">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+          <h3>八字命盤觀測台</h3>
+          <p>八字排盤與命理分析工具</p>
+          <span class="card-tag">命理工具</span>
+        </a>
 
-      <a href="https://eliajhmauve.github.io/yi-compass/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="4"/></svg></div>
-        <h3>易經卦象復盤解析</h3>
-        <p>開場動畫、問題輸入、隨機取卦與復盤模式</p>
-      </a>
+        <a href="https://eliajhmauve.github.io/yi-compass/" target="_blank" rel="noopener noreferrer" class="card" data-category="divination">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="4"/></svg></div>
+          <h3>易經卦象復盤解析</h3>
+          <p>開場動畫、問題輸入、隨機取卦與復盤模式</p>
+          <span class="card-tag">命理工具</span>
+        </a>
 
-      <a href="https://eliajhmauve.github.io/app-...-3c4b4447/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-        <h3>西洋星盤復盤學習</h3>
-        <p>太極圖動畫、引用文句、完整復盤系統</p>
-      </a>
+        <a href="https://eliajhmauve.github.io/app-...-3c4b4447/" target="_blank" rel="noopener noreferrer" class="card" data-category="divination">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <h3>西洋星盤復盤學習</h3>
+          <p>太極圖動畫、引用文句、完整復盤系統</p>
+          <span class="card-tag">命理工具</span>
+        </a>
 
-      <a href="https://eliajhmauve.github.io/cosmic-compass-67/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16a4 4 0 1 0 0-8"/><path d="M12 8V2M12 22v-6"/></svg></div>
-        <h3>西洋星盤觀測台</h3>
-        <p>zodiac 裝飾、cosmic 主題、星座符號 UI</p>
-      </a>
+        <a href="https://eliajhmauve.github.io/cosmic-compass-67/" target="_blank" rel="noopener noreferrer" class="card" data-category="divination">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 16a4 4 0 1 0 0-8"/><path d="M12 8V2M12 22v-6"/></svg></div>
+          <h3>西洋星盤觀測台</h3>
+          <p>zodiac 裝飾、cosmic 主題、星座符號 UI</p>
+          <span class="card-tag">命理工具</span>
+        </a>
 
-      <a href="https://eliajhmauve.github.io/blueprint-explorer/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
-        <h3>人類圖復盤學習</h3>
-        <p>Hero 介紹、兩種模式、智慧引言、數據統計</p>
-      </a>
+        <a href="https://eliajhmauve.github.io/blueprint-explorer/" target="_blank" rel="noopener noreferrer" class="card" data-category="divination">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <h3>人類圖復盤學習</h3>
+          <p>Hero 介紹、兩種模式、智慧引言、數據統計</p>
+          <span class="card-tag">命理工具</span>
+        </a>
 
-      <a href="numerology.html" class="card">
-        <div class="card-badge">中英雙語</div>
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h.01M15 9h.01M9 15h.01M15 15h.01M12 12h.01"/></svg></div>
-        <h3>生命靈數計算器</h3>
-        <p>生日解碼 8 大面向深度解讀、大師數 11/22/33、計算動畫、分享卡生成</p>
-      </a>
+        <a href="numerology.html" class="card" data-category="divination">
+          <div class="card-badge">中英雙語</div>
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h.01M15 9h.01M9 15h.01M15 15h.01M12 12h.01"/></svg></div>
+          <h3>生命靈數計算器</h3>
+          <p>生日解碼 8 大面向深度解讀、大師數 11/22/33、計算動畫、分享卡生成</p>
+          <span class="card-tag">命理工具</span>
+        </a>
 
-      <a href="https://eliajhmauve.github.io/app-.../" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M12 4v16"/><path d="M2 12h20"/></svg></div>
-        <h3>塔羅牌系統</h3>
-        <p>開場動畫、牌陣選擇、抽牌、結果報告、復盤紀錄庫</p>
-      </a>
+        <a href="https://eliajhmauve.github.io/app-.../" target="_blank" rel="noopener noreferrer" class="card" data-category="divination">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M12 4v16"/><path d="M2 12h20"/></svg></div>
+          <h3>塔羅牌系統</h3>
+          <p>開場動畫、牌陣選擇、抽牌、結果報告、復盤紀錄庫</p>
+          <span class="card-tag">命理工具</span>
+        </a>
 
-      <a href="tarot.html" class="card">
-        <div class="card-badge">78 張圖卡</div>
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="2" width="14" height="20" rx="2"/><circle cx="10" cy="8" r="2"/><path d="M6 18l4-4 4 4"/><path d="M17 6h4v16a2 2 0 0 1-2 2H7"/></svg></div>
-        <h3>吉伊卡哇塔羅牌</h3>
-        <p>78 張超萌日系可愛風塔羅牌圖卡，含牌義解說與隨機抽牌</p>
-      </a>
+        <a href="tarot.html" class="card" data-category="divination">
+          <div class="card-badge">78 張圖卡</div>
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="2" width="14" height="20" rx="2"/><circle cx="10" cy="8" r="2"/><path d="M6 18l4-4 4 4"/><path d="M17 6h4v16a2 2 0 0 1-2 2H7"/></svg></div>
+          <h3>吉伊卡哇塔羅牌</h3>
+          <p>78 張超萌日系可愛風塔羅牌圖卡，含牌義解說與隨機抽牌</p>
+          <span class="card-tag">命理工具</span>
+        </a>
 
-      <a href="https://eliajhmauve.github.io/osho-zen-tarot/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-badge">79 張圖卡</div>
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3c-1 4-4 7-4 9a4 4 0 0 0 8 0c0-2-3-5-4-9z"/></svg></div>
-        <h3>奧修禪卡</h3>
-        <p>79 張寶可夢風格奧修禪卡，五種牌陣抽牌、牌庫瀏覽與牌意解讀</p>
-      </a>
+        <a href="https://eliajhmauve.github.io/osho-zen-tarot/" target="_blank" rel="noopener noreferrer" class="card" data-category="divination">
+          <div class="card-badge">79 張圖卡</div>
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3c-1 4-4 7-4 9a4 4 0 0 0 8 0c0-2-3-5-4-9z"/></svg></div>
+          <h3>奧修禪卡</h3>
+          <p>79 張寶可夢風格奧修禪卡，五種牌陣抽牌、牌庫瀏覽與牌意解讀</p>
+          <span class="card-tag">命理工具</span>
+        </a>
 
-      <a href="https://eliajhmauve.github.io/name-fortune-teller/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg></div>
-        <h3>姓名測分</h3>
-        <p>康熙字典筆畫、五格數理分析、分享卡、歷史紀錄</p>
-      </a>
+        <a href="https://eliajhmauve.github.io/name-fortune-teller/" target="_blank" rel="noopener noreferrer" class="card" data-category="divination">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg></div>
+          <h3>姓名測分</h3>
+          <p>康熙字典筆畫、五格數理分析、分享卡、歷史紀錄</p>
+          <span class="card-tag">命理工具</span>
+        </a>
 
-      <a href="https://eliajhmauve.github.io/palmistry-insights/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M18 11V6a2 2 0 0 0-4 0v1M14 10V4a2 2 0 0 0-4 0v6M10 10V5a2 2 0 0 0-4 0v9"/><path d="M18 11a2 2 0 0 1 4 0v3a8 8 0 0 1-8 8h-2c-2.5 0-3.5-1-5.5-3l-2.84-3.43a2 2 0 0 1 3.28-2.29L6 16"/></svg></div>
-        <h3>手相分析</h3>
-        <p>手相解讀與命理分析</p>
-      </a>
+        <a href="https://eliajhmauve.github.io/palmistry-insights/" target="_blank" rel="noopener noreferrer" class="card" data-category="divination">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 11V6a2 2 0 0 0-4 0v1M14 10V4a2 2 0 0 0-4 0v6M10 10V5a2 2 0 0 0-4 0v9"/><path d="M18 11a2 2 0 0 1 4 0v3a8 8 0 0 1-8 8h-2c-2.5 0-3.5-1-5.5-3l-2.84-3.43a2 2 0 0 1 3.28-2.29L6 16"/></svg></div>
+          <h3>手相分析</h3>
+          <p>手相解讀與命理分析</p>
+          <span class="card-tag">命理工具</span>
+        </a>
 
-      <a href="https://eliajhmauve.github.io/moonbeam-insights/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></div>
-        <h3>月亮星座查詢器</h3>
-        <p>探索你的太陽、月亮、上升三合一星座</p>
-      </a>
+        <a href="https://eliajhmauve.github.io/moonbeam-insights/" target="_blank" rel="noopener noreferrer" class="card" data-category="divination">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></div>
+          <h3>月亮星座查詢器</h3>
+          <p>探索你的太陽、月亮、上升三合一星座</p>
+          <span class="card-tag">命理工具</span>
+        </a>
 
-      <a href="https://eliajhmauve.github.io/auspicious-golden-dates/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg></div>
-        <h3>擇日工具</h3>
-        <p>擇日查詢、師資介紹、精美 portal 設計</p>
-      </a>
+        <a href="https://eliajhmauve.github.io/auspicious-golden-dates/" target="_blank" rel="noopener noreferrer" class="card" data-category="divination">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg></div>
+          <h3>擇日工具</h3>
+          <p>擇日查詢、師資介紹、精美 portal 設計</p>
+          <span class="card-tag">命理工具</span>
+        </a>
 
-      <a href="https://eliajhmauve.github.io/birthday-decoder/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-        <h3>生日密碼解讀</h3>
-        <p>輸入生日，confetti 動畫揭曉你的生日密碼</p>
-      </a>
+        <a href="https://eliajhmauve.github.io/birthday-decoder/" target="_blank" rel="noopener noreferrer" class="card" data-category="divination">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <h3>生日密碼解讀</h3>
+          <p>輸入生日，confetti 動畫揭曉你的生日密碼</p>
+          <span class="card-tag">命理工具</span>
+        </a>
 
-      <a href="https://eliajhmauve.github.io/annual-fortune-weaver/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
-        <h3>流年報告</h3>
-        <p>AI 生成年度運勢報告</p>
-      </a>
+        <a href="https://eliajhmauve.github.io/annual-fortune-weaver/" target="_blank" rel="noopener noreferrer" class="card" data-category="divination">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+          <h3>流年報告</h3>
+          <p>AI 生成年度運勢報告</p>
+          <span class="card-tag">命理工具</span>
+        </a>
 
-      <a href="ai-face-reading.html" class="card">
-        <div class="card-badge">AI 面相</div>
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/><circle cx="9" cy="7" r="0.5" fill="currentColor"/><circle cx="15" cy="7" r="0.5" fill="currentColor"/></svg></div>
-        <h3>面相 AI 分析師</h3>
-        <p>上傳照片自動偵測面部，三停五官 AI 面相解讀，秒出分析報告</p>
-      </a>
+        <a href="ai-face-reading.html" class="card" data-category="divination">
+          <div class="card-badge">AI 面相</div>
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 1 0-16 0"/><circle cx="9" cy="7" r="0.5" fill="currentColor"/><circle cx="15" cy="7" r="0.5" fill="currentColor"/></svg></div>
+          <h3>面相 AI 分析師</h3>
+          <p>上傳照片自動偵測面部，三停五官 AI 面相解讀，秒出分析報告</p>
+          <span class="card-tag">命理工具</span>
+        </a>
 
-      <a href="meihua-oracle.html" class="card">
-        <div class="card-badge">梅花易數</div>
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 6h16M4 10h16M4 14h7m2 0h7M4 18h16"/><circle cx="12" cy="14" r="1" fill="currentColor"/></svg></div>
-        <h3>梅花易數 AI 解卦</h3>
-        <p>數字、時間、文字、搖卦四種起卦，64 卦體用生剋 + AI 深度解讀</p>
-      </a>
+        <a href="meihua-oracle.html" class="card" data-category="divination">
+          <div class="card-badge">梅花易數</div>
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 10h16M4 14h7m2 0h7M4 18h16"/><circle cx="12" cy="14" r="1" fill="currentColor"/></svg></div>
+          <h3>梅花易數 AI 解卦</h3>
+          <p>數字、時間、文字、搖卦四種起卦，64 卦體用生剋 + AI 深度解讀</p>
+          <span class="card-tag">命理工具</span>
+        </a>
 
-      <a href="iching.html" class="card">
-        <div class="card-badge">64 卦圖卡</div>
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 5h16M4 9h16M4 13h7m2 0h7M4 17h16M4 21h16M4 1h16"/></svg></div>
-        <h3>西遊記風易經卜卦</h3>
-        <p>64 卦水墨國風圖卡、擲幣占卦、本卦變卦、八宮分類、卦象詳解</p>
-      </a>
+        <a href="iching.html" class="card" data-category="divination">
+          <div class="card-badge">64 卦圖卡</div>
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 5h16M4 9h16M4 13h7m2 0h7M4 17h16M4 21h16M4 1h16"/></svg></div>
+          <h3>西遊記風易經卜卦</h3>
+          <p>64 卦水墨國風圖卡、擲幣占卦、本卦變卦、八宮分類、卦象詳解</p>
+          <span class="card-tag">命理工具</span>
+        </a>
 
-      <a href="qimen-oracle.html" class="card">
-        <div class="card-badge">奇門遁甲</div>
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="1"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg></div>
-        <h3>奇門遁甲決策盤</h3>
-        <p>九宮排盤、天盤九星、人盤八門、神盤八神，AI 決策方向解讀</p>
-      </a>
+        <a href="qimen-oracle.html" class="card" data-category="divination">
+          <div class="card-badge">奇門遁甲</div>
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg></div>
+          <h3>奇門遁甲決策盤</h3>
+          <p>九宮排盤、天盤九星、人盤八門、神盤八神，AI 決策方向解讀</p>
+          <span class="card-tag">命理工具</span>
+        </a>
 
-    </div>
-  </section>
+        <!-- ===== 聖經靈修 ===== -->
 
-  <!-- 聖經靈修 -->
-  <div class="section-divider"><span class="section-divider-symbol">✦ ✦ ✦</span></div>
+        <a href="daily-scripture.html" class="card" data-category="bible">
+          <div class="card-badge">365天</div>
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></div>
+          <h3>每日經文靈修卡</h3>
+          <p>每日推送經文、五種精美卡片模板、AI 默想引導、收藏與靈修日記</p>
+          <span class="card-tag">聖經靈修</span>
+        </a>
 
-  <section id="bible" class="section section-alt">
-    <div class="section-header" data-index="02">
-      <h2>聖經靈修</h2>
-      <p class="section-desc">經文搜尋、金句圖、讀經計畫、問答、禱告、每日靈修等工具</p>
-    </div>
-    <div class="grid">
+        <a href="bible-wisdom.html" class="card" data-category="bible">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></svg></div>
+          <h3>聖經智慧問答</h3>
+          <p>輸入人生困惑，AI 以聖經智慧回應並附相關經文，溫暖的對話式輔導</p>
+          <span class="card-tag">聖經靈修</span>
+        </a>
 
-      <a href="https://eliajhmauve.github.io/holy-light-portal/" target="_blank" rel="noopener noreferrer" class="card card-featured">
-        <div class="card-badge">8 合 1</div>
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M12 6v7M9 10l3 3 3-3"/></svg></div>
-        <h3>聖光寶典</h3>
-        <p>金句、搜尋、對照、問答、禱告計時器、讀經進度等八大工具，中英雙語</p>
-      </a>
+        <a href="prayer-companion.html" class="card" data-category="bible">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="15" cy="9" r="1" fill="currentColor"/></svg></div>
+          <h3>禱告陪伴室</h3>
+          <p>五大禱告分類引導、靜禱計時器、呼吸引導、AI 禱告陪伴、禱告日記</p>
+          <span class="card-tag">聖經靈修</span>
+        </a>
 
-      <a href="daily-scripture.html" class="card">
-        <div class="card-badge">365天</div>
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg></div>
-        <h3>每日經文靈修卡</h3>
-        <p>每日推送經文、五種精美卡片模板、AI 默想引導、收藏與靈修日記</p>
-      </a>
+        <a href="bible-marathon.html" class="card" data-category="bible">
+          <div class="card-badge">365天</div>
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M8 7h8M8 11h6"/></svg></div>
+          <h3>聖經讀經馬拉松</h3>
+          <p>三種讀經計畫（365天/90天/30天），每日打卡、連續天數、進度追蹤</p>
+          <span class="card-tag">聖經靈修</span>
+        </a>
 
-      <a href="bible-wisdom.html" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></svg></div>
-        <h3>聖經智慧問答</h3>
-        <p>輸入人生困惑，AI 以聖經智慧回應並附相關經文，溫暖的對話式輔導</p>
-      </a>
+        <a href="bible-parallel.html" class="card" data-category="bible">
+          <div class="card-badge">多版本</div>
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="8" height="18" rx="1"/><rect x="14" y="3" width="8" height="18" rx="1"/><path d="M6 8h0M6 12h0M6 16h0M18 8h0M18 12h0M18 16h0"/></svg></div>
+          <h3>經文對照</h3>
+          <p>和合本、新譯本、NIV 三版本並排對照，48 節經文 + 20 個熱門快捷</p>
+          <span class="card-tag">聖經靈修</span>
+        </a>
 
-      <a href="prayer-companion.html" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="15" cy="9" r="1" fill="currentColor"/></svg></div>
-        <h3>禱告陪伴室</h3>
-        <p>五大禱告分類引導、靜禱計時器、呼吸引導、AI 禱告陪伴、禱告日記</p>
-      </a>
+        <a href="random-verse.html" class="card" data-category="bible">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><polyline points="7.5 19.79 7.5 14.6 3 12"/><polyline points="21 12 16.5 14.6 16.5 19.79"/></svg></div>
+          <h3>隨機經文</h3>
+          <p>八大主題分類（平安/愛/力量/感恩...），隨機抽取經文，80+ 段中英經文</p>
+          <span class="card-tag">聖經靈修</span>
+        </a>
 
-      <a href="bible-marathon.html" class="card">
-        <div class="card-badge">365天</div>
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M8 7h8M8 11h6"/></svg></div>
-        <h3>聖經讀經馬拉松</h3>
-        <p>三種讀經計畫（365天/90天/30天），每日打卡、連續天數、進度追蹤</p>
-      </a>
+        <a href="reading-plan.html" class="card" data-category="bible">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <h3>讀經進度</h3>
+          <p>三種讀經計畫（一年/90天/30天），每日打卡、日曆視圖、連續天數追蹤</p>
+          <span class="card-tag">聖經靈修</span>
+        </a>
 
-    </div>
-  </section>
+        <a href="bible-quiz.html" class="card" data-category="bible">
+          <div class="card-badge">56 題</div>
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><circle cx="12" cy="17" r="0.5" fill="currentColor"/></svg></div>
+          <h3>聖經問答</h3>
+          <p>三種難度（入門/進階/挑戰），56 道題目、倒計時、成績等級、歷史最高分</p>
+          <span class="card-tag">聖經靈修</span>
+        </a>
 
-  <!-- 趣味互動 -->
-  <div class="section-divider"><span class="section-divider-symbol">☽ ☯ ☽</span></div>
+        <a href="prayer-timer.html" class="card" data-category="bible">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3L2 6"/><path d="M22 6l-3-3"/><path d="M12 5V3"/></svg></div>
+          <h3>禱告計時器</h3>
+          <p>圓環倒計時、柔和鐘聲提醒、經文輪播、禱告紀錄與統計</p>
+          <span class="card-tag">聖經靈修</span>
+        </a>
 
-  <section id="fun" class="section">
-    <div class="section-header" data-index="03">
-      <h2>趣味互動</h2>
-      <p class="section-desc">心理測驗、色彩分析、愛情配對、每日抽籤等趣味工具</p>
-    </div>
-    <div class="grid">
+        <!-- ===== 趣味互動 ===== -->
 
-      <a href="https://eliajhmauve.github.io/personality-playground/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg></div>
-        <h3>趣味心理測驗</h3>
-        <p>你是什麼類型的人？互動式心理測驗</p>
-      </a>
+        <a href="https://eliajhmauve.github.io/personality-playground/" target="_blank" rel="noopener noreferrer" class="card" data-category="fun">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h3>趣味心理測驗</h3>
+          <p>你是什麼類型的人？互動式心理測驗</p>
+          <span class="card-tag">趣味互動</span>
+        </a>
 
-      <a href="https://eliajhmauve.github.io/your-color-story/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="13.5" cy="6.5" r="4.5"/><circle cx="17.5" cy="17.5" r="4.5"/><circle cx="6.5" cy="17.5" r="4.5"/></svg></div>
-        <h3>個人色彩報告</h3>
-        <p>探索專屬色彩密碼，支援 LINE/FB/IG 分享</p>
-      </a>
+        <a href="https://eliajhmauve.github.io/your-color-story/" target="_blank" rel="noopener noreferrer" class="card" data-category="fun">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="13.5" cy="6.5" r="4.5"/><circle cx="17.5" cy="17.5" r="4.5"/><circle cx="6.5" cy="17.5" r="4.5"/></svg></div>
+          <h3>個人色彩報告</h3>
+          <p>探索專屬色彩密碼，支援 LINE/FB/IG 分享</p>
+          <span class="card-tag">趣味互動</span>
+        </a>
 
-      <a href="https://eliajhmauve.github.io/heartsync-match/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-        <h3>愛情配對計算器</h3>
-        <p>三階段流程 + 紅線特效 + 音效系統</p>
-      </a>
+        <a href="https://eliajhmauve.github.io/heartsync-match/" target="_blank" rel="noopener noreferrer" class="card" data-category="fun">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <h3>愛情配對計算器</h3>
+          <p>三階段流程 + 紅線特效 + 音效系統</p>
+          <span class="card-tag">趣味互動</span>
+        </a>
 
-      <a href="https://eliajhmauve.github.io/daily-fortune-draw/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></div>
-        <h3>每日運勢抽籤</h3>
-        <p>每天抽一支籤，看看今日運勢</p>
-      </a>
+        <a href="https://eliajhmauve.github.io/daily-fortune-draw/" target="_blank" rel="noopener noreferrer" class="card" data-category="fun">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></div>
+          <h3>每日運勢抽籤</h3>
+          <p>每天抽一支籤，看看今日運勢</p>
+          <span class="card-tag">趣味互動</span>
+        </a>
 
-      <a href="https://eliajhmauve.github.io/daily-inspiration-draw/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-        <h3>每日靈感卡</h3>
-        <p>3 選 1 翻牌動畫、星空背景、歷史紀錄</p>
-      </a>
+        <a href="https://eliajhmauve.github.io/daily-inspiration-draw/" target="_blank" rel="noopener noreferrer" class="card" data-category="fun">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <h3>每日靈感卡</h3>
+          <p>3 選 1 翻牌動畫、星空背景、歷史紀錄</p>
+          <span class="card-tag">趣味互動</span>
+        </a>
 
-      <a href="https://eliajhmauve.github.io/soul-gems/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-badge">推薦</div>
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polygon points="12 2 2 10 12 22 22 10"/><path d="M2 10h20"/><path d="M7.5 2L12 10l4.5-8"/></svg></div>
-        <h3>人生金句抽籤</h3>
-        <p>6 種模板樣式、收藏下載、IG 限動匯出</p>
-      </a>
+        <a href="https://eliajhmauve.github.io/soul-gems/" target="_blank" rel="noopener noreferrer" class="card" data-category="fun">
+          <div class="card-badge">推薦</div>
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 10 12 22 22 10"/><path d="M2 10h20"/><path d="M7.5 2L12 10l4.5-8"/></svg></div>
+          <h3>人生金句抽籤</h3>
+          <p>6 種模板樣式、收藏下載、IG 限動匯出</p>
+          <span class="card-tag">趣味互動</span>
+        </a>
 
-      <a href="weekly-horoscope.html" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div>
-        <h3>星座運勢週報</h3>
-        <p>每週 12 星座運勢、四維度評分、幸運色/數字/方位、精美週報卡分享</p>
-      </a>
+        <a href="weekly-horoscope.html" class="card" data-category="fun">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg></div>
+          <h3>星座運勢週報</h3>
+          <p>每週 12 星座運勢、四維度評分、幸運色/數字/方位、精美週報卡分享</p>
+          <span class="card-tag">趣味互動</span>
+        </a>
 
-      <a href="destiny-compatibility.html" class="card">
-        <div class="card-badge">雙人互動</div>
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/><circle cx="8.5" cy="10.5" r="1" fill="currentColor"/><circle cx="15.5" cy="10.5" r="1" fill="currentColor"/></svg></div>
-        <h3>命理相容性計算器</h3>
-        <p>八字合婚、星座配對、生命靈數三維度分析，Canvas 雷達圖 + AI 深度報告</p>
-      </a>
+        <a href="destiny-compatibility.html" class="card" data-category="fun">
+          <div class="card-badge">雙人互動</div>
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/><circle cx="8.5" cy="10.5" r="1" fill="currentColor"/><circle cx="15.5" cy="10.5" r="1" fill="currentColor"/></svg></div>
+          <h3>命理相容性計算器</h3>
+          <p>八字合婚、星座配對、生命靈數三維度分析，Canvas 雷達圖 + AI 深度報告</p>
+          <span class="card-tag">趣味互動</span>
+        </a>
 
-    </div>
-  </section>
+        <!-- ===== 生活工具 ===== -->
 
-  <!-- 生活工具 -->
-  <div class="section-divider"><span class="section-divider-symbol">◈ ✧ ◈</span></div>
+        <a href="https://eliajhmauve.github.io/life-s-weeks/" target="_blank" rel="noopener noreferrer" class="card" data-category="life">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <h3>人生倒數計時器</h3>
+          <p>以週為單位，視覺化你的人生進度</p>
+          <span class="card-tag">生活工具</span>
+        </a>
 
-  <section id="life" class="section section-alt">
-    <div class="section-header" data-index="04">
-      <h2>生活工具</h2>
-      <p class="section-desc">實用的日常小工具</p>
-    </div>
-    <div class="grid">
+        <a href="https://eliajhmauve.github.io/lunar-charm/" target="_blank" rel="noopener noreferrer" class="card" data-category="life">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a7 7 0 0 0 0 20 10 10 0 0 1 0-20z"/></svg></div>
+          <h3>農曆生日轉換器</h3>
+          <p>國曆農曆互轉、生肖星座查詢</p>
+          <span class="card-tag">生活工具</span>
+        </a>
 
-      <a href="https://eliajhmauve.github.io/life-s-weeks/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-        <h3>人生倒數計時器</h3>
-        <p>以週為單位，視覺化你的人生進度</p>
-      </a>
+        <a href="solar-term-wellness.html" class="card" data-category="life">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
+          <h3>節氣養生日曆</h3>
+          <p>二十四節氣養生智慧，飲食、運動、穴位、茶飲推薦，AI 個人化建議</p>
+          <span class="card-tag">生活工具</span>
+        </a>
 
-      <a href="https://eliajhmauve.github.io/lunar-charm/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a7 7 0 0 0 0 20 10 10 0 0 1 0-20z"/></svg></div>
-        <h3>農曆生日轉換器</h3>
-        <p>國曆農曆互轉、生肖星座查詢</p>
-      </a>
+        <a href="https://eliajhmauve.github.io/quantum-console/" target="_blank" rel="noopener noreferrer" class="card" data-category="life">
+          <div class="card-badge">技術展示</div>
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+          <h3>SaaS Landing Page</h3>
+          <p>完整行銷頁面：Features、Pricing、Testimonials</p>
+          <span class="card-tag">生活工具</span>
+        </a>
 
-      <a href="solar-term-wellness.html" class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
-        <h3>節氣養生日曆</h3>
-        <p>二十四節氣養生智慧，飲食、運動、穴位、茶飲推薦，AI 個人化建議</p>
-      </a>
-
-      <a href="https://eliajhmauve.github.io/quantum-console/" target="_blank" rel="noopener noreferrer" class="card">
-        <div class="card-badge">技術展示</div>
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
-        <h3>SaaS Landing Page</h3>
-        <p>完整行銷頁面：Features、Pricing、Testimonials</p>
-      </a>
-
-    </div>
-  </section>
-
+      </div>
+    </section>
   </main>
 
-  <!-- Symbol Ticker Band -->
+  <!-- Symbol Band Bottom -->
   <div class="symbol-band">
     <div class="symbol-track">☽ ☿ ♀ ☀ ♂ ♃ ♄ ♅ ♆ ✦ ☯ ✧ ◈ ☰ ☱ ☲ ☳ ☴ ☵ ☶ ☷ ☽ ☿ ♀ ☀ ♂ ♃ ♄ ♅ ♆ ✦ ☯ ✧ ◈ ☰ ☱ ☲ ☳ ☴ ☵ ☶ ☷</div>
   </div>
@@ -419,10 +462,25 @@
   <footer class="footer">
     <div class="footer-inner">
       <p class="footer-brand">福青施老師</p>
-      <p class="footer-copy">&copy; 2026 All rights reserved.</p>
+      <p class="footer-tagline">命理 · 靈修 · AI — 數位工坊</p>
+      <div class="footer-social">
+        <a href="https://line.me/ti/p/@mauve_dym" target="_blank" rel="noopener noreferrer" aria-label="LINE">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+          <span>LINE</span>
+        </a>
+        <a href="https://instagram.com/elijah.shi.sensei" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          <span>Instagram</span>
+        </a>
+        <a href="https://threads.net/@elijah.shi.sensei" target="_blank" rel="noopener noreferrer" aria-label="Threads">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.59 12c.025 3.086.718 5.496 2.057 7.164 1.432 1.781 3.632 2.695 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.17.408-2.243 1.33-3.023.88-.744 2.084-1.168 3.59-1.264 1.07-.068 2.062.02 2.967.24-.087-.705-.28-1.264-.58-1.673-.41-.559-1.05-.876-1.9-.944l-.1-.003c-.876 0-1.895.275-2.26 1.248l-1.932-.702c.604-1.605 2.019-2.49 3.985-2.49l.15.003c1.386.082 2.48.602 3.153 1.503.558.746.896 1.726 1.007 2.91.37.136.72.298 1.046.49 1.334.783 2.258 1.895 2.67 3.208.553 1.765.384 4.49-1.83 6.655-1.879 1.837-4.153 2.63-7.37 2.65zm-.4-7.064c.095 0 .19-.002.288-.006 1.015-.055 1.762-.416 2.283-1.065.474-.59.784-1.415.924-2.452-.79-.262-1.664-.384-2.607-.33-1.093.07-1.928.368-2.482.886-.494.462-.694 1.035-.66 1.65.04.735.434 1.317 1.392 1.317z"/></svg>
+          <span>Threads</span>
+        </a>
+      </div>
+      <p class="footer-copy">&copy; 2026 福青施老師. All rights reserved.</p>
     </div>
   </footer>
 
-  <script src="app.js" defer></script>
+  <script src="app.js"></script>
 </body>
 </html>

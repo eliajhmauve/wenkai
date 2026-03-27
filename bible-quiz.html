@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>聖經問答 — 福青施老師</title>
+  <meta name="description" content="趣味聖經問答遊戲，三種難度挑戰你的聖經知識！入門、進階、挑戰模式，共 50+ 題。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #f6f6f4;
+      --bg-card: #ffffff;
+      --text: #1a1a1a;
+      --text-secondary: #888;
+      --accent: #9b7e3a;
+      --accent-light: #c4a94f;
+      --accent-bg: rgba(155,126,58,0.08);
+      --border: rgba(0,0,0,0.06);
+      --border-hover: rgba(155,126,58,0.3);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+      --shadow-hover: 0 8px 30px rgba(0,0,0,0.08);
+      --radius: 16px;
+      --radius-sm: 12px;
+      --radius-pill: 100px;
+      --correct: #4caf50;
+      --correct-bg: rgba(76,175,80,0.1);
+      --wrong: #ef5350;
+      --wrong-bg: rgba(239,83,80,0.1);
+      --font-serif: 'Noto Serif TC', serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* === Back Link === */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent); }
+
+    /* === Container === */
+    .container {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* === Start Screen === */
+    .screen { display: none; }
+    .screen.active { display: block; }
+
+    .hero {
+      text-align: center;
+      padding: 40px 0 32px;
+    }
+    .hero-icon {
+      font-size: 56px;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .hero p {
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+
+    /* === Difficulty Cards === */
+    .difficulty-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .difficulty-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    .difficulty-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+    .difficulty-card:active {
+      transform: translateY(0);
+    }
+    .diff-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .diff-icon.beginner { background: rgba(76,175,80,0.12); }
+    .diff-icon.intermediate { background: rgba(155,126,58,0.12); }
+    .diff-icon.expert { background: rgba(239,83,80,0.12); }
+    .diff-info { flex: 1; }
+    .diff-info h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .diff-info p {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .diff-arrow {
+      color: var(--text-secondary);
+      font-size: 18px;
+      transition: transform 0.2s;
+    }
+    .difficulty-card:hover .diff-arrow {
+      transform: translateX(4px);
+      color: var(--accent);
+    }
+
+    /* === High Scores on Start === */
+    .high-scores-mini {
+      margin-top: 28px;
+      padding: 16px 20px;
+      background: var(--accent-bg);
+      border-radius: var(--radius-sm);
+      text-align: center;
+    }
+    .high-scores-mini h4 {
+      font-size: 13px;
+      color: var(--text-secondary);
+      font-weight: 500;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .high-scores-row {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+    }
+    .hs-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .hs-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    .hs-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* === Quiz Screen === */
+    .quiz-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      margin-bottom: 8px;
+    }
+    .quiz-progress {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+    .quiz-timer {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      min-width: 56px;
+      justify-content: flex-end;
+    }
+    .quiz-timer.warning { color: var(--wrong); }
+    .timer-icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* Progress Bar */
+    .progress-bar-track {
+      width: 100%;
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      margin-bottom: 28px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
+
+    /* Question Card */
+    .question-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      box-shadow: var(--shadow-sm);
+      animation: fadeInUp 0.35s ease;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .question-badge {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-bg);
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 16px;
+    }
+    .question-text {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+
+    /* Options */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      font-size: 15px;
+      font-family: var(--font-sans);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+    }
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--border-hover);
+      background: var(--accent-bg);
+    }
+    .option-btn:disabled {
+      cursor: default;
+    }
+    .option-letter {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+    .option-btn:hover:not(:disabled) .option-letter {
+      background: var(--accent);
+      color: #fff;
+    }
+    .option-btn.correct {
+      border-color: var(--correct);
+      background: var(--correct-bg);
+    }
+    .option-btn.correct .option-letter {
+      background: var(--correct);
+      color: #fff;
+    }
+    .option-btn.wrong {
+      border-color: var(--wrong);
+      background: var(--wrong-bg);
+    }
+    .option-btn.wrong .option-letter {
+      background: var(--wrong);
+      color: #fff;
+    }
+    .option-btn.dimmed {
+      opacity: 0.5;
+    }
+
+    /* Explanation */
+    .explanation {
+      margin-top: 20px;
+      padding: 16px;
+      background: var(--accent-bg);
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.6;
+      animation: fadeIn 0.3s ease;
+    }
+    .explanation strong {
+      color: var(--accent);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* Next Button */
+    .next-btn-wrap {
+      margin-top: 20px;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .btn {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 12px 28px;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(155,126,58,0.25);
+    }
+    .btn-secondary {
+      background: var(--bg);
+      color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+    .btn-secondary:hover {
+      border-color: var(--border-hover);
+      background: var(--accent-bg);
+    }
+
+    /* === Result Screen === */
+    .result-container {
+      text-align: center;
+      padding-top: 24px;
+    }
+    .result-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 28px;
+      box-shadow: var(--shadow-md);
+      animation: fadeInUp 0.4s ease;
+    }
+    .result-grade {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 40px;
+      font-weight: 900;
+      font-family: var(--font-serif);
+      color: #fff;
+    }
+    .grade-S { background: linear-gradient(135deg, #ffd700, #ffaa00); }
+    .grade-A { background: linear-gradient(135deg, var(--correct), #2e7d32); }
+    .grade-B { background: linear-gradient(135deg, var(--accent), var(--accent-light)); }
+    .grade-C { background: linear-gradient(135deg, #ff9800, #f57c00); }
+    .grade-D { background: linear-gradient(135deg, var(--wrong), #c62828); }
+
+    .result-title {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .result-subtitle {
+      color: var(--text-secondary);
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+    .result-stats {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 28px;
+      padding: 20px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+    .result-highscore {
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .result-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .result-buttons .btn {
+      min-width: 140px;
+    }
+
+    /* Share Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--text);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: var(--radius-pill);
+      font-size: 14px;
+      font-weight: 500;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 100;
+      white-space: nowrap;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Timer ring */
+    .timer-ring {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+    .timer-ring svg {
+      transform: rotate(-90deg);
+    }
+    .timer-ring-bg {
+      fill: none;
+      stroke: var(--border);
+      stroke-width: 3;
+    }
+    .timer-ring-fill {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 3;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 1s linear, stroke 0.3s;
+    }
+    .timer-ring-fill.warning {
+      stroke: var(--wrong);
+    }
+    .timer-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .timer-text.warning { color: var(--wrong); }
+
+    /* === Responsive === */
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 26px; }
+      .question-text { font-size: 16px; }
+      .option-btn { padding: 12px 14px; font-size: 14px; }
+      .result-stats { gap: 20px; }
+      .result-buttons { flex-direction: column; align-items: center; }
+      .result-buttons .btn { width: 100%; }
+      .container { padding: 0 16px 48px; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-link">&larr; 返回作品集</a>
+
+  <div class="container">
+
+    <!-- ===== START SCREEN ===== -->
+    <div id="screen-start" class="screen active">
+      <div class="hero">
+        <span class="hero-icon">📖</span>
+        <h1>聖經問答</h1>
+        <p>測試你的聖經知識，選擇難度開始挑戰！</p>
+      </div>
+
+      <div class="difficulty-grid">
+        <div class="difficulty-card" onclick="startQuiz('beginner')">
+          <div class="diff-icon beginner">🌱</div>
+          <div class="diff-info">
+            <h3>入門</h3>
+            <p>基礎聖經知識 ・ 每題 30 秒</p>
+          </div>
+          <span class="diff-arrow">&rarr;</span>
+        </div>
+        <div class="difficulty-card" onclick="startQuiz('intermediate')">
+          <div class="diff-icon intermediate">⚡</div>
+          <div class="diff-info">
+            <h3>進階</h3>
+            <p>深入理解經文 ・ 每題 20 秒</p>
+          </div>
+          <span class="diff-arrow">&rarr;</span>
+        </div>
+        <div class="difficulty-card" onclick="startQuiz('expert')">
+          <div class="diff-icon expert">🔥</div>
+          <div class="diff-info">
+            <h3>挑戰</h3>
+            <p>聖經達人等級 ・ 每題 15 秒</p>
+          </div>
+          <span class="diff-arrow">&rarr;</span>
+        </div>
+      </div>
+
+      <div class="high-scores-mini" id="high-scores-section" style="display:none;">
+        <h4>歷史最高分</h4>
+        <div class="high-scores-row">
+          <div class="hs-item">
+            <span class="hs-label">入門</span>
+            <span class="hs-value" id="hs-beginner">-</span>
+          </div>
+          <div class="hs-item">
+            <span class="hs-label">進階</span>
+            <span class="hs-value" id="hs-intermediate">-</span>
+          </div>
+          <div class="hs-item">
+            <span class="hs-label">挑戰</span>
+            <span class="hs-value" id="hs-expert">-</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== QUIZ SCREEN ===== -->
+    <div id="screen-quiz" class="screen">
+      <div class="quiz-header">
+        <span class="quiz-progress" id="quiz-progress">第 1 / 10 題</span>
+        <div class="timer-ring" id="timer-ring">
+          <svg width="36" height="36" viewBox="0 0 36 36">
+            <circle class="timer-ring-bg" cx="18" cy="18" r="15.5" />
+            <circle class="timer-ring-fill" id="timer-circle" cx="18" cy="18" r="15.5"
+              stroke-dasharray="97.39" stroke-dashoffset="0" />
+          </svg>
+          <span class="timer-text" id="timer-text">30</span>
+        </div>
+      </div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progress-fill" style="width:10%"></div>
+      </div>
+      <div class="question-card" id="question-card">
+        <span class="question-badge" id="question-badge">入門</span>
+        <p class="question-text" id="question-text"></p>
+        <div class="options-list" id="options-list"></div>
+        <div class="explanation" id="explanation" style="display:none"></div>
+        <div class="next-btn-wrap" id="next-btn-wrap" style="display:none">
+          <button class="btn btn-primary" onclick="nextQuestion()">下一題 &rarr;</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== RESULT SCREEN ===== -->
+    <div id="screen-result" class="screen">
+      <div class="result-container">
+        <div class="result-card">
+          <div class="result-grade" id="result-grade">S</div>
+          <h2 class="result-title" id="result-title">太厲害了！</h2>
+          <p class="result-subtitle" id="result-subtitle">你是聖經達人！</p>
+          <div class="result-stats">
+            <div class="stat-item">
+              <span class="stat-value" id="stat-correct">10</span>
+              <span class="stat-label">答對</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" id="stat-total">10</span>
+              <span class="stat-label">總題數</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" id="stat-percent">100%</span>
+              <span class="stat-label">正確率</span>
+            </div>
+          </div>
+          <p class="result-highscore" id="result-highscore" style="display:none"></p>
+          <div class="result-buttons">
+            <button class="btn btn-primary" onclick="retryQuiz()">再玩一次</button>
+            <button class="btn btn-secondary" onclick="changeDifficulty()">換難度</button>
+            <button class="btn btn-secondary" onclick="shareResult()">分享成績</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">已複製到剪貼簿！</div>
+
+<script>
+// ========== QUESTION BANK ==========
+const questions = {
+  beginner: [
+    { question: "根據創世記，誰創造了天地？", options: ["摩西", "上帝", "亞伯拉罕", "耶穌"], answer: 1, explanation: "創世記 1:1「起初，神創造天地。」" },
+    { question: "耶穌有多少位門徒（使徒）？", options: ["7 位", "10 位", "12 位", "14 位"], answer: 2, explanation: "耶穌揀選了十二位使徒，記載於馬太福音 10:1-4。" },
+    { question: "挪亞建造了什麼來躲避大洪水？", options: ["城堡", "方舟", "帳篷", "高塔"], answer: 1, explanation: "創世記 6:14，神吩咐挪亞建造方舟。" },
+    { question: "誰帶領以色列人出埃及？", options: ["約書亞", "亞倫", "摩西", "大衛"], answer: 2, explanation: "出埃及記記載摩西帶領以色列人離開埃及。" },
+    { question: "聖經的第一卷書是什麼？", options: ["出埃及記", "詩篇", "創世記", "馬太福音"], answer: 2, explanation: "創世記（Genesis）是聖經的第一卷書。" },
+    { question: "耶穌出生在哪個城市？", options: ["拿撒勒", "耶路撒冷", "伯利恆", "迦百農"], answer: 2, explanation: "馬太福音 2:1 記載耶穌生在猶太的伯利恆。" },
+    { question: "大衛用什麼武器打敗了巨人歌利亞？", options: ["弓箭", "長矛", "機弦和石子", "劍"], answer: 2, explanation: "撒母耳記上 17:49，大衛用機弦甩石子打中歌利亞的額頭。" },
+    { question: "聖經中最短的經節是哪一節？", options: ["創世記 1:1", "約翰福音 11:35", "詩篇 23:1", "羅馬書 8:28"], answer: 1, explanation: "約翰福音 11:35「耶穌哭了。」是聖經中最短的經節。" },
+    { question: "「十誡」是上帝賜給誰的？", options: ["亞伯拉罕", "大衛", "摩西", "所羅門"], answer: 2, explanation: "出埃及記 20 章記載上帝在西奈山賜十誡給摩西。" },
+    { question: "耶穌在哪裡受洗？", options: ["地中海", "紅海", "約旦河", "加利利海"], answer: 2, explanation: "馬太福音 3:13，耶穌從加利利來到約旦河受施洗約翰的洗。" },
+    { question: "亞當和夏娃住在哪個園子裡？", options: ["客西馬尼園", "伊甸園", "橄欖園", "葡萄園"], answer: 1, explanation: "創世記 2:8，神在東方的伊甸立了一個園子，把所造的人安置在那裡。" },
+    { question: "耶穌行的第一個神蹟是什麼？", options: ["使瞎子看見", "五餅二魚", "在迦拿變水為酒", "平靜風浪"], answer: 2, explanation: "約翰福音 2:1-11，耶穌在迦拿的婚宴上把水變成酒。" },
+    { question: "詩篇 23 篇的作者是誰？", options: ["摩西", "所羅門", "大衛", "亞薩"], answer: 2, explanation: "詩篇 23 篇開頭標註「大衛的詩」，以「耶和華是我的牧者」著名。" },
+    { question: "新約聖經共有多少卷書？", options: ["27 卷", "39 卷", "22 卷", "31 卷"], answer: 0, explanation: "新約聖經共有 27 卷書，從馬太福音到啟示錄。" },
+    { question: "約拿被什麼大魚吞入腹中？", options: ["鯊魚", "鯨魚", "大魚（聖經原文）", "海豚"], answer: 2, explanation: "約拿書 1:17，聖經原文只寫「大魚」，並未指明種類。" },
+    { question: "聖經最後一卷書是什麼？", options: ["猶大書", "希伯來書", "啟示錄", "使徒行傳"], answer: 2, explanation: "啟示錄（Revelation）是聖經最後一卷書，由使徒約翰所寫。" },
+    { question: "誰是耶穌在地上的養父？", options: ["約瑟", "西面", "撒迦利亞", "希律"], answer: 0, explanation: "馬太福音 1:18-25，約瑟是馬利亞的丈夫，耶穌在地上的養父。" }
+  ],
+  intermediate: [
+    { question: "哪位國王建造了耶路撒冷的第一座聖殿？", options: ["大衛", "所羅門", "希西家", "約西亞"], answer: 1, explanation: "列王紀上 6:1，所羅門在位第四年開始建造聖殿。" },
+    { question: "保羅歸信基督前的名字是什麼？", options: ["西門", "掃羅", "巴拿巴", "提摩太"], answer: 1, explanation: "使徒行傳 13:9，掃羅又名保羅，歸信後常用保羅之名。" },
+    { question: "聖經中誰活得最久？", options: ["挪亞", "亞當", "瑪土撒拉", "以諾"], answer: 2, explanation: "創世記 5:27，瑪土撒拉共活了 969 歲，是聖經記載壽命最長的人。" },
+    { question: "「信是所望之事的實底，是未見之事的確據」出自哪卷書？", options: ["羅馬書", "希伯來書", "以弗所書", "雅各書"], answer: 1, explanation: "希伯來書 11:1 是關於信心的經典定義。" },
+    { question: "啟示錄中的七間教會位於哪個地區？", options: ["巴勒斯坦", "羅馬帝國", "小亞細亞", "埃及"], answer: 2, explanation: "啟示錄 1-3 章的七間教會都在小亞細亞（今土耳其）。" },
+    { question: "路得的婆婆叫什麼名字？", options: ["拿俄米", "米利暗", "底波拉", "以斯帖"], answer: 0, explanation: "路得記 1:2，路得的婆婆是拿俄米，她們一同從摩押回到伯利恆。" },
+    { question: "耶穌在曠野禁食了多少天？", options: ["7 天", "21 天", "40 天", "12 天"], answer: 2, explanation: "馬太福音 4:2，耶穌禁食四十晝四十夜後受魔鬼試探。" },
+    { question: "哪位先知被扔進獅子坑中？", options: ["以利亞", "以賽亞", "但以理", "耶利米"], answer: 2, explanation: "但以理書 6:16，但以理因不停止禱告而被扔進獅子坑。" },
+    { question: "五旬節聖靈降臨時，門徒得到什麼能力？", options: ["醫病", "說方言", "飛行", "隱身"], answer: 1, explanation: "使徒行傳 2:4，五旬節時門徒被聖靈充滿，說起別國的話來。" },
+    { question: "以利亞在迦密山上與誰的先知對決？", options: ["亞斯她錄的先知", "大袞的先知", "巴力的先知", "摩洛的先知"], answer: 2, explanation: "列王紀上 18:19-40，以利亞在迦密山上與 450 位巴力先知對決。" },
+    { question: "哪位使徒被稱為「外邦人的使徒」？", options: ["彼得", "約翰", "保羅", "雅各"], answer: 2, explanation: "羅馬書 11:13，保羅自稱為外邦人的使徒。" },
+    { question: "「我是好牧人；好牧人為羊捨命」出自哪卷福音書？", options: ["馬太福音", "馬可福音", "路加福音", "約翰福音"], answer: 3, explanation: "約翰福音 10:11，耶穌用好牧人的比喻形容自己。" },
+    { question: "亞伯拉罕原本的名字是什麼？", options: ["亞伯蘭", "亞伯", "亞倫", "亞比米勒"], answer: 0, explanation: "創世記 17:5，神將亞伯蘭改名為亞伯拉罕，意思是「多國之父」。" },
+    { question: "聖經中哪位婦人是士師（審判官）？", options: ["以斯帖", "路得", "底波拉", "米利暗"], answer: 2, explanation: "士師記 4:4，底波拉是女先知，也是以色列的士師。" },
+    { question: "耶穌復活後在地上停留了多少天才升天？", options: ["3 天", "7 天", "40 天", "50 天"], answer: 2, explanation: "使徒行傳 1:3，耶穌復活後四十天之久向使徒顯現，然後升天。" },
+    { question: "「聖靈的果子」在加拉太書中列出了幾種？", options: ["7 種", "9 種", "12 種", "5 種"], answer: 1, explanation: "加拉太書 5:22-23 列出九種聖靈的果子：仁愛、喜樂、和平、忍耐、恩慈、良善、信實、溫柔、節制。" },
+    { question: "雅各有幾個兒子，後來成為以色列十二支派的祖先？", options: ["10 個", "12 個", "14 個", "8 個"], answer: 1, explanation: "創世記 35:22-26，雅各有十二個兒子，成為以色列十二支派的祖先。" },
+    { question: "耶穌在哪座山上變了形象（登山變像）？", options: ["西奈山", "橄欖山", "高山（傳統認為他泊山）", "迦密山"], answer: 2, explanation: "馬太福音 17:1-8，傳統認為登山變像發生在他泊山。" },
+    { question: "使徒行傳的作者是誰？", options: ["保羅", "彼得", "路加", "馬可"], answer: 2, explanation: "使徒行傳與路加福音的作者同為醫生路加，兩書都寫給提阿非羅。" },
+    { question: "所羅門向神求的是什麼？", options: ["財富", "長壽", "智慧", "勝利"], answer: 2, explanation: "列王紀上 3:9，所羅門向神求智慧來治理百姓，神因此也賜他財富和尊榮。" },
+    { question: "聖經舊約共有多少卷書？", options: ["27 卷", "36 卷", "39 卷", "42 卷"], answer: 2, explanation: "舊約聖經共有 39 卷書，從創世記到瑪拉基書。" }
+  ],
+  expert: [
+    { question: "「你們要嘗嘗主恩的滋味，便知道他是美善」出自詩篇第幾篇？", options: ["詩篇 23 篇", "詩篇 34 篇", "詩篇 46 篇", "詩篇 91 篇"], answer: 1, explanation: "詩篇 34:8「你們要嘗嘗主恩的滋味，便知道他是美善。投靠他的人有福了！」" },
+    { question: "以西結書中枯骨復活的異象在第幾章？", options: ["第 33 章", "第 37 章", "第 40 章", "第 28 章"], answer: 1, explanation: "以西結書 37:1-14 記載枯骨復生的異象，預表以色列的復興。" },
+    { question: "聖經中提到的「麥基洗德」是哪個城的王？", options: ["耶利哥", "撒冷", "示劍", "希伯崙"], answer: 1, explanation: "創世記 14:18，麥基洗德是撒冷王，又是至高神的祭司。" },
+    { question: "保羅的「肉體中的一根刺」記載在哥林多後書第幾章？", options: ["第 10 章", "第 11 章", "第 12 章", "第 13 章"], answer: 2, explanation: "哥林多後書 12:7，保羅提到有一根刺加在他肉體上，免得他過於自高。" },
+    { question: "約書亞記中，以色列人繞耶利哥城共幾天？", options: ["3 天", "7 天", "12 天", "40 天"], answer: 1, explanation: "約書亞記 6:3-4，以色列人繞城六天，第七天繞了七次，城牆倒塌。" },
+    { question: "啟示錄中「騎白馬的」第一次出現在第幾章？", options: ["第 6 章", "第 12 章", "第 19 章", "第 4 章"], answer: 0, explanation: "啟示錄 6:2，第一印揭開時出現騎白馬的；19:11 再次出現是基督再來。" },
+    { question: "「愛是恆久忍耐，又有恩慈」出自哥林多前書第幾章？", options: ["第 12 章", "第 13 章", "第 14 章", "第 15 章"], answer: 1, explanation: "哥林多前書 13:4，著名的「愛的真諦」篇章。" },
+    { question: "以斯拉帶領百姓從巴比倫歸回是在哪位波斯王統治下？", options: ["居魯士", "大流士", "亞達薛西", "薛西斯"], answer: 2, explanation: "以斯拉記 7:1，以斯拉在亞達薛西王在位時從巴比倫上來。" },
+    { question: "撒母耳的母親叫什麼名字？", options: ["利百加", "哈拿", "拉結", "利亞"], answer: 1, explanation: "撒母耳記上 1:20，哈拿在禱告後生了撒母耳，名字意思是「從耶和華那裡求來的」。" },
+    { question: "聖經最長的一章是哪一章？", options: ["詩篇 119 篇", "詩篇 139 篇", "以賽亞書 53 章", "創世記 1 章"], answer: 0, explanation: "詩篇 119 篇共 176 節，是聖經中最長的一章，以希伯來文字母體寫成。" },
+    { question: "舊約中誰說「我赤身出於母胎，也必赤身歸回」？", options: ["大衛", "約伯", "所羅門", "耶利米"], answer: 1, explanation: "約伯記 1:21，約伯在失去一切後說出這句話，表達對神的信靠。" },
+    { question: "使徒保羅在哪座城市被關在監獄中寫了「監獄書信」？", options: ["耶路撒冷", "羅馬", "以弗所", "腓立比"], answer: 1, explanation: "保羅在羅馬被囚時寫了以弗所書、腓立比書、歌羅西書和腓利門書，合稱監獄書信。" },
+    { question: "希伯來書中「信心英雄榜」列舉的第一個人物是誰？", options: ["挪亞", "亞伯", "以諾", "亞伯拉罕"], answer: 1, explanation: "希伯來書 11:4，信心英雄榜從亞伯開始：「亞伯因著信獻祭與神。」" },
+    { question: "尼希米重建耶路撒冷城牆用了多少天？", options: ["40 天", "52 天", "70 天", "120 天"], answer: 1, explanation: "尼希米記 6:15，城牆在以祿月二十五日修完，共用了五十二天。" },
+    { question: "但以理書中尼布甲尼撒王夢見的巨像，腳是什麼材質？", options: ["純金", "銀與銅", "半鐵半泥", "純鐵"], answer: 2, explanation: "但以理書 2:33，巨像的腳是半鐵半泥，代表一個分裂脆弱的國度。" },
+    { question: "雅歌的作者是誰？", options: ["大衛", "所羅門", "亞薩", "希幔"], answer: 1, explanation: "雅歌 1:1「所羅門的歌，是歌中的雅歌。」" },
+    { question: "聖經中第一個殉道者是誰？", options: ["司提反", "雅各", "彼得", "保羅"], answer: 0, explanation: "使徒行傳 7:59-60，司提反是教會歷史上第一位殉道者。" },
+    { question: "以賽亞書中「受苦的僕人」預言主要在第幾章？", options: ["第 7 章", "第 40 章", "第 53 章", "第 61 章"], answer: 2, explanation: "以賽亞書 53 章詳細描述了受苦僕人的預言，被視為對耶穌受難的預表。" }
+  ]
+};
+
+// ========== STATE ==========
+let currentDifficulty = '';
+let currentQuestions = [];
+let currentIndex = 0;
+let score = 0;
+let answered = false;
+let timerInterval = null;
+let timeLeft = 0;
+let maxTime = 30;
+const TOTAL_QUESTIONS = 10;
+const CIRCUMFERENCE = 2 * Math.PI * 15.5; // ~97.39
+
+const difficultyNames = { beginner: '入門', intermediate: '進階', expert: '挑戰' };
+const difficultyTimers = { beginner: 30, intermediate: 20, expert: 15 };
+
+// ========== SCREENS ==========
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+}
+
+// ========== HIGH SCORES ==========
+function getHighScores() {
+  try {
+    return JSON.parse(localStorage.getItem('bible-quiz-highscores')) || {};
+  } catch { return {}; }
+}
+function saveHighScore(diff, val) {
+  const hs = getHighScores();
+  if (!hs[diff] || val > hs[diff]) {
+    hs[diff] = val;
+    localStorage.setItem('bible-quiz-highscores', JSON.stringify(hs));
+    return true;
+  }
+  return false;
+}
+function renderHighScores() {
+  const hs = getHighScores();
+  let hasAny = false;
+  ['beginner', 'intermediate', 'expert'].forEach(d => {
+    const el = document.getElementById('hs-' + d);
+    if (hs[d] !== undefined) {
+      el.textContent = hs[d] + '/10';
+      hasAny = true;
+    } else {
+      el.textContent = '-';
+    }
+  });
+  document.getElementById('high-scores-section').style.display = hasAny ? '' : 'none';
+}
+
+// ========== SHUFFLE ==========
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// ========== START QUIZ ==========
+function startQuiz(difficulty) {
+  currentDifficulty = difficulty;
+  maxTime = difficultyTimers[difficulty];
+  const pool = questions[difficulty];
+  currentQuestions = shuffle(pool).slice(0, TOTAL_QUESTIONS);
+  currentIndex = 0;
+  score = 0;
+  showScreen('quiz');
+  renderQuestion();
+}
+
+// ========== RENDER QUESTION ==========
+function renderQuestion() {
+  answered = false;
+  clearInterval(timerInterval);
+
+  const q = currentQuestions[currentIndex];
+  const num = currentIndex + 1;
+
+  document.getElementById('quiz-progress').textContent = '第 ' + num + ' / ' + TOTAL_QUESTIONS + ' 題';
+  document.getElementById('progress-fill').style.width = (num / TOTAL_QUESTIONS * 100) + '%';
+  document.getElementById('question-badge').textContent = difficultyNames[currentDifficulty];
+  document.getElementById('question-text').textContent = q.question;
+  document.getElementById('explanation').style.display = 'none';
+  document.getElementById('next-btn-wrap').style.display = 'none';
+
+  const letters = ['A', 'B', 'C', 'D'];
+  const optionsHTML = q.options.map((opt, i) =>
+    '<button class="option-btn" onclick="selectAnswer(' + i + ')" data-index="' + i + '">' +
+    '<span class="option-letter">' + letters[i] + '</span>' +
+    '<span>' + opt + '</span>' +
+    '</button>'
+  ).join('');
+  document.getElementById('options-list').innerHTML = optionsHTML;
+
+  // Animate card
+  const card = document.getElementById('question-card');
+  card.style.animation = 'none';
+  card.offsetHeight; // trigger reflow
+  card.style.animation = 'fadeInUp 0.35s ease';
+
+  startTimer();
+}
+
+// ========== TIMER ==========
+function startTimer() {
+  timeLeft = maxTime;
+  updateTimerDisplay();
+
+  const circle = document.getElementById('timer-circle');
+  circle.style.strokeDasharray = CIRCUMFERENCE;
+  circle.style.strokeDashoffset = '0';
+  circle.classList.remove('warning');
+  document.getElementById('timer-text').classList.remove('warning');
+
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimerDisplay();
+
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      timeUp();
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const text = document.getElementById('timer-text');
+  const circle = document.getElementById('timer-circle');
+  text.textContent = timeLeft;
+
+  const offset = CIRCUMFERENCE * (1 - timeLeft / maxTime);
+  circle.style.strokeDashoffset = offset;
+
+  if (timeLeft <= 5) {
+    circle.classList.add('warning');
+    text.classList.add('warning');
+  } else {
+    circle.classList.remove('warning');
+    text.classList.remove('warning');
+  }
+}
+
+function timeUp() {
+  if (answered) return;
+  answered = true;
+
+  const q = currentQuestions[currentIndex];
+  const btns = document.querySelectorAll('.option-btn');
+  btns.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.answer) {
+      btn.classList.add('correct');
+    } else {
+      btn.classList.add('dimmed');
+    }
+  });
+
+  const expl = document.getElementById('explanation');
+  expl.innerHTML = '<strong>時間到！</strong> ' + q.explanation;
+  expl.style.display = 'block';
+
+  showNextButton();
+}
+
+// ========== SELECT ANSWER ==========
+function selectAnswer(index) {
+  if (answered) return;
+  answered = true;
+  clearInterval(timerInterval);
+
+  const q = currentQuestions[currentIndex];
+  const isCorrect = index === q.answer;
+  if (isCorrect) score++;
+
+  const btns = document.querySelectorAll('.option-btn');
+  btns.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.answer) {
+      btn.classList.add('correct');
+    } else if (i === index && !isCorrect) {
+      btn.classList.add('wrong');
+    } else {
+      btn.classList.add('dimmed');
+    }
+  });
+
+  const expl = document.getElementById('explanation');
+  expl.innerHTML = (isCorrect ? '<strong>答對了！</strong> ' : '<strong>答錯了！</strong> ') + q.explanation;
+  expl.style.display = 'block';
+
+  showNextButton();
+}
+
+function showNextButton() {
+  const wrap = document.getElementById('next-btn-wrap');
+  const isLast = currentIndex >= TOTAL_QUESTIONS - 1;
+  wrap.innerHTML = '<button class="btn btn-primary" onclick="' +
+    (isLast ? 'showResult()' : 'nextQuestion()') +
+    '">' + (isLast ? '查看成績' : '下一題 →') + '</button>';
+  wrap.style.display = 'flex';
+}
+
+// ========== NEXT QUESTION ==========
+function nextQuestion() {
+  currentIndex++;
+  if (currentIndex < TOTAL_QUESTIONS) {
+    renderQuestion();
+  } else {
+    showResult();
+  }
+}
+
+// ========== RESULT ==========
+function showResult() {
+  clearInterval(timerInterval);
+
+  const percent = Math.round(score / TOTAL_QUESTIONS * 100);
+  let grade, title, subtitle;
+
+  if (percent >= 95) {
+    grade = 'S'; title = '完美通關！'; subtitle = '你是真正的聖經達人！';
+  } else if (percent >= 80) {
+    grade = 'A'; title = '非常優秀！'; subtitle = '你對聖經瞭若指掌！';
+  } else if (percent >= 60) {
+    grade = 'B'; title = '表現不錯！'; subtitle = '繼續加油，更上一層樓！';
+  } else if (percent >= 40) {
+    grade = 'C'; title = '還需努力！'; subtitle = '多讀聖經，下次會更好！';
+  } else {
+    grade = 'D'; title = '再接再厲！'; subtitle = '從入門開始慢慢學習吧！';
+  }
+
+  document.getElementById('result-grade').textContent = grade;
+  document.getElementById('result-grade').className = 'result-grade grade-' + grade;
+  document.getElementById('result-title').textContent = title;
+  document.getElementById('result-subtitle').textContent = subtitle;
+  document.getElementById('stat-correct').textContent = score;
+  document.getElementById('stat-total').textContent = TOTAL_QUESTIONS;
+  document.getElementById('stat-percent').textContent = percent + '%';
+
+  const isNew = saveHighScore(currentDifficulty, score);
+  const hsEl = document.getElementById('result-highscore');
+  if (isNew) {
+    hsEl.textContent = '🎉 新紀錄！' + difficultyNames[currentDifficulty] + '模式最高分！';
+    hsEl.style.display = '';
+  } else {
+    const hs = getHighScores();
+    if (hs[currentDifficulty]) {
+      hsEl.textContent = '歷史最高：' + hs[currentDifficulty] + '/' + TOTAL_QUESTIONS;
+      hsEl.style.display = '';
+    } else {
+      hsEl.style.display = 'none';
+    }
+  }
+
+  showScreen('result');
+}
+
+// ========== ACTIONS ==========
+function retryQuiz() {
+  startQuiz(currentDifficulty);
+}
+
+function changeDifficulty() {
+  renderHighScores();
+  showScreen('start');
+}
+
+function shareResult() {
+  const percent = Math.round(score / TOTAL_QUESTIONS * 100);
+  const text = '📖 聖經問答｜' + difficultyNames[currentDifficulty] + '模式\n' +
+    '答對 ' + score + '/' + TOTAL_QUESTIONS + ' 題（' + percent + '%）\n' +
+    '來挑戰你的聖經知識吧！';
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => showToast('已複製到剪貼簿！'));
+  } else {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('已複製到剪貼簿！');
+  }
+}
+
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2500);
+}
+
+// ========== INIT ==========
+renderHighScores();
+</script>
+</body>
+</html>

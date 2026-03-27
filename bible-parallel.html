@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>經文對照 — 福青施老師</title>
+  <meta name="description" content="聖經經文對照工具 — 同時比較和合本、新譯本、NIV 三種譯本">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #f6f6f4;
+  --bg-card: #ffffff;
+  --bg-nav: rgba(255,255,255,0.88);
+  --text: #1a1a1a;
+  --text-secondary: #888;
+  --accent: #9b7e3a;
+  --accent-light: #c4a94f;
+  --accent-bg: rgba(155,126,58,0.08);
+  --border: rgba(0,0,0,0.06);
+  --border-hover: rgba(155,126,58,0.3);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-hover: 0 8px 30px rgba(0,0,0,0.08);
+  --radius: 16px;
+  --radius-sm: 12px;
+  --radius-pill: 100px;
+  --font-serif: 'Noto Serif TC', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* === Back Link === */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 0;
+  transition: color 0.2s;
+}
+.back-link:hover { color: var(--accent); }
+.back-link svg { width: 16px; height: 16px; }
+
+/* === Layout === */
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px 20px 80px;
+}
+
+/* === Header === */
+.page-header {
+  text-align: center;
+  margin: 32px 0 40px;
+}
+.page-header h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 900;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.page-header p {
+  color: var(--text-secondary);
+  font-size: 15px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* === Selector Panel === */
+.selector-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+.selector-panel h2 {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+.selector-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: end;
+}
+.selector-group {
+  flex: 1;
+  min-width: 120px;
+}
+.selector-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+.selector-group select {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+.selector-group select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.btn-search {
+  padding: 10px 24px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.btn-search:hover {
+  background: var(--accent-light);
+  transform: translateY(-1px);
+}
+
+/* === Quick Picks === */
+.quick-picks {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 32px;
+  box-shadow: var(--shadow-sm);
+}
+.quick-picks h2 {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pill {
+  padding: 6px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.pill:hover {
+  border-color: var(--border-hover);
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+.pill.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* === Verse Display === */
+.verse-display {
+  margin-bottom: 24px;
+}
+.verse-ref {
+  font-family: var(--font-serif);
+  font-size: clamp(20px, 4vw, 28px);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 20px;
+  text-align: center;
+}
+.verse-ref span {
+  color: var(--accent);
+}
+.translations-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.translation-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s;
+  position: relative;
+}
+.translation-card:hover {
+  box-shadow: var(--shadow-hover);
+  border-color: var(--border-hover);
+}
+.translation-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  background: var(--accent-bg);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 16px;
+}
+.translation-text {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--text);
+}
+.translation-card:nth-child(1) .translation-text,
+.translation-card:nth-child(2) .translation-text {
+  font-family: var(--font-serif);
+  font-weight: 400;
+}
+.translation-card:nth-child(3) .translation-text {
+  font-family: var(--font-sans);
+  font-style: italic;
+  color: #444;
+}
+.btn-copy {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  opacity: 0;
+}
+.translation-card:hover .btn-copy {
+  opacity: 1;
+}
+.btn-copy:hover {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+.btn-copy svg {
+  width: 14px;
+  height: 14px;
+  color: var(--text-secondary);
+}
+.btn-copy.copied {
+  border-color: #2ecc71;
+  background: rgba(46,204,113,0.08);
+}
+.btn-copy.copied svg { color: #2ecc71; }
+
+/* === Empty / Placeholder === */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-secondary);
+}
+.empty-state .icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+.empty-state p {
+  font-size: 15px;
+}
+
+/* === Multi-verse Nav === */
+.verse-nav {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.verse-nav-btn {
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.verse-nav-btn:hover {
+  border-color: var(--border-hover);
+  color: var(--accent);
+}
+.verse-nav-btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* === Toast === */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--text);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 999;
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* === Footer === */
+.page-footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .translations-grid {
+    grid-template-columns: 1fr;
+  }
+  .selector-row {
+    flex-direction: column;
+  }
+  .selector-group {
+    min-width: 100%;
+  }
+  .btn-search {
+    width: 100%;
+    text-align: center;
+  }
+  .btn-copy {
+    opacity: 1;
+  }
+  .container {
+    padding: 16px 16px 60px;
+  }
+  .page-header {
+    margin: 20px 0 28px;
+  }
+}
+
+@media (max-width: 375px) {
+  .pills {
+    gap: 6px;
+  }
+  .pill {
+    padding: 5px 12px;
+    font-size: 12px;
+  }
+}
+
+/* === Animations === */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.translation-card {
+  animation: fadeInUp 0.4s ease both;
+}
+.translation-card:nth-child(2) { animation-delay: 0.08s; }
+.translation-card:nth-child(3) { animation-delay: 0.16s; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Back Link -->
+  <a href="index.html" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    返回作品集
+  </a>
+
+  <!-- Header -->
+  <header class="page-header">
+    <h1>經文對照</h1>
+    <p>同時比較和合本、新譯本、NIV 三種譯本，深入理解每一節經文</p>
+  </header>
+
+  <!-- Selector -->
+  <div class="selector-panel">
+    <h2>選擇經文</h2>
+    <div class="selector-row">
+      <div class="selector-group">
+        <label>書卷</label>
+        <select id="sel-book"></select>
+      </div>
+      <div class="selector-group">
+        <label>章</label>
+        <select id="sel-chapter"></select>
+      </div>
+      <div class="selector-group">
+        <label>節</label>
+        <select id="sel-verse"></select>
+      </div>
+      <button class="btn-search" id="btn-go" onclick="lookupVerse()">查詢</button>
+    </div>
+  </div>
+
+  <!-- Quick Picks -->
+  <div class="quick-picks">
+    <h2>熱門經文</h2>
+    <div class="pills" id="quick-pills"></div>
+  </div>
+
+  <!-- Verse Display Area -->
+  <div id="verse-area"></div>
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    經文對照工具 — 福青施老師作品集
+  </footer>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ====================================================================
+// Bible Verse Database — 30+ popular passages, 3 translations each
+// ====================================================================
+const VERSES = {
+  "創世記 1:1": {
+    cuv: "起初，神創造天地。",
+    ncv: "起初，神創造天地。",
+    niv: "In the beginning God created the heavens and the earth."
+  },
+  "約書亞記 1:9": {
+    cuv: "我豈沒有吩咐你嗎？你當剛強壯膽！不要懼怕，也不要驚惶；因為你無論往哪裡去，耶和華你的神必與你同在。",
+    ncv: "我不是曾經吩咐你嗎？你當剛強勇敢，不要懼怕，也不要驚慌；因為你無論往哪裡去，耶和華你的神都與你同在。",
+    niv: "Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go."
+  },
+  "詩篇 23:1": {
+    cuv: "耶和華是我的牧者，我必不至缺乏。",
+    ncv: "耶和華是我的牧人，我必不會缺乏。",
+    niv: "The Lord is my shepherd, I lack nothing."
+  },
+  "詩篇 23:2": {
+    cuv: "他使我躺臥在青草地上，領我在可安歇的水邊。",
+    ncv: "他使我躺臥在青草地上，領我到安靜的水邊。",
+    niv: "He makes me lie down in green pastures, he leads me beside quiet waters."
+  },
+  "詩篇 23:3": {
+    cuv: "他使我的靈魂甦醒，為自己的名引導我走義路。",
+    ncv: "他使我的靈魂甦醒，為了自己的名引導我走義路。",
+    niv: "He refreshes my soul. He guides me along the right paths for his name's sake."
+  },
+  "詩篇 23:4": {
+    cuv: "我雖然行過死蔭的幽谷，也不怕遭害，因為你與我同在；你的杖，你的竿，都安慰我。",
+    ncv: "即使我走過死蔭的幽谷，也不怕遭受傷害，因為你與我同在；你的杖和你的竿都安慰我。",
+    niv: "Even though I walk through the darkest valley, I will fear no evil, for you are with me; your rod and your staff, they comfort me."
+  },
+  "詩篇 23:5": {
+    cuv: "在我敵人面前，你為我擺設筵席；你用油膏了我的頭，使我的福杯滿溢。",
+    ncv: "在我敵人面前，你為我擺設筵席；你用油膏了我的頭，使我的杯滿溢。",
+    niv: "You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows."
+  },
+  "詩篇 23:6": {
+    cuv: "我一生一世必有恩惠慈愛隨著我；我且要住在耶和華的殿中，直到永遠。",
+    ncv: "我一生一世，必有恩惠慈愛緊隨著我；我要住在耶和華的殿中，直到永遠。",
+    niv: "Surely your goodness and love will follow me all the days of my life, and I will dwell in the house of the Lord forever."
+  },
+  "詩篇 46:1": {
+    cuv: "神是我們的避難所，是我們的力量，是我們在患難中隨時的幫助。",
+    ncv: "神是我們的避難所和力量，是我們在患難中隨時都可得到的幫助。",
+    niv: "God is our refuge and strength, an ever-present help in trouble."
+  },
+  "詩篇 91:1": {
+    cuv: "住在至高者隱密處的，必住在全能者的蔭下。",
+    ncv: "住在至高者的隱密處的，必住在全能者的蔭庇下。",
+    niv: "Whoever dwells in the shelter of the Most High will rest in the shadow of the Almighty."
+  },
+  "詩篇 119:105": {
+    cuv: "你的話是我腳前的燈，是我路上的光。",
+    ncv: "你的話是我腳前的燈，是我路上的光。",
+    niv: "Your word is a lamp for my feet, a light on my path."
+  },
+  "詩篇 121:1-2": {
+    cuv: "我要向山舉目；我的幫助從何而來？我的幫助從造天地的耶和華而來。",
+    ncv: "我要向群山舉目，我的幫助從哪裡來呢？我的幫助從造天地的耶和華而來。",
+    niv: "I lift up my eyes to the mountains — where does my help come from? My help comes from the Lord, the Maker of heaven and earth."
+  },
+  "詩篇 139:14": {
+    cuv: "我要稱謝你，因我受造，奇妙可畏；你的作為奇妙，這是我心深知道的。",
+    ncv: "我要稱謝你，因為我的受造奇妙可畏；你的作為奇妙，這是我深深知道的。",
+    niv: "I praise you because I am fearfully and wonderfully made; your works are wonderful, I know that full well."
+  },
+  "箴言 3:5": {
+    cuv: "你要專心仰賴耶和華，不可倚靠自己的聰明。",
+    ncv: "你要一心信靠耶和華，不可倚靠自己的聰明。",
+    niv: "Trust in the Lord with all your heart and lean not on your own understanding."
+  },
+  "箴言 3:6": {
+    cuv: "在你一切所行的事上都要認定他，他必指引你的路。",
+    ncv: "在你一切所行的路上，都要認定他，他必使你的路徑平直。",
+    niv: "In all your ways submit to him, and he will make your paths straight."
+  },
+  "箴言 22:6": {
+    cuv: "教養孩童，使他走當行的道，就是到老他也不偏離。",
+    ncv: "教導孩童走他當行的路，就是到了老年，他也不會偏離。",
+    niv: "Start children off on the way they should go, and even when they are old they will not turn from it."
+  },
+  "以賽亞書 40:31": {
+    cuv: "但那等候耶和華的必從新得力。他們必如鷹展翅上騰；他們奔跑卻不困倦，行走卻不疲乏。",
+    ncv: "但那些仰望耶和華的人，必重新得力；他們必像鷹一樣展翅上騰；他們奔跑，也不困倦，他們行走，也不疲乏。",
+    niv: "But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint."
+  },
+  "以賽亞書 41:10": {
+    cuv: "你不要害怕，因為我與你同在；不要驚惶，因為我是你的神。我必堅固你，我必幫助你；我必用我公義的右手扶持你。",
+    ncv: "你不要害怕，因為我與你同在；不要驚慌，因為我是你的神；我必堅固你，我必幫助你，我必用公義的右手扶持你。",
+    niv: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand."
+  },
+  "耶利米書 29:11": {
+    cuv: "耶和華說：我知道我向你們所懷的意念是賜平安的意念，不是降災禍的意念，要叫你們末後有指望。",
+    ncv: "耶和華說：「我知道我向你們所懷的計劃，是使你們得平安，而不是遭受災禍的計劃；要賜給你們美好的前程和盼望。」",
+    niv: "\"For I know the plans I have for you,\" declares the Lord, \"plans to prosper you and not to harm you, plans to give you hope and a future.\""
+  },
+  "馬太福音 5:14": {
+    cuv: "你們是世上的光。城造在山上是不能隱藏的。",
+    ncv: "你們是世上的光，建在山上的城是不能隱藏的。",
+    niv: "You are the light of the world. A town built on a hill cannot be hidden."
+  },
+  "馬太福音 6:33": {
+    cuv: "你們要先求他的國和他的義，這些東西都要加給你們了。",
+    ncv: "你們要先求神的國和他的義，這一切都要加給你們了。",
+    niv: "But seek first his kingdom and his righteousness, and all these things will be given to you as well."
+  },
+  "馬太福音 11:28": {
+    cuv: "凡勞苦擔重擔的人可以到我這裡來，我就使你們得安息。",
+    ncv: "所有勞苦擔重擔的人哪，到我這裡來吧！我必使你們得安息。",
+    niv: "Come to me, all you who are weary and burdened, and I will give you rest."
+  },
+  "馬太福音 28:20": {
+    cuv: "凡我所吩咐你們的，都教訓他們遵守，我就常與你們同在，直到世界的末了。",
+    ncv: "我吩咐你們的一切，都要教導他們遵守。看哪，我天天都與你們同在，直到這世代的終結。",
+    niv: "And teaching them to obey everything I have commanded you. And surely I am with you always, to the very end of the age."
+  },
+  "約翰福音 1:1": {
+    cuv: "太初有道，道與神同在，道就是神。",
+    ncv: "太初有道，道與神同在，道就是神。",
+    niv: "In the beginning was the Word, and the Word was with God, and the Word was God."
+  },
+  "約翰福音 3:16": {
+    cuv: "神愛世人，甚至將他的獨生子賜給他們，叫一切信他的，不至滅亡，反得永生。",
+    ncv: "神愛世人，甚至把他的獨生子賜給他們，叫一切信他的，不至滅亡，反得永生。",
+    niv: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."
+  },
+  "約翰福音 8:32": {
+    cuv: "你們必曉得真理，真理必叫你們得以自由。",
+    ncv: "你們就會認識真理，真理會使你們自由。",
+    niv: "Then you will know the truth, and the truth will set you free."
+  },
+  "約翰福音 14:6": {
+    cuv: "耶穌說我就是道路、真理、生命；若不藉著我，沒有人能到父那裡去。",
+    ncv: "耶穌對他說：「我就是道路、真理、生命，如果不是藉著我，沒有人能到父那裡去。」",
+    niv: "Jesus answered, \"I am the way and the truth and the life. No one comes to the Father except through me.\""
+  },
+  "約翰福音 14:27": {
+    cuv: "我留下平安給你們；我將我的平安賜給你們。我所賜的，不像世人所賜的。你們心裡不要憂愁，也不要膽怯。",
+    ncv: "我把平安留給你們，我把我的平安賜給你們；我所給你們的，不像世人所給的。你們心裡不要憂愁，也不要膽怯。",
+    niv: "Peace I leave with you; my peace I give you. I do not give to you as the world gives. Do not let your hearts be troubled and do not be afraid."
+  },
+  "羅馬書 8:28": {
+    cuv: "我們曉得萬事都互相效力，叫愛神的人得益處，就是按他旨意被召的人。",
+    ncv: "我們知道，對於愛神的人，就是按著他的旨意被召的人，萬事都一同效力，使他們得益處。",
+    niv: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose."
+  },
+  "羅馬書 8:38-39": {
+    cuv: "因為我深信無論是死，是生，是天使，是掌權的，是有能的，是現在的事，是將來的事，是高處的，是低處的，是別的受造之物，都不能叫我們與神的愛隔絕；這愛是在我們的主基督耶穌裡的。",
+    ncv: "因為我深信：無論是死、是生，是天使、是掌權的，是現在的事、是將來的事，是有能力的，是高天的、是深淵的，或是任何別的被造之物，都不能使我們與神的愛隔絕，這愛是在我們的主基督耶穌裡的。",
+    niv: "For I am convinced that neither death nor life, neither angels nor demons, neither the present nor the future, nor any powers, neither height nor depth, nor anything else in all creation, will be able to separate us from the love of God that is in Christ Jesus our Lord."
+  },
+  "羅馬書 12:2": {
+    cuv: "不要效法這個世界，只要心意更新而變化，叫你們察驗何為神的善良、純全、可喜悅的旨意。",
+    ncv: "不要模仿這個世代，倒要藉著心意的更新而改變過來，使你們可以察驗出甚麼是神的旨意，就是察驗出甚麼是美好的、蒙他悅納的和完全的事。",
+    niv: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God's will is — his good, pleasing and perfect will."
+  },
+  "哥林多前書 13:4": {
+    cuv: "愛是恆久忍耐，又有恩慈；愛是不嫉妒；愛是不自誇，不張狂。",
+    ncv: "愛是恆久忍耐，又有恩慈；愛是不嫉妒，不自誇，不張狂。",
+    niv: "Love is patient, love is kind. It does not envy, it does not boast, it is not proud."
+  },
+  "哥林多前書 13:5": {
+    cuv: "不做害羞的事，不求自己的益處，不輕易發怒，不計算人的惡。",
+    ncv: "不做不合宜的事，不求自己的益處，不輕易動怒，不計較人的過犯。",
+    niv: "It does not dishonor others, it is not self-seeking, it is not easily angered, it keeps no record of wrongs."
+  },
+  "哥林多前書 13:6": {
+    cuv: "不喜歡不義，只喜歡真理。",
+    ncv: "不因不義而歡喜，只因真理而歡喜。",
+    niv: "Love does not delight in evil but rejoices with the truth."
+  },
+  "哥林多前書 13:7": {
+    cuv: "凡事包容，凡事相信，凡事盼望，凡事忍耐。",
+    ncv: "凡事包容，凡事相信，凡事盼望，凡事忍耐。",
+    niv: "It always protects, always trusts, always hopes, always perseveres."
+  },
+  "哥林多後書 5:17": {
+    cuv: "若有人在基督裡，他就是新造的人，舊事已過，都變成新的了。",
+    ncv: "如果有人在基督裡，他就是新造的人，舊事已經過去，看哪，一切都變成新的了。",
+    niv: "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!"
+  },
+  "加拉太書 5:22-23": {
+    cuv: "聖靈所結的果子，就是仁愛、喜樂、和平、忍耐、恩慈、良善、信實、溫柔、節制。這樣的事沒有律法禁止。",
+    ncv: "但聖靈的果子是仁愛、喜樂、和平、忍耐、恩慈、良善、信實、溫柔、節制；這樣的事，是沒有律法禁止的。",
+    niv: "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control. Against such things there is no law."
+  },
+  "以弗所書 2:8-9": {
+    cuv: "你們得救是本乎恩，也因著信；這並不是出於自己，乃是神所賜的；也不是出於行為，免得有人自誇。",
+    ncv: "你們得救是靠著恩典，藉著信心。這不是出於自己，而是神所賜的；這也不是出於行為，免得有人自誇。",
+    niv: "For it is by grace you have been saved, through faith — and this is not from yourselves, it is the gift of God — not by works, so that no one can boast."
+  },
+  "腓立比書 4:6": {
+    cuv: "應當一無掛慮，只要凡事藉著禱告、祈求，和感謝，將你們所要的告訴神。",
+    ncv: "你們應當毫無憂慮，只要凡事藉著禱告祈求，帶著感恩的心，把你們所要的告訴神。",
+    niv: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God."
+  },
+  "腓立比書 4:7": {
+    cuv: "神所賜、出人意外的平安必在基督耶穌裡保守你們的心懷意念。",
+    ncv: "這樣，神所賜超過人能了解的平安，必在基督耶穌裡，保守你們的心思意念。",
+    niv: "And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus."
+  },
+  "腓立比書 4:13": {
+    cuv: "我靠著那加給我力量的，凡事都能做。",
+    ncv: "我靠著那加給我能力的，凡事都能做。",
+    niv: "I can do all this through him who gives me strength."
+  },
+  "提摩太後書 1:7": {
+    cuv: "因為神賜給我們，不是膽怯的心，乃是剛強、仁愛、謹守的心。",
+    ncv: "因為神賜給我們的，不是膽怯的靈，而是剛強、仁愛、自律的靈。",
+    niv: "For the Spirit God gave us does not make us timid, but gives us power, love and self-discipline."
+  },
+  "希伯來書 11:1": {
+    cuv: "信就是所望之事的實底，是未見之事的確據。",
+    ncv: "信就是對所盼望的事的把握，是還沒有看見的事的明證。",
+    niv: "Now faith is confidence in what we hope for and assurance about what we do not see."
+  },
+  "希伯來書 13:8": {
+    cuv: "耶穌基督昨日、今日、一直到永遠，是一樣的。",
+    ncv: "耶穌基督昨天、今天、直到永遠都是一樣的。",
+    niv: "Jesus Christ is the same yesterday and today and forever."
+  },
+  "雅各書 1:5": {
+    cuv: "你們中間若有缺少智慧的，應當求那厚賜與眾人、也不斥責人的神，主就必賜給他。",
+    ncv: "你們中間若有人缺少智慧，就應該向那厚賜眾人，也不斥責人的神祈求，他就會賜給他。",
+    niv: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you."
+  },
+  "彼得前書 5:7": {
+    cuv: "你們要將一切的憂慮卸給神，因為他顧念你們。",
+    ncv: "你們要把一切憂慮卸給神，因為他關心你們。",
+    niv: "Cast all your anxiety on him because he cares for you."
+  },
+  "約翰一書 4:19": {
+    cuv: "我們愛，因為神先愛我們。",
+    ncv: "我們愛，因為神先愛我們。",
+    niv: "We love because he first loved us."
+  },
+  "啟示錄 21:4": {
+    cuv: "神要擦去他們一切的眼淚；不再有死亡，也不再有悲哀、哭號、疼痛，因為以前的事都過去了。",
+    ncv: "神要擦去他們的一切眼淚，不再有死亡，也不再有悲傷、哭號、痛苦，因為先前的事都過去了。",
+    niv: "He will wipe every tear from their eyes. There will be no more death or mourning or crying or pain, for the old order of things has passed away."
+  }
+};
+
+// ====================================================================
+// Verse groupings for multi-verse passages
+// ====================================================================
+const VERSE_GROUPS = {
+  "詩篇 23 篇": ["詩篇 23:1","詩篇 23:2","詩篇 23:3","詩篇 23:4","詩篇 23:5","詩篇 23:6"],
+  "箴言 3:5-6": ["箴言 3:5","箴言 3:6"],
+  "哥林多前書 13:4-7": ["哥林多前書 13:4","哥林多前書 13:5","哥林多前書 13:6","哥林多前書 13:7"],
+  "腓立比書 4:6-7": ["腓立比書 4:6","腓立比書 4:7"]
+};
+
+// ====================================================================
+// Quick-pick definitions
+// ====================================================================
+const QUICK_PICKS = [
+  { label: "詩篇 23 篇", group: "詩篇 23 篇" },
+  { label: "約翰福音 3:16", key: "約翰福音 3:16" },
+  { label: "羅馬書 8:28", key: "羅馬書 8:28" },
+  { label: "腓立比書 4:13", key: "腓立比書 4:13" },
+  { label: "箴言 3:5-6", group: "箴言 3:5-6" },
+  { label: "以賽亞書 40:31", key: "以賽亞書 40:31" },
+  { label: "耶利米書 29:11", key: "耶利米書 29:11" },
+  { label: "馬太福音 11:28", key: "馬太福音 11:28" },
+  { label: "愛的真諦", group: "哥林多前書 13:4-7" },
+  { label: "創世記 1:1", key: "創世記 1:1" },
+  { label: "詩篇 46:1", key: "詩篇 46:1" },
+  { label: "詩篇 119:105", key: "詩篇 119:105" },
+  { label: "約書亞記 1:9", key: "約書亞記 1:9" },
+  { label: "以賽亞書 41:10", key: "以賽亞書 41:10" },
+  { label: "約翰福音 14:27", key: "約翰福音 14:27" },
+  { label: "羅馬書 8:38-39", key: "羅馬書 8:38-39" },
+  { label: "希伯來書 11:1", key: "希伯來書 11:1" },
+  { label: "彼得前書 5:7", key: "彼得前書 5:7" },
+  { label: "加拉太書 5:22-23", key: "加拉太書 5:22-23" },
+  { label: "以弗所書 2:8-9", key: "以弗所書 2:8-9" }
+];
+
+// ====================================================================
+// Build book/chapter/verse index from embedded data
+// ====================================================================
+const bookIndex = {};
+Object.keys(VERSES).forEach(ref => {
+  const match = ref.match(/^(.+?)\s+(\d+):(.+)$/);
+  if (!match) return;
+  const [, book, ch, vs] = match;
+  if (!bookIndex[book]) bookIndex[book] = {};
+  if (!bookIndex[book][ch]) bookIndex[book][ch] = [];
+  bookIndex[book][ch].push(vs);
+});
+
+// Sort chapters and verses numerically
+Object.keys(bookIndex).forEach(book => {
+  Object.keys(bookIndex[book]).forEach(ch => {
+    bookIndex[book][ch].sort((a, b) => {
+      const na = parseInt(a); const nb = parseInt(b);
+      if (!isNaN(na) && !isNaN(nb)) return na - nb;
+      return a.localeCompare(b);
+    });
+  });
+});
+
+// Canonical book order
+const BOOK_ORDER = [
+  "創世記","約書亞記","詩篇","箴言","以賽亞書","耶利米書",
+  "馬太福音","約翰福音","羅馬書","哥林多前書","哥林多後書",
+  "加拉太書","以弗所書","腓立比書","提摩太後書","希伯來書",
+  "雅各書","彼得前書","約翰一書","啟示錄"
+];
+const orderedBooks = BOOK_ORDER.filter(b => bookIndex[b]);
+
+// ====================================================================
+// Populate selectors
+// ====================================================================
+const selBook = document.getElementById('sel-book');
+const selChapter = document.getElementById('sel-chapter');
+const selVerse = document.getElementById('sel-verse');
+
+function populateBooks() {
+  selBook.innerHTML = '<option value="">— 選擇書卷 —</option>';
+  orderedBooks.forEach(book => {
+    const opt = document.createElement('option');
+    opt.value = book;
+    opt.textContent = book;
+    selBook.appendChild(opt);
+  });
+}
+
+function populateChapters() {
+  const book = selBook.value;
+  selChapter.innerHTML = '<option value="">— 章 —</option>';
+  selVerse.innerHTML = '<option value="">— 節 —</option>';
+  if (!book || !bookIndex[book]) return;
+  const chapters = Object.keys(bookIndex[book]).sort((a,b) => parseInt(a) - parseInt(b));
+  chapters.forEach(ch => {
+    const opt = document.createElement('option');
+    opt.value = ch;
+    opt.textContent = ch;
+    selChapter.appendChild(opt);
+  });
+}
+
+function populateVerses() {
+  const book = selBook.value;
+  const ch = selChapter.value;
+  selVerse.innerHTML = '<option value="">— 節 —</option>';
+  if (!book || !ch || !bookIndex[book] || !bookIndex[book][ch]) return;
+  bookIndex[book][ch].forEach(vs => {
+    const opt = document.createElement('option');
+    opt.value = vs;
+    opt.textContent = vs;
+    selVerse.appendChild(opt);
+  });
+}
+
+selBook.addEventListener('change', populateChapters);
+selChapter.addEventListener('change', populateVerses);
+
+populateBooks();
+
+// ====================================================================
+// Render functions
+// ====================================================================
+const verseArea = document.getElementById('verse-area');
+
+function renderVerse(ref) {
+  const data = VERSES[ref];
+  if (!data) {
+    verseArea.innerHTML = `
+      <div class="empty-state">
+        <div class="icon">&#128214;</div>
+        <p>找不到「${ref}」的經文資料</p>
+      </div>`;
+    return;
+  }
+  verseArea.innerHTML = `
+    <div class="verse-display">
+      <div class="verse-ref"><span>${ref}</span></div>
+      <div class="translations-grid">
+        ${translationCard('和合本', data.cuv, ref + ' (和合本)')}
+        ${translationCard('新譯本', data.ncv, ref + ' (新譯本)')}
+        ${translationCard('NIV', data.niv, ref + ' (NIV)')}
+      </div>
+    </div>`;
+}
+
+function renderGroup(groupName, keys) {
+  let html = `<div class="verse-display"><div class="verse-ref"><span>${groupName}</span></div>`;
+  keys.forEach(ref => {
+    const data = VERSES[ref];
+    if (!data) return;
+    const shortRef = ref.replace(/^.+?\s+/, '');
+    html += `
+      <div style="margin-bottom:20px">
+        <div style="text-align:center;margin-bottom:12px;font-size:14px;font-weight:600;color:var(--text-secondary);">${ref}</div>
+        <div class="translations-grid">
+          ${translationCard('和合本', data.cuv, ref + ' (和合本)')}
+          ${translationCard('新譯本', data.ncv, ref + ' (新譯本)')}
+          ${translationCard('NIV', data.niv, ref + ' (NIV)')}
+        </div>
+      </div>`;
+  });
+  html += '</div>';
+  verseArea.innerHTML = html;
+}
+
+function translationCard(label, text, copyLabel) {
+  return `
+    <div class="translation-card">
+      <button class="btn-copy" onclick="copyText(this, '${escapeAttr(copyLabel)}\\n${escapeAttr(text)}')" title="複製">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+        </svg>
+      </button>
+      <div class="translation-label">${label}</div>
+      <div class="translation-text">${text}</div>
+    </div>`;
+}
+
+function escapeAttr(str) {
+  return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;').replace(/\n/g, '\\n');
+}
+
+// ====================================================================
+// Actions
+// ====================================================================
+function lookupVerse() {
+  const book = selBook.value;
+  const ch = selChapter.value;
+  const vs = selVerse.value;
+  if (!book || !ch || !vs) {
+    showToast('請選擇書卷、章、節');
+    return;
+  }
+  const ref = `${book} ${ch}:${vs}`;
+  clearActivePills();
+  renderVerse(ref);
+  scrollToResult();
+}
+
+function selectQuickPick(idx, el) {
+  const pick = QUICK_PICKS[idx];
+  clearActivePills();
+  el.classList.add('active');
+  if (pick.group) {
+    renderGroup(pick.label, VERSE_GROUPS[pick.group]);
+  } else {
+    renderVerse(pick.key);
+  }
+  scrollToResult();
+}
+
+function clearActivePills() {
+  document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+}
+
+function scrollToResult() {
+  setTimeout(() => {
+    verseArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+
+function copyText(btn, text) {
+  // Unescape the text
+  const decoded = text.replace(/\\n/g, '\n').replace(/\\'/g, "'").replace(/\\\\/g, '\\');
+  navigator.clipboard.writeText(decoded).then(() => {
+    btn.classList.add('copied');
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    showToast('已複製到剪貼簿');
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+    }, 2000);
+  });
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2200);
+}
+
+// ====================================================================
+// Build quick-pick pills
+// ====================================================================
+const pillsContainer = document.getElementById('quick-pills');
+QUICK_PICKS.forEach((pick, idx) => {
+  const btn = document.createElement('button');
+  btn.className = 'pill';
+  btn.textContent = pick.label;
+  btn.onclick = function() { selectQuickPick(idx, this); };
+  pillsContainer.appendChild(btn);
+});
+
+// ====================================================================
+// Enter key support on selectors
+// ====================================================================
+[selBook, selChapter, selVerse].forEach(sel => {
+  sel.addEventListener('keydown', e => {
+    if (e.key === 'Enter') lookupVerse();
+  });
+});
+
+// ====================================================================
+// Default: show John 3:16 on load
+// ====================================================================
+renderVerse("約翰福音 3:16");
+</script>
+</body>
+</html>

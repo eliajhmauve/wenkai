@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>隨機經文 — 福青施老師</title>
+  <meta name="description" content="按主題隨機抽取聖經經文，含中英對照。平安、愛、力量、感恩、智慧、盼望、信心、喜樂八大主題。">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #f6f6f4;
+      --bg-card: #ffffff;
+      --bg-nav: rgba(255,255,255,0.88);
+      --text: #1a1a1a;
+      --text-secondary: #888;
+      --accent: #9b7e3a;
+      --accent-light: #c4a94f;
+      --accent-bg: rgba(155,126,58,0.08);
+      --border: rgba(0,0,0,0.06);
+      --border-hover: rgba(155,126,58,0.3);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.06);
+      --shadow-hover: 0 8px 30px rgba(0,0,0,0.08);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.1);
+      --radius: 16px;
+      --radius-sm: 12px;
+      --radius-pill: 100px;
+      --font-serif: 'Noto Serif TC', serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* === Back Nav === */
+    .back-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-nav);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+    }
+
+    .back-nav a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .back-nav a:hover { color: var(--accent); }
+
+    .back-nav a svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.2s;
+    }
+
+    .back-nav a:hover svg { transform: translateX(-3px); }
+
+    /* === Container === */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* === Header === */
+    .page-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .page-header h1 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .page-header p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    /* === Decorative cross === */
+    .deco-cross {
+      display: block;
+      margin: 0 auto 16px;
+      width: 32px;
+      height: 32px;
+      color: var(--accent);
+      opacity: 0.6;
+    }
+
+    /* === Theme Pills === */
+    .themes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 48px;
+    }
+
+    .theme-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .theme-pill:hover {
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-1px);
+    }
+
+    .theme-pill.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      box-shadow: 0 4px 16px rgba(155, 126, 58, 0.25);
+    }
+
+    .theme-pill .pill-icon {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    /* === Verse Card === */
+    .verse-area {
+      perspective: 1000px;
+      min-height: 320px;
+    }
+
+    .verse-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 48px 40px;
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      transition: box-shadow 0.3s;
+    }
+
+    .verse-card:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* Decorative top bar */
+    .verse-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
+    }
+
+    /* Decorative corner ornaments */
+    .verse-card .ornament-tl,
+    .verse-card .ornament-br {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      opacity: 0.06;
+      pointer-events: none;
+    }
+
+    .verse-card .ornament-tl {
+      top: 12px;
+      left: 12px;
+    }
+
+    .verse-card .ornament-br {
+      bottom: 12px;
+      right: 12px;
+      transform: rotate(180deg);
+    }
+
+    /* Quote mark */
+    .verse-quote-mark {
+      font-family: var(--font-serif);
+      font-size: 72px;
+      line-height: 1;
+      color: var(--accent);
+      opacity: 0.12;
+      position: absolute;
+      top: 24px;
+      left: 32px;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Verse content wrapper for animation */
+    .verse-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .verse-content.fade-out {
+      animation: fadeSlideOut 0.25s ease-in forwards;
+    }
+
+    .verse-content.fade-in {
+      animation: fadeSlideIn 0.4s ease-out forwards;
+    }
+
+    @keyframes fadeSlideOut {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(-12px); }
+    }
+
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .verse-zh {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 20px;
+      letter-spacing: 0.02em;
+    }
+
+    .verse-en {
+      font-size: 14px;
+      font-style: italic;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      padding-left: 16px;
+      border-left: 2px solid var(--border);
+    }
+
+    .verse-ref {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.03em;
+    }
+
+    .verse-ref svg {
+      width: 14px;
+      height: 14px;
+      opacity: 0.7;
+    }
+
+    /* === Empty state === */
+    .empty-state {
+      text-align: center;
+      padding: 60px 24px;
+    }
+
+    .empty-state .empty-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      opacity: 0.3;
+    }
+
+    .empty-state p {
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+
+    /* === Action Buttons === */
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: var(--radius-pill);
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      user-select: none;
+    }
+
+    .btn svg { width: 16px; height: 16px; }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(155, 126, 58, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-light);
+      box-shadow: 0 4px 16px rgba(155, 126, 58, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(155, 126, 58, 0.2);
+    }
+
+    .btn-secondary {
+      background: var(--accent-bg);
+      color: var(--accent);
+      border: 1.5px solid transparent;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--border-hover);
+      background: rgba(155, 126, 58, 0.12);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary:active {
+      transform: translateY(0);
+    }
+
+    /* === Toast === */
+    .toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--text);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 500;
+      z-index: 1000;
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* === Footer === */
+    .page-footer {
+      text-align: center;
+      padding: 40px 24px;
+      color: var(--text-secondary);
+      font-size: 12px;
+      border-top: 1px solid var(--border);
+      margin-top: 60px;
+    }
+
+    .page-footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .page-footer a:hover { text-decoration: underline; }
+
+    /* === Responsive === */
+    @media (max-width: 480px) {
+      .container { padding: 32px 16px 60px; }
+
+      .page-header h1 { font-size: 1.6rem; }
+
+      .themes { gap: 8px; }
+
+      .theme-pill {
+        padding: 8px 16px;
+        font-size: 13px;
+      }
+
+      .verse-card {
+        padding: 36px 24px;
+      }
+
+      .verse-zh {
+        font-size: 1.25rem;
+      }
+
+      .verse-en {
+        font-size: 13px;
+      }
+
+      .verse-quote-mark {
+        font-size: 56px;
+        top: 16px;
+        left: 20px;
+      }
+
+      .actions { gap: 8px; }
+
+      .btn {
+        padding: 10px 20px;
+        font-size: 13px;
+      }
+    }
+
+    /* === Subtle background pattern === */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.015) 1px, transparent 0);
+      background-size: 32px 32px;
+      pointer-events: none;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Back Nav -->
+  <nav class="back-nav">
+    <a href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/>
+      </svg>
+      返回作品集
+    </a>
+  </nav>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="page-header">
+      <svg class="deco-cross" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M16 4v24M8 16h16" stroke-linecap="round"/>
+        <circle cx="16" cy="16" r="12" opacity="0.3"/>
+      </svg>
+      <h1>隨機經文</h1>
+      <p>選擇一個主題，讓一句經文在此刻與你相遇</p>
+    </header>
+
+    <!-- Theme Pills -->
+    <div class="themes" id="themes">
+      <button class="theme-pill" data-theme="peace"><span class="pill-icon">🕊</span> 平安</button>
+      <button class="theme-pill" data-theme="love"><span class="pill-icon">❤</span> 愛</button>
+      <button class="theme-pill" data-theme="strength"><span class="pill-icon">💪</span> 力量</button>
+      <button class="theme-pill" data-theme="gratitude"><span class="pill-icon">🙏</span> 感恩</button>
+      <button class="theme-pill" data-theme="wisdom"><span class="pill-icon">💡</span> 智慧</button>
+      <button class="theme-pill" data-theme="hope"><span class="pill-icon">🌅</span> 盼望</button>
+      <button class="theme-pill" data-theme="faith"><span class="pill-icon">✝</span> 信心</button>
+      <button class="theme-pill" data-theme="joy"><span class="pill-icon">😊</span> 喜樂</button>
+    </div>
+
+    <!-- Verse Display Area -->
+    <div class="verse-area" id="verseArea">
+      <!-- Empty State -->
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">📖</div>
+        <p>點選上方主題，抽取今日經文</p>
+      </div>
+
+      <!-- Verse Card (hidden initially) -->
+      <div class="verse-card" id="verseCard" style="display:none;">
+        <span class="verse-quote-mark">"</span>
+        <svg class="ornament-tl" viewBox="0 0 60 60"><path d="M0 0 Q30 0 30 30 Q30 0 60 0" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M0 0 Q0 30 30 30 Q0 30 0 60" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        <svg class="ornament-br" viewBox="0 0 60 60"><path d="M0 0 Q30 0 30 30 Q30 0 60 0" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M0 0 Q0 30 30 30 Q0 30 0 60" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        <div class="verse-content" id="verseContent">
+          <div class="verse-zh" id="verseZh"></div>
+          <div class="verse-en" id="verseEn"></div>
+          <div class="verse-ref" id="verseRef">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            <span id="verseRefText"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons (hidden initially) -->
+    <div class="actions" id="actions" style="display:none;">
+      <button class="btn btn-primary" id="btnRefresh">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6"/><path d="M2.5 22v-6h6"/><path d="M2.5 11.5a10 10 0 0 1 18.37-4.5"/><path d="M21.5 12.5a10 10 0 0 1-18.37 4.5"/></svg>
+        再抽一句
+      </button>
+      <button class="btn btn-secondary" id="btnCopy">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        複製
+      </button>
+      <button class="btn btn-secondary" id="btnShare">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        分享
+      </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      經文取自<a href="https://www.bible.com/zh-TW" target="_blank" rel="noopener">和合本</a>與 NIV/ESV 英文譯本 &middot; <a href="index.html">福青施老師作品集</a>
+    </footer>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // === Verse Data (60+ verses across 8 themes) ===
+    const VERSES = {
+      peace: [
+        { zh: "我留下平安給你們，我將我的平安賜給你們。我所賜的，不像世人所賜的。你們心裡不要憂愁，也不要膽怯。", en: "Peace I leave with you; my peace I give you. I do not give to you as the world gives. Do not let your hearts be troubled and do not be afraid.", ref: "約翰福音 14:27" },
+        { zh: "應當一無掛慮，只要凡事藉著禱告、祈求和感謝，將你們所要的告訴神。神所賜出人意外的平安，必在基督耶穌裡保守你們的心懷意念。", en: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus.", ref: "腓立比書 4:6-7" },
+        { zh: "堅心倚賴你的，你必保守他十分平安，因為他倚靠你。", en: "You will keep in perfect peace those whose minds are steadfast, because they trust in you.", ref: "以賽亞書 26:3" },
+        { zh: "耶和華必賜力量給他的百姓，耶和華必賜平安的福給他的百姓。", en: "The LORD gives strength to his people; the LORD blesses his people with peace.", ref: "詩篇 29:11" },
+        { zh: "你們要將一切的憂慮卸給神，因為他顧念你們。", en: "Cast all your anxiety on him because he cares for you.", ref: "彼得前書 5:7" },
+        { zh: "我將這些事告訴你們，是要叫你們在我裡面有平安。在世上你們有苦難，但你們可以放心，我已經勝了世界。", en: "I have told you these things, so that in me you may have peace. In this world you will have trouble. But take heart! I have overcome the world.", ref: "約翰福音 16:33" },
+        { zh: "耶和華是我的牧者，我必不至缺乏。他使我躺臥在青草地上，領我在可安歇的水邊。", en: "The LORD is my shepherd, I lack nothing. He makes me lie down in green pastures, he leads me beside quiet waters.", ref: "詩篇 23:1-2" },
+        { zh: "你們要休息，要知道我是神！我必在外邦中被尊崇，在遍地上也被尊崇。", en: "Be still, and know that I am God; I will be exalted among the nations, I will be exalted in the earth.", ref: "詩篇 46:10" },
+        { zh: "願主親自賜你們時時處處的平安。願主與你們眾人同在。", en: "Now may the Lord of peace himself give you peace at all times and in every way. The Lord be with all of you.", ref: "帖撒羅尼迦後書 3:16" },
+        { zh: "凡勞苦擔重擔的人，可以到我這裡來，我就使你們得安息。", en: "Come to me, all you who are weary and burdened, and I will give you rest.", ref: "馬太福音 11:28" }
+      ],
+      love: [
+        { zh: "神愛世人，甚至將他的獨生子賜給他們，叫一切信他的，不至滅亡，反得永生。", en: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.", ref: "約翰福音 3:16" },
+        { zh: "愛是恆久忍耐，又有恩慈；愛是不嫉妒，愛是不自誇，不張狂。", en: "Love is patient, love is kind. It does not envy, it does not boast, it is not proud.", ref: "哥林多前書 13:4" },
+        { zh: "我們愛，因為神先愛我們。", en: "We love because he first loved us.", ref: "約翰一書 4:19" },
+        { zh: "惟有基督在我們還作罪人的時候為我們死，神的愛就在此向我們顯明了。", en: "But God demonstrates his own love for us in this: While we were still sinners, Christ died for us.", ref: "羅馬書 5:8" },
+        { zh: "我以永遠的愛愛你，因此我以慈愛吸引你。", en: "I have loved you with an everlasting love; I have drawn you with unfailing kindness.", ref: "耶利米書 31:3" },
+        { zh: "如今常存的有信，有望，有愛，這三樣，其中最大的是愛。", en: "And now these three remain: faith, hope and love. But the greatest of these is love.", ref: "哥林多前書 13:13" },
+        { zh: "親愛的弟兄啊，我們應當彼此相愛，因為愛是從神來的。凡有愛心的，都是由神而生，並且認識神。", en: "Dear friends, let us love one another, for love comes from God. Everyone who loves has been born of God and knows God.", ref: "約翰一書 4:7" },
+        { zh: "你要盡心、盡性、盡意愛主你的神。這是誡命中的第一，且是最大的。其次也相仿，就是要愛人如己。", en: "Love the Lord your God with all your heart and with all your soul and with all your mind. This is the first and greatest commandment. And the second is like it: Love your neighbor as yourself.", ref: "馬太福音 22:37-39" },
+        { zh: "誰能使我們與基督的愛隔絕呢？難道是患難嗎？是困苦嗎？是逼迫嗎？是飢餓嗎？是赤身露體嗎？是危險嗎？是刀劍嗎？", en: "Who shall separate us from the love of Christ? Shall trouble or hardship or persecution or famine or nakedness or danger or sword?", ref: "羅馬書 8:35" },
+        { zh: "愛裡沒有懼怕。愛既完全，就把懼怕除去，因為懼怕裡含著刑罰，懼怕的人在愛裡未得完全。", en: "There is no fear in love. But perfect love drives out fear, because fear has to do with punishment. The one who fears is not made perfect in love.", ref: "約翰一書 4:18" }
+      ],
+      strength: [
+        { zh: "我靠著那加給我力量的，凡事都能做。", en: "I can do all this through him who gives me strength.", ref: "腓立比書 4:13" },
+        { zh: "但那等候耶和華的，必從新得力。他們必如鷹展翅上騰，他們奔跑卻不困倦，行走卻不疲乏。", en: "But those who hope in the LORD will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.", ref: "以賽亞書 40:31" },
+        { zh: "耶和華是我的力量，是我的盾牌；我心裡倚靠他就得幫助。所以我心中歡樂，我必用詩歌頌讚他。", en: "The LORD is my strength and my shield; my heart trusts in him, and he helps me. My heart leaps for joy, and with my song I praise him.", ref: "詩篇 28:7" },
+        { zh: "你不要害怕，因為我與你同在；不要驚惶，因為我是你的神。我必堅固你，我必幫助你，我必用我公義的右手扶持你。", en: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.", ref: "以賽亞書 41:10" },
+        { zh: "他對我說：「我的恩典夠你用的，因為我的能力是在人的軟弱上顯得完全。」", en: "But he said to me, 'My grace is sufficient for you, for my power is made perfect in weakness.'", ref: "哥林多後書 12:9" },
+        { zh: "神是我們的避難所，是我們的力量，是我們在患難中隨時的幫助。", en: "God is our refuge and strength, an ever-present help in trouble.", ref: "詩篇 46:1" },
+        { zh: "因為神賜給我們的，不是膽怯的心，乃是剛強、仁愛、謹守的心。", en: "For the Spirit God gave us does not make us timid, but gives us power, love and self-discipline.", ref: "提摩太後書 1:7" },
+        { zh: "你當剛強壯膽！不要懼怕，也不要驚惶；因為你無論往哪裡去，耶和華你的神必與你同在。", en: "Be strong and courageous. Do not be afraid; do not be discouraged, for the LORD your God will be with you wherever you go.", ref: "約書亞記 1:9" },
+        { zh: "耶和華是我的亮光，是我的拯救，我還怕誰呢？耶和華是我性命的保障，我還懼誰呢？", en: "The LORD is my light and my salvation—whom shall I fear? The LORD is the stronghold of my life—of whom shall I be afraid?", ref: "詩篇 27:1" },
+        { zh: "然而靠著愛我們的主，在這一切的事上已經得勝有餘了。", en: "No, in all these things we are more than conquerors through him who loved us.", ref: "羅馬書 8:37" }
+      ],
+      gratitude: [
+        { zh: "凡事謝恩，因為這是神在基督耶穌裡向你們所定的旨意。", en: "Give thanks in all circumstances; for this is God's will for you in Christ Jesus.", ref: "帖撒羅尼迦前書 5:18" },
+        { zh: "你們要稱謝耶和華，因他本為善，他的慈愛永遠長存。", en: "Give thanks to the LORD, for he is good; his love endures forever.", ref: "詩篇 107:1" },
+        { zh: "各樣美善的恩賜和各樣全備的賞賜都是從上頭來的，從眾光之父那裡降下來的。", en: "Every good and perfect gift is from above, coming down from the Father of the heavenly lights.", ref: "雅各書 1:17" },
+        { zh: "你們要以感謝為祭獻與神，又要向至高者還你的願。", en: "Sacrifice thank offerings to God, fulfill your vows to the Most High.", ref: "詩篇 50:14" },
+        { zh: "當用詩章、頌詞、靈歌，彼此對說，口唱心和地讚美主。凡事要奉我們主耶穌基督的名，常常感謝父神。", en: "Speaking to one another with psalms, hymns, and songs from the Spirit. Sing and make music from your heart to the Lord, always giving thanks to God the Father for everything.", ref: "以弗所書 5:19-20" },
+        { zh: "感謝神，因他有說不盡的恩賜！", en: "Thanks be to God for his indescribable gift!", ref: "哥林多後書 9:15" },
+        { zh: "我要一心稱謝耶和華，我要傳揚你一切奇妙的作為。", en: "I will give thanks to you, LORD, with all my heart; I will tell of all your wonderful deeds.", ref: "詩篇 9:1" },
+        { zh: "你們要進入他的門，當稱謝；進入他的院，當讚美；當感謝他，稱頌他的名。", en: "Enter his gates with thanksgiving and his courts with praise; give thanks to him and praise his name.", ref: "詩篇 100:4" },
+        { zh: "你以恩典為年歲的冠冕，你的路徑都滴下脂油。", en: "You crown the year with your bounty, and your carts overflow with abundance.", ref: "詩篇 65:11" },
+        { zh: "耶和華啊，我要稱謝你！因為你雖然向我發怒，你的怒氣卻已轉消，你又安慰了我。", en: "I will praise you, LORD. Although you were angry with me, your anger has turned away and you have comforted me.", ref: "以賽亞書 12:1" }
+      ],
+      wisdom: [
+        { zh: "敬畏耶和華是智慧的開端，認識至聖者便是聰明。", en: "The fear of the LORD is the beginning of wisdom, and knowledge of the Holy One is understanding.", ref: "箴言 9:10" },
+        { zh: "你們中間若有缺少智慧的，應當求那厚賜與眾人也不斥責人的神，主就必賜給他。", en: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you.", ref: "雅各書 1:5" },
+        { zh: "你要專心仰賴耶和華，不可倚靠自己的聰明，在你一切所行的事上都要認定他，他必指引你的路。", en: "Trust in the LORD with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.", ref: "箴言 3:5-6" },
+        { zh: "得智慧，得聰明的，這人便為有福。因為得智慧勝過得銀子，其利益強如精金。", en: "Blessed are those who find wisdom, those who gain understanding, for she is more profitable than silver and yields better returns than gold.", ref: "箴言 3:13-14" },
+        { zh: "智慧人的心得知識，智慧人的耳求知識。", en: "The heart of the discerning acquires knowledge, for the ears of the wise seek it out.", ref: "箴言 18:15" },
+        { zh: "你的話是我腳前的燈，是我路上的光。", en: "Your word is a lamp for my feet, a light on my path.", ref: "詩篇 119:105" },
+        { zh: "惟獨從上頭來的智慧，先是清潔，後是和平、溫良柔順、滿有憐憫、多結善果、沒有偏見、沒有假冒。", en: "But the wisdom that comes from heaven is first of all pure; then peace-loving, considerate, submissive, full of mercy and good fruit, impartial and sincere.", ref: "雅各書 3:17" },
+        { zh: "教導智慧人，他就越發有智慧；指示義人，他就增長學問。", en: "Instruct the wise and they will be wiser still; teach the righteous and they will add to their learning.", ref: "箴言 9:9" },
+        { zh: "耶和華賜人智慧，知識和聰明都由他口而出。", en: "For the LORD gives wisdom; from his mouth come knowledge and understanding.", ref: "箴言 2:6" },
+        { zh: "求你指教我們怎樣數算自己的日子，好叫我們得著智慧的心。", en: "Teach us to number our days, that we may gain a heart of wisdom.", ref: "詩篇 90:12" }
+      ],
+      hope: [
+        { zh: "我知道我向你們所懷的意念是賜平安的意念，不是降災禍的意念，要叫你們末後有指望。", en: "For I know the plans I have for you, declares the LORD, plans to prosper you and not to harm you, plans to give you hope and a future.", ref: "耶利米書 29:11" },
+        { zh: "但願使人有盼望的神，因信將諸般的喜樂、平安充滿你們的心，使你們藉著聖靈的能力大有盼望。", en: "May the God of hope fill you with all joy and peace as you trust in him, so that you may overflow with hope by the power of the Holy Spirit.", ref: "羅馬書 15:13" },
+        { zh: "我們曉得萬事都互相效力，叫愛神的人得益處。", en: "And we know that in all things God works for the good of those who love him.", ref: "羅馬書 8:28" },
+        { zh: "耶和華啊，我仰望你；主我的神啊，你必應允我。", en: "LORD, I wait for you; you will answer, Lord my God.", ref: "詩篇 38:15" },
+        { zh: "流淚撒種的，必歡呼收割。", en: "Those who sow with tears will reap with songs of joy.", ref: "詩篇 126:5" },
+        { zh: "我們既因信稱義，就藉著我們的主耶穌基督得與神相和。我們又藉著他，因信得進入現在所站的這恩典中，並且歡歡喜喜盼望神的榮耀。", en: "Therefore, since we have been justified through faith, we have peace with God through our Lord Jesus Christ, through whom we have gained access by faith into this grace in which we now stand. And we boast in the hope of the glory of God.", ref: "羅馬書 5:1-2" },
+        { zh: "你們的日子如何，你們的力量也必如何。", en: "Your strength will equal your days.", ref: "申命記 33:25" },
+        { zh: "看哪，我要做一件新事，如今要發現，你們豈不知道嗎？我必在曠野開道路，在沙漠開江河。", en: "See, I am doing a new thing! Now it springs up; do you not perceive it? I am making a way in the wilderness and streams in the wasteland.", ref: "以賽亞書 43:19" },
+        { zh: "因為我深信無論是死、是生，是天使、是掌權的，是有能的，是現在的事、是將來的事，是高處的、是低處的，是別的受造之物，都不能叫我們與神的愛隔絕。", en: "For I am convinced that neither death nor life, neither angels nor demons, neither the present nor the future, nor any powers, neither height nor depth, nor anything else in all creation, will be able to separate us from the love of God.", ref: "羅馬書 8:38-39" },
+        { zh: "在人這是不能的，在神凡事都能。", en: "With man this is impossible, but with God all things are possible.", ref: "馬太福音 19:26" }
+      ],
+      faith: [
+        { zh: "信就是所望之事的實底，是未見之事的確據。", en: "Now faith is confidence in what we hope for and assurance about what we do not see.", ref: "希伯來書 11:1" },
+        { zh: "你若能信，在信的人，凡事都能。", en: "If you can believe, all things are possible to him who believes.", ref: "馬可福音 9:23" },
+        { zh: "我已經與基督同釘十字架，現在活著的不再是我，乃是基督在我裡面活著；並且我如今在肉身活著，是因信神的兒子而活。", en: "I have been crucified with Christ and I no longer live, but Christ lives in me. The life I now live in the body, I live by faith in the Son of God, who loved me and gave himself for me.", ref: "加拉太書 2:20" },
+        { zh: "因我們行事為人是憑著信心，不是憑著眼見。", en: "For we live by faith, not by sight.", ref: "哥林多後書 5:7" },
+        { zh: "耶穌說：「我就是道路、真理、生命；若不藉著我，沒有人能到父那裡去。」", en: "Jesus answered, 'I am the way and the truth and the life. No one comes to the Father except through me.'", ref: "約翰福音 14:6" },
+        { zh: "義人必因信得生。", en: "The righteous will live by faith.", ref: "羅馬書 1:17" },
+        { zh: "所以你們因信基督耶穌，都是神的兒子。", en: "So in Christ Jesus you are all children of God through faith.", ref: "加拉太書 3:26" },
+        { zh: "我們既有這許多的見證人，如同雲彩圍著我們，就當放下各樣的重擔，脫去容易纏累我們的罪，存心忍耐，奔那擺在我們前頭的路程。", en: "Therefore, since we are surrounded by such a great cloud of witnesses, let us throw off everything that hinders and the sin that so easily entangles. And let us run with perseverance the race marked out for us.", ref: "希伯來書 12:1" },
+        { zh: "你們祈求，就給你們；尋找，就尋見；叩門，就給你們開門。", en: "Ask and it will be given to you; seek and you will find; knock and the door will be opened to you.", ref: "馬太福音 7:7" },
+        { zh: "耶穌對他說：「你因看見了我才信；那沒有看見就信的有福了。」", en: "Then Jesus told him, 'Because you have seen me, you have believed; blessed are those who have not seen and yet have believed.'", ref: "約翰福音 20:29" }
+      ],
+      joy: [
+        { zh: "你們要靠主常常喜樂！我再說，你們要喜樂！", en: "Rejoice in the Lord always. I will say it again: Rejoice!", ref: "腓立比書 4:4" },
+        { zh: "耶和華的喜樂是你們的力量。", en: "The joy of the LORD is your strength.", ref: "尼希米記 8:10" },
+        { zh: "喜樂的心乃是良藥，憂傷的靈使骨枯乾。", en: "A cheerful heart is good medicine, but a crushed spirit dries up the bones.", ref: "箴言 17:22" },
+        { zh: "在你面前有滿足的喜樂，在你右手中有永遠的福樂。", en: "You make known to me the path of life; you will fill me with joy in your presence, with eternal pleasures at your right hand.", ref: "詩篇 16:11" },
+        { zh: "聖靈所結的果子，就是仁愛、喜樂、和平、忍耐、恩慈、良善、信實、溫柔、節制。", en: "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control.", ref: "加拉太書 5:22-23" },
+        { zh: "這是耶和華所定的日子，我們在其中要高興歡喜。", en: "The LORD has done it this very day; let us rejoice today and be glad.", ref: "詩篇 118:24" },
+        { zh: "一宿雖然有哭泣，早晨便必歡呼。", en: "Weeping may stay for the night, but rejoicing comes in the morning.", ref: "詩篇 30:5" },
+        { zh: "你們雖然沒有見過他，卻是愛他；如今雖不得看見，卻因信他就有說不出來、滿有榮光的大喜樂。", en: "Though you have not seen him, you love him; and even though you do not see him now, you believe in him and are filled with an inexpressible and glorious joy.", ref: "彼得前書 1:8" },
+        { zh: "我的弟兄們，你們落在百般試煉中，都要以為大喜樂。", en: "Consider it pure joy, my brothers and sisters, whenever you face trials of many kinds.", ref: "雅各書 1:2" },
+        { zh: "你們必歡歡喜喜而出來，平平安安蒙引導。大山小山必在你們面前發聲歌唱，田野的樹木也都拍掌。", en: "You will go out in joy and be led forth in peace; the mountains and hills will burst into song before you, and all the trees of the field will clap their hands.", ref: "以賽亞書 55:12" }
+      ]
+    };
+
+    // === State ===
+    let currentTheme = null;
+    let currentVerse = null;
+    let lastIndex = -1;
+
+    // === DOM References ===
+    const themeBtns = document.querySelectorAll('.theme-pill');
+    const emptyState = document.getElementById('emptyState');
+    const verseCard = document.getElementById('verseCard');
+    const verseContent = document.getElementById('verseContent');
+    const verseZh = document.getElementById('verseZh');
+    const verseEn = document.getElementById('verseEn');
+    const verseRefText = document.getElementById('verseRefText');
+    const actions = document.getElementById('actions');
+    const btnRefresh = document.getElementById('btnRefresh');
+    const btnCopy = document.getElementById('btnCopy');
+    const btnShare = document.getElementById('btnShare');
+    const toast = document.getElementById('toast');
+
+    // === Utility: pick random index, avoid repeating the last one ===
+    function randomIndex(arr) {
+      if (arr.length <= 1) return 0;
+      let idx;
+      do { idx = Math.floor(Math.random() * arr.length); } while (idx === lastIndex);
+      lastIndex = idx;
+      return idx;
+    }
+
+    // === Show Toast ===
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    // === Display Verse with animation ===
+    function displayVerse(theme, skipAnimation) {
+      const verses = VERSES[theme];
+      if (!verses || verses.length === 0) return;
+
+      const idx = randomIndex(verses);
+      currentVerse = verses[idx];
+      currentTheme = theme;
+
+      // Hide empty state, show card
+      emptyState.style.display = 'none';
+      verseCard.style.display = '';
+      actions.style.display = '';
+
+      if (skipAnimation) {
+        renderVerse();
+        return;
+      }
+
+      // Animate out
+      verseContent.classList.remove('fade-in');
+      verseContent.classList.add('fade-out');
+
+      setTimeout(() => {
+        renderVerse();
+        verseContent.classList.remove('fade-out');
+        verseContent.classList.add('fade-in');
+      }, 250);
+    }
+
+    function renderVerse() {
+      verseZh.textContent = currentVerse.zh;
+      verseEn.textContent = currentVerse.en;
+      verseRefText.textContent = currentVerse.ref;
+    }
+
+    // === Theme pill click ===
+    themeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const theme = btn.dataset.theme;
+
+        // Update active state
+        themeBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Reset last index if switching theme
+        if (theme !== currentTheme) lastIndex = -1;
+
+        displayVerse(theme, !currentTheme);
+      });
+    });
+
+    // === Refresh button ===
+    btnRefresh.addEventListener('click', () => {
+      if (currentTheme) displayVerse(currentTheme);
+    });
+
+    // === Build share text ===
+    function getShareText() {
+      if (!currentVerse) return '';
+      return `${currentVerse.zh}\n\n${currentVerse.en}\n\n— ${currentVerse.ref}`;
+    }
+
+    // === Copy button ===
+    btnCopy.addEventListener('click', async () => {
+      const text = getShareText();
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast('已複製到剪貼簿');
+      } catch {
+        // Fallback
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.cssText = 'position:fixed;left:-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        showToast('已複製到剪貼簿');
+      }
+    });
+
+    // === Share button ===
+    btnShare.addEventListener('click', async () => {
+      const text = getShareText();
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: '隨機經文 — ' + currentVerse.ref,
+            text: text
+          });
+        } catch (e) {
+          if (e.name !== 'AbortError') {
+            showToast('分享失敗，已複製到剪貼簿');
+            navigator.clipboard.writeText(text).catch(() => {});
+          }
+        }
+      } else {
+        // Fallback: copy
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast('已複製到剪貼簿（此瀏覽器不支援分享）');
+        } catch {
+          showToast('此瀏覽器不支援分享功能');
+        }
+      }
+    });
+
+    // === Keyboard shortcut: Space to refresh ===
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' && currentTheme && e.target === document.body) {
+        e.preventDefault();
+        btnRefresh.click();
+      }
+    });
+  </script>
+</body>
+</html>

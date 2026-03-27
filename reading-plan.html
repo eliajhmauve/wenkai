@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>讀經進度 — 福青施老師</title>
+  <meta name="description" content="每日讀經進度追蹤：一年讀完聖經、新約90天、詩篇30天，三種計畫任你選，進度自動儲存。">
+  <meta name="keywords" content="聖經,讀經計畫,讀經進度,每日讀經,基督教,靈修,福青施老師">
+  <meta name="author" content="福青施老師">
+  <meta name="theme-color" content="#9b7e3a">
+  <link rel="canonical" href="https://eliajhmauve.github.io/wenkai/reading-plan.html">
+  <meta property="og:title" content="讀經進度 — 福青施老師">
+  <meta property="og:description" content="每日讀經進度追蹤，三種計畫任你選">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://eliajhmauve.github.io/wenkai/reading-plan.html">
+  <meta property="og:locale" content="zh_TW">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="讀經進度 — 福青施老師">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📖</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #f6f6f4;
+      --bg-card: #ffffff;
+      --bg-nav: rgba(255,255,255,0.88);
+      --text: #1a1a1a;
+      --text-secondary: #888;
+      --accent: #9b7e3a;
+      --accent-light: #c4a94f;
+      --accent-bg: rgba(155,126,58,0.08);
+      --border: rgba(0,0,0,0.06);
+      --border-hover: rgba(155,126,58,0.3);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+      --shadow-hover: 0 8px 30px rgba(0,0,0,0.08);
+      --radius: 16px;
+      --radius-sm: 12px;
+      --radius-pill: 100px;
+      --green: #4caf50;
+      --green-light: rgba(76,175,80,0.1);
+      --red: #e53935;
+      --font-serif: 'Noto Serif TC', serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* === Nav === */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--bg-nav);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 800px; margin: 0 auto; padding: 16px 24px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-back {
+      color: var(--text-secondary); text-decoration: none; font-size: 0.85rem;
+      transition: color 0.3s; display: flex; align-items: center; gap: 4px;
+    }
+    .nav-back:hover { color: var(--accent); }
+    .nav-brand {
+      font-family: var(--font-serif); font-size: 0.95rem; font-weight: 700;
+      color: var(--accent); letter-spacing: 2px;
+    }
+
+    /* === Hero === */
+    .hero {
+      padding: 120px 24px 40px; text-align: center;
+    }
+    .hero h1 {
+      font-family: var(--font-serif); font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+      font-weight: 900; letter-spacing: 4px; margin-bottom: 8px;
+      color: var(--text);
+    }
+    .hero p {
+      color: var(--text-secondary); font-size: 0.9rem; letter-spacing: 1px;
+    }
+
+    /* === Container === */
+    .container { max-width: 800px; margin: 0 auto; padding: 0 24px 80px; }
+
+    /* === Plan Selection === */
+    .plan-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 32px;
+    }
+    .plan-card {
+      background: var(--bg-card); border: 2px solid var(--border); border-radius: var(--radius);
+      padding: 20px 12px; text-align: center; cursor: pointer; transition: all 0.3s;
+      box-shadow: var(--shadow-sm);
+    }
+    .plan-card:hover {
+      border-color: var(--border-hover); box-shadow: var(--shadow-hover); transform: translateY(-2px);
+    }
+    .plan-card.active {
+      border-color: var(--accent); background: var(--accent-bg);
+    }
+    .plan-card .plan-icon { font-size: 1.8rem; margin-bottom: 8px; }
+    .plan-card .plan-name {
+      font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; color: var(--text);
+    }
+    .plan-card .plan-desc {
+      font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4;
+    }
+
+    /* === Stats === */
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 16px 12px; text-align: center; box-shadow: var(--shadow-sm);
+    }
+    .stat-value {
+      font-size: 1.5rem; font-weight: 700; color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+    .stat-label {
+      font-size: 0.7rem; color: var(--text-secondary); margin-top: 2px; letter-spacing: 0.5px;
+    }
+
+    /* === Progress Bar === */
+    .progress-section {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 20px 24px; margin-bottom: 24px; box-shadow: var(--shadow-sm);
+    }
+    .progress-header {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;
+    }
+    .progress-title { font-weight: 600; font-size: 0.9rem; }
+    .progress-pct { font-weight: 700; color: var(--accent); font-size: 0.95rem; }
+    .progress-track {
+      width: 100%; height: 10px; background: var(--accent-bg); border-radius: 10px; overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%; border-radius: 10px; transition: width 0.6s ease;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    }
+
+    /* === Calendar === */
+    .calendar-section {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 20px 24px; margin-bottom: 24px; box-shadow: var(--shadow-sm);
+    }
+    .calendar-header {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;
+    }
+    .calendar-title { font-weight: 600; font-size: 0.9rem; }
+    .calendar-nav { display: flex; gap: 8px; }
+    .calendar-nav button {
+      width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border);
+      background: var(--bg); cursor: pointer; font-size: 0.8rem; color: var(--text);
+      display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+    }
+    .calendar-nav button:hover { border-color: var(--accent); color: var(--accent); }
+    .calendar-month {
+      font-size: 0.85rem; font-weight: 500; color: var(--text);
+    }
+    .calendar-weekdays {
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 4px;
+    }
+    .calendar-weekday {
+      text-align: center; font-size: 0.65rem; color: var(--text-secondary);
+      padding: 4px 0; font-weight: 500;
+    }
+    .calendar-days {
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px;
+    }
+    .calendar-day {
+      aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; border-radius: 50%; color: var(--text-secondary);
+      position: relative; cursor: default;
+    }
+    .calendar-day.today {
+      font-weight: 700; color: var(--text);
+      box-shadow: inset 0 0 0 2px var(--accent);
+    }
+    .calendar-day.completed {
+      background: var(--green); color: #fff; font-weight: 600;
+    }
+    .calendar-day.completed.today {
+      box-shadow: inset 0 0 0 2px rgba(0,0,0,0.15);
+    }
+    .calendar-day.empty { visibility: hidden; }
+    .calendar-day.other-month { opacity: 0.3; }
+
+    /* === Today's Reading === */
+    .today-section {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px; margin-bottom: 24px; box-shadow: var(--shadow-sm);
+    }
+    .today-header {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;
+    }
+    .today-title { font-weight: 600; font-size: 0.95rem; }
+    .today-day-badge {
+      background: var(--accent-bg); color: var(--accent); font-size: 0.75rem;
+      font-weight: 600; padding: 4px 12px; border-radius: var(--radius-pill);
+    }
+    .today-reading {
+      font-family: var(--font-serif); font-size: 1.15rem; font-weight: 700;
+      color: var(--text); margin-bottom: 16px; line-height: 1.6;
+    }
+    .today-check {
+      display: flex; align-items: center; gap: 12px; padding: 14px 18px;
+      background: var(--bg); border: 2px solid var(--border); border-radius: var(--radius-sm);
+      cursor: pointer; transition: all 0.3s; user-select: none;
+    }
+    .today-check:hover { border-color: var(--border-hover); }
+    .today-check.done {
+      background: var(--green-light); border-color: var(--green);
+    }
+    .today-check .check-icon {
+      width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      transition: all 0.3s; font-size: 0.8rem;
+    }
+    .today-check.done .check-icon {
+      background: var(--green); border-color: var(--green); color: #fff;
+    }
+    .today-check .check-label { font-size: 0.85rem; font-weight: 500; }
+    .today-check.done .check-label { color: var(--green); }
+
+    /* === Reading List === */
+    .reading-list-section {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px; margin-bottom: 24px; box-shadow: var(--shadow-sm);
+    }
+    .reading-list-header {
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;
+    }
+    .reading-list-title { font-weight: 600; font-size: 0.95rem; }
+    .reading-list-filter {
+      display: flex; gap: 6px;
+    }
+    .filter-btn {
+      padding: 4px 12px; border-radius: var(--radius-pill); border: 1px solid var(--border);
+      background: var(--bg); font-size: 0.7rem; cursor: pointer; color: var(--text-secondary);
+      transition: all 0.2s; font-family: var(--font-sans);
+    }
+    .filter-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .filter-btn:hover:not(.active) { border-color: var(--border-hover); }
+
+    .reading-list {
+      max-height: 400px; overflow-y: auto; scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+    .reading-list::-webkit-scrollbar { width: 4px; }
+    .reading-list::-webkit-scrollbar-track { background: transparent; }
+    .reading-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+    .reading-item {
+      display: flex; align-items: center; gap: 12px; padding: 10px 12px;
+      border-radius: var(--radius-sm); transition: background 0.2s; cursor: pointer;
+    }
+    .reading-item:hover { background: var(--accent-bg); }
+    .reading-item .ri-day {
+      font-size: 0.7rem; color: var(--text-secondary); min-width: 42px; font-weight: 500;
+      font-variant-numeric: tabular-nums;
+    }
+    .reading-item .ri-text { font-size: 0.82rem; flex: 1; }
+    .reading-item .ri-check {
+      width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      font-size: 0.65rem; transition: all 0.3s;
+    }
+    .reading-item.done .ri-check {
+      background: var(--green); border-color: var(--green); color: #fff;
+    }
+    .reading-item.done .ri-text { color: var(--text-secondary); text-decoration: line-through; }
+    .reading-item.today-item { background: var(--accent-bg); }
+
+    /* === Reset === */
+    .reset-section { text-align: center; padding: 16px 0; }
+    .reset-btn {
+      padding: 10px 28px; border-radius: var(--radius-pill); border: 1px solid var(--border);
+      background: var(--bg-card); font-size: 0.8rem; cursor: pointer; color: var(--text-secondary);
+      transition: all 0.3s; font-family: var(--font-sans);
+    }
+    .reset-btn:hover { border-color: var(--red); color: var(--red); }
+
+    /* === Responsive === */
+    @media (max-width: 600px) {
+      .plan-grid { grid-template-columns: 1fr; gap: 10px; }
+      .plan-card { padding: 16px; display: flex; align-items: center; gap: 12px; text-align: left; }
+      .plan-card .plan-icon { font-size: 1.4rem; margin-bottom: 0; }
+      .plan-card .plan-info { flex: 1; }
+      .plan-card .plan-name { font-size: 0.85rem; }
+
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-value { font-size: 1.2rem; }
+
+      .hero { padding: 100px 20px 30px; }
+      .container { padding: 0 16px 60px; }
+      .nav-inner { padding: 14px 16px; }
+    }
+
+    /* === Animations === */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up {
+      animation: fadeUp 0.5s ease both;
+    }
+    .fade-up:nth-child(2) { animation-delay: 0.05s; }
+    .fade-up:nth-child(3) { animation-delay: 0.1s; }
+    .fade-up:nth-child(4) { animation-delay: 0.15s; }
+
+    /* === No plan selected state === */
+    .placeholder-msg {
+      text-align: center; padding: 60px 24px; color: var(--text-secondary);
+    }
+    .placeholder-msg .placeholder-icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .placeholder-msg p { font-size: 0.9rem; }
+
+    /* === Toast === */
+    .toast {
+      position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px);
+      background: var(--text); color: #fff; padding: 12px 24px; border-radius: var(--radius-pill);
+      font-size: 0.82rem; font-weight: 500; opacity: 0; transition: all 0.4s ease;
+      z-index: 200; pointer-events: none; white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-back">&larr; 返回作品集</a>
+      <span class="nav-brand">讀經進度</span>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>讀經進度</h1>
+    <p>每日一步，把神的話讀進心裡</p>
+  </section>
+
+  <div class="container">
+    <!-- Plan Selection -->
+    <div class="plan-grid fade-up" id="planGrid">
+      <div class="plan-card" data-plan="yearly" onclick="selectPlan('yearly')">
+        <div class="plan-icon">📖</div>
+        <div class="plan-info">
+          <div class="plan-name">一年讀完聖經</div>
+          <div class="plan-desc">365 天 &middot; 舊約 + 新約全卷</div>
+        </div>
+      </div>
+      <div class="plan-card" data-plan="nt90" onclick="selectPlan('nt90')">
+        <div class="plan-icon">✝️</div>
+        <div class="plan-info">
+          <div class="plan-name">新約 90 天</div>
+          <div class="plan-desc">90 天 &middot; 馬太福音至啟示錄</div>
+        </div>
+      </div>
+      <div class="plan-card" data-plan="psalms30" onclick="selectPlan('psalms30')">
+        <div class="plan-icon">🎵</div>
+        <div class="plan-info">
+          <div class="plan-name">詩篇 30 天</div>
+          <div class="plan-desc">30 天 &middot; 詩篇 1-150 篇</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main content area (hidden until plan selected) -->
+    <div id="mainContent" style="display:none;">
+      <!-- Stats -->
+      <div class="stats-grid fade-up" id="statsGrid">
+        <div class="stat-card">
+          <div class="stat-value" id="statDaysRead">0</div>
+          <div class="stat-label">已讀天數</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statStreak">0</div>
+          <div class="stat-label">連續天數</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statLongest">0</div>
+          <div class="stat-label">最長連續</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="statPct">0%</div>
+          <div class="stat-label">完成率</div>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="progress-section fade-up">
+        <div class="progress-header">
+          <span class="progress-title">總體進度</span>
+          <span class="progress-pct" id="progressPct">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill" style="width:0%"></div>
+        </div>
+      </div>
+
+      <!-- Today's Reading -->
+      <div class="today-section fade-up" id="todaySection">
+        <div class="today-header">
+          <span class="today-title">今日讀經</span>
+          <span class="today-day-badge" id="todayBadge">第 1 天</span>
+        </div>
+        <div class="today-reading" id="todayReading"></div>
+        <div class="today-check" id="todayCheck" onclick="toggleToday()">
+          <div class="check-icon" id="todayCheckIcon"></div>
+          <span class="check-label" id="todayCheckLabel">標記為已讀</span>
+        </div>
+      </div>
+
+      <!-- Calendar -->
+      <div class="calendar-section fade-up">
+        <div class="calendar-header">
+          <span class="calendar-title">讀經日曆</span>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span class="calendar-month" id="calendarMonth"></span>
+            <div class="calendar-nav">
+              <button onclick="changeMonth(-1)" aria-label="上個月">&lsaquo;</button>
+              <button onclick="changeMonth(1)" aria-label="下個月">&rsaquo;</button>
+            </div>
+          </div>
+        </div>
+        <div class="calendar-weekdays">
+          <div class="calendar-weekday">日</div>
+          <div class="calendar-weekday">一</div>
+          <div class="calendar-weekday">二</div>
+          <div class="calendar-weekday">三</div>
+          <div class="calendar-weekday">四</div>
+          <div class="calendar-weekday">五</div>
+          <div class="calendar-weekday">六</div>
+        </div>
+        <div class="calendar-days" id="calendarDays"></div>
+      </div>
+
+      <!-- Full Reading List -->
+      <div class="reading-list-section fade-up">
+        <div class="reading-list-header">
+          <span class="reading-list-title">完整進度表</span>
+          <div class="reading-list-filter">
+            <button class="filter-btn active" data-filter="all" onclick="filterList('all')">全部</button>
+            <button class="filter-btn" data-filter="done" onclick="filterList('done')">已讀</button>
+            <button class="filter-btn" data-filter="undone" onclick="filterList('undone')">未讀</button>
+          </div>
+        </div>
+        <div class="reading-list" id="readingList"></div>
+      </div>
+
+      <!-- Reset -->
+      <div class="reset-section">
+        <button class="reset-btn" onclick="resetPlan()">重置此計畫進度</button>
+      </div>
+    </div>
+
+    <!-- Placeholder -->
+    <div id="placeholder">
+      <div class="placeholder-msg">
+        <div class="placeholder-icon">👆</div>
+        <p>請選擇一個讀經計畫開始</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================
+   Bible Reading Plan Data
+   ========================================================= */
+
+// Canonical book order with chapter counts
+const BIBLE_BOOKS = [
+  {name:'創世記',ch:50},{name:'出埃及記',ch:40},{name:'利未記',ch:27},{name:'民數記',ch:36},
+  {name:'申命記',ch:34},{name:'約書亞記',ch:24},{name:'士師記',ch:21},{name:'路得記',ch:4},
+  {name:'撒母耳記上',ch:31},{name:'撒母耳記下',ch:24},{name:'列王紀上',ch:22},{name:'列王紀下',ch:25},
+  {name:'歷代志上',ch:29},{name:'歷代志下',ch:36},{name:'以斯拉記',ch:10},{name:'尼希米記',ch:13},
+  {name:'以斯帖記',ch:10},{name:'約伯記',ch:42},{name:'詩篇',ch:150},{name:'箴言',ch:31},
+  {name:'傳道書',ch:12},{name:'雅歌',ch:8},{name:'以賽亞書',ch:66},{name:'耶利米書',ch:52},
+  {name:'耶利米哀歌',ch:5},{name:'以西結書',ch:48},{name:'但以理書',ch:12},{name:'何西阿書',ch:14},
+  {name:'約珥書',ch:3},{name:'阿摩司書',ch:9},{name:'俄巴底亞書',ch:1},{name:'約拿書',ch:4},
+  {name:'彌迦書',ch:7},{name:'那鴻書',ch:3},{name:'哈巴谷書',ch:3},{name:'西番雅書',ch:3},
+  {name:'哈該書',ch:2},{name:'撒迦利亞書',ch:14},{name:'瑪拉基書',ch:4},
+  // NT
+  {name:'馬太福音',ch:28},{name:'馬可福音',ch:16},{name:'路加福音',ch:24},{name:'約翰福音',ch:21},
+  {name:'使徒行傳',ch:28},{name:'羅馬書',ch:16},{name:'哥林多前書',ch:16},{name:'哥林多後書',ch:13},
+  {name:'加拉太書',ch:6},{name:'以弗所書',ch:6},{name:'腓立比書',ch:4},{name:'歌羅西書',ch:4},
+  {name:'帖撒羅尼迦前書',ch:5},{name:'帖撒羅尼迦後書',ch:3},{name:'提摩太前書',ch:6},{name:'提摩太後書',ch:4},
+  {name:'提多書',ch:3},{name:'腓利門書',ch:1},{name:'希伯來書',ch:13},{name:'雅各書',ch:5},
+  {name:'彼得前書',ch:5},{name:'彼得後書',ch:3},{name:'約翰一書',ch:5},{name:'約翰二書',ch:1},
+  {name:'約翰三書',ch:1},{name:'猶大書',ch:1},{name:'啟示錄',ch:22}
+];
+
+const NT_START_INDEX = 39; // Index of 馬太福音
+
+/* ---- Generate 365-day whole-Bible plan ---- */
+function generateYearlyPlan() {
+  // Flatten all chapters
+  const chapters = [];
+  BIBLE_BOOKS.forEach(b => {
+    for (let c = 1; c <= b.ch; c++) chapters.push({ book: b.name, chapter: c });
+  });
+  // Total chapters: 1189, spread across 365 days (~3.26/day)
+  const totalDays = 365;
+  const plan = [];
+  const perDay = Math.floor(chapters.length / totalDays);
+  let extra = chapters.length - perDay * totalDays;
+  let idx = 0;
+  for (let d = 0; d < totalDays; d++) {
+    const count = perDay + (d < extra ? 1 : 0);
+    const dayChapters = chapters.slice(idx, idx + count);
+    idx += count;
+    // Group consecutive chapters in the same book
+    plan.push(formatChapterGroup(dayChapters));
+  }
+  return plan;
+}
+
+/* ---- Generate 90-day NT plan ---- */
+function generateNT90Plan() {
+  const chapters = [];
+  for (let i = NT_START_INDEX; i < BIBLE_BOOKS.length; i++) {
+    const b = BIBLE_BOOKS[i];
+    for (let c = 1; c <= b.ch; c++) chapters.push({ book: b.name, chapter: c });
+  }
+  // Total NT chapters: 260, spread across 90 days (~2.89/day)
+  const totalDays = 90;
+  const plan = [];
+  const perDay = Math.floor(chapters.length / totalDays);
+  let extra = chapters.length - perDay * totalDays;
+  let idx = 0;
+  for (let d = 0; d < totalDays; d++) {
+    const count = perDay + (d < extra ? 1 : 0);
+    const dayChapters = chapters.slice(idx, idx + count);
+    idx += count;
+    plan.push(formatChapterGroup(dayChapters));
+  }
+  return plan;
+}
+
+/* ---- Generate 30-day Psalms plan ---- */
+function generatePsalms30Plan() {
+  const totalPsalms = 150;
+  const totalDays = 30;
+  const plan = [];
+  const perDay = Math.floor(totalPsalms / totalDays); // 5
+  let extra = totalPsalms - perDay * totalDays;
+  let idx = 1;
+  for (let d = 0; d < totalDays; d++) {
+    const count = perDay + (d < extra ? 1 : 0);
+    const start = idx;
+    const end = idx + count - 1;
+    idx += count;
+    plan.push(start === end ? `詩篇 ${start} 篇` : `詩篇 ${start}-${end} 篇`);
+  }
+  return plan;
+}
+
+/* ---- Format chapter groups nicely ---- */
+function formatChapterGroup(chapters) {
+  if (!chapters.length) return '';
+  const groups = [];
+  let current = { book: chapters[0].book, start: chapters[0].chapter, end: chapters[0].chapter };
+  for (let i = 1; i < chapters.length; i++) {
+    const ch = chapters[i];
+    if (ch.book === current.book && ch.chapter === current.end + 1) {
+      current.end = ch.chapter;
+    } else {
+      groups.push({ ...current });
+      current = { book: ch.book, start: ch.chapter, end: ch.chapter };
+    }
+  }
+  groups.push(current);
+  return groups.map(g => {
+    if (g.start === g.end) return `${g.book} ${g.start}`;
+    return `${g.book} ${g.start}-${g.end}`;
+  }).join('、');
+}
+
+/* =========================================================
+   App State
+   ========================================================= */
+const STORAGE_KEY = 'wenkai_reading_plan';
+let state = loadState();
+let calendarDate = new Date();
+let currentFilter = 'all';
+let planCache = {};
+
+function defaultState() {
+  return { currentPlan: null, plans: {} };
+}
+
+function defaultPlanState(planId, totalDays) {
+  return {
+    startDate: new Date().toISOString().slice(0, 10),
+    completed: {}, // { dayIndex: dateCompleted }
+    totalDays: totalDays
+  };
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : defaultState();
+  } catch { return defaultState(); }
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function getPlanData(planId) {
+  if (planCache[planId]) return planCache[planId];
+  let data;
+  if (planId === 'yearly') data = generateYearlyPlan();
+  else if (planId === 'nt90') data = generateNT90Plan();
+  else if (planId === 'psalms30') data = generatePsalms30Plan();
+  else data = [];
+  planCache[planId] = data;
+  return data;
+}
+
+function getPlanTotalDays(planId) {
+  if (planId === 'yearly') return 365;
+  if (planId === 'nt90') return 90;
+  if (planId === 'psalms30') return 30;
+  return 0;
+}
+
+/* =========================================================
+   UI Logic
+   ========================================================= */
+function selectPlan(planId) {
+  state.currentPlan = planId;
+  if (!state.plans[planId]) {
+    state.plans[planId] = defaultPlanState(planId, getPlanTotalDays(planId));
+  }
+  saveState();
+  calendarDate = new Date();
+  currentFilter = 'all';
+  render();
+}
+
+function render() {
+  const plan = state.currentPlan;
+  // Plan cards
+  document.querySelectorAll('.plan-card').forEach(c => {
+    c.classList.toggle('active', c.dataset.plan === plan);
+  });
+
+  if (!plan) {
+    document.getElementById('mainContent').style.display = 'none';
+    document.getElementById('placeholder').style.display = '';
+    return;
+  }
+
+  document.getElementById('mainContent').style.display = '';
+  document.getElementById('placeholder').style.display = 'none';
+
+  const ps = state.plans[plan];
+  const data = getPlanData(plan);
+  const totalDays = ps.totalDays;
+  const completed = ps.completed || {};
+  const daysRead = Object.keys(completed).length;
+  const pct = totalDays > 0 ? Math.round(daysRead / totalDays * 100) : 0;
+
+  // Today's day index (based on start date)
+  const startDate = new Date(ps.startDate + 'T00:00:00');
+  const today = new Date(); today.setHours(0,0,0,0);
+  let todayIndex = Math.floor((today - startDate) / 86400000);
+  if (todayIndex < 0) todayIndex = 0;
+  if (todayIndex >= totalDays) todayIndex = totalDays - 1;
+
+  // Streaks
+  const { currentStreak, longestStreak } = calcStreaks(ps);
+
+  // Stats
+  document.getElementById('statDaysRead').textContent = daysRead;
+  document.getElementById('statStreak').textContent = currentStreak;
+  document.getElementById('statLongest').textContent = longestStreak;
+  document.getElementById('statPct').textContent = pct + '%';
+  document.getElementById('progressPct').textContent = pct + '%';
+  document.getElementById('progressFill').style.width = pct + '%';
+
+  // Today section
+  document.getElementById('todayBadge').textContent = `第 ${todayIndex + 1} 天`;
+  document.getElementById('todayReading').textContent = data[todayIndex] || '';
+  const isDone = completed[todayIndex] !== undefined;
+  const todayCheck = document.getElementById('todayCheck');
+  todayCheck.classList.toggle('done', isDone);
+  document.getElementById('todayCheckIcon').textContent = isDone ? '✓' : '';
+  document.getElementById('todayCheckLabel').textContent = isDone ? '已完成' : '標記為已讀';
+
+  // Calendar
+  renderCalendar(ps);
+
+  // Reading list
+  renderReadingList(data, completed, todayIndex);
+
+  // Filter buttons
+  document.querySelectorAll('.filter-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.filter === currentFilter);
+  });
+}
+
+function calcStreaks(ps) {
+  const completed = ps.completed || {};
+  const startDate = new Date(ps.startDate + 'T00:00:00');
+  const today = new Date(); today.setHours(0,0,0,0);
+  const totalDays = ps.totalDays;
+
+  // Build set of completed date strings
+  const completedDates = new Set();
+  for (const [dayIdx, dateStr] of Object.entries(completed)) {
+    completedDates.add(dateStr);
+  }
+
+  // Current streak: count backwards from today
+  let currentStreak = 0;
+  let d = new Date(today);
+  while (true) {
+    const ds = d.toISOString().slice(0, 10);
+    if (completedDates.has(ds)) {
+      currentStreak++;
+      d.setDate(d.getDate() - 1);
+    } else {
+      break;
+    }
+  }
+
+  // Longest streak: scan all completed dates sorted
+  const sortedDates = Array.from(completedDates).sort();
+  let longestStreak = 0;
+  let streak = 0;
+  let prevDate = null;
+  for (const ds of sortedDates) {
+    if (prevDate) {
+      const prev = new Date(prevDate + 'T00:00:00');
+      const curr = new Date(ds + 'T00:00:00');
+      const diff = Math.round((curr - prev) / 86400000);
+      if (diff === 1) {
+        streak++;
+      } else {
+        streak = 1;
+      }
+    } else {
+      streak = 1;
+    }
+    if (streak > longestStreak) longestStreak = streak;
+    prevDate = ds;
+  }
+
+  return { currentStreak, longestStreak };
+}
+
+function toggleToday() {
+  const plan = state.currentPlan;
+  if (!plan) return;
+  const ps = state.plans[plan];
+  const startDate = new Date(ps.startDate + 'T00:00:00');
+  const today = new Date(); today.setHours(0,0,0,0);
+  let todayIndex = Math.floor((today - startDate) / 86400000);
+  if (todayIndex < 0) todayIndex = 0;
+  if (todayIndex >= ps.totalDays) todayIndex = ps.totalDays - 1;
+
+  toggleDay(todayIndex);
+}
+
+function toggleDay(dayIndex) {
+  const plan = state.currentPlan;
+  if (!plan) return;
+  const ps = state.plans[plan];
+  if (!ps.completed) ps.completed = {};
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const dateStr = today.toISOString().slice(0, 10);
+
+  if (ps.completed[dayIndex] !== undefined) {
+    delete ps.completed[dayIndex];
+    showToast('已取消標記');
+  } else {
+    ps.completed[dayIndex] = dateStr;
+    showToast('已標記完成');
+  }
+  saveState();
+  render();
+}
+
+/* ---- Calendar ---- */
+function renderCalendar(ps) {
+  const year = calendarDate.getFullYear();
+  const month = calendarDate.getMonth();
+  const monthNames = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+  document.getElementById('calendarMonth').textContent = `${year} 年 ${monthNames[month]}`;
+
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const today = new Date(); today.setHours(0,0,0,0);
+
+  // Build set of completed dates
+  const completedDates = new Set();
+  if (ps && ps.completed) {
+    for (const dateStr of Object.values(ps.completed)) {
+      completedDates.add(dateStr);
+    }
+  }
+
+  let html = '';
+  // Empty cells before first day
+  for (let i = 0; i < firstDay; i++) {
+    html += '<div class="calendar-day empty"></div>';
+  }
+  for (let d = 1; d <= daysInMonth; d++) {
+    const date = new Date(year, month, d);
+    date.setHours(0,0,0,0);
+    const dateStr = date.toISOString().slice(0, 10);
+    const isToday = date.getTime() === today.getTime();
+    const isCompleted = completedDates.has(dateStr);
+    let cls = 'calendar-day';
+    if (isToday) cls += ' today';
+    if (isCompleted) cls += ' completed';
+    html += `<div class="${cls}">${d}</div>`;
+  }
+  document.getElementById('calendarDays').innerHTML = html;
+}
+
+function changeMonth(delta) {
+  calendarDate.setMonth(calendarDate.getMonth() + delta);
+  const ps = state.plans[state.currentPlan];
+  if (ps) renderCalendar(ps);
+}
+
+/* ---- Reading List ---- */
+function renderReadingList(data, completed, todayIndex) {
+  let html = '';
+  for (let i = 0; i < data.length; i++) {
+    const isDone = completed[i] !== undefined;
+    const isToday = i === todayIndex;
+
+    if (currentFilter === 'done' && !isDone) continue;
+    if (currentFilter === 'undone' && isDone) continue;
+
+    let cls = 'reading-item';
+    if (isDone) cls += ' done';
+    if (isToday) cls += ' today-item';
+
+    html += `<div class="${cls}" onclick="toggleDay(${i})">
+      <span class="ri-day">Day ${i + 1}</span>
+      <span class="ri-text">${data[i]}</span>
+      <span class="ri-check">${isDone ? '✓' : ''}</span>
+    </div>`;
+  }
+  if (!html) {
+    html = '<div style="text-align:center;padding:24px;color:var(--text-secondary);font-size:0.85rem;">沒有符合條件的項目</div>';
+  }
+  document.getElementById('readingList').innerHTML = html;
+
+  // Scroll to today
+  requestAnimationFrame(() => {
+    const todayEl = document.querySelector('.reading-item.today-item');
+    if (todayEl) {
+      const list = document.getElementById('readingList');
+      const listRect = list.getBoundingClientRect();
+      const itemRect = todayEl.getBoundingClientRect();
+      if (itemRect.top < listRect.top || itemRect.bottom > listRect.bottom) {
+        todayEl.scrollIntoView({ block: 'center', behavior: 'smooth' });
+      }
+    }
+  });
+}
+
+function filterList(filter) {
+  currentFilter = filter;
+  render();
+}
+
+/* ---- Reset ---- */
+function resetPlan() {
+  const plan = state.currentPlan;
+  if (!plan) return;
+  const planNames = { yearly: '一年讀完聖經', nt90: '新約 90 天', psalms30: '詩篇 30 天' };
+  if (!confirm(`確定要重置「${planNames[plan]}」的所有進度嗎？\n此操作無法復原。`)) return;
+  state.plans[plan] = defaultPlanState(plan, getPlanTotalDays(plan));
+  saveState();
+  showToast('進度已重置');
+  render();
+}
+
+/* ---- Toast ---- */
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(el._timer);
+  el._timer = setTimeout(() => el.classList.remove('show'), 2000);
+}
+
+/* =========================================================
+   Init
+   ========================================================= */
+document.addEventListener('DOMContentLoaded', () => {
+  render();
+});
+</script>
+</body>
+</html>
